@@ -1,0 +1,223 @@
+codeunit 83955 "Init. Resoure LIB"
+{
+    var
+        LibraryResource: Codeunit "Library - Resource LIB";
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Init. All LIB", OnInitialize, '', false, false)]
+    local procedure OnInitialize()
+    begin
+        Initialize();
+    end;
+
+    trigger OnRun()
+    begin
+        Initialize();
+    end;
+
+    procedure Initialize()
+    begin
+        InitializeHRSetup();
+        CreateDefaultWorkTypes();
+        InitializeResourceSetup();
+        InitializeResourceGroups();
+        InitializeWorkTimeWorkTypes();
+        InitializeResources();
+        UpdateResourceUnitsOfMeasure();
+        UpdateResourcesForTimeSheet();
+        UpdateResources();
+    end;
+
+    procedure InitializeResourceSetup()
+    var
+        ResourcesSetup: Record "Resources Setup";
+        LibraryTimeSheet: Codeunit "Library - Time Sheet";
+    begin
+        if not ResourcesSetup.Get() then begin
+            ResourcesSetup.Init();
+            ResourcesSetup.Insert(false);
+        end;
+
+        if ResourcesSetup."Time Sheet Nos." = '' then begin
+            ResourcesSetup.Validate("Time Sheet Nos.", LibraryTimeSheet.GetTimeSheetNoSeries());
+            ResourcesSetup.Modify(false);
+        end;
+
+        ResourcesSetup.Validate("Work Type Work TPZS", 'WERK');
+        ResourcesSetup.Validate("Work Type Travel TPZS", 'REIS');
+        ResourcesSetup.Validate("Work Type Travel (km) TPZS", 'KM');
+        ResourcesSetup.Modify(false);
+    end;
+
+    procedure InitializeResourceGroups()
+    // var
+    //     ResourceGroup: Record "Resource Group";
+    begin
+        LibraryResource.CreateDefaultResourceGroups();
+    end;
+
+    procedure CreateDefaultWorkTypes()
+    begin
+        LibraryResource.CreateWorkType('KM', 'Afstand', 'KM');
+        LibraryResource.CreateWorkType('REIS', 'Reis', 'UUR');
+        LibraryResource.CreateWorkType('WERK', 'Werk', 'UUR');
+        LibraryResource.CreateWorkType('FEESTDAG', 'Feestdag', 'UUR');
+        LibraryResource.CreateWorkType('BUITENWT', 'Buiten werktijd', 'UUR');
+        LibraryResource.CreateWorkType('WEEKEND', 'Weekend', 'UUR');
+    end;
+
+    procedure InitializeWorkTimeWorkTypes()
+    var
+        WorkTimeWorkTypeTPZS: Record "Work Time Work Type TPZS";
+        // WorkTimeWorkTypeDaysTPZS: Enum "Work Time Work Type Days TPZS";
+        WorkTypeCode: Code[10];
+        Day: Enum "Work Time Work Type Days TPZS";
+    begin
+
+        if not WorkTimeWorkTypeTPZS.IsEmpty() then
+            exit;
+
+        //Specific Date
+        WorkTypeCode := 'FEESTDAG';
+        LibraryResource.AddWorkTimeWorkTypeSpecific(20230427D, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkTypeSpecific(20230505D, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkTypeSpecific(20230518D, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkTypeSpecific(20230528D, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkTypeSpecific(20230529D, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkTypeSpecific(20231225D, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkTypeSpecific(20231226D, WorkTypeCode);
+
+        WorkTypeCode := 'BUITENWT';
+        Day := Day::Monday;
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 000000T, 080000T, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 163000T, 000000T, WorkTypeCode);
+
+        Day := Day::Tuesday;
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 000000T, 080000T, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 163000T, 000000T, WorkTypeCode);
+
+        Day := Day::Wednesday;
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 000000T, 080000T, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 163000T, 000000T, WorkTypeCode);
+
+        Day := Day::Thursday;
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 000000T, 080000T, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 163000T, 000000T, WorkTypeCode);
+
+        Day := Day::Friday;
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 000000T, 080000T, WorkTypeCode);
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 163000T, 000000T, WorkTypeCode);
+
+        WorkTypeCode := 'WEEKEND';
+        Day := Day::Saturday;
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 000000T, 000000T, WorkTypeCode);
+
+        Day := Day::Sunday;
+        LibraryResource.AddWorkTimeWorkType(Day, 0D, 000000T, 000000T, WorkTypeCode);
+    end;
+
+    procedure InitializeResources()
+    var
+        Resource: Record Resource;
+        LibraryRandom: Codeunit "Library - Random LIB";
+        I: Integer;
+    begin
+        for I := 1 to 10 do begin
+            Clear(Resource);
+            LibraryResource.CreateResource(Resource, '', LibraryRandom.FindCompleteNameRandom());
+            Resource.Validate("Resource Group No.", LibraryRandom.GetRandomValueByTableAndField(Database::"Resource Group", 1));
+            Resource.Modify(true);
+
+            LibraryResource.CreateResourceUnitOfMeasureTravelKm(Resource);
+        end;
+    end;
+
+    procedure InitializeHRSetup()
+    var
+        HumanResourcesSetup: Record "Human Resources Setup";
+        HumanResourceUnitofMeasure: Record "Human Resource Unit of Measure";
+        HRCode: Code[10];
+    begin
+        HumanResourcesSetup.Get();
+
+        HumanResourcesSetup."Base Unit of Measure" := '';
+        HumanResourcesSetup.Modify(true);
+
+        HRCode := 'DAG';
+        if not HumanResourceUnitofMeasure.Get(HRCode) then begin
+            HumanResourceUnitofMeasure.Init();
+            HumanResourceUnitofMeasure.Validate(Code, HRCode);
+            HumanResourceUnitofMeasure.Insert(true);
+        end;
+        HumanResourceUnitofMeasure.Validate("Qty. per Unit of Measure", 1440);
+        HumanResourceUnitofMeasure.Modify(true);
+
+        HRCode := 'MINUUT';
+        if not HumanResourceUnitofMeasure.Get(HRCode) then begin
+            HumanResourceUnitofMeasure.Init();
+            HumanResourceUnitofMeasure.Validate(Code, HRCode);
+            HumanResourceUnitofMeasure.Insert(true);
+        end;
+        HumanResourceUnitofMeasure.Validate("Qty. per Unit of Measure", 1);
+        HumanResourceUnitofMeasure.Modify(true);
+
+        HRCode := 'UUR';
+        if not HumanResourceUnitofMeasure.Get(HRCode) then begin
+            HumanResourceUnitofMeasure.Init();
+            HumanResourceUnitofMeasure.Validate(Code, HRCode);
+            HumanResourceUnitofMeasure.Insert(true);
+        end;
+        HumanResourceUnitofMeasure.Validate("Qty. per Unit of Measure", 60);
+        HumanResourceUnitofMeasure.Modify(true);
+
+        HumanResourcesSetup.Validate("Base Unit of Measure", 'MINUUT');
+        HumanResourcesSetup.Modify(false);
+    end;
+
+    procedure UpdateResourceUnitsOfMeasure()
+    var
+        Resource: Record Resource;
+        ResourceUnitofMeasure: Record "Resource Unit of Measure";
+        UoMCode: Code[10];
+    begin
+        UoMCode := 'KM';
+        if Resource.FindSet() then
+            repeat
+                if not ResourceUnitofMeasure.Get(Resource."No.", UoMCode) then begin
+                    ResourceUnitofMeasure.Init();
+                    ResourceUnitofMeasure.Validate("Resource No.", Resource."No.");
+                    ResourceUnitofMeasure.Validate(Code, UoMCode);
+                    ResourceUnitofMeasure.Validate("Qty. per Unit of Measure", 1);
+                    ResourceUnitofMeasure.Insert(true);
+                end;
+            until Resource.Next() = 0;
+    end;
+
+    procedure UpdateResourcesForTimeSheet()
+    var
+        Resource: Record Resource;
+        LibraryTimeSheetLIB: Codeunit "Library - Time Sheet LIB";
+        I: Integer;
+    begin
+        Resource.SetRange("Use Time Sheet", false);
+        if Resource.FindSet() then begin
+            I += 1;
+            LibraryTimeSheetLIB.UpdateResourceForTimeSheet(Resource, true);
+            if I = 10 then
+                exit;
+        end;
+    end;
+
+    procedure UpdateResources()
+    var
+        Resource: Record Resource;
+        LibraryRandom: Codeunit "Library - Random LIB";
+    begin
+        if Resource.FindSet() then
+            repeat
+                if Resource.Name in ['', ' '] then begin
+                    Resource.Validate(Name, LibraryRandom.FindCompleteNameRandom());
+                    Resource.Modify(true);
+                end;
+            until Resource.Next() = 0;
+    end;
+}

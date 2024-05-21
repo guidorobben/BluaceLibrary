@@ -1,0 +1,58 @@
+{
+  "id": "6395af54-1fc2-4c58-a706-d25f8dcc01ae",
+  "name": "Bluace Library",
+  "publisher": "Bluace",
+  "version": "1.0.0.5",  
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "http://www.bluace.nl",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "5d86850b-0d76-4eca-bd7b-951ad998e997",
+      "name": "Tests-TestLibraries",
+      "publisher": "Microsoft",
+      "version": "19.4.35398.36804"
+    },
+    {
+      "id": "ac7b1986-9d5f-4bfd-a48f-ada7ff4322e5",
+      "name": "Base Functionality",
+      "publisher": "Bluace",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "e08a9ae1-3aa3-47d2-b3af-1d85a470acbb",
+      "name": "Technical Management",
+      "publisher": "Bluace",
+      "version": "1.0.0.0"  
+    },
+    {
+      "id": "61376b9c-9165-4a8e-a882-b9bcb0482632",
+      "name": "Technical Management NL",
+      "publisher": "Bluace",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "38df5671-7cfe-4343-bf3f-f5295b50b8d8",
+      "name": "Extended Time Sheets",
+      "publisher": "Bluace",
+      "version": "1.0.0.0"
+    }
+  ],
+  "propagateDependencies": true,
+  "screenshots": [],
+  "platform": "23.0.0.0",
+  "application": "23.0.0.0",
+  "idRanges": [
+    {
+      "from": 83950,
+      "to": 83999
+    }
+  ],  
+  "resourceExposurePolicy": {"allowDebugging": true,"allowDownloadingSource": true,"includeSourceInSymbolFile": true},
+  "runtime": "12.0",
+  "features": ["TranslationFile"]
+}

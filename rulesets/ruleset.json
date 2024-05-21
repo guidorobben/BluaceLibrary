@@ -1,0 +1,89 @@
+{
+    "name": "Debug Ruleset",
+    "rules": [
+        {                    
+            "id": "AA0005",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "AA0072",                    
+            "action": "None"            
+        },
+        {                    
+            "id": "AA0074",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "AA0139",                    
+            "action": "None"
+        },
+        {                    
+            "id": "AA0181",                    
+            "action": "None"
+        },
+        {                    
+            "id": "AA0204",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "AA0210",                    
+            "action": "None"
+        },
+        {                    
+            "id": "AA0214",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "AA0215",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "AA0217",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "AA0218",                    
+            "action": "None"
+        },
+        {                    
+            "id": "AA0232",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "AA0244",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "AA0470",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "AW0005",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "AW0008",                    
+            "action": "warning"
+        },
+        {                    
+            "id": "PTE0012",                    
+            "action": "None"
+        },
+        {
+            "id": "LC0002",                    
+            "action": "None"            
+        },
+        {
+            "id": "LC0010",                    
+            "action": "None"            
+        },
+        {
+            "id": "LC0045",                    
+            "action": "None"            
+        },
+        {
+            "id": "LC0047",                    
+            "action": "None"            
+        }
+    ]
+}

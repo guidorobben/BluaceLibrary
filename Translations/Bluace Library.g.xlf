@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="Bluace Library">
+    <body>
+      <group id="body">
+        <trans-unit id="Table 3474433872 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Consumable</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Consumable LIB - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3474433872 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Consumable LIB - Field Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3474433872 - Field 1131619133 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Value</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Consumable LIB - Field Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4275393264 - Method 2178612247 - NamedType 434619307" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A skill type of type %1 '%2' is already selected. Only one skill of the type %1 is allowed.</source>
+          <note from="Developer" annotates="general" priority="2">%1=Skill Type, %2=Skill Code</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Library - Skill LIB - Method AlreadyHasSkillType - NamedType SkillTypeAlreadyExistErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1850241551 - NamedType 1075421739" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field "%1" must be part of the primary key in the Table "%2".</source>
+          <note from="Developer" annotates="general" priority="2">%1=FieldNo, %2=TableNo</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Library - Utility LIB - NamedType KeyNotFoundErr</note>
+        </trans-unit>
+        <trans-unit id="Page 150208473 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Consumables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Consumables LIB - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 150208473 - Control 1878130204 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Type field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Consumables LIB - Control Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 150208473 - Control 1131619133 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Value field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Consumables LIB - Control Value - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 150208473 - Control 4106698148 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the type filter.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Consumables LIB - Control TypeFilter - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 150208473 - Control 4106698148 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type Filter</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Consumables LIB - Control TypeFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Start Page Testing</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 1277201643 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Administration</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action AdministrationGroup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 2547284076 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show consumables.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action Consumables - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 2547284076 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Consumables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action Consumables - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 287942551 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitGroup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 853895309 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Run all Inits.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitAll - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 853895309 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init All</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitAll - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 784574172 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Contract.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitContract - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 784574172 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Contract</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitContract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 4078347720 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init general data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitGeneral - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 4078347720 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init General</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitGeneral - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 1461254305 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init item data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitItem - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 1461254305 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Item</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitItem - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 3799570401 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Object data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitObject - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 3799570401 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Object</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitObject - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 454663599 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init property data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitProperty - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 454663599 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Property</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitProperty - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 3806916252 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init resource data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitResource - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 3806916252 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Resource</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitResource - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 2342793244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init skills data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitSkills - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 2342793244 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Skills</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitSkills - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 381004922 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Session</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action Session - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 2683579768 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set all to English</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action SessionSetAllToEnglish - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 3287471443 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set to Dutch</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action SessionSetToDutch - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 3339153023 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set to English</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action SessionSetToEnglish - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 25673784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WorkDate to 01-10</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action SetWorkDateTo0110 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 3319023749 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WorkDate to Today</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action SetWorkDateToToday - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 109709493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Administration</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action Administration_Promoted - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 4107115436 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitPromoted - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 2715103493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Session</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action Session_Promoted - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3431573512 - EnumValue 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue Address - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3431573512 - EnumValue 714791889 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>City</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue City - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3431573512 - EnumValue 3444679095 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>First Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue First Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3431573512 - EnumValue 389645823 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>GLN</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue GLN - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3431573512 - EnumValue 1405402048 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>GTIN</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue GTIN - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3431573512 - EnumValue 3185966910 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>House No. Additional</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue House No. Additional - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3431573512 - EnumValue 4068742839 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Last Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue Last Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3431573512 - EnumValue 3891454143 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Location</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue Location - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3431573512 - EnumValue 3660300303 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue Post Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 2066546148 - Property 2879900210" maxwidth="30" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Library</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet Library LIB - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

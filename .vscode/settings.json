@@ -1,0 +1,17 @@
+{
+    "editor.suggestSelection": "first",
+    "al.enableCodeAnalysis": true,
+    "al.codeAnalyzers": [
+        "${CodeCop}",
+        "${UICop}",
+        "${PerTenantExtensionCop}",
+        "${analyzerFolder}BusinessCentral.LinterCop.dll"
+    ],
+    "al.ruleSetPath": "rulesets/ruleset.json",
+    "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.ObjectNameSuffix": " LIB",
+    "CRS.RemoveSuffixFromFilename": true,
+    "CRS.AlSubFolderName": "src"
+}

@@ -1,0 +1,41 @@
+permissionset 83950 "Library LIB"
+{
+    Assignable = true;
+    Caption = 'Library', MaxLength = 30;
+    Permissions =
+        table "Consumable LIB" = X,
+        tabledata "Consumable LIB" = RMID,
+        codeunit "Init. All LIB" = X,
+        codeunit "Init. Contract LIB" = X,
+        codeunit "Init. General LIB" = X,
+        codeunit "Init. Item LIB" = X,
+        codeunit "Init. Object LIB" = X,
+        codeunit "Init. Property LIB" = X,
+        codeunit "Init. Resoure LIB" = X,
+        codeunit "Init. Skills LIB" = X,
+        codeunit "Init. Skills NL LIB" = X,
+        codeunit "Init Object TM-NL LIB" = X,
+        codeunit "Library - Assert LIB" = X,
+        codeunit "Library - Contract LIB" = X,
+    // codeunit "Library - Ext. Documents LIB" = X,
+        codeunit "Library - Ext. Time Sheet LIB" = X,
+        codeunit "Library - General LIB" = X,
+        codeunit "Library - Inventory LIB" = X,
+        codeunit "Library - Item LIB" = X,
+        codeunit "Library - Job LIB" = X,
+        codeunit "Library - Maintenance LIB" = X,
+        codeunit "Library - Object LIB" = X,
+        codeunit "Library - Priority LIB" = X,
+        codeunit "Library - Property LIB" = X,
+        codeunit "Library - Purchase LIB" = X,
+        codeunit "Library - Random LIB" = X,
+        codeunit "Library - Resource LIB" = X,
+        codeunit "Library - Sales LIB" = X,
+        codeunit "Library - Skill LIB" = X,
+        codeunit "Library - Skill NL LIB" = X,
+        codeunit "Library - Time Sheet LIB" = X,
+        codeunit "Library - User LIB" = X,
+        codeunit "Library - Utility LIB" = X,
+        page "Consumables LIB" = X,
+        page "Start Page Test LIB" = X;
+}
