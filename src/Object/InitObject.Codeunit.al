@@ -2,7 +2,7 @@ codeunit 83951 "Init. Object LIB"
 {
     var
         LibraryGeneral: Codeunit "Library - General LIB";
-        LibraryMaintenance: Codeunit "Library - Maintenance LIB";
+        // LibraryMaintenance: Codeunit "Library - Maintenance LIB";
         LibraryObject: Codeunit "Library - Object LIB";
         LibraryUtility: Codeunit "Library - Utility LIB";
 
@@ -107,12 +107,13 @@ codeunit 83951 "Init. Object LIB"
 
     procedure InitializeMaintTemplateNorm()
     var
-        ObjectNormTypeTPZS: Enum "Object Norm Type TPZS";
-        RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
+    // ObjectNormTypeTPZS: Enum "Object Norm Type TPZS";
+    // RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
     begin
         //TODO Fix
-        LibraryMaintenance.CreateMaintenanceNorm(ObjectNormTypeTPZS::All, '', RelatedNormTypeTPZS::All, '', '');
-        LibraryMaintenance.CreateMaintenanceNorm(ObjectNormTypeTPZS::All, '', RelatedNormTypeTPZS::"All Contracts", '', '');
+        exit;
+        // LibraryMaintenance.CreateMaintenanceNorm(ObjectNormTypeTPZS::All, '', RelatedNormTypeTPZS::All, '', '');
+        // LibraryMaintenance.CreateMaintenanceNorm(ObjectNormTypeTPZS::All, '', RelatedNormTypeTPZS::"All Contracts", '', '');
     end;
 
     [InternalEvent(false)]

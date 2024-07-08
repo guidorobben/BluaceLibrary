@@ -3,8 +3,6 @@ codeunit 83989 "Library - Random LIB"
     var
         Assert: Codeunit Assert;
         LibraryRandom: Codeunit "Library - Random";
-        ConsumableType2: Enum "Consumable Type LIB";
-    // Seed: Integer;
 
     procedure FindAddressRandom() Result: Text[50]
     var
@@ -57,23 +55,31 @@ codeunit 83989 "Library - Random LIB"
     end;
 
     procedure FindCityRandom() Result: Text[50]
+    var
+        ConsumableType: Enum "Consumable Type LIB";
     begin
-        exit(FindConsumableRandom(ConsumableType2::City));
+        exit(FindConsumableRandom(ConsumableType::City));
     end;
 
     procedure FindPostCodeRandom() Result: Text[50]
+    var
+        ConsumableType: Enum "Consumable Type LIB";
     begin
-        exit(FindConsumableRandom(ConsumableType2::"Post Code"));
+        exit(FindConsumableRandom(ConsumableType::"Post Code"));
     end;
 
     procedure FindHouseNoAdditionalRandom() Result: Text[50]
+    var
+        ConsumableType: Enum "Consumable Type LIB";
     begin
-        exit(FindConsumableRandom(ConsumableType2::"House No. Additional"));
+        exit(FindConsumableRandom(ConsumableType::"House No. Additional"));
     end;
 
     procedure FindLocationRandom() Result: Text[50]
+    var
+        ConsumableType: Enum "Consumable Type LIB";
     begin
-        exit(FindConsumableRandom(ConsumableType2::Location));
+        exit(FindConsumableRandom(ConsumableType::Location));
     end;
 
     local procedure FindConsumableRandom(ConsumableType: Enum "Consumable Type LIB") Result: Text[50]
@@ -188,7 +194,6 @@ codeunit 83989 "Library - Random LIB"
             ItemOfTypeServiceNo := TempItem."No.";
     end;
 
-
     procedure FindResourceRandom(ResourceGroupNo: Code[20]) ResourceNo: Code[20]
     var
         Resource: Record Resource;
@@ -202,7 +207,6 @@ codeunit 83989 "Library - Random LIB"
         exit(CopyStr(FoundItemNo, 1, MaxStrLen(ResourceNo)));
     end;
 
-
     procedure GenerateRandomNumericText(Length: Integer) String: Text
     var
         I: Integer;
@@ -210,7 +214,6 @@ codeunit 83989 "Library - Random LIB"
         for I := 1 to Length do
             String[I] := LibraryRandom.RandIntInRange(48, 57);
     end;
-
 
     procedure GetRandomContact(ContactType: Enum "Contact Type") ContactNo: Code[20]
     var

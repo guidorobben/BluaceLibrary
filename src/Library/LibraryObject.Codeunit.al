@@ -230,7 +230,6 @@ codeunit 83983 "Library - Object LIB"
         ObjectTemplateTPZS.Modify(true);
     end;
 
-
     procedure AddObjectProperty(ObjectTPZS: Record "Object TPZS"; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyValue: Text[2048])
     var
         PropertyLineRBLC: Record "Property Line RBLC";

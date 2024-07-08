@@ -21,9 +21,7 @@ codeunit 83952 "Init. Skills LIB"
         DeleteSkills();
         // DeleteSkillPostCodes();
 
-        CreateSkillsOrganization();
-        CreateSkillGeoprahpy();
-        CreateSkillEmpty();
+        CreateDefaultSkills();
         // AddAllGeographicSkills();
         // CreateSkillPostCodes();
     end;
@@ -35,6 +33,13 @@ codeunit 83952 "Init. Skills LIB"
         SkillCode.DeleteAll(false);
     end;
 
+    procedure CreateDefaultSkills()
+    begin
+        CreateSkillsEmpty();
+        CreateSkillsGeoprahpy();
+        CreateSkillsManual();
+        CreateSkillsOrganization();
+    end;
 
     procedure CreateSkillsOrganization()
     begin
@@ -46,7 +51,7 @@ codeunit 83952 "Init. Skills LIB"
         LibrarySkill.CreateSkill('JAVA', 'Java (ORG)', SkillType::Organization, 150);
     end;
 
-    procedure CreateSkillGeoprahpy()
+    procedure CreateSkillsGeoprahpy()
     begin
         LibrarySkill.CreateSkill('DR', 'Drente (GEO)', SkillType::Geography, 200);
         LibrarySkill.CreateSkill('FL', 'Flevoland (GEO)', SkillType::Geography, 210);
@@ -61,7 +66,7 @@ codeunit 83952 "Init. Skills LIB"
         LibrarySkill.CreateSkill('ZL', 'Zeeland (GEO)', SkillType::Geography, 300);
     end;
 
-    procedure CreateSkillEmpty()
+    procedure CreateSkillsEmpty()
     begin
         LibrarySkill.CreateSkill('AHA', 'Aha', SkillType::" ");
         LibrarySkill.CreateSkill('ZAGEN', 'Zagen', SkillType::" ");
@@ -69,6 +74,12 @@ codeunit 83952 "Init. Skills LIB"
         LibrarySkill.CreateSkill('HAKKEN', 'Zagen', SkillType::" ");
     end;
 
+    procedure CreateSkillsManual()
+    begin
+        LibrarySkill.CreateSkill('PARKEREN', 'Parkeren', SkillType::"Manual");
+        LibrarySkill.CreateSkill('SLEUTEL', 'Sleutel', SkillType::"Manual");
+        LibrarySkill.CreateSkill('SLAGBOOM', 'Slagboom', SkillType::"Manual");
+    end;
     // procedure AddAllGeographicSkills()
     // var
     // // GeoSkillCodeNBLC: Record "Geo. Skill Code NBLC";
@@ -82,6 +93,4 @@ codeunit 83952 "Init. Skills LIB"
     // begin
     //     // GeoSkillPostCode.DeleteAll(false);
     // end;
-
-
 }

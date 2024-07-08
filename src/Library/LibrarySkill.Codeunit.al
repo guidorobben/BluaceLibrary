@@ -3,19 +3,22 @@ codeunit 83982 "Library - Skill LIB"
     var
         Assert: Codeunit Assert;
 
-    procedure CreateSkill(NewCode: Code[10]; Description: Text[100]; SkillType: Enum "Skill Type TPZS")
+    procedure CreateSkill(NewCode: Code[10]; Description: Text[100]; SkillTypeTPZS: Enum "Skill Type TPZS")
     begin
-        CreateSkill(NewCode, Description, SkillType, 0);
+        CreateSkill(NewCode, Description, SkillTypeTPZS, 0);
     end;
 
-    procedure CreateSkill(NewCode: Code[10]; Description: Text[100]; SkillType: Enum "Skill Type TPZS"; Score: Integer)
+    procedure CreateSkill(NewCode: Code[10]; Description: Text[100]; SkillTypeTPZS: Enum "Skill Type TPZS"; Score: Integer)
     var
         SkillCode: Record "Skill Code";
     begin
+        if SkillCode.Get(NewCode) then
+            exit;
+
         SkillCode.Init();
         SkillCode.Validate(Code, NewCode);
         SkillCode.Validate(Description, Description);
-        SkillCode.Validate("Skill Type TPZS", SkillType);
+        SkillCode.Validate("Skill Type TPZS", SkillTypeTPZS);
         SkillCode.Validate("Score TPZS", Score);
         SkillCode.Insert(true);
     end;

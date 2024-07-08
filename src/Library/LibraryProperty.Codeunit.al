@@ -1,5 +1,12 @@
 codeunit 83987 "Library - Property LIB"
 {
+    procedure PropertyExist(TableId: Integer; PropertyCode: Code[20]): Boolean
+    var
+        PropertyLineHelperRBLC: Codeunit "Property Line Helper RBLC";
+    begin
+        exit(PropertyLineHelperRBLC.PropertyExist(TableId, PropertyCode));
+    end;
+
     procedure CreateProperty(TableId: Integer; PropertyCode: Code[20]; Description: Text[100]; PropertyType: Enum "Property Type RBLC"; AllowFreeValues: Boolean)
     var
         PropertyRBLC: Record "Property RBLC";
@@ -22,6 +29,7 @@ codeunit 83987 "Library - Property LIB"
         PropertyValueRBLC: Record "Property Value RBLC";
         NewLineNo: Integer;
     begin
+        PropertyValueRBLC.SetLoadFields("Line No.");
         PropertyValueRBLC.SetRange("Table ID", TableId);
         PropertyValueRBLC.SetRange("Property Code", PropertyCode);
         if PropertyValueRBLC.FindLast() then

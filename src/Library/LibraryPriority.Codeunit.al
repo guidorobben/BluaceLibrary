@@ -1,6 +1,5 @@
 codeunit 83967 "Library - Priority LIB"
 {
-
     procedure CreatePriority(NewCode: Code[20]; Description: Text[100])
     var
         PriorityTPZS: Record "Priority TPZS";

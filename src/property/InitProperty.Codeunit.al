@@ -17,7 +17,6 @@ codeunit 83956 "Init. Property LIB"
     procedure Initialize()
     begin
         InitializeObjectProperties();
-        InitializeObjectPropertyValues();
         CreatePropertyMappings();
     end;
 
@@ -32,31 +31,25 @@ codeunit 83956 "Init. Property LIB"
         LibraryProperty.CreateProperty(Database::"Object TPZS", PropertyCode, 'Plaatsingsdatum', Enum::"Property Type RBLC"::Date, true);
 
         PropertyCode := 'VERMOGEN';
-        LibraryProperty.CreateProperty(Database::"Object TPZS", PropertyCode, 'Vermogen', Enum::"Property Type RBLC"::Text, false);
+        if not LibraryProperty.PropertyExist(Database::"Object TPZS", PropertyCode) then begin
+            LibraryProperty.CreateProperty(Database::"Object TPZS", PropertyCode, 'Vermogen', Enum::"Property Type RBLC"::Text, false);
+            LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '<50');
+            LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '>50');
+            LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '<150');
+            LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '>150');
+            LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '>=666');
+            LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '>=1000');
+        end;
 
         PropertyCode := 'KLEUR';
-        LibraryProperty.CreateProperty(Database::"Object TPZS", PropertyCode, 'Kleur', Enum::"Property Type RBLC"::Text, false);
-        LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, 'Zwart');
-        LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, 'Wit');
+        if not LibraryProperty.PropertyExist(Database::"Object TPZS", PropertyCode) then begin
+            LibraryProperty.CreateProperty(Database::"Object TPZS", PropertyCode, 'Kleur', Enum::"Property Type RBLC"::Text, false);
+            LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, 'Zwart');
+            LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, 'Wit');
+        end;
 
         PropertyCode := 'VOLTAGE';
         LibraryProperty.CreateProperty(Database::"Object TPZS", PropertyCode, 'Voltage', Enum::"Property Type RBLC"::Integer, true);
-    end;
-
-    procedure InitializeObjectPropertyValues()
-    var
-        PropertyCode: Code[20];
-    begin
-        // PropertyCode := 'BOUWJAAR';
-        // LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '1977');
-
-        PropertyCode := 'VERMOGEN';
-        LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '<50');
-        LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '>50');
-        LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '<150');
-        LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '>150');
-        LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '>=666');
-        LibraryProperty.CreatePropertyValue(Database::"Object TPZS", PropertyCode, '>=1000');
     end;
 
     procedure CreatePropertyMappings()
