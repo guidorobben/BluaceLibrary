@@ -109,13 +109,12 @@ codeunit 83980 "Library - Contract LIB"
         ContractServiceTPZS.Insert(true);
     end;
 
-    procedure CreateContractNorm(Code: Code[20]; Description: Text[100]; DeleteFirst: Boolean)
+    procedure CreateContractNorm(Code: Code[20]; Description: Text[100])
     var
         ContractNormTPZS: Record "Contract Norm TPZS";
     begin
-        if DeleteFirst then
-            if ContractNormTPZS.Get(Code) then
-                ContractNormTPZS.Delete(false);
+        if ContractNormTPZS.Get(Code) then
+            exit;
 
         ContractNormTPZS.Reset();
         ContractNormTPZS.Init();

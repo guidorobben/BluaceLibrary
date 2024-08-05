@@ -10,10 +10,12 @@ table 83950 "Consumable LIB"
         field(1; Type; Enum "Consumable Type LIB")
         {
             Caption = 'Type';
+            ToolTip = 'Specifies the value of the Type field.';
         }
         field(11; Value; Text[50])
         {
             Caption = 'Value';
+            ToolTip = 'Specifies the value of the Value field.';
         }
     }
 

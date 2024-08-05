@@ -22,14 +22,8 @@ page 83950 "Consumables LIB"
             }
             repeater(General)
             {
-                field("Type"; Rec."Type")
-                {
-                    ToolTip = 'Specifies the value of the Type field.';
-                }
-                field("Value"; Rec."Value")
-                {
-                    ToolTip = 'Specifies the value of the Value field.';
-                }
+                field("Type"; Rec."Type") { }
+                field("Value"; Rec."Value") { }
             }
         }
     }

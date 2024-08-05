@@ -34,9 +34,10 @@ codeunit 83954 "Init. Item LIB"
 
     procedure CreateContractNorms()
     begin
-        LibraryContract.CreateContractNorm('CNORM1', 'Contract Norm 1', true);
-        LibraryContract.CreateContractNorm('CNORM2', 'Contract Norm 2', true);
-        LibraryContract.CreateContractNorm('CNORM3', 'Contract Norm 3', true);
+        LibraryContract.CreateContractNorm('CNORM1', 'Contract Norm 1');
+        LibraryContract.CreateContractNorm('CNORM2', 'Contract Norm 2');
+        LibraryContract.CreateContractNorm('CNORM3', 'Contract Norm 3');
+        LibraryContract.CreateContractNorm('VERHUUR', 'Verhuur');
     end;
 
     procedure CreateTestServiceItems()

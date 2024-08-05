@@ -76,9 +76,9 @@ codeunit 83952 "Init. Skills LIB"
 
     procedure CreateSkillsManual()
     begin
-        LibrarySkill.CreateSkill('PARKEREN', 'Parkeren', SkillType::"Manual");
-        LibrarySkill.CreateSkill('SLEUTEL', 'Sleutel', SkillType::"Manual");
-        LibrarySkill.CreateSkill('SLAGBOOM', 'Slagboom', SkillType::"Manual");
+        LibrarySkill.CreateSkill('PARKEREN', 'Parkeren', SkillType::Manual);
+        LibrarySkill.CreateSkill('SLEUTEL', 'Sleutel', SkillType::Manual);
+        LibrarySkill.CreateSkill('SLAGBOOM', 'Slagboom', SkillType::Manual);
     end;
     // procedure AddAllGeographicSkills()
     // var
