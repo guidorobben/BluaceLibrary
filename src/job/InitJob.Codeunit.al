@@ -25,6 +25,7 @@ codeunit 83969 "Init. Job LIB"
     begin
         LibraryJob.CreateJobType('INTERN', 'Intern');
         LibraryJob.CreateJobType('EXTERN', 'Extern');
+        LibraryJob.CreateJobType('SJABLOON', 'Project sjabloon');
     end;
 
     [InternalEvent(false)]
