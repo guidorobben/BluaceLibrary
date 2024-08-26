@@ -9,6 +9,7 @@ permissionset 83950 "Library LIB"
         codeunit "Init. Contract LIB" = X,
         codeunit "Init. General LIB" = X,
         codeunit "Init. Item LIB" = X,
+        codeunit "Init. Job LIB" = X,
         codeunit "Init. Object LIB" = X,
         codeunit "Init. Property LIB" = X,
         codeunit "Init. Resoure LIB" = X,

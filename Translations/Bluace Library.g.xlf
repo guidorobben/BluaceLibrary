@@ -8,10 +8,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Consumable LIB - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3474433872 - Field 1878130204 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Type field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Consumable LIB - Field Type - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Table 3474433872 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Consumable LIB - Field Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3474433872 - Field 1131619133 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Value field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Consumable LIB - Field Value - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Table 3474433872 - Field 1131619133 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Value</source>
@@ -33,16 +43,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Consumables LIB - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 150208473 - Control 1878130204 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Type field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Consumables LIB - Control Type - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 150208473 - Control 1131619133 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Value field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Consumables LIB - Control Value - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 150208473 - Control 4106698148 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the type filter.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -54,7 +54,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Consumables LIB - Control TypeFilter - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1065769886 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Start Page Testing</source>
+          <source>Bluace Desktop</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Property Caption</note>
         </trans-unit>
@@ -117,6 +117,16 @@
           <source>Init Item</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitItem - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 1929682687 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Job data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitJOb - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 1929682687 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Job</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitJOb - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1065769886 - Action 3799570401 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Init Object data.</source>

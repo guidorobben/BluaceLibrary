@@ -184,4 +184,17 @@ codeunit 83960 "Library - Job LIB"
         if JobPlanLineTPZS.Get(JobRealizationTPZS."Job No.", JobRealizationTPZS."Job Task No.", JobRealizationTPZS."Job Planning Line No.", JobRealizationTPZS."Resource Group No.") then
             exit(true);
     end;
+
+    procedure CreateJobType(NewCode: Code[20]; Description: Text[100])
+    var
+        JobTypeRBLC: Record "Job Type RBLC";
+    begin
+        if JobTypeRBLC.Get(NewCode) then
+            exit;
+
+        JobTypeRBLC.Init();
+        JobTypeRBLC.Validate(Code, NewCode);
+        JobTypeRBLC.Validate(Description, Description);
+        JobTypeRBLC.Insert(true);
+    end;
 }

@@ -1,7 +1,7 @@
 page 83980 "Start Page Test LIB"
 {
     ApplicationArea = All;
-    Caption = 'Start Page Testing';
+    Caption = 'Bluace Desktop';
     Editable = false;
     PageType = List;
     UsageCategory = Tasks;
@@ -70,6 +70,13 @@ page 83980 "Start Page Test LIB"
                     Image = Start;
                     RunObject = codeunit "Init. Item LIB";
                     ToolTip = 'Init item data.';
+                }
+                action(InitJob)
+                {
+                    Caption = 'Init Job';
+                    Image = Start;
+                    RunObject = codeunit "Init. Job LIB";
+                    ToolTip = 'Init Job data.';
                 }
             }
             group(AdministrationGroup)
@@ -184,6 +191,7 @@ page 83980 "Start Page Test LIB"
                 actionref(InitContract_Promoted; InitContract) { }
                 actionref(InitResource_Promoted; InitResource) { }
                 actionref(InitItem_Promoted; InitItem) { }
+                actionref(InitJob_Promoted; InitJob) { }
             }
             group(Administration_Promoted)
             {
