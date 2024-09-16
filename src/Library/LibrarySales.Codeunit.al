@@ -276,14 +276,13 @@ codeunit 83990 "Library - Sales LIB"
     var
         ResourceGroup: Record "Resource Group";
         SalesPlanLineTPZS: Record "Sales Plan. Line TPZS";
-        LibrarySalesLIB: Codeunit "Library - Sales LIB";
         ResourceGroupNo: Code[20];
     begin
-        LibrarySalesLIB.GetSalesPlanLine(SalesPlanLineTPZS, SalesLine);
+        GetSalesPlanLine(SalesPlanLineTPZS, SalesLine);
         ResourceGroupNo := SalesPlanLineTPZS."Resource Group No.";
         ResourceGroup.Get(ResourceGroupNo);
 
-        LibrarySalesLIB.InitSalesRealization(SalesLine, SalesRealizationTPZS, ResourceGroup);
+        InitSalesRealization(SalesLine, SalesRealizationTPZS, ResourceGroup);
         SalesRealizationTPZS.Insert(true);
 
         // Work

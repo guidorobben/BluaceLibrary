@@ -16,6 +16,7 @@ codeunit 83955 "Init. Resoure LIB"
 
     procedure Initialize()
     begin
+        DeleteEmployeeAbsence();
         InitializeHRSetup();
         CreateDefaultWorkTypes();
         InitializeResourceSetup();
@@ -219,5 +220,12 @@ codeunit 83955 "Init. Resoure LIB"
                     Resource.Modify(true);
                 end;
             until Resource.Next() = 0;
+    end;
+
+    procedure DeleteEmployeeAbsence()
+    var
+        EmployeeAbsence: Record "Employee Absence";
+    begin
+        EmployeeAbsence.DeleteAll(true);
     end;
 }

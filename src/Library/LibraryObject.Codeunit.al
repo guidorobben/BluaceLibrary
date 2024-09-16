@@ -335,8 +335,7 @@ codeunit 83983 "Library - Object LIB"
         ObjectNormTPZS.Insert(true);
     end;
 
-    procedure CreateItemPlanningNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormCode: Code[20];
-                                                             ItemNo: Code[20])
+    procedure CreateItemPlanningNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormCode: Code[20]; ItemNo: Code[20])
     var
         ItemPlanningNormTPZS: Record "Item Planning Norm TPZS";
     begin
@@ -407,17 +406,6 @@ codeunit 83983 "Library - Object LIB"
         MaintScheduleCreated: Boolean;
     begin
         CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, not GuiAllowed);
-    end;
-
-    procedure GetActiveContractNo(ObjectTPZS: Record "Object TPZS"): Code[20]
-    var
-        ContractLine: Record "Contract Line TPZS";
-    begin
-        ContractLine.SetRange("Object No.", ObjectTPZS."No.");
-        ContractLine.SetFilter("Starting Date", '<=%1', Today());
-        ContractLine.SetFilter("Ending Date", '>=%1|%2', Today(), 0D);
-        if ContractLine.FindFirst() then
-            exit(ContractLine."Contract No.");
     end;
 
     procedure GetLastObject(var ObjectTPZS: Record "Object TPZS")

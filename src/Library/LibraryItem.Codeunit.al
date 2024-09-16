@@ -160,9 +160,9 @@ codeunit 83984 "Library - Item LIB"
         ItemPlanningNormTPZS.Insert(true);
     end;
 
-    procedure CreateItemPlanningNorm(var Item: Record Item; var ItemPlanningNormTPZS: Record "Item Planning Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; ContractNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20]; ResourceGroupNo: Code[20]; UnitOfMeasureCode: Code[10]; Quantity: Decimal)
+    procedure CreateItemPlanningNorm(var Item: Record Item; var ItemPlanningNormTPZS: Record "Item Planning Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20]; ResourceGroupNo: Code[20]; UnitOfMeasureCode: Code[10]; Quantity: Decimal)
     begin
-        CreateItemPlanningNorm(Item, ItemPlanningNormTPZS, ObjectNormTypeTPZS, ObjectNormNo, ContractNormTypeTPZS, RelatedNormNo);
+        CreateItemPlanningNorm(Item, ItemPlanningNormTPZS, ObjectNormTypeTPZS, ObjectNormNo, RelatedNormTypeTPZS, RelatedNormNo);
         ItemPlanningNormTPZS.Validate("Unit of Measure Code", UnitOfMeasureCode);
         ItemPlanningNormTPZS.Modify(true);
 

@@ -8,6 +8,7 @@ codeunit 83965 "Library - Maintenance LIB"
     procedure CreateMaintenanceTemplate(var MaintSchedTemplHdrTPZS: Record "Maint. Sched. Templ. Hdr. TPZS"; ScheduleCalcTypeTPZS: Enum "Schedule Calc. Type TPZS")
     begin
         MaintSchedTemplHdrTPZS.Init();
+        MaintSchedTemplHdrTPZS."No." := '';
         MaintSchedTemplHdrTPZS.Insert(true);
         MaintSchedTemplHdrTPZS.TestField("No.");
         MaintSchedTemplHdrTPZS.Validate("Schedule Calc. Type", ScheduleCalcTypeTPZS);
