@@ -158,6 +158,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitResource - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 344561262 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Sales Data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitSales - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1065769886 - Action 344561262 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Sales</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitSales - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1065769886 - Action 2342793244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Init skills data.</source>
           <note from="Developer" annotates="general" priority="2"></note>

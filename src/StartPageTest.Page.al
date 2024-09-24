@@ -78,6 +78,13 @@ page 83980 "Start Page Test LIB"
                     RunObject = codeunit "Init. Job LIB";
                     ToolTip = 'Init Job data.';
                 }
+                action(InitSales)
+                {
+                    Caption = 'Init Sales';
+                    Image = Start;
+                    RunObject = codeunit "Init. Sales LIB";
+                    ToolTip = 'Init Sales Data.';
+                }
             }
             group(AdministrationGroup)
             {
@@ -192,6 +199,7 @@ page 83980 "Start Page Test LIB"
                 actionref(InitResource_Promoted; InitResource) { }
                 actionref(InitItem_Promoted; InitItem) { }
                 actionref(InitJob_Promoted; InitJob) { }
+                actionref(InitSales_Promoted; InitSales) { }
             }
             group(Administration_Promoted)
             {

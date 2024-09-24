@@ -13,6 +13,7 @@ permissionset 83950 "Library LIB"
         codeunit "Init. Object LIB" = X,
         codeunit "Init. Property LIB" = X,
         codeunit "Init. Resoure LIB" = X,
+        codeunit "Init. Sales LIB" = X,
         codeunit "Init. Skills LIB" = X,
         codeunit "Init. Skills NL LIB" = X,
         codeunit "Init Object TM-NL LIB" = X,

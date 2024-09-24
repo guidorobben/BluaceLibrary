@@ -356,4 +356,9 @@ codeunit 83990 "Library - Sales LIB"
         if SalesPlanLineTPZS.Get(SalesRealizationTPZS."Document Type", SalesRealizationTPZS."Document No.", SalesRealizationTPZS."Document Line No.", SalesRealizationTPZS."Resource Group No.") then
             exit(true);
     end;
+
+    procedure CreateCustomer(var Customer: Record Customer)
+    begin
+        LibrarySales.CreateCustomer(Customer);
+    end;
 }
