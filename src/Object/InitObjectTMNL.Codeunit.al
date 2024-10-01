@@ -1,5 +1,8 @@
 codeunit 83961 "Init Object TM-NL LIB"
 {
+    Permissions =
+        tabledata "Object Setup TPZS" = RM,
+        tabledata "Post Code Serv. Setup NBLC" = RM;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Init. Object LIB", OnInitialize, '', false, false)]
     local procedure OnInitialize()

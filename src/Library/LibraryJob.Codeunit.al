@@ -1,5 +1,17 @@
 codeunit 83960 "Library - Job LIB"
 {
+    Permissions =
+        tabledata Job = RM,
+        tabledata "Job Plan. Line TPZS" = R,
+        tabledata "Job Planning Line" = RM,
+        tabledata "Job Realization TPZS" = RIM,
+        tabledata "Job Resource PZS" = RI,
+        tabledata "Job Rlz. Work Time TPZS" = R,
+        tabledata "Job Task" = RIM,
+        tabledata "Job Type RBLC" = RI,
+        tabledata Resource = R,
+        tabledata "Resource Group" = R;
+
     var
         LibraryJob: Codeunit "Library - Job";
         LibraryRandomLIB: Codeunit "Library - Random LIB";

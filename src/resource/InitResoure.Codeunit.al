@@ -1,5 +1,14 @@
 codeunit 83955 "Init. Resoure LIB"
 {
+    Permissions =
+        tabledata "Employee Absence" = RD,
+        tabledata "Human Resources Setup" = RM,
+        tabledata "Human Resource Unit of Measure" = RIM,
+        tabledata Resource = RM,
+        tabledata "Resources Setup" = RIM,
+        tabledata "Resource Unit of Measure" = RI,
+        tabledata "Work Time Work Type TPZS" = R;
+
     var
         LibraryResource: Codeunit "Library - Resource LIB";
 

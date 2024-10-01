@@ -1,5 +1,11 @@
 codeunit 83950 "Init. Contract LIB"
 {
+    Permissions =
+        tabledata "Contract Setup TPZS" = RM,
+        tabledata "Customer Price Group" = RD,
+        tabledata "Item Category" = R,
+        tabledata "Unit of Measure" = RI;
+
     var
         LibraryContract: Codeunit "Library - Contract LIB";
         LibraryItemLIB: Codeunit "Library - Item LIB";

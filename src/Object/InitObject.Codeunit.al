@@ -1,5 +1,8 @@
 codeunit 83951 "Init. Object LIB"
 {
+    Permissions =
+        tabledata "Object Setup TPZS" = RIM;
+
     var
         LibraryGeneral: Codeunit "Library - General LIB";
         // LibraryMaintenance: Codeunit "Library - Maintenance LIB";

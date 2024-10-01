@@ -1,5 +1,11 @@
 codeunit 83957 "Library - General LIB"
 {
+    Permissions =
+        tabledata "No. Series" = R,
+        tabledata "Time Window TPZS" = RI,
+        tabledata "Unit of Measure" = RI,
+        tabledata "Work Type" = RI;
+
     procedure CreateTimeWindow(Type: Enum "Time Window Type TPZS"; Code: Code[20]; StartingTime: Time; EndingTime: Time; IsDefault: Boolean)
     var
         TimeWindowTPZS: Record "Time Window TPZS";

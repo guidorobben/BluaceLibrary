@@ -1,5 +1,8 @@
 codeunit 83962 "Library - Ext. Time Sheet LIB"
 {
+    Permissions =
+        tabledata "Absence Job PZS" = RID;
+
     var
         Assert: Codeunit Assert;
 

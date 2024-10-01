@@ -1,5 +1,9 @@
 codeunit 83981 "Library - Utility LIB"
 {
+    Permissions =
+        tabledata "No. Series" = RI,
+        tabledata "No. Series Line" = RI;
+
     var
         // LibraryUtility: Codeunit "Library - Utility";
         KeyNotFoundErr: Label 'Field "%1" must be part of the primary key in the Table "%2".', Comment = '%1=FieldNo, %2=TableNo';

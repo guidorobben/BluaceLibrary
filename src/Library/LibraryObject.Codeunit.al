@@ -1,5 +1,25 @@
 codeunit 83983 "Library - Object LIB"
 {
+    Permissions =
+        tabledata Contact = R,
+        tabledata "Contr. Template Header TPZS" = R,
+        tabledata "Contract Header TPZS" = R,
+        tabledata "Contract Line TPZS" = R,
+        tabledata "Contract Setup TPZS" = R,
+        tabledata Customer = RM,
+        tabledata "Item Planning Norm TPZS" = RI,
+        tabledata "Item Usage Norm TPZS" = RI,
+        tabledata "Job Planning Line" = R,
+        tabledata "Job Task Object TPZS" = RI,
+        tabledata "Object BOM TPZS" = RIM,
+        tabledata "Object Contact TPZS" = RI,
+        tabledata "Object Norm TPZS" = RID,
+        tabledata "Object Status TPZS" = RI,
+        tabledata "Object Template TPZS" = RIM,
+        tabledata "Object TPZS" = RIM,
+        tabledata "Property Line RBLC" = RI,
+        tabledata "Role TPZS" = RI;
+
     var
         LibraryContractLIB: Codeunit "Library - Contract LIB";
         // LibraryInventory: Codeunit "Library - Inventory";

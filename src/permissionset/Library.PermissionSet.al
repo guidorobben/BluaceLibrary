@@ -2,9 +2,10 @@ permissionset 83950 "Library LIB"
 {
     Assignable = true;
     Caption = 'Library', MaxLength = 30;
-    Permissions =
-        table "Consumable LIB" = X,
+    Permissions = table "Consumable LIB" = X,
         tabledata "Consumable LIB" = RMID,
+        table "Feature Setup LIB" = X,
+        tabledata "Feature Setup LIB" = RIMD,
         codeunit "Init. All LIB" = X,
         codeunit "Init. Contract LIB" = X,
         codeunit "Init. General LIB" = X,
@@ -39,5 +40,6 @@ permissionset 83950 "Library LIB"
         codeunit "Library - User LIB" = X,
         codeunit "Library - Utility LIB" = X,
         page "Consumables LIB" = X,
+        page "Feature Setup LIB" = X,
         page "Start Page Test LIB" = X;
 }

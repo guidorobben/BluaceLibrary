@@ -1,5 +1,16 @@
 codeunit 83965 "Library - Maintenance LIB"
 {
+    Permissions =
+        tabledata "Contr. Template Header TPZS" = R,
+        tabledata "Contract Norm TPZS" = R,
+        tabledata "Maint. Sched. Templ. Hdr. TPZS" = RIM,
+        tabledata "Maint. Sched. Templ. Line TPZS" = RI,
+        tabledata "Maint. Template Norm TPZS" = RIMD,
+        tabledata "Object Maint. Schedule TPZS" = R,
+        tabledata "Object Norm TPZS" = R,
+        tabledata "Object Template TPZS" = R,
+        tabledata "Object TPZS" = RM;
+
     var
         Assert: Codeunit Assert;
         LibraryRandom: Codeunit "Library - Random";

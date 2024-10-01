@@ -1,5 +1,20 @@
 codeunit 83980 "Library - Contract LIB"
 {
+    Permissions =
+        tabledata "Contr. Archive Header TPZS" = R,
+        tabledata "Contr. Template Coverage TPZS" = RI,
+        tabledata "Contr. Template Header TPZS" = RIM,
+        tabledata "Contr. Template Service TPZS" = RI,
+        tabledata "Contr. Template UOM TPZS" = RI,
+        tabledata "Contract Header TPZS" = RIM,
+        tabledata "Contract Index TPZS" = RIMD,
+        tabledata "Contract Line TPZS" = RI,
+        tabledata "Contract Norm TPZS" = RI,
+        tabledata "Contract Service TPZS" = RI,
+        tabledata "Contract Setup TPZS" = R,
+        tabledata "Contract UOM TPZS" = RI,
+        tabledata "Customer Price Group" = RI,
+        tabledata "Sales & Receivables Setup" = R;
 
     procedure CreateContractTemplate(var ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; UnitOfMeasure: Code[10])
     begin

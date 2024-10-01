@@ -1,5 +1,16 @@
 codeunit 83989 "Library - Random LIB"
 {
+    Permissions =
+        tabledata "Consumable LIB" = R,
+        tabledata Contact = R,
+        tabledata "Contract Setup TPZS" = R,
+        tabledata Item = R,
+        tabledata "Item Category" = R,
+        tabledata "Property Mapping RBLC" = R,
+        tabledata "Property Value RBLC" = R,
+        tabledata Resource = R,
+        tabledata "Skill Code" = R;
+
     var
         Assert: Codeunit Assert;
         LibraryRandom: Codeunit "Library - Random";

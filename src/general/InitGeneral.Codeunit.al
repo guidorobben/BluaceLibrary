@@ -1,5 +1,10 @@
 codeunit 83953 "Init. General LIB"
 {
+    Permissions =
+        tabledata "Feature Setup LIB" = RI,
+        tabledata "Report Selections" = RID,
+        tabledata "User Setup" = RI;
+
     var
         LibraryGeneral: Codeunit "Library - General LIB";
         LibrarySales: Codeunit "Library - Sales LIB";
@@ -25,6 +30,7 @@ codeunit 83953 "Init. General LIB"
         InitializeReportSelections();
         InitializeReturnReasons();
         InitializeApprovalUserSetup();
+        InitializeFeatureSetup();
     end;
 
     procedure InitializeTechnicaManagement()
@@ -118,6 +124,16 @@ codeunit 83953 "Init. General LIB"
             ReportSelections.Sequence := Sequence;
             ReportSelections."Report ID" := ReportID;
             ReportSelections.Insert(false);
+        end;
+    end;
+
+    local procedure InitializeFeatureSetup()
+    var
+        FeatureSetupTPTE: Record "Feature Setup LIB";
+    begin
+        if not FeatureSetupTPTE.Get() then begin
+            FeatureSetupTPTE.Init();
+            FeatureSetupTPTE.Insert(true);
         end;
     end;
 

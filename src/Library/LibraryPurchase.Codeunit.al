@@ -1,5 +1,10 @@
 codeunit 83958 "Library - Purchase LIB"
 {
+    Permissions =
+        tabledata Item = R,
+        tabledata "Purchase Header" = R,
+        tabledata "Purchase Line" = RM;
+
     var
         LibraryInventory: Codeunit "Library - Inventory";
         LibraryPurchase: Codeunit "Library - Purchase";

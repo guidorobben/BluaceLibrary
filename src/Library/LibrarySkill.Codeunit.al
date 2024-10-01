@@ -1,5 +1,19 @@
 codeunit 83982 "Library - Skill LIB"
 {
+    Permissions =
+        tabledata "Contr. Template Header TPZS" = R,
+        tabledata "Contract Header TPZS" = R,
+        tabledata Item = R,
+        tabledata "Job Planning Line" = R,
+        tabledata "Object Template TPZS" = R,
+        tabledata "Object TPZS" = R,
+        tabledata Resource = R,
+        tabledata "Resource Skill" = RID,
+        tabledata "Sales Line" = R,
+        tabledata "Skill Code" = RID,
+        tabledata "Skill Item Line TPZS" = RD,
+        tabledata "Skill Line TPZS" = RD;
+
     var
         Assert: Codeunit Assert;
 

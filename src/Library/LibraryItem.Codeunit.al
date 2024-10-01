@@ -1,5 +1,20 @@
 codeunit 83984 "Library - Item LIB"
 {
+    Permissions =
+        tabledata "Contract Setup TPZS" = R,
+        tabledata "General Posting Setup" = R,
+        tabledata "Inventory Posting Group" = R,
+        tabledata Item = RIM,
+        tabledata "Item Category" = RI,
+        tabledata "Item Planning Norm TPZS" = RIMD,
+        tabledata "Item Unit of Measure" = RI,
+        tabledata "Item Usage Norm TPZS" = RIMD,
+        tabledata Location = R,
+        tabledata "Resource Group" = R,
+        tabledata "Stockkeeping Unit" = RI,
+        tabledata "Tax Group" = R,
+        tabledata "VAT Posting Setup" = R;
+
     var
         LibraryERM: Codeunit "Library - ERM";
         LibraryInventory: Codeunit "Library - Inventory";
@@ -75,11 +90,14 @@ codeunit 83984 "Library - Item LIB"
         if ItemNo = '' then
             exit;
 
+        if ItemUnitofMeasure.Get(ItemNo, UoMCode) then
+            exit;
+
         ItemUnitofMeasure.Init();
         ItemUnitofMeasure.Validate("Item No.", ItemNo);
         ItemUnitofMeasure.Validate(Code, UoMCode);
         ItemUnitofMeasure.Validate("Qty. per Unit of Measure", QtyPerUoM);
-        if ItemUnitofMeasure.Insert(true) then;
+        ItemUnitofMeasure.Insert(true);
     end;
 
 

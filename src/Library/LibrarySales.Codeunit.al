@@ -1,5 +1,20 @@
 codeunit 83990 "Library - Sales LIB"
 {
+    Permissions =
+        tabledata Contact = R,
+        tabledata "Contact Business Relation" = R,
+        tabledata Customer = RM,
+        tabledata Item = R,
+        tabledata Purchasing = RI,
+        tabledata "Realization Status TPZS" = RI,
+        tabledata "Resource Group" = R,
+        tabledata "Return Reason" = RI,
+        tabledata "Sales Header" = R,
+        tabledata "Sales Line" = R,
+        tabledata "Sales Plan. Line TPZS" = R,
+        tabledata "Sales Realization TPZS" = RIM,
+        tabledata "Sales Rlz. Work Time TPZS" = R;
+
     var
         LibraryInventory: Codeunit "Library - Inventory";
         LibraryMarketing: Codeunit "Library - Marketing";

@@ -1,5 +1,17 @@
 codeunit 83988 "Library - Resource LIB"
 {
+    Permissions =
+        tabledata "General Posting Setup" = R,
+        tabledata "Human Resource Unit of Measure" = RI,
+        tabledata Resource = RIM,
+        tabledata "Resource Group" = RI,
+        tabledata "Resources Setup" = R,
+        tabledata "Resource Unit of Measure" = RIM,
+        tabledata "Unit of Measure" = R,
+        tabledata "VAT Posting Setup" = R,
+        tabledata "Work Time Work Type TPZS" = RI,
+        tabledata "Work Type" = RI;
+
     var
         LibraryERM: Codeunit "Library - ERM";
         LibraryRandom: Codeunit "Library - Random";

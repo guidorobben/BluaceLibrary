@@ -1,5 +1,13 @@
 codeunit 83987 "Library - Property LIB"
 {
+    Permissions =
+        tabledata "Object Template TPZS" = R,
+        tabledata "Object TPZS" = R,
+        tabledata "Property Line RBLC" = RID,
+        tabledata "Property Mapping RBLC" = RI,
+        tabledata "Property RBLC" = RI,
+        tabledata "Property Value RBLC" = RI;
+
     procedure PropertyExist(TableId: Integer; PropertyCode: Code[20]): Boolean
     var
         PropertyLineHelperRBLC: Codeunit "Property Line Helper RBLC";

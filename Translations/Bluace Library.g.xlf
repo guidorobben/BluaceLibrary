@@ -28,6 +28,26 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Consumable LIB - Field Value - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3303093672 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Feature Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Feature Setup LIB - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3303093672 - Field 1081820113 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Disable TMNL field.</source>
+          <note from="Developer" annotates="general" priority="2">%</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Feature Setup LIB - Field Disable TMNL - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3303093672 - Field 1081820113 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Disable TMNL</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Feature Setup LIB - Field Disable TMNL - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3303093672 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Feature Setup LIB - Field Primary Key - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4275393264 - Method 2178612247 - NamedType 434619307" size-unit="char" translate="yes" xml:space="preserve">
           <source>A skill type of type %1 '%2' is already selected. Only one skill of the type %1 is allowed.</source>
           <note from="Developer" annotates="general" priority="2">%1=Skill Type, %2=Skill Code</note>
@@ -52,6 +72,16 @@
           <source>Type Filter</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Consumables LIB - Control TypeFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3303093672 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Feature Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Feature Setup LIB - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3303093672 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Feature Setup LIB - Control General - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1065769886 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Bluace Desktop</source>

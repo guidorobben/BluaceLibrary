@@ -1,5 +1,8 @@
 codeunit 83966 "Init. Skills NL LIB"
 {
+    Permissions =
+        tabledata "Geo. Skill Code NBLC" = R,
+        tabledata "Geo. Skill Post Code NBLC" = RD;
 
     var
         LibrarySkillNL: Codeunit "Library - Skill NL LIB";
