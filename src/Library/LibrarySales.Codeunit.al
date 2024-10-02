@@ -351,7 +351,7 @@ codeunit 83990 "Library - Sales LIB"
     var
         PageManagement: Codeunit "Page Management";
     begin
-        if SalesHeader.FindLast() then;
+        if SalesHeader.FindLast() then; //Focus
         PageManagement.PageRun(SalesHeader);
     end;
 

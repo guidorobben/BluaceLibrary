@@ -90,7 +90,7 @@ codeunit 83988 "Library - Resource LIB"
         if QtyPerUoM = 0 then
             QtyPerUoM := 1;
         ResourceUnitOfMeasure.Validate("Qty. per Unit of Measure", QtyPerUoM);
-        if ResourceUnitOfMeasure.Insert(true) then;
+        if ResourceUnitOfMeasure.Insert(true) then; //Easy
     end;
 
     procedure AddWorkTimeWorkTypeSpecific(Date: Date; WorkTypeCode: Code[10])

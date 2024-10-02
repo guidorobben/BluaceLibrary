@@ -48,7 +48,7 @@ codeunit 83983 "Library - Object LIB"
         if IsEnd then
             ObjectStatusTPZS.Validate("End Object Contact/Contract", true);
 
-        if ObjectStatusTPZS.Insert(true) then;
+        if ObjectStatusTPZS.Insert(true) then; //Easy
     end;
 
     procedure CreateObject(var ObjectTPZS: Record "Object TPZS")
@@ -295,7 +295,7 @@ codeunit 83983 "Library - Object LIB"
         RoleTPZS.Validate(Customer, Customer);
         RoleTPZS.Validate(Location, Location);
         RoleTPZS.Validate("Copy From Main Object", CopyFromMain);
-        if RoleTPZS.Insert(true) then;
+        if RoleTPZS.Insert(true) then; //Easy
     end;
 
     procedure AddObjectPropertyValue(ObjectTPZS: Record "Object TPZS"; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyEndingDate: Date; PropertyValue: Text[2048])

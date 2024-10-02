@@ -16,7 +16,7 @@ codeunit 83957 "Library - General LIB"
         TimeWindowTPZS.Validate("Starting Time", StartingTime);
         TimeWindowTPZS.Validate("Ending Time", EndingTime);
         TimeWindowTPZS.Validate(Default, IsDefault);
-        if TimeWindowTPZS.Insert(true) then;
+        if TimeWindowTPZS.Insert(true) then; //Easy
     end;
 
 

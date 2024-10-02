@@ -195,7 +195,7 @@ codeunit 83989 "Library - Random LIB"
 
         ItemCategory.Get(ContractSetupTPZS."Item Category Service");
         ItemCategory.CreateItemBufferTPZS(TempItem, '');
-        if TempItem.FindFirst() then;
+        if TempItem.FindFirst() then; //Easy
 
         RecordCount := TempItem.Count;
         if RecordCount = 0 then exit;

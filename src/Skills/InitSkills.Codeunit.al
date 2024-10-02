@@ -1,5 +1,6 @@
 codeunit 83952 "Init. Skills LIB"
 {
+    Permissions = tabledata "Skill Code" = RD;
 
     var
         LibrarySkill: Codeunit "Library - Skill LIB";

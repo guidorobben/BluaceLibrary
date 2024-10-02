@@ -132,10 +132,13 @@ codeunit 83950 "Init. Contract LIB"
     var
         UnitofMeasure: Record "Unit of Measure";
     begin
+        if UnitofMeasure.Get(NewCode) then
+            exit;
+
         UnitofMeasure.Init();
         UnitofMeasure.Validate(Code, NewCode);
         UnitofMeasure.Validate(Description, Description);
-        if UnitofMeasure.Insert(true) then;
+        UnitofMeasure.Insert(true);
     end;
 
     procedure InitializeCustomerPriceGroups()

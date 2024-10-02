@@ -29,7 +29,7 @@ codeunit 83987 "Library - Property LIB"
         PropertyRBLC.TestField("Table ID");
         PropertyRBLC.TestField(Code);
 
-        if PropertyRBLC.Insert(true) then;
+        if PropertyRBLC.Insert(true) then; //Easy
     end;
 
     procedure CreatePropertyValue(TableId: Integer; PropertyCode: Code[20]; PropertyValue: Text[2048])
