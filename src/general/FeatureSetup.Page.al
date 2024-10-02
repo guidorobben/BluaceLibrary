@@ -20,4 +20,9 @@ page 83951 "Feature Setup LIB"
             }
         }
     }
+
+    trigger OnOpenPage()
+    begin
+        Rec.InsertIfNotExists();
+    end;
 }

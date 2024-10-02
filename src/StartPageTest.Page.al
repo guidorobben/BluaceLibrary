@@ -97,6 +97,12 @@ page 83980 "Start Page Test LIB"
                     RunObject = page "Consumables LIB";
                     ToolTip = 'Show consumables.';
                 }
+                action(FeatureSetup)
+                {
+                    Caption = 'Feature Setup';
+                    Image = SetupList;
+                    RunObject = page "Feature Setup LIB";
+                }
                 // action(Dates)
                 // {
                 //     ApplicationArea = All;
@@ -208,6 +214,7 @@ page 83980 "Start Page Test LIB"
 
                 actionref(Consumables_Promoted; Consumables) { }
                 // actionref(DatesPromoted; Dates) { }
+                actionref(FeatureSetup_Promoted; FeatureSetup) { }
             }
             group(Session_Promoted)
             {

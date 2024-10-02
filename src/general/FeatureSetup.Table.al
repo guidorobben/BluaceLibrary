@@ -25,4 +25,15 @@ table 83951 "Feature Setup LIB"
             Clustered = true;
         }
     }
+
+    procedure InsertIfNotExists()
+    var
+    begin
+        Reset();
+        if not Get() then begin
+            Init();
+            Insert(true);
+        end;
+    end;
+
 }
