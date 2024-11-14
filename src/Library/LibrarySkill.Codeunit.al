@@ -613,7 +613,7 @@ codeunit 83982 "Library - Skill LIB"
         end;
     end;
 
-    procedure SkillItemCount(TableId: Integer; SourceSystemId: Guid): Integer
+    procedure SkillItemLineCount(TableId: Integer; SourceSystemId: Guid): Integer
     var
         SkillItemLineTPZS: Record "Skill Item Line TPZS";
     begin
