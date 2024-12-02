@@ -111,13 +111,6 @@ codeunit 83990 "Library - Sales LIB"
         LibrarySales.CreateSalesLine(SalesLine, SalesHeader, SalesLine.Type::Item, ItemNo, Quantity);
     end;
 
-    // procedure FindFirstSalesLine(var SalesLine: Record "Sales Line"; SalesHeader: Record "Sales Header")
-    // begin
-    //     SalesLine.SetRange("Document Type", SalesHeader."Document Type");
-    //     SalesLine.SetRange("Document No.", SalesHeader."No.");
-    //     SalesLine.FindFirst();
-    // end;
-
     procedure GetCustomerFromContact(var Customer: Record Customer; Contact: Record Contact)
     var
         ContactBusinessRelation: Record "Contact Business Relation";
@@ -140,9 +133,6 @@ codeunit 83990 "Library - Sales LIB"
         SalesPlanLineTPZS.SetRange("Document Type", SalesLine."Document Type");
         SalesPlanLineTPZS.SetRange("Document No.", SalesLine."Document No.");
         SalesPlanLineTPZS.SetRange("Document Line No.", SalesLine."Line No.");
-        // SalesPlanLineTPZS.SetRange("Plan. Document Type", SalesLine."Document Type");
-        // SalesPlanLineTPZS.SetRange("Plan. Document No.", SalesLine."Document No.");
-        // SalesPlanLineTPZS.SetRange("Plan. Document Line No.", SalesLine."Line No.");
         if SalesPlanLineTPZS.FindFirst() then
             exit(true);
     end;
@@ -277,14 +267,9 @@ codeunit 83990 "Library - Sales LIB"
 
     procedure CreatePurchasingCode(NewCode: Code[10]; Description: Text[100]; DropShipment: Boolean; SpecialOrder: Boolean)
     var
-        Purchasing: Record Purchasing;
+        LibraryItem: Codeunit "Library - Item LIB";
     begin
-        Purchasing.Init();
-        Purchasing.Validate(Code, NewCode);
-        Purchasing.Validate(Description, Description);
-        Purchasing.Validate("Drop Shipment", DropShipment);
-        Purchasing.Validate("Special Order", SpecialOrder);
-        Purchasing.Insert(true);
+        LibraryItem.CreatePurchasingCode(NewCode, Description, DropShipment, SpecialOrder);
     end;
 
     procedure CreateSalesRealization(var SalesRealizationTPZS: Record "Sales Realization TPZS"; SalesLine: Record "Sales Line"; WorkStartingDateTime: DateTime; WorkEndingDateTime: DateTime; TravelStartingDateTime: DateTime; TravelEndingDateTime: DateTime; TravelDistance: Decimal)

@@ -22,6 +22,8 @@ codeunit 83970 "Init. Sales LIB"
 
     local procedure InitializePurchasingCode()
     begin
+        LibrarySales.CreatePurchasingCode('MPG', 'Wijziging prioriteit', false, true);
         LibrarySales.CreatePurchasingCode('MVR', 'Materiaal via reservering', false, true);
+        LibrarySales.CreatePurchasingCode('SPOED', 'Spoedlevering', false, true);
     end;
 }

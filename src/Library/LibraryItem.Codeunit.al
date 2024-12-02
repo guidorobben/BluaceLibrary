@@ -1,6 +1,6 @@
 codeunit 83984 "Library - Item LIB"
 {
-    Permissions =
+    Permissions = 
         tabledata "Contract Setup TPZS" = R,
         tabledata "General Posting Setup" = R,
         tabledata "Inventory Posting Group" = R,
@@ -11,6 +11,7 @@ codeunit 83984 "Library - Item LIB"
         tabledata "Item Unit of Measure" = RI,
         tabledata "Item Usage Norm TPZS" = RIMD,
         tabledata Location = R,
+        tabledata Purchasing = RI,
         tabledata "Resource Group" = R,
         tabledata "Stockkeeping Unit" = RI,
         tabledata "Tax Group" = R,
@@ -378,5 +379,20 @@ codeunit 83984 "Library - Item LIB"
         ItemDiscountGroup.Validate(Code, ItemDiscountGroupCode);
         ItemDiscountGroup.Validate(Description, Description);
         ItemDiscountGroup.Insert(true);
+    end;
+
+    procedure CreatePurchasingCode(NewCode: Code[10]; Description: Text[100]; DropShipment: Boolean; SpecialOrder: Boolean)
+    var
+        Purchasing: Record Purchasing;
+    begin
+        if Purchasing.Get(NewCode) then
+            exit;
+
+        Purchasing.Init();
+        Purchasing.Validate(Code, NewCode);
+        Purchasing.Validate(Description, Description);
+        Purchasing.Validate("Drop Shipment", DropShipment);
+        Purchasing.Validate("Special Order", SpecialOrder);
+        Purchasing.Insert(true);
     end;
 }
