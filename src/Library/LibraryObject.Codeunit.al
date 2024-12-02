@@ -340,7 +340,7 @@ codeunit 83983 "Library - Object LIB"
     //     MaintSchedTemplTPZS.Insert(true);
     // end;
 
-    procedure CreateObjectNorm(Code: Code[20]; Description: Text[100]; DeleteFirst: Boolean)
+    procedure CreateObjectNormCode(Code: Code[20]; Description: Text[100]; DeleteFirst: Boolean)
     var
         ObjectNormTPZS: Record "Object Norm TPZS";
     begin

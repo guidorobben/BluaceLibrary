@@ -23,13 +23,14 @@ codeunit 83954 "Init. Item LIB"
         CreateContractNorms();
         CreateTestServiceItems();
         CreateTestServicePriceItems();
+        CreateItemDiscountGroups();
     end;
 
     procedure CreateObjectNorms()
     begin
-        LibraryObject.CreateObjectNorm('ONORM1', 'Object Norm 1', true);
-        LibraryObject.CreateObjectNorm('ONORM2', 'Object Norm 2', true);
-        LibraryObject.CreateObjectNorm('ONORM3', 'Object Norm 3', true);
+        LibraryObject.CreateObjectNormCode('ONORM1', 'Object Norm 1', true);
+        LibraryObject.CreateObjectNormCode('ONORM2', 'Object Norm 2', true);
+        LibraryObject.CreateObjectNormCode('ONORM3', 'Object Norm 3', true);
     end;
 
     procedure CreateContractNorms()
@@ -38,6 +39,14 @@ codeunit 83954 "Init. Item LIB"
         LibraryContract.CreateContractNorm('CNORM2', 'Contract Norm 2');
         LibraryContract.CreateContractNorm('CNORM3', 'Contract Norm 3');
         LibraryContract.CreateContractNorm('VERHUUR', 'Verhuur');
+    end;
+
+    procedure CreateItemDiscountGroups()
+    begin
+        LibraryItem.CreateItemDiscountGroup('CONTRACTS', 'Contracts');
+        LibraryItem.CreateItemDiscountGroup('OBJECTS', 'Objects');
+        LibraryItem.CreateItemDiscountGroup('CUSTOMERS', 'Customers');
+        LibraryItem.CreateItemDiscountGroup('VENDORS', 'Vendors');
     end;
 
     procedure CreateTestServiceItems()

@@ -6,6 +6,7 @@ codeunit 83984 "Library - Item LIB"
         tabledata "Inventory Posting Group" = R,
         tabledata Item = RIM,
         tabledata "Item Category" = RI,
+        tabledata "Item Discount Group" = RI,
         tabledata "Item Planning Norm TPZS" = RIMD,
         tabledata "Item Unit of Measure" = RI,
         tabledata "Item Usage Norm TPZS" = RIMD,
@@ -364,5 +365,18 @@ codeunit 83984 "Library - Item LIB"
         StockkeepingUnit."Put-away Unit of Measure Code" := Item."Put-away Unit of Measure Code";
         StockkeepingUnit."Use Cross-Docking" := Item."Use Cross-Docking";
         StockkeepingUnit.Insert(true);
+    end;
+
+    procedure CreateItemDiscountGroup(ItemDiscountGroupCode: Code[20]; Description: Text[100])
+    var
+        ItemDiscountGroup: Record "Item Discount Group";
+    begin
+        if ItemDiscountGroup.Get(ItemDiscountGroupCode) then
+            exit;
+
+        ItemDiscountGroup.Init();
+        ItemDiscountGroup.Validate(Code, ItemDiscountGroupCode);
+        ItemDiscountGroup.Validate(Description, Description);
+        ItemDiscountGroup.Insert(true);
     end;
 }
