@@ -100,7 +100,7 @@ codeunit 83965 "Library - Maintenance LIB"
         MaintTemplateNormTPZS.DeleteAll(false);
     end;
 
-    procedure CreateMaintenanceNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20]; MaintScheuldeTemplateNo: Code[20])
+    procedure CreateMaintenanceNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20]; MaintScheduldeTemplateNo: Code[20])
     var
         MaintTemplateNormTPZS: Record "Maint. Template Norm TPZS";
     begin
@@ -109,8 +109,8 @@ codeunit 83965 "Library - Maintenance LIB"
         MaintTemplateNormTPZS.SetRange("Related Norm Type", RelatedNormTypeTPZS);
         MaintTemplateNormTPZS.SetRange("Related Norm No.", RelatedNormNo);
         if MaintTemplateNormTPZS.FindFirst() then begin
-            MaintTemplateNormTPZS.Validate("Maint. Schedule Templ. No.", MaintScheuldeTemplateNo);
-            MaintTemplateNormTPZS.TestField("Maint. Schedule Templ. No.");
+            MaintTemplateNormTPZS.Validate("Maint. Schedule Templ. No.", MaintScheduldeTemplateNo);
+            // MaintTemplateNormTPZS.TestField("Maint. Schedule Templ. No.");
             MaintTemplateNormTPZS.Modify(true);
             exit;
         end;
@@ -120,8 +120,8 @@ codeunit 83965 "Library - Maintenance LIB"
         MaintTemplateNormTPZS.Validate("Object Norm No.", ObjectNormNo);
         MaintTemplateNormTPZS.Validate("Related Norm Type", RelatedNormTypeTPZS);
         MaintTemplateNormTPZS.Validate("Related Norm No.", RelatedNormNo);
-        MaintTemplateNormTPZS.Validate("Maint. Schedule Templ. No.", MaintScheuldeTemplateNo);
-        MaintTemplateNormTPZS.TestField("Maint. Schedule Templ. No.");
+        MaintTemplateNormTPZS.Validate("Maint. Schedule Templ. No.", MaintScheduldeTemplateNo);
+        // MaintTemplateNormTPZS.TestField("Maint. Schedule Templ. No.");
         MaintTemplateNormTPZS.Insert(true);
         MaintTemplateNormTPZS.TestField("Entry No.");
     end;
