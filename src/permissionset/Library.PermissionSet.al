@@ -34,6 +34,7 @@ permissionset 83950 "Library LIB"
         codeunit "Library - Random LIB" = X,
         codeunit "Library - Resource LIB" = X,
         codeunit "Library - Sales LIB" = X,
+        codeunit "Library - Sales Segments LIB" = X,
         codeunit "Library - Skill LIB" = X,
         codeunit "Library - Skill NL LIB" = X,
         codeunit "Library - Time Sheet LIB" = X,

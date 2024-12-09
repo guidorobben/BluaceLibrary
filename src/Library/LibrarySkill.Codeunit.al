@@ -624,4 +624,11 @@ codeunit 83982 "Library - Skill LIB"
         SkillItemLineTPZS.SetRange("Source System Id", SourceSystemId);
         exit(SkillItemLineTPZS.Count);
     end;
+
+    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillTypeTPZS: Enum "Skill Type TPZS"; DoNotUpdateSource: Boolean)
+    var
+        ResourceSkillHelperTPZS: Codeunit "Resource Skill Helper TPZS";
+    begin
+        ResourceSkillHelperTPZS.DeleteResourceSkills(Type, SourceNo, SkillTypeTPZS, DoNotUpdateSource);
+    end;
 }

@@ -312,4 +312,18 @@ codeunit 83980 "Library - Contract LIB"
         ShipContractsHelperTPZS.ShipSalesOrders(TempSalesHeader, not GuiAllowed);
         ShipContractsHelperTPZS.CloseProgressWindow();
     end;
+
+    procedure RemoveContractLines(ContractNo: Code[20])
+    var
+        ContractLineTPZS: Record "Contract Line TPZS";
+        RemoveContrLinesMethTPZS: Codeunit "Remove Contr. Lines Meth TPZS";
+    begin
+        ContractLineTPZS.Reset();
+        ContractLineTPZS.SetRange("Contract No.", ContractNo);
+        if ContractLineTPZS.FindSet() then
+            repeat
+                RemoveContrLinesMethTPZS.RemoveContractLines(ContractLineTPZS);
+            until ContractLineTPZS.Next() = 0;
+        RemoveContrLinesMethTPZS.ReleaseContracts();
+    end;
 }

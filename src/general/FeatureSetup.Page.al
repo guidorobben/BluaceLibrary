@@ -14,9 +14,7 @@ page 83951 "Feature Setup LIB"
             {
                 Caption = 'General';
 
-                field("Disable TMNL"; Rec."Disable TMNL")
-                {
-                }
+                field("Disable TMNL"; Rec."Disable TMNL") { }
             }
         }
     }

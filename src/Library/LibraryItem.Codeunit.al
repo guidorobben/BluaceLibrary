@@ -1,6 +1,6 @@
 codeunit 83984 "Library - Item LIB"
 {
-    Permissions = 
+    Permissions =
         tabledata "Contract Setup TPZS" = R,
         tabledata "General Posting Setup" = R,
         tabledata "Inventory Posting Group" = R,

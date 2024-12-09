@@ -130,9 +130,11 @@ codeunit 83965 "Library - Maintenance LIB"
     var
         CreateObjectMaintMethTPZS: Codeunit "Create Object Maint. Meth TPZS";
         MaintScheduleCreated: Boolean;
+        ValidOnDate: Date;
     begin
-        //Bypass
-        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, not GuiAllowed);
+        //Bypass InternalsVisible
+        ValidOnDate := Today();
+        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, ValidOnDate, not GuiAllowed);
         ObjectTPZS.Validate("Maint. Schedule Updated", true);
         ObjectTPZS.Modify(true);
     end;
@@ -202,5 +204,12 @@ codeunit 83965 "Library - Maintenance LIB"
 
         ObjectMaintScheduleTPZS.SetRange("Object No.", ObjectTPZS."No.");
         exit(not ObjectMaintScheduleTPZS.IsEmpty);
+    end;
+
+    procedure UpdateObjectMaintSchedules(var ObjectMaintScheduleTPZS: Record "Object Maint. Schedule TPZS")
+    var
+        UpdateObjMaintSched: Codeunit "Update Obj. Maint Sched. TPZS";
+    begin
+        UpdateObjMaintSched.UpdateObjectMaintSchedules(ObjectMaintScheduleTPZS);
     end;
 }

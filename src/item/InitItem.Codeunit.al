@@ -28,9 +28,9 @@ codeunit 83954 "Init. Item LIB"
 
     procedure CreateObjectNorms()
     begin
-        LibraryObject.CreateObjectNormCode('ONORM1', 'Object Norm 1', true);
-        LibraryObject.CreateObjectNormCode('ONORM2', 'Object Norm 2', true);
-        LibraryObject.CreateObjectNormCode('ONORM3', 'Object Norm 3', true);
+        LibraryObject.CreateObjectNormCode('ONORM1', 'Object Norm 1');
+        LibraryObject.CreateObjectNormCode('ONORM2', 'Object Norm 2');
+        LibraryObject.CreateObjectNormCode('ONORM3', 'Object Norm 3');
     end;
 
     procedure CreateContractNorms()

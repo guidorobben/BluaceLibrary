@@ -340,13 +340,12 @@ codeunit 83983 "Library - Object LIB"
     //     MaintSchedTemplTPZS.Insert(true);
     // end;
 
-    procedure CreateObjectNormCode(Code: Code[20]; Description: Text[100]; DeleteFirst: Boolean)
+    procedure CreateObjectNormCode(Code: Code[20]; Description: Text[100])
     var
         ObjectNormTPZS: Record "Object Norm TPZS";
     begin
-        if DeleteFirst then
-            if ObjectNormTPZS.Get(Code) then
-                ObjectNormTPZS.Delete(false);
+        if ObjectNormTPZS.Get(Code) then
+            exit;
 
         ObjectNormTPZS.Reset();
         ObjectNormTPZS.Init();
@@ -424,8 +423,10 @@ codeunit 83983 "Library - Object LIB"
     var
         CreateObjectMaintMethTPZS: Codeunit "Create Object Maint. Meth TPZS";
         MaintScheduleCreated: Boolean;
+        ValidOnDate: Date;
     begin
-        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, not GuiAllowed);
+        ValidOnDate := Today();
+        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, ValidOnDate, not GuiAllowed);
     end;
 
     procedure GetLastObject(var ObjectTPZS: Record "Object TPZS")
@@ -477,5 +478,15 @@ codeunit 83983 "Library - Object LIB"
         if ObjectBOM.FindLast() then
             LineNo := ObjectBOM."Line No.";
         LineNo += 10000;
+    end;
+
+    procedure DeleteProperties(ObjectTPZS: Record "Object TPZS")
+    begin
+        ObjectTPZS.DeleteProperties();
+    end;
+
+    procedure CreateFixedAsset(var ObjectTPZS: Record "Object TPZS"; HideDialog: Boolean)
+    begin
+        ObjectTPZS.CreateFixedAsset(HideDialog);
     end;
 }
