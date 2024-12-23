@@ -109,9 +109,11 @@ codeunit 83965 "Library - Maintenance LIB"
         MaintTemplateNormTPZS.SetRange("Related Norm Type", RelatedNormTypeTPZS);
         MaintTemplateNormTPZS.SetRange("Related Norm No.", RelatedNormNo);
         if MaintTemplateNormTPZS.FindFirst() then begin
-            MaintTemplateNormTPZS.Validate("Maint. Schedule Templ. No.", MaintScheduldeTemplateNo);
-            // MaintTemplateNormTPZS.TestField("Maint. Schedule Templ. No.");
-            MaintTemplateNormTPZS.Modify(true);
+            if MaintScheduldeTemplateNo <> '' then begin
+                MaintTemplateNormTPZS.Validate("Maint. Schedule Templ. No.", MaintScheduldeTemplateNo);
+                // MaintTemplateNormTPZS.TestField("Maint. Schedule Templ. No.");
+                MaintTemplateNormTPZS.Modify(true);
+            end;
             exit;
         end;
 
@@ -120,7 +122,8 @@ codeunit 83965 "Library - Maintenance LIB"
         MaintTemplateNormTPZS.Validate("Object Norm No.", ObjectNormNo);
         MaintTemplateNormTPZS.Validate("Related Norm Type", RelatedNormTypeTPZS);
         MaintTemplateNormTPZS.Validate("Related Norm No.", RelatedNormNo);
-        MaintTemplateNormTPZS.Validate("Maint. Schedule Templ. No.", MaintScheduldeTemplateNo);
+        if MaintScheduldeTemplateNo <> '' then
+            MaintTemplateNormTPZS.Validate("Maint. Schedule Templ. No.", MaintScheduldeTemplateNo);
         // MaintTemplateNormTPZS.TestField("Maint. Schedule Templ. No.");
         MaintTemplateNormTPZS.Insert(true);
         MaintTemplateNormTPZS.TestField("Entry No.");
@@ -129,12 +132,12 @@ codeunit 83965 "Library - Maintenance LIB"
     procedure CreateObjectMaintenanceSchedule(var ObjectTPZS: Record "Object TPZS")
     var
         CreateObjectMaintMethTPZS: Codeunit "Create Object Maint. Meth TPZS";
-        MaintScheduleCreated: Boolean;
+        MaintScheduleCreated, MaintScheduleUpdated : Boolean;
         ValidOnDate: Date;
     begin
         //Bypass InternalsVisible
         ValidOnDate := Today();
-        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, ValidOnDate, not GuiAllowed);
+        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, MaintScheduleUpdated, ValidOnDate, not GuiAllowed);
         ObjectTPZS.Validate("Maint. Schedule Updated", true);
         ObjectTPZS.Modify(true);
     end;

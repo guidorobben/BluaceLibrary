@@ -422,11 +422,11 @@ codeunit 83983 "Library - Object LIB"
     procedure CreateObjectMaintenanceSchedule(var ObjectTPZS: Record "Object TPZS")
     var
         CreateObjectMaintMethTPZS: Codeunit "Create Object Maint. Meth TPZS";
-        MaintScheduleCreated: Boolean;
+        MaintScheduleCreated, MaintScheduleUpdated : Boolean;
         ValidOnDate: Date;
     begin
         ValidOnDate := Today();
-        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, ValidOnDate, not GuiAllowed);
+        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, MaintScheduleUpdated, ValidOnDate, not GuiAllowed);
     end;
 
     procedure GetLastObject(var ObjectTPZS: Record "Object TPZS")

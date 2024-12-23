@@ -1,7 +1,8 @@
 codeunit 83951 "Init. Object LIB"
 {
     Permissions =
-        tabledata "Object Setup TPZS" = RIM;
+        tabledata "Object Setup TPZS" = RIM,
+        tabledata "Object Status TPZS" = R;
 
     var
         LibraryGeneral: Codeunit "Library - General LIB";
@@ -33,6 +34,7 @@ codeunit 83951 "Init. Object LIB"
     procedure InitializeObjectSetup()
     var
         ObjectSetupTPZS: Record "Object Setup TPZS";
+        ObjectStatusTPZS: Record "Object Status TPZS";
         NoSeriesCode: Code[20];
     begin
         if not ObjectSetupTPZS.Get() then begin
@@ -86,6 +88,14 @@ codeunit 83951 "Init. Object LIB"
 
         if ObjectSetupTPZS."Replacement Object Status" = '' then begin
             ObjectSetupTPZS.Validate("Replacement Object Status", 'BEEINDIGD');
+            ObjectSetupTPZS.Modify(true);
+        end;
+
+        if ObjectSetupTPZS."Replacement Object Status" = '' then begin
+            ObjectStatusTPZS.SetRange(Blocked, true);
+            ObjectStatusTPZS.SetRange("End Object Contact/Contract", true);
+            if ObjectStatusTPZS.FindFirst() then; //Its there
+            ObjectSetupTPZS.Validate("Replacement Object Status", ObjectStatusTPZS.Code);
             ObjectSetupTPZS.Modify(true);
         end;
     end;
