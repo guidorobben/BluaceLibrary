@@ -42,5 +42,5 @@ permissionset 83950 "Library LIB"
         codeunit "Library - Utility LIB" = X,
         page "Consumables LIB" = X,
         page "Feature Setup LIB" = X,
-        page "Start Page Test LIB" = X;
+        page "Bluace Desktop LIB" = X;
 }

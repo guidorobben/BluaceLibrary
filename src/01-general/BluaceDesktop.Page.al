@@ -1,4 +1,4 @@
-page 83980 "Start Page Test LIB"
+page 83980 "Bluace Desktop LIB"
 {
     ApplicationArea = All;
     Caption = 'Bluace Desktop';
