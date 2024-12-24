@@ -294,7 +294,7 @@ codeunit 83980 "Library - Contract LIB"
         ContractHeaderTPZS.CreateContractFromTemplate(ContrTemplateHeaderTPZS."No.");
     end;
 
-    procedure SendContract(var ContractHeaderTPZS: Record "Contract Header TPZS"; PostingDate: Date)
+    procedure SendContract(var ContractHeaderTPZS: Record "Contract Header TPZS"; PostingDate: Date; SkipCheckShipmentOnPostingDate: Boolean)
     var
         ContrArchiveHeaderTPZS: Record "Contr. Archive Header TPZS";
         LastContrArchiveHeaderTPZS: Record "Contr. Archive Header TPZS";
@@ -308,7 +308,7 @@ codeunit 83980 "Library - Contract LIB"
 
         ShipContractsHelperTPZS.InitProgressWindow();
         ContrArchiveHeaderTPZS.Get(ContractHeaderTPZS."No.", ContractHeaderTPZS.GetLastVersionNo());
-        ShipContractsHelperTPZS.CreateContractSalesLines(ContrArchiveHeaderTPZS, LastContrArchiveHeaderTPZS, PostingDate, SalesReceivablesSetup, ContractSetupTPZS, TempSalesHeader, not GuiAllowed);
+        ShipContractsHelperTPZS.CreateContractSalesLines(ContrArchiveHeaderTPZS, LastContrArchiveHeaderTPZS, PostingDate, SkipCheckShipmentOnPostingDate, SalesReceivablesSetup, ContractSetupTPZS, TempSalesHeader, not GuiAllowed);
         ShipContractsHelperTPZS.ShipSalesOrders(TempSalesHeader, not GuiAllowed);
         ShipContractsHelperTPZS.CloseProgressWindow();
     end;
