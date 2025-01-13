@@ -135,6 +135,7 @@ codeunit 83955 "Init. Resoure LIB"
             Clear(Resource);
             LibraryResource.CreateResource(Resource, '', LibraryRandom.FindCompleteNameRandom());
             Resource.Validate("Resource Group No.", LibraryRandom.GetRandomValueByTableAndField(Database::"Resource Group", 1));
+            Resource.Validate("Location Code TPZS", LibraryRandom.GetRandomValueByTableAndField(Database::"Location", 1));
             Resource.Modify(true);
 
             LibraryResource.CreateResourceUnitOfMeasureTravelKm(Resource);

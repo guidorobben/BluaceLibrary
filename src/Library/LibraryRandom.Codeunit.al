@@ -284,7 +284,7 @@ codeunit 83989 "Library - Random LIB"
             FR2FieldRef.SetFilter('<>%1', '');
         end;
 
-        RecCount := RelRecordRef.Count;
+        RecCount := RelRecordRef.Count();
         if RecCount = 0 then
             exit;
 
