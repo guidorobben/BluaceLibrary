@@ -137,7 +137,7 @@ codeunit 83965 "Library - Maintenance LIB"
     begin
         //Bypass InternalsVisible
         ValidOnDate := Today();
-        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, MaintScheduleUpdated, ValidOnDate, not GuiAllowed);
+        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, MaintScheduleUpdated, ValidOnDate, not GuiAllowed());
         ObjectTPZS.Validate("Maint. Schedule Updated", true);
         ObjectTPZS.Modify(true);
     end;
@@ -206,7 +206,7 @@ codeunit 83965 "Library - Maintenance LIB"
         ObjectTPZS.TestField("No.");
 
         ObjectMaintScheduleTPZS.SetRange("Object No.", ObjectTPZS."No.");
-        exit(not ObjectMaintScheduleTPZS.IsEmpty);
+        exit(not ObjectMaintScheduleTPZS.IsEmpty());
     end;
 
     procedure UpdateObjectMaintSchedules(var ObjectMaintScheduleTPZS: Record "Object Maint. Schedule TPZS")

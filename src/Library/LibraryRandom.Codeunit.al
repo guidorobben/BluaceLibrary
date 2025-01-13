@@ -22,7 +22,7 @@ codeunit 83989 "Library - Random LIB"
         NextCount: Integer;
     begin
         Consumable.SetRange(Type, Consumable.Type::Address);
-        Count := Consumable.Count;
+        Count := Consumable.Count();
 
         if Count = 0 then
             exit;
@@ -56,7 +56,7 @@ codeunit 83989 "Library - Random LIB"
         NextCount: Integer;
     begin
         Consumable.SetRange(Type, Consumable.Type::"First Name");
-        Count := Consumable.Count;
+        Count := Consumable.Count();
 
         if Count = 0 then exit;
 
@@ -100,7 +100,7 @@ codeunit 83989 "Library - Random LIB"
         NextCount: Integer;
     begin
         Consumable.SetRange(Type, ConsumableType);
-        Count := Consumable.Count;
+        Count := Consumable.Count();
 
         if Count = 0 then exit;
 
@@ -123,7 +123,7 @@ codeunit 83989 "Library - Random LIB"
         TableId := GetPropertyMapping(Database::"Object TPZS");
         PropertyValueRBLC.SetRange("Table ID", TableId);
         PropertyValueRBLC.SetRange("Property Code", PropertyCode);
-        Count := PropertyValueRBLC.Count;
+        Count := PropertyValueRBLC.Count();
 
         if Count = 0 then
             exit;
@@ -150,7 +150,7 @@ codeunit 83989 "Library - Random LIB"
         NextCount: Integer;
     begin
         Consumable.SetRange(Type, Consumable.Type::"Last Name");
-        Count := Consumable.Count;
+        Count := Consumable.Count();
 
         if Count = 0 then exit;
 
@@ -197,7 +197,7 @@ codeunit 83989 "Library - Random LIB"
         ItemCategory.CreateItemBufferTPZS(TempItem, '');
         if TempItem.FindFirst() then; //Easy
 
-        RecordCount := TempItem.Count;
+        RecordCount := TempItem.Count();
         if RecordCount = 0 then exit;
 
         NextCount := LibraryRandom.RandIntInRange(1, RecordCount);
@@ -246,7 +246,7 @@ codeunit 83989 "Library - Random LIB"
         //RelRecRef: RecordRef;
         RecCount: Integer;
     begin
-        RecCount := SourceRecordRef.Count;
+        RecCount := SourceRecordRef.Count();
         if RecCount = 0 then
             exit;
 

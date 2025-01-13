@@ -147,9 +147,9 @@ codeunit 83953 "Init. General LIB"
         UserSetup: Record "User Setup";
     // User: Record User;
     begin
-        if not UserSetup.Get(UserId) then begin
+        if not UserSetup.Get(UserId()) then begin
             UserSetup.Init();
-            UserSetup.Validate("User ID", UserId);
+            UserSetup.Validate("User ID", UserId());
             UserSetup.Validate("Salespers./Purch. Code", 'GP');
             UserSetup.Validate("Unlimited Purchase Approval", true);
             UserSetup.Validate("Unlimited Sales Approval", true);

@@ -339,7 +339,7 @@ codeunit 83982 "Library - Skill LIB"
 
         ResourceSkill.SetRange(Type, Type);
         ResourceSkill.SetRange("No.", SourceNo);
-        exit(not ResourceSkill.IsEmpty);
+        exit(not ResourceSkill.IsEmpty());
     end;
 
     procedure HasSkillLines(TableId: Integer; SourceSystemId: Guid): Boolean
@@ -484,7 +484,7 @@ codeunit 83982 "Library - Skill LIB"
     begin
         ResourceSkill.SetRange(Type, FilterResourceSkillType);
         ResourceSkill.SetRange("No.", SourceNo);
-        exit(ResourceSkill.Count);
+        exit(ResourceSkill.Count());
     end;
 
     procedure DeleteSkillItems(TableId: Integer; SourceSystemId: Guid)
@@ -622,7 +622,7 @@ codeunit 83982 "Library - Skill LIB"
 
         SkillItemLineTPZS.SetRange("Table Id", TableId);
         SkillItemLineTPZS.SetRange("Source System Id", SourceSystemId);
-        exit(SkillItemLineTPZS.Count);
+        exit(SkillItemLineTPZS.Count());
     end;
 
     procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillTypeTPZS: Enum "Skill Type TPZS"; DoNotUpdateSource: Boolean)

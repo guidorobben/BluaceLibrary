@@ -78,7 +78,7 @@ codeunit 83987 "Library - Property LIB"
     begin
         PropertyMappingRBLC.SetRange("Table ID", TableID);
         PropertyMappingRBLC.SetRange("Property Table ID", PropertyTableID);
-        exit(not PropertyMappingRBLC.IsEmpty);
+        exit(not PropertyMappingRBLC.IsEmpty());
     end;
 
     //TODO MOgen weg

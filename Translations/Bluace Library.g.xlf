@@ -58,6 +58,181 @@
           <note from="Developer" annotates="general" priority="2">%1=FieldNo, %2=TableNo</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Library - Utility LIB - NamedType KeyNotFoundErr</note>
         </trans-unit>
+        <trans-unit id="Page 607087459 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bluace Desktop</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 1277201643 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Administration</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action AdministrationGroup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 2547284076 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show consumables.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action Consumables - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 2547284076 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Consumables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action Consumables - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 853283781 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Feature Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action FeatureSetup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 287942551 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitGroup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 853895309 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Run all Inits.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitAll - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 853895309 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init All</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitAll - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 784574172 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Contract.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitContract - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 784574172 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Contract</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitContract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 4078347720 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init general data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitGeneral - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 4078347720 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init General</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitGeneral - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 1461254305 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init item data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitItem - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 1461254305 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Item</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitItem - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 4201140191 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Job data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitJob - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 4201140191 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Job</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitJob - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 3799570401 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Object data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitObject - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 3799570401 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Object</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitObject - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 454663599 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init property data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitProperty - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 454663599 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Property</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitProperty - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 3806916252 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init resource data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitResource - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 3806916252 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Resource</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitResource - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 344561262 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Sales Data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitSales - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 344561262 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Sales</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitSales - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 2342793244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init skills data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitSkills - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 2342793244 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init Skills</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitSkills - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 381004922 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Session</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action Session - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 2683579768 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set all to English</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action SessionSetAllToEnglish - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 3287471443 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set to Dutch</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action SessionSetToDutch - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 3339153023 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set to English</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action SessionSetToEnglish - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 25673784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WorkDate to 01-10</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action SetWorkDateTo0110 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 3319023749 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WorkDate to Today</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action SetWorkDateToToday - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 109709493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Administration</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action Administration_Promoted - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 4107115436 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Init</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action InitPromoted - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Action 2715103493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Session</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action Session_Promoted - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 150208473 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Consumables</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -82,181 +257,6 @@
           <source>General</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Feature Setup LIB - Control General - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bluace Desktop</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 1277201643 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Administration</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action AdministrationGroup - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 2547284076 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Show consumables.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action Consumables - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 2547284076 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Consumables</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action Consumables - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 853283781 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Feature Setup</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action FeatureSetup - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 287942551 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitGroup - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 853895309 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Run all Inits.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitAll - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 853895309 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init All</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitAll - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 784574172 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Contract.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitContract - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 784574172 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Contract</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitContract - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 4078347720 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init general data.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitGeneral - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 4078347720 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init General</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitGeneral - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 1461254305 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init item data.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitItem - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 1461254305 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Item</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitItem - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 4201140191 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Job data.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitJob - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 4201140191 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Job</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitJob - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 3799570401 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Object data.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitObject - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 3799570401 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Object</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitObject - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 454663599 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init property data.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitProperty - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 454663599 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Property</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitProperty - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 3806916252 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init resource data.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitResource - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 3806916252 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Resource</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitResource - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 344561262 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Sales Data.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitSales - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 344561262 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Sales</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitSales - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 2342793244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init skills data.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitSkills - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 2342793244 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init Skills</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitSkills - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 381004922 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Session</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action Session - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 2683579768 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Set all to English</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action SessionSetAllToEnglish - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 3287471443 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Set to Dutch</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action SessionSetToDutch - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 3339153023 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Set to English</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action SessionSetToEnglish - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 25673784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>WorkDate to 01-10</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action SetWorkDateTo0110 - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 3319023749 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>WorkDate to Today</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action SetWorkDateToToday - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 109709493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Administration</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action Administration_Promoted - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 4107115436 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Init</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action InitPromoted - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 1065769886 - Action 2715103493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Session</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Start Page Test LIB - Action Session_Promoted - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3431573512 - EnumValue 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Address</source>

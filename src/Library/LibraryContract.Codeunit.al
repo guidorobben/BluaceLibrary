@@ -308,8 +308,8 @@ codeunit 83980 "Library - Contract LIB"
 
         ShipContractsHelperTPZS.InitProgressWindow();
         ContrArchiveHeaderTPZS.Get(ContractHeaderTPZS."No.", ContractHeaderTPZS.GetLastVersionNo());
-        ShipContractsHelperTPZS.CreateContractSalesLines(ContrArchiveHeaderTPZS, LastContrArchiveHeaderTPZS, PostingDate, SkipCheckShipmentOnPostingDate, SalesReceivablesSetup, ContractSetupTPZS, TempSalesHeader, not GuiAllowed);
-        ShipContractsHelperTPZS.ShipSalesOrders(TempSalesHeader, not GuiAllowed);
+        ShipContractsHelperTPZS.CreateContractSalesLines(ContrArchiveHeaderTPZS, LastContrArchiveHeaderTPZS, PostingDate, SkipCheckShipmentOnPostingDate, SalesReceivablesSetup, ContractSetupTPZS, TempSalesHeader, not GuiAllowed());
+        ShipContractsHelperTPZS.ShipSalesOrders(TempSalesHeader, not GuiAllowed());
         ShipContractsHelperTPZS.CloseProgressWindow();
     end;
 

@@ -2,7 +2,7 @@
   "id": "6395af54-1fc2-4c58-a706-d25f8dcc01ae",
   "name": "Bluace Library",
   "publisher": "Bluace",
-  "version": "1.0.0.7",
+  "version": "1.0.0.8",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -63,7 +63,7 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "14.0",
+  "runtime": "14.1",
   "features": [
     "TranslationFile"
   ],

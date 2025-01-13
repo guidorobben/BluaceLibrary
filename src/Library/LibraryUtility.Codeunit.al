@@ -60,7 +60,7 @@ codeunit 83981 "Library - Utility LIB"
         // Find the value of Line No. for a new line in the Record passed as Record Ref.
         // 1. It is assumed that the field passed is part of the primary key.
         // 2. It is assumed that all the primary key fields except Line No. field are already validated on the record.
-        RecordRef2.Open(SourceRecordRef.Number, false, CompanyName);
+        RecordRef2.Open(SourceRecordRef.Number, false, CompanyName());
         KeyRef := SourceRecordRef.KeyIndex(1);  // The Primary Key always has index as 1.
         for FieldCount := 1 to KeyRef.FieldCount do begin
             FieldRef := KeyRef.FieldIndex(FieldCount);

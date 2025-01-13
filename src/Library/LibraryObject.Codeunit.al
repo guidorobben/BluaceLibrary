@@ -106,10 +106,10 @@ codeunit 83983 "Library - Object LIB"
     procedure CreateObjectWithRandomTemplate(var ObjectTPZS: Record "Object TPZS")
     var
         ObjectTemplateTPZS: Record "Object Template TPZS";
-        ObjectTemplateNo: Text;
+        ObjectTemplateNo: Code[20];
     begin
         //Get Random Template
-        ObjectTemplateNo := LibraryRandomLIB.GetRandomValueByTable(ObjectTemplateTPZS.RecordId.TableNo);
+        ObjectTemplateNo := LibraryRandomLIB.GetRandomValueByTableCode20(ObjectTemplateTPZS.RecordId.TableNo);
         ObjectTemplateTPZS.Get(ObjectTemplateNo);
         ObjectTemplateTPZS.TestField("No.");
 
@@ -178,7 +178,7 @@ codeunit 83983 "Library - Object LIB"
         if ObjectTemplateTPZS."No." <> '' then
             CreateObjectWithTemplate(ObjectTPZS, ObjectTemplateTPZS)
         else
-            CreateObject(ObjectTPZS, true, (Today + 4));
+            CreateObject(ObjectTPZS, true, (Today() + 4));
 
         ObjectTPZS.Modify(true);
 
@@ -426,7 +426,7 @@ codeunit 83983 "Library - Object LIB"
         ValidOnDate: Date;
     begin
         ValidOnDate := Today();
-        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, MaintScheduleUpdated, ValidOnDate, not GuiAllowed);
+        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, MaintScheduleUpdated, ValidOnDate, not GuiAllowed());
     end;
 
     procedure GetLastObject(var ObjectTPZS: Record "Object TPZS")

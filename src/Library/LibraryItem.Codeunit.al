@@ -278,7 +278,7 @@ codeunit 83984 "Library - Item LIB"
         ContractSetupTPZS.TestField("Item Category Service");
         ContractSetupTPZS.TestField("Unit of Measure Code Month");
 
-        ResourceGroup.Get(LibraryRandomLIB.GetRandomValueByTable(Database::"Resource Group"));
+        ResourceGroup.Get(LibraryRandomLIB.GetRandomValueByTableCode20(Database::"Resource Group"));
 
         for I := 1 to 10 do begin
             ItemNo := 'TSERVICE' + Format(I);
@@ -309,7 +309,7 @@ codeunit 83984 "Library - Item LIB"
         ContractSetupTPZS.TestField("Item Category Price");
         ContractSetupTPZS.TestField("Unit of Measure Code Month");
 
-        ResourceGroup.Get(LibraryRandomLIB.GetRandomValueByTable(Database::"Resource Group"));
+        ResourceGroup.Get(LibraryRandomLIB.GetRandomValueByTableCode20(Database::"Resource Group"));
 
         for I := 1 to 10 do begin
             ItemNo := 'TPRICE' + Format(I);

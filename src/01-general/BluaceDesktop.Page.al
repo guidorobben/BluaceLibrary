@@ -168,7 +168,7 @@ page 83980 "Bluace Desktop LIB"
 
                     trigger OnAction()
                     begin
-                        WorkDate(Today);
+                        WorkDate(Today());
                     end;
                 }
                 action(SetWorkDateTo0110)
@@ -180,7 +180,7 @@ page 83980 "Bluace Desktop LIB"
                     var
                         WDate: Date;
                     begin
-                        WDate := DMY2Date(1, 10, Date2DMY(Today(), 3));
+                        WDate := DMY2Date(1, 10, Today().Year);
                         WorkDate(WDate);
                     end;
                 }

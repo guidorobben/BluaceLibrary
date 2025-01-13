@@ -43,8 +43,8 @@ codeunit 83986 "Library - Time Sheet LIB"
         ResourceUnitOfMeasure: Record "Resource Unit of Measure";
     begin
         Resource.Validate("Use Time Sheet", true);
-        Resource."Time Sheet Owner User ID" := CopyStr(UserId, 1, MaxStrLen(Resource."Time Sheet Owner User ID"));
-        Resource."Time Sheet Approver User ID" := CopyStr(UserId, 1, MaxStrLen(Resource."Time Sheet Approver User ID"));
+        Resource."Time Sheet Owner User ID" := CopyStr(UserId(), 1, MaxStrLen(Resource."Time Sheet Owner User ID"));
+        Resource."Time Sheet Approver User ID" := CopyStr(UserId(), 1, MaxStrLen(Resource."Time Sheet Approver User ID"));
 
         if Resource."Base Unit of Measure" = '' then
             Resource."Base Unit of Measure" := 'UUR';
