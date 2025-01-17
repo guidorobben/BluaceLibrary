@@ -39,9 +39,9 @@ codeunit 83965 "Library - Maintenance LIB"
         DevMin: DateFormula;
         Periodicity: DateFormula;
         I: Integer;
-        DevMaxLbl: Label '<+1M>', Locked = true;
-        DevMinLbl: Label '<-1M>', Locked = true;
-        YearLbl: Label '<+%1Y>', Comment = '%1=Year', Locked = true;
+        DevMaxTok: Label '<+1M>', Locked = true;
+        DevMinTok: Label '<-1M>', Locked = true;
+        YearTok: Label '<+%1Y>', Comment = '%1=Year', Locked = true;
     begin
         CreateMaintenanceTemplate(MaintSchedTemplHdrTPZS, ScheduleCalcTypeTPZS);
 
@@ -49,9 +49,9 @@ codeunit 83965 "Library - Maintenance LIB"
             LinesToCreate := LibraryRandom.RandIntInRange(4, 10);
 
         for I := 1 to LinesToCreate do begin
-            Evaluate(Periodicity, StrSubstNo(YearLbl, I));
-            Evaluate(DevMin, DevMinLbl);
-            Evaluate(DevMax, DevMaxLbl);
+            Evaluate(Periodicity, StrSubstNo(YearTok, I));
+            Evaluate(DevMin, DevMinTok);
+            Evaluate(DevMax, DevMaxTok);
             CreateMaintenanceTemplateLine(MaintSchedTemplHdrTPZS, MaintSchedTemplLineTPZS, ItemNo, Periodicity, DevMin, DevMax);
         end;
     end;

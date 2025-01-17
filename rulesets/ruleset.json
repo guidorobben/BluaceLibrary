@@ -78,12 +78,16 @@
             "action": "None"            
         },
         {
+            "id": "LC0023",                    
+            "action": "None"            
+        },
+        {
             "id": "LC0045",                    
             "action": "None"            
         },
         {
             "id": "LC0047",                    
-            "action": "None"            
+            "action": "Warning"            
         },
         {
             "id": "LC0084",                    
