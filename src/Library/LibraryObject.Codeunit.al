@@ -490,7 +490,7 @@ codeunit 83983 "Library - Object LIB"
         ObjectTPZS.CreateFixedAsset(HideDialog);
     end;
 
-    procedure CreateSalesOrderLine(ObjectTPZS: Record "Object TPZS"; ValidOnDate: Date)
+    procedure CreateSalesOrderLine(var ObjectTPZS: Record "Object TPZS"; ValidOnDate: Date)
     begin
         ObjectTPZS.CreateSalesOrderLine(ValidOnDate);
     end;

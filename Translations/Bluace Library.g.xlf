@@ -288,6 +288,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue House No. Additional - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Enum 3431573512 - EnumValue 1176583840 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>IBAN</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Consumable Type LIB - EnumValue IBAN - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Enum 3431573512 - EnumValue 4068742839 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Last Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
