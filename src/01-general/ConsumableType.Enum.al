@@ -38,4 +38,8 @@ enum 83950 "Consumable Type LIB"
     {
         Caption = 'GTIN';
     }
+    value(9; IBAN)
+    {
+        Caption = 'IBAN';
+    }
 }
