@@ -15,6 +15,29 @@ codeunit 83989 "Library - Random LIB"
         Assert: Codeunit Assert;
         LibraryRandom: Codeunit "Library - Random";
 
+    procedure GetGLNRandom() GLN: Code[13]
+    var
+        Consumable: Record "Consumable LIB";
+    begin
+        Consumable.SetRange(Type, Consumable.Type::GLN);
+        FindRandomConsumable(Consumable);
+        GLN := Consumable.Value;
+    end;
+
+    local procedure FindRandomConsumable(var Consumable: Record "Consumable LIB")
+    var
+        Count: Integer;
+        NextCount: Integer;
+    begin
+        Count := Consumable.Count();
+
+        if Count = 0 then
+            exit;
+
+        NextCount := LibraryRandom.RandIntInRange(1, Count);
+        if Consumable.Next(NextCount) <> 0 then; //No Error
+    end;
+
     procedure FindAddressRandom() Result: Text[50]
     var
         Consumable: Record "Consumable LIB";
