@@ -22,13 +22,8 @@ codeunit 83990 "Library - Sales LIB"
         LibrarySales: Codeunit "Library - Sales";
 
     procedure CreateSalesOrderForCustomerNo(var SalesHeader: Record "Sales Header"; CustomerNo: Code[20])
-    var
-    // Item: Record Item;
-    // SalesLine: Record "Sales Line";
     begin
         LibrarySales.CreateSalesHeader(SalesHeader, SalesHeader."Document Type"::Order, CustomerNo);
-        // LibraryInventory.CreateItemWithUnitPriceAndUnitCost(
-        //   Item, LibraryRandom.RandDecInRange(1, 100, 2), LibraryRandom.RandDecInRange(1, 100, 2));
     end;
 
     procedure CreateSalesOrderForCustomerNoWithSalesLine(var SalesHeader: Record "Sales Header"; CustomerNo: Code[20])
