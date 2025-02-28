@@ -171,7 +171,7 @@ codeunit 83988 "Library - Resource LIB"
         exit(ResourceGroup."No.");
     end;
 
-    procedure CreateResourceGroup(var ResourceGroup: Record "Resource Group"; No: Code[20]; Name: Text[100]; Primary: Boolean)
+    procedure CreateResourceGroup(var ResourceGroup: Record "Resource Group"; No: Code[20]; Name: Text[50]; Primary: Boolean)
     begin
         ResourceGroup.Init();
         ResourceGroup.Validate("No.", No);

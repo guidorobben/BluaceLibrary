@@ -136,12 +136,12 @@ codeunit 83955 "Init. Resoure LIB"
         for I := 1 to 10 do begin
             Clear(Resource);
             LibraryResource.CreateResource(Resource, '', LibraryRandom.FindCompleteNameRandom());
-            Resource.Validate("Resource Group No.", LibraryRandom.GetRandomValueByTableAndField(Database::"Resource Group", 1));
+            Resource.Validate("Resource Group No.", LibraryRandom.GetRandomValueByTableCode20(Database::"Resource Group"));
 
             Location.Reset();
             Location.SetRange("Use As In-Transit", false);
             SourceRecordRef.GetTable(Location);
-            Resource.Validate("Location Code TPZS", LibraryRandom.GetRandomValueByRecordRef(SourceRecordRef, 1));
+            Resource.Validate("Location Code TPZS", LibraryRandom.GetRandomValueByRecordRefCode10(SourceRecordRef, 1));
             Resource.Modify(true);
 
             LibraryResource.CreateResourceUnitOfMeasureTravelKm(Resource);

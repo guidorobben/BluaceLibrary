@@ -261,6 +261,22 @@ codeunit 83989 "Library - Random LIB"
         exit(CopyStr(FoundContactNo, 1, MaxStrLen(ContactNo)));
     end;
 
+    procedure GetRandomValueByRecordRefCode10(var SourceRecordRef: RecordRef; FieldID: Integer) Code: Code[10]
+    var
+        Result: Text;
+    begin
+        Result := GetRandomValueByRecordRef(SourceRecordRef, FieldID);
+        Code := CopyStr(Result, 1, MaxStrLen(Code));
+    end;
+
+    procedure GetRandomValueByRecordRefCode20(var SourceRecordRef: RecordRef; FieldID: Integer) Code: Code[20]
+    var
+        Result: Text;
+    begin
+        Result := GetRandomValueByRecordRef(SourceRecordRef, FieldID);
+        Code := CopyStr(Result, 1, MaxStrLen(Code));
+    end;
+
     procedure GetRandomValueByRecordRef(var SourceRecordRef: RecordRef; FieldID: Integer) Result: Text
     var
         SourceFieldRef: FieldRef;

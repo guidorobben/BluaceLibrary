@@ -266,7 +266,7 @@ codeunit 83983 "Library - Object LIB"
         PropertyLineRBLC.Insert(true)
     end;
 
-    procedure CreateObjectContact(ObjectTPZS: Record "Object TPZS"; RolCode: Code[20]; StartingDate: Date; EndingDate: Date; ContactNo: Code[20])
+    procedure CreateObjectContact(ObjectTPZS: Record "Object TPZS"; RolCode: Code[10]; StartingDate: Date; EndingDate: Date; ContactNo: Code[20])
     var
         ObjectContactTPZS: Record "Object Contact TPZS";
     begin
