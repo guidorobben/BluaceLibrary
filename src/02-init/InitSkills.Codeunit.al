@@ -36,13 +36,13 @@ codeunit 83952 "Init. Skills LIB"
 
     procedure CreateDefaultSkills()
     begin
-        CreateSkillsEmpty();
-        CreateSkillsGeoprahpy();
-        CreateSkillsManual();
-        CreateSkillsOrganization();
+        CreateDefaultSkillsEmpty();
+        CreateDefaultSkillsGeoprahpy();
+        CreateDefaultSkillsManual();
+        CreateDefaultSkillsOrganization();
     end;
 
-    procedure CreateSkillsOrganization()
+    procedure CreateDefaultSkillsOrganization()
     begin
         LibrarySkill.CreateSkill('BC', 'Business Central (ORG)', SkillType::Organization, 100);
         LibrarySkill.CreateSkill('NAV', 'Navision (ORG)', SkillType::Organization, 110);
@@ -52,7 +52,7 @@ codeunit 83952 "Init. Skills LIB"
         LibrarySkill.CreateSkill('JAVA', 'Java (ORG)', SkillType::Organization, 150);
     end;
 
-    procedure CreateSkillsGeoprahpy()
+    procedure CreateDefaultSkillsGeoprahpy()
     begin
         LibrarySkill.CreateSkill('DR', 'Drente (GEO)', SkillType::Geography, 200);
         LibrarySkill.CreateSkill('FL', 'Flevoland (GEO)', SkillType::Geography, 210);
@@ -67,15 +67,15 @@ codeunit 83952 "Init. Skills LIB"
         LibrarySkill.CreateSkill('ZL', 'Zeeland (GEO)', SkillType::Geography, 300);
     end;
 
-    procedure CreateSkillsEmpty()
+    procedure CreateDefaultSkillsEmpty()
     begin
         LibrarySkill.CreateSkill('AHA', 'Aha', SkillType::" ");
         LibrarySkill.CreateSkill('ZAGEN', 'Zagen', SkillType::" ");
         LibrarySkill.CreateSkill('BOREN', 'Boren', SkillType::" ");
-        LibrarySkill.CreateSkill('HAKKEN', 'Zagen', SkillType::" ");
+        LibrarySkill.CreateSkill('HAKKEN', 'Hakken', SkillType::" ");
     end;
 
-    procedure CreateSkillsManual()
+    procedure CreateDefaultSkillsManual()
     begin
         LibrarySkill.CreateSkill('PARKEREN', 'Parkeren', SkillType::Manual);
         LibrarySkill.CreateSkill('SLEUTEL', 'Sleutel', SkillType::Manual);
