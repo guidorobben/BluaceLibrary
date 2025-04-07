@@ -4,6 +4,8 @@ codeunit 83955 "Init. Resoure LIB"
         tabledata "Employee Absence" = RD,
         tabledata "Human Resources Setup" = RM,
         tabledata "Human Resource Unit of Measure" = RIM,
+        tabledata Location = R,
+        tabledata "No. Series Line" = RM,
         tabledata Resource = RM,
         tabledata "Resources Setup" = RIM,
         tabledata "Resource Unit of Measure" = RI,
@@ -35,6 +37,7 @@ codeunit 83955 "Init. Resoure LIB"
         UpdateResourceUnitsOfMeasure();
         UpdateResourcesForTimeSheet();
         UpdateResources();
+        UpdateResourceNoSerie();
     end;
 
     procedure InitializeResourceSetup()
@@ -243,5 +246,20 @@ codeunit 83955 "Init. Resoure LIB"
         EmployeeAbsence: Record "Employee Absence";
     begin
         EmployeeAbsence.DeleteAll(true);
+    end;
+
+    procedure UpdateResourceNoSerie()
+    var
+        NoSeriesLine: Record "No. Series Line";
+        ResourcesSetup: Record "Resources Setup";
+    begin
+        ResourcesSetup.Get();
+        if ResourcesSetup."Resource Nos." = '' then
+            exit;
+
+        NoSeriesLine.SetRange("Series Code", ResourcesSetup."Resource Nos.");
+        NoSeriesLine.FindFirst();
+        NoSeriesLine.Validate("Increment-by No.", 1);
+        NoSeriesLine.Modify(true);
     end;
 }
