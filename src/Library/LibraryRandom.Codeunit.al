@@ -296,6 +296,14 @@ codeunit 83989 "Library - Random LIB"
         end;
     end;
 
+    procedure GetRandomValueByTableAndFieldCode20(TableID: Integer; FieldID: Integer) Result: Code[20]
+    var
+        FieldValue: Text;
+    begin
+        FieldValue := GetRandomValueByTableAndField(TableID, FieldID);
+        Result := CopyStr(FieldValue, 1, 20);
+    end;
+
     procedure GetRandomValueByTableAndField(TableID: Integer; FieldID: Integer) Result: Text
     var
         RelRecordRef: RecordRef;
