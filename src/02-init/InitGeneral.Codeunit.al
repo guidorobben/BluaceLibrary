@@ -31,6 +31,7 @@ codeunit 83953 "Init. General LIB"
         InitializeReturnReasons();
         InitializeApprovalUserSetup();
         InitializeFeatureSetup();
+        InitializePaymentMethods();
     end;
 
     procedure InitializeTechnicaManagement()
@@ -176,5 +177,15 @@ codeunit 83953 "Init. General LIB"
             UserSetup.Validate("Approver ID", 'ADMIN');
             UserSetup.Insert(true);
         end;
+    end;
+
+    procedure InitializePaymentMethods()
+    begin
+        LibraryGeneral.CreatePaymentMethod('CREDIT', 'Credit betalingen', Enum::"Payment Balance Account Type"::"G/L Account", '', false, '');
+        LibraryGeneral.CreatePaymentMethod('FACTUUR', 'Betaling via Factuur', Enum::"Payment Balance Account Type"::"G/L Account", '', false, '');
+        LibraryGeneral.CreatePaymentMethod('GEEN', 'Geen Betalingswijze', Enum::"Payment Balance Account Type"::"G/L Account", '', false, '');
+        LibraryGeneral.CreatePaymentMethod('INCASSO', 'Betaling via Incasso', Enum::"Payment Balance Account Type"::"G/L Account", '', true, '2 DAGEN');
+        LibraryGeneral.CreatePaymentMethod('MANUAL', 'Manual payment', Enum::"Payment Balance Account Type"::"G/L Account", '', false, '');
+        LibraryGeneral.CreatePaymentMethod('SEPA', 'SEPA payment', Enum::"Payment Balance Account Type"::"G/L Account", '', false, '');
     end;
 }

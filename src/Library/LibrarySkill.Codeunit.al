@@ -171,7 +171,7 @@ codeunit 83982 "Library - Skill LIB"
         if SkillCode = '' then
             exit;
 
-        SkillLineTPZS.AddSkillLine(Database::"Sales Line", SalesLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
+        SkillLineTPZS.AddSkillLine(SalesLine.RecordId, Database::"Sales Line", SalesLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
     end;
 
     // procedure AddSkillToJobPlanningLine(JobPlanningLine: Record "Job Planning Line"; SkillCode: Code[10])
@@ -186,7 +186,7 @@ codeunit 83982 "Library - Skill LIB"
         if SkillCode = '' then
             exit;
 
-        SkillLineTPZS.AddSkillLine(Database::"Job Planning Line", JobPlanningLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
+        SkillLineTPZS.AddSkillLine(JobPlanningLine.RecordId, Database::"Job Planning Line", JobPlanningLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
     end;
 
     procedure SkillLineExist(TableId: Integer; SourceSystemId: Guid; SkillCode: Code[10]): Boolean

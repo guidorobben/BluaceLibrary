@@ -2,6 +2,7 @@ codeunit 83957 "Library - General LIB"
 {
     Permissions =
         tabledata "No. Series" = R,
+        tabledata "Payment Method" = RI,
         tabledata "Time Window TPZS" = RI,
         tabledata "Unit of Measure" = RI,
         tabledata "Work Type" = RI;
@@ -75,5 +76,22 @@ codeunit 83957 "Library - General LIB"
             exit;
 
         exit(NoSeries.Get(NoSeriesCode));
+    end;
+
+    procedure CreatePaymentMethod(Code: Code[10]; Description: Text[100]; BalAccountType: Enum "Payment Balance Account Type"; BalAccountNo: Code[20]; DirectDebit: Boolean; DirectDebitPmtTermsCode: Code[10])
+    var
+        PaymentMethod: Record "Payment Method";
+    begin
+        if PaymentMethod.Get(Code) then
+            exit;
+
+        PaymentMethod.Init();
+        PaymentMethod.Validate(Code, Code);
+        PaymentMethod.Validate(Description, Description);
+        PaymentMethod.Validate("Bal. Account Type", BalAccountType);
+        PaymentMethod.Validate("Bal. Account No.", BalAccountNo);
+        PaymentMethod.Validate("Direct Debit", DirectDebit);
+        PaymentMethod.Validate("Direct Debit Pmt. Terms Code", DirectDebitPmtTermsCode);
+        PaymentMethod.Insert(true);
     end;
 }
