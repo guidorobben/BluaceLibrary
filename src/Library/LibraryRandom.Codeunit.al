@@ -292,7 +292,7 @@ codeunit 83989 "Library - Random LIB"
         NextCount := LibraryRandom.RandIntInRange(1, RecCount);
         if SourceRecordRef.Next(NextCount) <> 0 then begin
             SourceFieldRef := SourceRecordRef.Field(FieldID);
-            Result := Format(SourceFieldRef.Value);
+            Result := Format(SourceFieldRef.Value());
         end;
     end;
 
@@ -338,7 +338,7 @@ codeunit 83989 "Library - Random LIB"
         NextCount := LibraryRandom.RandIntInRange(1, RecCount);
         if RelRecordRef.Next(NextCount) <> 0 then begin
             FRFieldRef := RelRecordRef.Field(FieldID);
-            Result := Format(FRFieldRef.Value);
+            Result := Format(FRFieldRef.Value());
         end;
     end;
 

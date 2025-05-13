@@ -180,7 +180,7 @@ page 83980 "Bluace Desktop LIB"
                     var
                         WDate: Date;
                     begin
-                        WDate := DMY2Date(1, 10, Today().Year);
+                        WDate := DMY2Date(1, 10, Today().Year());
                         WorkDate(WDate);
                     end;
                 }

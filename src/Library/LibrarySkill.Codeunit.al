@@ -137,7 +137,7 @@ codeunit 83982 "Library - Skill LIB"
             exit;
 
         ContractHeaderTPZS.TestField("No.");
-        SkillItemLineTPZS.AddSkillItemLine(ContractHeaderTPZS.RecordId.TableNo, ContractHeaderTPZS.SystemId, ItemNo, SkillCode, false);
+        SkillItemLineTPZS.AddSkillItemLine(ContractHeaderTPZS.RecordId().TableNo(), ContractHeaderTPZS.SystemId, ItemNo, SkillCode, false);
     end;
 
     // procedure AddSkillLine(TableId: Integer; SourceSystemId: Guid; SkillCode: Code[10])
@@ -171,7 +171,7 @@ codeunit 83982 "Library - Skill LIB"
         if SkillCode = '' then
             exit;
 
-        SkillLineTPZS.AddSkillLine(SalesLine.RecordId, Database::"Sales Line", SalesLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
+        SkillLineTPZS.AddSkillLine(SalesLine.RecordId(), Database::"Sales Line", SalesLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
     end;
 
     // procedure AddSkillToJobPlanningLine(JobPlanningLine: Record "Job Planning Line"; SkillCode: Code[10])
@@ -186,7 +186,7 @@ codeunit 83982 "Library - Skill LIB"
         if SkillCode = '' then
             exit;
 
-        SkillLineTPZS.AddSkillLine(JobPlanningLine.RecordId, Database::"Job Planning Line", JobPlanningLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
+        SkillLineTPZS.AddSkillLine(JobPlanningLine.RecordId(), Database::"Job Planning Line", JobPlanningLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
     end;
 
     procedure SkillLineExist(TableId: Integer; SourceSystemId: Guid; SkillCode: Code[10]): Boolean
@@ -413,14 +413,14 @@ codeunit 83982 "Library - Skill LIB"
     var
         SkillItemLineTPZS: Record "Skill Item Line TPZS";
     begin
-        SkillItemLineTPZS.GetSkillItems(TempSkillItemLineTPZS, ObjectTemplateTPZS.RecordId.TableNo, ObjectTemplateTPZS.SystemId, '');
+        SkillItemLineTPZS.GetSkillItems(TempSkillItemLineTPZS, ObjectTemplateTPZS.RecordId().TableNo(), ObjectTemplateTPZS.SystemId, '');
     end;
 
     procedure GetContractTemplateSkillItems(var ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; var TempSkillItemLineTPZS: Record "Skill Item Line TPZS" temporary)
     var
         SkillItemLineTPZS: Record "Skill Item Line TPZS";
     begin
-        SkillItemLineTPZS.GetSkillItems(TempSkillItemLineTPZS, ContrTemplateHeaderTPZS.RecordId.TableNo, ContrTemplateHeaderTPZS.SystemId, '');
+        SkillItemLineTPZS.GetSkillItems(TempSkillItemLineTPZS, ContrTemplateHeaderTPZS.RecordId().TableNo(), ContrTemplateHeaderTPZS.SystemId, '');
     end;
 
     procedure DeleteObjectSkills(ObjectTPZS: Record "Object TPZS")
@@ -524,7 +524,7 @@ codeunit 83982 "Library - Skill LIB"
 
     procedure ContractTemplateSkillCodeExist(var ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
     begin
-        exit(SkillItemLineExist(ContrTemplateHeaderTPZS.RecordId.TableNo, ContrTemplateHeaderTPZS.SystemId, ItemNo, SkillCode));
+        exit(SkillItemLineExist(ContrTemplateHeaderTPZS.RecordId().TableNo(), ContrTemplateHeaderTPZS.SystemId, ItemNo, SkillCode));
     end;
 
     procedure ContractSkillCodeExist(var ContractHeaderTPZS: Record "Contract Header TPZS"; SkillCode: Code[10]): Boolean
@@ -534,7 +534,7 @@ codeunit 83982 "Library - Skill LIB"
 
     procedure ContractSkillCodeExist(var ContractHeaderTPZS: Record "Contract Header TPZS"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
     begin
-        exit(SkillItemLineExist(ContractHeaderTPZS.RecordId.TableNo, ContractHeaderTPZS.SystemId, ItemNo, SkillCode));
+        exit(SkillItemLineExist(ContractHeaderTPZS.RecordId().TableNo(), ContractHeaderTPZS.SystemId, ItemNo, SkillCode));
     end;
 
     procedure ObjectTemplateSkillCodeExist(var ObjectTemplateTPZS: Record "Object Template TPZS"; SkillCode: Code[10]): Boolean
@@ -544,7 +544,7 @@ codeunit 83982 "Library - Skill LIB"
 
     procedure ObjectTemplateSkillCodeExist(var ObjectTemplateTPZS: Record "Object Template TPZS"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
     begin
-        exit(SkillItemLineExist(ObjectTemplateTPZS.RecordId.TableNo, ObjectTemplateTPZS.SystemId, ItemNo, SkillCode));
+        exit(SkillItemLineExist(ObjectTemplateTPZS.RecordId().TableNo(), ObjectTemplateTPZS.SystemId, ItemNo, SkillCode));
     end;
 
     procedure ObjectSkillCodeExist(var ObjectTPZS: Record "Object TPZS"; SkillCode: Code[10]): Boolean

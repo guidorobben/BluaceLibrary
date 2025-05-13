@@ -60,25 +60,25 @@ codeunit 83981 "Library - Utility LIB"
         // Find the value of Line No. for a new line in the Record passed as Record Ref.
         // 1. It is assumed that the field passed is part of the primary key.
         // 2. It is assumed that all the primary key fields except Line No. field are already validated on the record.
-        RecordRef2.Open(SourceRecordRef.Number, false, CompanyName());
+        RecordRef2.Open(SourceRecordRef.Number(), false, CompanyName());
         KeyRef := SourceRecordRef.KeyIndex(1);  // The Primary Key always has index as 1.
-        for FieldCount := 1 to KeyRef.FieldCount do begin
+        for FieldCount := 1 to KeyRef.FieldCount() do begin
             FieldRef := KeyRef.FieldIndex(FieldCount);
-            if FieldRef.Number <> FieldNo then begin
-                FieldRef2 := RecordRef2.Field(FieldRef.Number);
-                FieldRef2.SetRange(FieldRef.Value);  // Set filter on fields other than Line No with value as filled in on RecRef.
+            if FieldRef.Number() <> FieldNo then begin
+                FieldRef2 := RecordRef2.Field(FieldRef.Number());
+                FieldRef2.SetRange(FieldRef.Value());  // Set filter on fields other than Line No with value as filled in on RecRef.
             end else
                 LineNumberFound := true;
         end;
 
         if not LineNumberFound then begin
             FieldRef := RecordRef2.Field(FieldNo);
-            Error(KeyNotFoundErr, FieldRef.Name, RecordRef2.Name);
+            Error(KeyNotFoundErr, FieldRef.Name(), RecordRef2.Name());
         end;
 
         if RecordRef2.FindLast() then begin
             FieldRef := RecordRef2.Field(FieldNo);
-            FieldCount := FieldRef.Value;
+            FieldCount := FieldRef.Value();
         end else
             FieldCount := 0;
         exit(FieldCount + 10000);  // Add 10000 to the last Line No.

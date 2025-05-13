@@ -109,7 +109,7 @@ codeunit 83983 "Library - Object LIB"
         ObjectTemplateNo: Code[20];
     begin
         //Get Random Template
-        ObjectTemplateNo := LibraryRandomLIB.GetRandomValueByTableCode20(ObjectTemplateTPZS.RecordId.TableNo);
+        ObjectTemplateNo := LibraryRandomLIB.GetRandomValueByTableCode20(ObjectTemplateTPZS.RecordId().TableNo());
         ObjectTemplateTPZS.Get(ObjectTemplateNo);
         ObjectTemplateTPZS.TestField("No.");
 
@@ -258,7 +258,7 @@ codeunit 83983 "Library - Object LIB"
             exit;
 
         PropertyLineRBLC.Init();
-        PropertyLineRBLC.Validate("Table ID", ObjectTPZS.RecordId.TableNo);
+        PropertyLineRBLC.Validate("Table ID", ObjectTPZS.RecordId().TableNo());
         PropertyLineRBLC.Validate("Source System ID", ObjectTPZS.SystemId);
         PropertyLineRBLC.Validate("Property Code", PropertyCode);
         PropertyLineRBLC.Validate("Starting Date", PropertyStartingDate);
@@ -306,7 +306,7 @@ codeunit 83983 "Library - Object LIB"
         if PropertyCode = '' then
             exit;
 
-        LibraryProperty.AddPropertyValue(ObjectTPZS.SystemId, ObjectTPZS.RecordId.TableNo, PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
+        LibraryProperty.AddPropertyValue(ObjectTPZS.SystemId, ObjectTPZS.RecordId().TableNo(), PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
     end;
 
     procedure AddObjectTemplatePropertyValue(ObjectTemplateTPZS: Record "Object Template TPZS"; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyEndingDate: Date; PropertyValue: Text[2048])
@@ -317,7 +317,7 @@ codeunit 83983 "Library - Object LIB"
         if PropertyCode = '' then
             exit;
 
-        LibraryProperty.AddPropertyValue(ObjectTemplateTPZS.SystemId, ObjectTemplateTPZS.RecordId.TableNo, PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
+        LibraryProperty.AddPropertyValue(ObjectTemplateTPZS.SystemId, ObjectTemplateTPZS.RecordId().TableNo(), PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
     end;
 
     // procedure CreateObjectMaintSchedule(var MaintScheduleTPZS: Record "Maint. Schedule TPZS"; ObjectTPZS: Record "Object TPZS")
@@ -365,8 +365,7 @@ codeunit 83983 "Library - Object LIB"
         ItemPlanningNormTPZS.Insert(true);
     end;
 
-    procedure CreateItemUsageNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormCode: Code[20];
-                                                          ItemNo: Code[20])
+    procedure CreateItemUsageNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormCode: Code[20]; ItemNo: Code[20])
     var
         ItemUsageNormTPZS: Record "Item Usage Norm TPZS";
     begin

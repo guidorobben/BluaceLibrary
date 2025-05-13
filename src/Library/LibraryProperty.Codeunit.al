@@ -89,7 +89,7 @@ codeunit 83987 "Library - Property LIB"
         if PropertyCode = '' then
             exit;
 
-        AddPropertyValue(ObjectTPZS.SystemId, ObjectTPZS.RecordId.TableNo, PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
+        AddPropertyValue(ObjectTPZS.SystemId, ObjectTPZS.RecordId().TableNo(), PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
     end;
 
     //TODO MOgen weg
@@ -100,7 +100,7 @@ codeunit 83987 "Library - Property LIB"
         if PropertyCode = '' then
             exit;
 
-        AddPropertyValue(ObjectTemplateTPZS.SystemId, ObjectTemplateTPZS.RecordId.TableNo, PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
+        AddPropertyValue(ObjectTemplateTPZS.SystemId, ObjectTemplateTPZS.RecordId().TableNo(), PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
     end;
 
     procedure AddPropertyValue(SourceSystemID: Guid; TableID: Integer; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyEndingDate: Date; PropertyValue: Text[2048])

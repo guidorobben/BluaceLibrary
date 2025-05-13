@@ -152,11 +152,11 @@ codeunit 83965 "Library - Maintenance LIB"
         ObjectTemplateTPZS: Record "Object Template TPZS";
         SourceRecordRef: RecordRef;
     begin
-        if not SourceVariant.IsRecord then
+        if not SourceVariant.IsRecord() then
             exit;
 
         SourceRecordRef.GetTable(SourceVariant);
-        case SourceRecordRef.Number of
+        case SourceRecordRef.Number() of
             Database::"Maint. Sched. Templ. Hdr. TPZS":
                 begin
                     SourceRecordRef.SetTable(MaintSchedTemplHdrTPZS);
