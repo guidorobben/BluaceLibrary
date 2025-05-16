@@ -282,12 +282,17 @@ codeunit 83983 "Library - Object LIB"
         ObjectContactTPZS.Insert(true);
     end;
 
-    procedure CreateObjectContactRole(Code: Code[10]; BillToCustomer: Boolean; Communication: Boolean; Customer: Boolean; Location: Boolean; CopyFromMain: Boolean)
+    procedure CreateObjectContactRole(Code: Code[10]; Description: Text[100]; BillToCustomer: Boolean; Communication: Boolean; Customer: Boolean; Location: Boolean; CopyFromMain: Boolean)
     var
         RoleTPZS: Record "Role TPZS";
     begin
+        if RoleTPZS.Get(Code) then
+            exit;
+
+        RoleTPZS.Reset();
         RoleTPZS.Init();
         RoleTPZS.Validate(Code, Code);
+        RoleTPZS.Validate(Description, Description);
         RoleTPZS.TestField(Code);
 
         RoleTPZS.Validate("Bill-to Customer", BillToCustomer);
@@ -295,7 +300,7 @@ codeunit 83983 "Library - Object LIB"
         RoleTPZS.Validate(Customer, Customer);
         RoleTPZS.Validate(Location, Location);
         RoleTPZS.Validate("Copy From Main Object", CopyFromMain);
-        if RoleTPZS.Insert(true) then; //Easy
+        RoleTPZS.Insert(true);
     end;
 
     procedure AddObjectPropertyValue(ObjectTPZS: Record "Object TPZS"; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyEndingDate: Date; PropertyValue: Text[2048])

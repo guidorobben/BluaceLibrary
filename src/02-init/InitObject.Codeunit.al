@@ -111,11 +111,11 @@ codeunit 83951 "Init. Object LIB"
 
     procedure InitializeObjectContactRole()
     begin
-        LibraryObject.CreateObjectContactRole('COMMINICAT', false, true, false, false, false);
-        LibraryObject.CreateObjectContactRole('KLANT', false, false, true, false, false);
-        LibraryObject.CreateObjectContactRole('FACTUREREN', true, false, false, false, true);
-        LibraryObject.CreateObjectContactRole('LOCATIE', false, false, false, true, false);
-        LibraryObject.CreateObjectContactRole('PARTNER', false, false, false, false, false);
+        LibraryObject.CreateObjectContactRole('COMMINICAT', 'Communicatie', false, true, false, false, false);
+        LibraryObject.CreateObjectContactRole('KLANT', 'Klant', false, false, true, false, false);
+        LibraryObject.CreateObjectContactRole('FACTUREREN', 'Factureren', true, false, false, false, true);
+        LibraryObject.CreateObjectContactRole('LOCATIE', 'Locatie', false, false, false, true, false);
+        LibraryObject.CreateObjectContactRole('PARTNER', 'Partner', false, false, false, false, false);
     end;
 
     procedure InitializeMaintTemplateNorm()
