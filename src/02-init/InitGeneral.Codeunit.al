@@ -32,6 +32,7 @@ codeunit 83953 "Init. General LIB"
         InitializeApprovalUserSetup();
         InitializeFeatureSetup();
         InitializePaymentMethods();
+        InitializeAllowedLanguages();
     end;
 
     procedure InitializeTechnicaManagement()
@@ -138,6 +139,12 @@ codeunit 83953 "Init. General LIB"
         end;
     end;
 
+    local procedure InitializeAllowedLanguages()
+    begin
+        LibraryGeneral.AddAllowedLanguage(1043);
+        LibraryGeneral.AddAllowedLanguage(1033);
+    end;
+
     procedure InitializeReturnReasons()
     begin
         LibrarySales.CreateReturnReason('REVISIE', 'Revisie');
@@ -146,7 +153,6 @@ codeunit 83953 "Init. General LIB"
     procedure InitializeApprovalUserSetup()
     var
         UserSetup: Record "User Setup";
-    // User: Record User;
     begin
         if not UserSetup.Get(UserId()) then begin
             UserSetup.Init();

@@ -1,25 +1,25 @@
 codeunit 83957 "Library - General LIB"
 {
     Permissions =
+        tabledata "Allowed Language" = RI,
         tabledata "No. Series" = R,
         tabledata "Payment Method" = RI,
         tabledata "Time Window TPZS" = RI,
         tabledata "Unit of Measure" = RI,
         tabledata "Work Type" = RI;
 
-    procedure CreateTimeWindow(Type: Enum "Time Window Type TPZS"; Code: Code[20]; StartingTime: Time; EndingTime: Time; IsDefault: Boolean)
+    procedure CreateTimeWindow(TimeWindowType: Enum "Time Window Type TPZS"; Code: Code[20]; StartingTime: Time; EndingTime: Time; IsDefault: Boolean)
     var
         TimeWindowTPZS: Record "Time Window TPZS";
     begin
         TimeWindowTPZS.Init();
-        TimeWindowTPZS.Validate(Type, Type);
+        TimeWindowTPZS.Validate(Type, TimeWindowType);
         TimeWindowTPZS.Validate(Code, Code);
         TimeWindowTPZS.Validate("Starting Time", StartingTime);
         TimeWindowTPZS.Validate("Ending Time", EndingTime);
         TimeWindowTPZS.Validate(Default, IsDefault);
         if TimeWindowTPZS.Insert(true) then; //Easy
     end;
-
 
     procedure CreateUnitOfMeasureCode(Code: Code[10]; Description: Text[50]; RoundingPercision: Decimal; SkipWhenExist: Boolean)
     var
@@ -93,5 +93,17 @@ codeunit 83957 "Library - General LIB"
         PaymentMethod.Validate("Direct Debit", DirectDebit);
         PaymentMethod.Validate("Direct Debit Pmt. Terms Code", DirectDebitPmtTermsCode);
         PaymentMethod.Insert(true);
+    end;
+
+    procedure AddAllowedLanguage(LanguageId: Integer)
+    var
+        AllowedLanguage: Record "Allowed Language";
+    begin
+        if AllowedLanguage.Get(LanguageId) then
+            exit;
+
+        AllowedLanguage.Init();
+        AllowedLanguage.Validate("Language Id", LanguageId);
+        AllowedLanguage.Insert(true);
     end;
 }
