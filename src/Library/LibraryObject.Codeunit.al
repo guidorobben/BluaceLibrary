@@ -498,4 +498,19 @@ codeunit 83983 "Library - Object LIB"
     begin
         ObjectTPZS.CreateSalesOrderLine(ValidOnDate);
     end;
+
+    procedure GetNextObjectMaintenanceSchedule(ObjectTPZS: Record "Object TPZS"; var NextObjectMaintSchedule: Record "Object Maint. Schedule TPZS")
+    begin
+        ObjectTPZS.GetNextObjectMaintenanceSchedule(NextObjectMaintSchedule);
+    end;
+
+    procedure DeleteObjectMaintenanceSchedules(ObjectTPZS: Record "Object TPZS"; StartingDate: Date)
+    begin
+        ObjectTPZS.DeleteObjectMaintenanceSchedules(StartingDate);
+    end;
+
+    procedure GetActiveContractArchiveLine(ObjectTPZS: Record "Object TPZS"; var ContrArchiveLine: Record "Contr. Archive Line TPZS"; ValidOnDate: Date): Boolean
+    begin
+        exit(ObjectTPZS.GetActiveContractArchiveLine(ContrArchiveLine, ValidOnDate));
+    end;
 }
