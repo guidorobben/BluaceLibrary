@@ -2,7 +2,7 @@
   "id": "6395af54-1fc2-4c58-a706-d25f8dcc01ae",
   "name": "Bluace Library",
   "publisher": "Bluace",
-  "version": "1.0.0.8",
+  "version": "1.0.0.9",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -40,18 +40,19 @@
       "name": "Extended Time Sheets",
       "publisher": "Bluace",
       "version": "1.0.0.0"
-    },
-    {
-      "id": "a09d0a27-6103-4c90-bcd3-0843f4ff4e78",
-      "name": "G-Accounts",
-      "publisher": "Bluace",
-      "version": "1.0.0.0"
     }
+    // ,
+    // {
+    //   "id": "a09d0a27-6103-4c90-bcd3-0843f4ff4e78",
+    //   "name": "G-Accounts",
+    //   "publisher": "Bluace",
+    //   "version": "1.0.0.0"
+    // }
   ],
   "propagateDependencies": true,
   "screenshots": [],
-  "platform": "24.0.0.0",
-  "application": "24.0.0.0",
+  "platform": "26.0.0.0",
+  "application": "26.0.0.0",
   "idRanges": [
     {
       "from": 83950,
@@ -63,7 +64,7 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "14.1",
+  "runtime": "15.0",
   "features": [
     "TranslationFile"
   ],
