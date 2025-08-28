@@ -211,8 +211,7 @@ codeunit 83965 "Library - Maintenance LIB"
 
     procedure UpdateObjectMaintSchedules(var ObjectMaintScheduleTPZS: Record "Object Maint. Schedule TPZS")
     var
-        UpdateObjMaintSched: Codeunit "Update Obj. Maint Sched. TPZS";
     begin
-        UpdateObjMaintSched.UpdateObjectMaintSchedules(ObjectMaintScheduleTPZS);
+        ObjectMaintScheduleTPZS.UpdateObjectMaintSchedules();
     end;
 }
