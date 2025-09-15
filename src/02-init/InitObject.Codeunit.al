@@ -98,6 +98,8 @@ codeunit 83951 "Init. Object LIB"
             ObjectSetupTPZS.Validate("Replacement Object Status", ObjectStatusTPZS.Code);
             ObjectSetupTPZS.Modify(true);
         end;
+
+        InitUTCDateTimes();
     end;
 
     procedure InitializeObjectStatus()
@@ -127,6 +129,30 @@ codeunit 83951 "Init. Object LIB"
         exit;
         // LibraryMaintenance.CreateMaintenanceNorm(ObjectNormTypeTPZS::All, '', RelatedNormTypeTPZS::All, '', '');
         // LibraryMaintenance.CreateMaintenanceNorm(ObjectNormTypeTPZS::All, '', RelatedNormTypeTPZS::"All Contracts", '', '');
+    end;
+
+    procedure InitUTCDateTimes()
+    var
+        ObjectSetupTPZS: Record "Object Setup TPZS";
+        NewDateFormula: DateFormula;
+    begin
+        if not ObjectSetupTPZS.Get() then begin
+            ObjectSetupTPZS.Init();
+            ObjectSetupTPZS.Insert(true);
+        end;
+
+        if ObjectSetupTPZS."UTC to Std. Time (ms)" <> 0 then
+            exit;
+
+        Evaluate(NewDateFormula, '<+3M-WD7>');
+        ObjectSetupTPZS.Validate("Starting Date Formula DST", NewDateFormula);
+        ObjectSetupTPZS.Validate("Starting Time DST (UTC)", 010000T);
+        Evaluate(NewDateFormula, '<+10M-WD7>');
+        ObjectSetupTPZS.Validate("Ending Date Formula DST", NewDateFormula);
+        ObjectSetupTPZS.Validate("Ending Time DST (UTC)", 010000T);
+        ObjectSetupTPZS.Validate("UTC to Std. Time (ms)", 3600000);
+        ObjectSetupTPZS.Validate("UTC to DST (ms)", 7200000);
+        ObjectSetupTPZS.Modify(true);
     end;
 
     [InternalEvent(false)]

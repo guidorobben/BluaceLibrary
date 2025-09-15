@@ -49,10 +49,12 @@ codeunit 83953 "Init. General LIB"
     begin
         LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Planning, 'HELE DAG', 080000T, 170000T, true);
         LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Planning, 'MIDDAG', 120000T, 170000T, false);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Planning, 'OCHTEND', 080000T, 115900T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Planning, 'OCHTEND', 080000T, 120000T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Planning, 'AVOND', 170000T, 210000T, false);
 
         LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'GESLOTEN', 0T, 0T, false);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'NEGENTOTVIJF', 090000T, 170000T, true);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'HELE DAG', 080000T, 170000T, true);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'NEGENTOTVIJF', 090000T, 170000T, false);
         LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'RETAIL-AVOND', 180000T, 210000T, false);
         LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'RETAIL-MAANDAG', 130000T, 180000T, false);
         LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'RETAIL-STANDAARD', 093000T, 180000T, false);
