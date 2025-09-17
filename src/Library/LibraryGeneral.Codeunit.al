@@ -12,13 +12,16 @@ codeunit 83957 "Library - General LIB"
     var
         TimeWindowTPZS: Record "Time Window TPZS";
     begin
+        if TimeWindowTPZS.Get(TimeWindowType, Code) then
+            exit;
+
         TimeWindowTPZS.Init();
         TimeWindowTPZS.Validate(Type, TimeWindowType);
         TimeWindowTPZS.Validate(Code, Code);
         TimeWindowTPZS.Validate("Starting Time", StartingTime);
         TimeWindowTPZS.Validate("Ending Time", EndingTime);
         TimeWindowTPZS.Validate(Default, IsDefault);
-        if TimeWindowTPZS.Insert(true) then; //Easy
+        TimeWindowTPZS.Insert(true);
     end;
 
     procedure CreateUnitOfMeasureCode(Code: Code[10]; Description: Text[50]; RoundingPercision: Decimal; SkipWhenExist: Boolean)
