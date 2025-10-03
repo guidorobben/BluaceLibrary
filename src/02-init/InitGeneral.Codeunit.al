@@ -74,7 +74,7 @@ codeunit 83953 "Init. General LIB"
         LibrarySales.CreateRealizationStatus('UITGEVOERD', 'Uitgevoerd');
         LibrarySales.CreateRealizationStatus('OFFERTE', 'Offerte');
         LibrarySales.CreateRealizationStatus('VERVOLG', 'Vervolg', true, 2, true);
-        Commit();
+        CommitToDatabase();
     end;
 
     procedure InitializePriority()
@@ -87,7 +87,7 @@ codeunit 83953 "Init. General LIB"
         LibraryPriority.CreatePriority('8UUR', '8 uur', 480, true, false);
         LibraryPriority.CreatePriority('24UUR', '24 uur', 1140, true, false);
         LibraryPriority.CreatePriority('ASAP', 'Asap', 60, false, true);
-        Commit();
+        CommitToDatabase();
     end;
 
     procedure InitializeReportSelections()
@@ -195,5 +195,10 @@ codeunit 83953 "Init. General LIB"
         LibraryGeneral.CreatePaymentMethod('INCASSO', 'Betaling via Incasso', Enum::"Payment Balance Account Type"::"G/L Account", '', true, '2 DAGEN');
         LibraryGeneral.CreatePaymentMethod('MANUAL', 'Manual payment', Enum::"Payment Balance Account Type"::"G/L Account", '', false, '');
         LibraryGeneral.CreatePaymentMethod('SEPA', 'SEPA payment', Enum::"Payment Balance Account Type"::"G/L Account", '', false, '');
+    end;
+
+    local procedure CommitToDatabase()
+    begin
+        Commit(); //Save
     end;
 }

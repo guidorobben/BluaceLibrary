@@ -2,7 +2,6 @@ codeunit 83980 "Library - Contract LIB"
 {
     Permissions =
         tabledata "Contr. Archive Header TPZS" = R,
-        tabledata "Contr. Template Coverage TPZS" = RI,
         tabledata "Contr. Template Header TPZS" = RIM,
         tabledata "Contr. Template Service TPZS" = RI,
         tabledata "Contr. Template UOM TPZS" = RI,
@@ -12,6 +11,7 @@ codeunit 83980 "Library - Contract LIB"
         tabledata "Contract Norm TPZS" = RI,
         tabledata "Contract Service TPZS" = RI,
         tabledata "Contract Setup TPZS" = R,
+        tabledata "Contract Templ. Coverage TPZS" = RI,
         tabledata "Contract UOM TPZS" = RI,
         tabledata "Customer Price Group" = RI,
         tabledata "Sales & Receivables Setup" = R;
@@ -270,15 +270,15 @@ codeunit 83980 "Library - Contract LIB"
 
     procedure AddContractTemplateCoverage(ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS"; CoverageType: Enum "Contract Coverage Type TPZS"; CoverageNo: Code[20]; Discount: Decimal)
     var
-        ContrTemplateCoverageTPZS: Record "Contr. Template Coverage TPZS";
+        ContractTemplCoverageTPZS: Record "Contract Templ. Coverage TPZS";
     begin
-        ContrTemplateCoverageTPZS.Init();
-        ContrTemplateCoverageTPZS.Validate("Contract Template No.", ContrTemplateServiceTPZS."Contract Template No.");
-        ContrTemplateCoverageTPZS.Validate("Item Category Code", ContrTemplateServiceTPZS."Item Category Code");
-        ContrTemplateCoverageTPZS.Validate(Type, CoverageType);
-        ContrTemplateCoverageTPZS.Validate("No.", CoverageNo);
-        ContrTemplateCoverageTPZS.Validate("Discount %", Discount);
-        ContrTemplateCoverageTPZS.Insert(true);
+        ContractTemplCoverageTPZS.Init();
+        ContractTemplCoverageTPZS.Validate("Contract Template No.", ContrTemplateServiceTPZS."Contract Template No.");
+        ContractTemplCoverageTPZS.Validate("Item Category Code", ContrTemplateServiceTPZS."Item Category Code");
+        ContractTemplCoverageTPZS.Validate(Type, CoverageType);
+        ContractTemplCoverageTPZS.Validate("No.", CoverageNo);
+        ContractTemplCoverageTPZS.Validate("Discount %", Discount);
+        ContractTemplCoverageTPZS.Insert(true);
     end;
 
     procedure ApplyContractTemplateOnExistingContract(var ContractHeaderTPZS: Record "Contract Header TPZS"; ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS")
