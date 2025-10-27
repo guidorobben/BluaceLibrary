@@ -6,6 +6,45 @@ page 83980 "Bluace Desktop LIB"
     PageType = List;
     UsageCategory = Tasks;
 
+    layout
+    {
+        area(Content)
+        {
+            group(General)
+            {
+                Caption = 'Dates';
+
+                field(TodayControl; CurrentDateTime().Date())
+                {
+                    Caption = 'Today';
+                }
+
+                field(WorkDateControl; WorkDate())
+                {
+                    Caption = 'WorkDate';
+
+                    trigger OnDrillDown()
+                    begin
+                        SetWorkDateToToday();
+                    end;
+                }
+            }
+            group(Language)
+            {
+                Caption = 'Language';
+
+                field(LanguageIdControl; LanguageId)
+                {
+                    Caption = 'LanguageId';
+                }
+                field(LocaleIdControl; LocaleId)
+                {
+                    Caption = 'LocaleId';
+                }
+            }
+        }
+    }
+
     actions
     {
         area(Processing)
@@ -123,12 +162,9 @@ page 83980 "Bluace Desktop LIB"
 
                     trigger OnAction()
                     var
-                        Session: SessionSettings;
+                        SessionManager: Codeunit "Session Manager LIB";
                     begin
-                        Session.Init();
-                        Session.LanguageId := 1043;
-                        Session.LocaleId := 1043;
-                        Session.RequestSessionUpdate(true);
+                        SessionManager.SetAllLanguagesToDutch();
                     end;
                 }
                 action(SessionSetToEnglish)
@@ -138,12 +174,9 @@ page 83980 "Bluace Desktop LIB"
 
                     trigger OnAction()
                     var
-                        Session: SessionSettings;
+                        SessionManager: Codeunit "Session Manager LIB";
                     begin
-                        Session.Init();
-                        Session.LanguageId := 1033;
-                        Session.LocaleId := 1043;
-                        Session.RequestSessionUpdate(true);
+                        SessionManager.SetLanguageToEnglish();
                     end;
                 }
                 action(SessionSetAllToEnglish)
@@ -153,22 +186,19 @@ page 83980 "Bluace Desktop LIB"
 
                     trigger OnAction()
                     var
-                        Session: SessionSettings;
+                        SessionManager: Codeunit "Session Manager LIB";
                     begin
-                        Session.Init();
-                        Session.LanguageId := 1033;
-                        Session.LocaleId := 1033;
-                        Session.RequestSessionUpdate(true);
+                        SessionManager.SetAllLanguagesToEnglish();
                     end;
                 }
-                action(SetWorkDateToToday)
+                action(SetWorkDateToTodayLIB)
                 {
                     Caption = 'WorkDate to Today';
                     Image = DueDate;
 
                     trigger OnAction()
                     begin
-                        WorkDate(Today());
+                        SetWorkDateToToday();
                     end;
                 }
                 action(SetWorkDateTo0110)
@@ -221,7 +251,7 @@ page 83980 "Bluace Desktop LIB"
                 Caption = 'Session';
                 Image = Language;
 
-                actionref(SetWorkDateToToday_Promoted; SetWorkDateToToday) { }
+                actionref(SetWorkDateToToday_Promoted; SetWorkDateToTodayLIB) { }
                 actionref(SetWorkDateTo0110_Promoted; SetWorkDateTo0110) { }
                 actionref(SessionSetToDutch_Promoted; SessionSetToDutch) { }
                 actionref(SessionSetToEnglish_Promoted; SessionSetToEnglish) { }
@@ -230,4 +260,20 @@ page 83980 "Bluace Desktop LIB"
         }
         #endregion Promoted
     }
+
+    var
+        LanguageId, LocaleId : Integer;
+
+    trigger OnOpenPage()
+    var
+        SessionManager: Codeunit "Session Manager LIB";
+    begin
+        LanguageId := SessionManager.CurrentLanguageId();
+        LocaleId := SessionManager.CurrentLocaleId()
+    end;
+
+    local procedure SetWorkDateToToday()
+    begin
+        WorkDate(Today());
+    end;
 }
