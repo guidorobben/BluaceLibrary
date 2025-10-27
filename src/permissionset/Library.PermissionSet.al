@@ -2,7 +2,8 @@ permissionset 83950 "Library LIB"
 {
     Assignable = true;
     Caption = 'Library', MaxLength = 30;
-    Permissions = table "Consumable LIB" = X,
+    Permissions =
+        table "Consumable LIB" = X,
         tabledata "Consumable LIB" = RMID,
         table "Feature Setup LIB" = X,
         tabledata "Feature Setup LIB" = RIMD,
@@ -21,7 +22,7 @@ permissionset 83950 "Library LIB"
         codeunit "Library - Assert LIB" = X,
         codeunit "Library - Contract LIB" = X,
     // codeunit "Library - Ext. Documents LIB" = X,
-        codeunit "Library - Ext. Time Sheet LIB" = X,
+    // codeunit "Library - Ext. Time Sheet LIB" = X,
         codeunit "Library - General LIB" = X,
         codeunit "Library - Inventory LIB" = X,
         codeunit "Library - Item LIB" = X,
@@ -40,7 +41,8 @@ permissionset 83950 "Library LIB"
         codeunit "Library - Time Sheet LIB" = X,
         codeunit "Library - User LIB" = X,
         codeunit "Library - Utility LIB" = X,
+        codeunit "Session Manager LIB" = X,
+        page "Bluace Desktop LIB" = X,
         page "Consumables LIB" = X,
-        page "Feature Setup LIB" = X,
-        page "Bluace Desktop LIB" = X;
+        page "Feature Setup LIB" = X;
 }
