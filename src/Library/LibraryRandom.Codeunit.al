@@ -21,7 +21,7 @@ codeunit 83989 "Library - Random LIB"
     begin
         Consumable.SetRange(Type, Consumable.Type::GLN);
         FindRandomConsumable(Consumable);
-        GLN := Consumable.Value;
+        GLN := CopyStr(Consumable.Value, 1, MaxStrLen(GLN));
     end;
 
     local procedure FindRandomConsumable(var Consumable: Record "Consumable LIB")

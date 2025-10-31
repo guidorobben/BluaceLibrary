@@ -163,7 +163,7 @@ codeunit 83988 "Library - Resource LIB"
             CreateResourceGroupNo(InstallatieTok, InstallatieTok, true);
     end;
 
-    procedure CreateResourceGroupNo(No: Code[20]; Name: Text[100]; Primary: Boolean): Code[20]
+    procedure CreateResourceGroupNo(No: Code[20]; Name: Text[50]; Primary: Boolean): Code[20]
     var
         ResourceGroup: Record "Resource Group";
     begin
@@ -179,5 +179,4 @@ codeunit 83988 "Library - Resource LIB"
         ResourceGroup.Validate("Primary TPZS", true);
         ResourceGroup.Insert(true);
     end;
-
 }
