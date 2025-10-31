@@ -448,39 +448,39 @@ codeunit 83983 "Library - Object LIB"
         exit(ObjectTPZS."No.");
     end;
 
-    procedure AddObjectToBOM(ParentObject: Record "Object TPZS"; var ChildObject: Record "Object TPZS")
+    procedure AddObjectToBOM(ParentObjectTPZS: Record "Object TPZS"; var ChildObjectTPZS: Record "Object TPZS")
     var
-        ObjectBOM: Record "Object BOM TPZS";
+        ObjectBOMTPZS: Record "Object BOM TPZS";
     begin
-        ParentObject.TestField("No.");
-        ChildObject.TestField("No.");
+        ParentObjectTPZS.TestField("No.");
+        ChildObjectTPZS.TestField("No.");
 
-        if ChildObject."Main Object No." <> '' then
+        if ChildObjectTPZS."Main Object No." <> '' then
             exit;
 
-        ObjectBOM.Reset();
-        ObjectBOM.Init();
-        ObjectBOM.Validate("Object No.", ParentObject."No.");
-        ObjectBOM.Validate("Line No.", GetNextLineNoObjectBOM(ParentObject."No."));
-        ObjectBOM.Insert(true);
+        ObjectBOMTPZS.Reset();
+        ObjectBOMTPZS.Init();
+        ObjectBOMTPZS.Validate("Object No.", ParentObjectTPZS."No.");
+        ObjectBOMTPZS.Validate("Line No.", GetNextLineNoObjectBOM(ParentObjectTPZS."No."));
+        ObjectBOMTPZS.Insert(true);
 
-        ObjectBOM.Validate(Type, ObjectBOM.Type::Object);
-        ObjectBOM.Validate("No.", ChildObject."No.");
-        ObjectBOM.Modify(true);
+        ObjectBOMTPZS.Validate(Type, ObjectBOMTPZS.Type::Object);
+        ObjectBOMTPZS.Validate("No.", ChildObjectTPZS."No.");
+        ObjectBOMTPZS.Modify(true);
 
-        ChildObject.Validate("Main Object No.", ObjectBOM."Object No.");
-        ChildObject.Modify(true);
+        ChildObjectTPZS.Validate("Main Object No.", ObjectBOMTPZS."Object No.");
+        ChildObjectTPZS.Modify(true);
     end;
 
     local procedure GetNextLineNoObjectBOM(ObjectNo: Code[20]) LineNo: Integer
     var
-        ObjectBOM: Record "Object BOM TPZS";
+        ObjectBOMTPZS: Record "Object BOM TPZS";
     begin
-        ObjectBOM.Reset();
-        ObjectBOM.SetLoadFields("Line No.");
-        ObjectBOM.SetRange("Object No.", ObjectNo);
-        if ObjectBOM.FindLast() then
-            LineNo := ObjectBOM."Line No.";
+        ObjectBOMTPZS.Reset();
+        ObjectBOMTPZS.SetLoadFields("Line No.");
+        ObjectBOMTPZS.SetRange("Object No.", ObjectNo);
+        if ObjectBOMTPZS.FindLast() then
+            LineNo := ObjectBOMTPZS."Line No.";
         LineNo += 10000;
     end;
 
@@ -499,9 +499,9 @@ codeunit 83983 "Library - Object LIB"
         ObjectTPZS.CreateSalesOrderLine(ValidOnDate);
     end;
 
-    procedure GetNextObjectMaintenanceSchedule(ObjectTPZS: Record "Object TPZS"; var NextObjectMaintSchedule: Record "Object Maint. Schedule TPZS")
+    procedure GetNextObjectMaintenanceSchedule(ObjectTPZS: Record "Object TPZS"; var NextObjectMaintScheduleTPZS: Record "Object Maint. Schedule TPZS")
     begin
-        ObjectTPZS.GetNextObjectMaintenanceSchedule(NextObjectMaintSchedule);
+        ObjectTPZS.GetNextObjectMaintenanceSchedule(NextObjectMaintScheduleTPZS);
     end;
 
     procedure DeleteObjectMaintenanceSchedules(ObjectTPZS: Record "Object TPZS"; StartingDate: Date)
@@ -509,8 +509,8 @@ codeunit 83983 "Library - Object LIB"
         ObjectTPZS.DeleteObjectMaintenanceSchedules(StartingDate);
     end;
 
-    procedure GetActiveContractArchiveLine(ObjectTPZS: Record "Object TPZS"; var ContrArchiveLine: Record "Contr. Archive Line TPZS"; ValidOnDate: Date): Boolean
+    procedure GetActiveContractArchiveLine(ObjectTPZS: Record "Object TPZS"; var ContrArchiveLineTPZS: Record "Contr. Archive Line TPZS"; ValidOnDate: Date): Boolean
     begin
-        exit(ObjectTPZS.GetActiveContractArchiveLine(ContrArchiveLine, ValidOnDate));
+        exit(ObjectTPZS.GetActiveContractArchiveLine(ContrArchiveLineTPZS, ValidOnDate));
     end;
 }

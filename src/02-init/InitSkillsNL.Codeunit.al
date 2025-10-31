@@ -28,9 +28,9 @@ codeunit 83966 "Init. Skills NL LIB"
 
     procedure DeleteSkillPostCodes()
     var
-        GeoSkillPostCode: Record "Geo. Skill Post Code NBLC";
+        GeoSkillPostCodeNBLC: Record "Geo. Skill Post Code NBLC";
     begin
-        GeoSkillPostCode.DeleteAll(false);
+        GeoSkillPostCodeNBLC.DeleteAll(false);
     end;
 
     procedure CreateSkillPostCodes()

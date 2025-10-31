@@ -63,6 +63,36 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 607087459 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dates</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Control 3342619468 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Today</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Control TodayControl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Control 3722038158 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WorkDate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Control WorkDateControl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Control 4093990710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Language</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Control Language - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Control 1042393412 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LanguageId</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Control LanguageIdControl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 607087459 - Control 3575846790 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LocaleId</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Control LocaleIdControl - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 607087459 - Action 1277201643 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Administration</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -213,10 +243,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action SetWorkDateTo0110 - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 607087459 - Action 3319023749 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 607087459 - Action 937338288 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>WorkDate to Today</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action SetWorkDateToToday - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Bluace Desktop LIB - Action SetWorkDateToTodayLIB - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 607087459 - Action 109709493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Administration</source>

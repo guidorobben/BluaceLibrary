@@ -28,6 +28,7 @@ permissionset 83950 "Library LIB"
         codeunit "Library - Item LIB" = X,
         codeunit "Library - Job LIB" = X,
         codeunit "Library - Maintenance LIB" = X,
+        codeunit "Library - Matching LIB" = X,
         codeunit "Library - Object LIB" = X,
         codeunit "Library - Priority LIB" = X,
         codeunit "Library - Property LIB" = X,
