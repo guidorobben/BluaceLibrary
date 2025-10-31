@@ -58,6 +58,9 @@ codeunit 83955 "Init. Resoure LIB"
         ResourcesSetup.Validate("Work Type Work TPZS", 'WERK');
         ResourcesSetup.Validate("Work Type Travel TPZS", 'REIS');
         ResourcesSetup.Validate("Work Type Travel (km) TPZS", 'KM');
+
+        ResourcesSetup.Validate("Realization Time Descr. TPZS", '%5 %6 %7 %8 %9');
+        ResourcesSetup.Validate("Realization Dist. Descr. TPZS", '%2: %4 (%11 km)');
         ResourcesSetup.Modify(false);
     end;
 
