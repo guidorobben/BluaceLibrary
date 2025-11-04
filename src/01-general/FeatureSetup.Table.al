@@ -35,5 +35,4 @@ table 83951 "Feature Setup LIB"
             Insert(true);
         end;
     end;
-
 }
