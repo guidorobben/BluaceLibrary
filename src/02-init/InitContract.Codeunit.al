@@ -25,6 +25,7 @@ codeunit 83950 "Init. Contract LIB"
 
     procedure Initialize()
     begin
+        InitializeContainerItemCategories();
         InitializeContractSetup();
         InitializeContractTemplate();
         InitializeCustomerPriceGroups();
@@ -101,6 +102,12 @@ codeunit 83950 "Init. Contract LIB"
             ContractSetupTPZS.Validate("Item Category Service", ItemCategoryCode);
         end;
 
+        if ContractSetupTPZS."Usage Container Item Category" = '' then
+            ContractSetupTPZS.Validate("Usage Container Item Category", 'CONTAINER');
+
+        if ContractSetupTPZS."Container Cont. Item Category" = '' then
+            ContractSetupTPZS.Validate("Container Cont. Item Category", 'CONTENT');
+
         if not ItemCategory.Get('TERMIJNEN') then
             LibraryItemLIB.CreateItemCategory('TERMIJNEN', 'Termijnen', ItemCategoryCode);
 
@@ -168,5 +175,24 @@ codeunit 83950 "Init. Contract LIB"
         LibraryPriority.CreatePriority('PRIORITY7', 'Description 7');
         LibraryPriority.CreatePriority('PRIORITY8', 'Description 8');
         LibraryPriority.CreatePriority('PRIORITY9', 'Description 9');
+    end;
+
+    local procedure InitializeContainerItemCategories()
+    var
+        ItemCategoryCode: Code[20];
+    begin
+        ItemCategoryCode := 'Container';
+        LibraryItemLIB.CreateItemCategory(ItemCategoryCode, 'Containers', '');
+        LibraryItemLIB.CreateItemCategory('KLEIN', 'Klein', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('MIDDEL', 'Middel', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('GROOT', 'Groot', ItemCategoryCode);
+
+        ItemCategoryCode := 'Content';
+        LibraryItemLIB.CreateItemCategory(ItemCategoryCode, 'Content', '');
+        LibraryItemLIB.CreateItemCategory('KOEL', 'Koel- en airconditioningsystemen', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('SCHUIM', 'Schuimblusmiddelen', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('SPUIT', 'Spuitblusmiddelen', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('BRAND', 'Brandblusmiddelen', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('INDUSTRIE', 'Industriële processen', ItemCategoryCode);
     end;
 }
