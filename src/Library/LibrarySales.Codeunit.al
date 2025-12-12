@@ -13,7 +13,8 @@ codeunit 83990 "Library - Sales LIB"
         tabledata "Sales Line" = R,
         tabledata "Sales Plan. Line TPZS" = R,
         tabledata "Sales Realization TPZS" = RIM,
-        tabledata "Sales Rlz. Work Time TPZS" = R;
+        tabledata "Sales Rlz. Work Time TPZS" = R,
+        tabledata "Transaction Type" = RI;
 
     var
         LibraryInventory: Codeunit "Library - Inventory";
@@ -355,5 +356,21 @@ codeunit 83990 "Library - Sales LIB"
     procedure CreateCustomer(var Customer: Record Customer)
     begin
         LibrarySales.CreateCustomer(Customer);
+    end;
+
+    procedure CreateTransactionType(Code: Code[10]; Description: Text[80])
+    var
+        TransactionType: Record "Transaction Type";
+    begin
+        if Code = '' then
+            exit;
+
+        if TransactionType.Get(Code) then
+            exit;
+
+        TransactionType.Init();
+        TransactionType.Validate(Code, Code);
+        TransactionType.Validate(Description, Description);
+        TransactionType.Insert(true);
     end;
 }
