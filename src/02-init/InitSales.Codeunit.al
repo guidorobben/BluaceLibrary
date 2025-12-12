@@ -17,13 +17,20 @@ codeunit 83970 "Init. Sales LIB"
     procedure Initialize()
     begin
 
-        InitializePurchasingCode();
+        InitializePurchasingCodes();
+        InitializeTransactionTypes();
     end;
 
-    local procedure InitializePurchasingCode()
+    procedure InitializePurchasingCodes()
     begin
         LibrarySales.CreatePurchasingCode('MPG', 'Wijziging prioriteit', false, true);
         LibrarySales.CreatePurchasingCode('MVR', 'Materiaal via reservering', false, true);
         LibrarySales.CreatePurchasingCode('SPOED', 'Spoedlevering', false, true);
+    end;
+
+    procedure InitializeTransactionTypes()
+    begin
+        LibrarySales.CreateTransactionType('1', 'Normale inkoop/verkoop (eigendomsoverdracht met financiele tegenprestatie)');
+        LibrarySales.CreateTransactionType('6', 'Tijdelijke in-en uitvoer / Retour in- en uitvoer');
     end;
 }
