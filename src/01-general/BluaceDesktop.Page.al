@@ -18,7 +18,6 @@ page 83980 "Bluace Desktop LIB"
                 {
                     Caption = 'Today';
                 }
-
                 field(WorkDateControl; WorkDate())
                 {
                     Caption = 'WorkDate';
