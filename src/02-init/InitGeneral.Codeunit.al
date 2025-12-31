@@ -37,9 +37,12 @@ codeunit 83953 "Init. General LIB"
 
     procedure InitializeTechnicaManagement()
     var
+        ApplicationAreaSetup: Record "Application Area Setup";
         ApplAreaHelperTPZS: Codeunit "Appl. Area Helper TPZS";
     begin
-        ApplAreaHelperTPZS.SetAreaEnabled(true);
+        ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Area TPZS"), true);
+        ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Refrigerant TPZS"), true);
+        ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Service TPZS"), true);
         ApplAreaHelperTPZS.RefreshExperienceTier();
     end;
 
