@@ -27,6 +27,9 @@ codeunit 83984 "Library - Item LIB"
     var
         ItemCategory: Record "Item Category";
     begin
+        if ItemCategory.Get(NewCode) then
+            exit;
+
         ItemCategory.Init();
         ItemCategory.Validate(Code, NewCode);
         ItemCategory.Validate(Description, Description);
