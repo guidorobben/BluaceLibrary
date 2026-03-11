@@ -31,6 +31,7 @@ codeunit 83950 "Init. Contract LIB"
         InitializeCustomerPriceGroups();
         InitializeContractIndexes();
         InitializePriorities();
+        InitializeVolvoItemCategories();
     end;
 
     procedure InitializeContractSetup()
@@ -194,5 +195,36 @@ codeunit 83950 "Init. Contract LIB"
         LibraryItemLIB.CreateItemCategory('SPUIT', 'Spuitblusmiddelen', ItemCategoryCode);
         LibraryItemLIB.CreateItemCategory('BRAND', 'Brandblusmiddelen', ItemCategoryCode);
         LibraryItemLIB.CreateItemCategory('INDUSTRIE', 'Industriële processen', ItemCategoryCode);
+    end;
+
+    local procedure InitializeVolvoItemCategories()
+    var
+        ItemCategoryCode: Code[20];
+    begin
+        ItemCategoryCode := 'TOOLS VP';
+        LibraryItemLIB.CreateItemCategory(ItemCategoryCode, 'Tools / VP', '');
+
+        ItemCategoryCode := 'Volvo';
+        LibraryItemLIB.CreateItemCategory(ItemCategoryCode, 'Volvo', '');
+        LibraryItemLIB.CreateItemCategory('11', 'Filters, anodes, AQ bellows, OH', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('12', 'Motor reparatie delen', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('13', 'Olie, verf, vetten, duren delen', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('14', 'Dure VP accesoires, QL boeg-hekschr.', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('15', 'Reparatie delen motoren, drives, serv.', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('16', 'Schroeven, SP, vaste VP schr.', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('17', 'alle DP en RVS schroeven', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('18', 'Dure reparatie delen, motorblokken etc.', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('19', 'Alle ruildelen excl. onderstaa', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('20', 'Gedeelde en compl. ruildrives', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('21', 'Gereedschappen + ruilmotoren', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('22', 'Core', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('31', 'Replaced VP parts', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('35', 'Right choice', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('36', 'Volvo Alternatief (grijs) A', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('37', 'Volvo Reco R', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('38', 'Volvo Gebruikt G', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('39', 'Volvo Nieuw / Afkomstig nieuwe motor N', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('40', '-->ART.CAT.CODE: "TOOLS VP" gebruiken', ItemCategoryCode);
+        LibraryItemLIB.CreateItemCategory('MERCH', 'Merchandise Volvo Penta', ItemCategoryCode);
     end;
 }
