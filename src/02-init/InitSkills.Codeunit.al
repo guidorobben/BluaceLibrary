@@ -57,6 +57,7 @@ codeunit 83952 "Init. Skills LIB"
         LibrarySkill.CreateSkill('DR', 'Drente (GEO)', SkillType::Geography, 200);
         LibrarySkill.CreateSkill('FL', 'Flevoland (GEO)', SkillType::Geography, 210);
         LibrarySkill.CreateSkill('FR', 'Friesland (GEO)', SkillType::Geography, 220);
+        LibrarySkill.CreateSkill('GL', 'Gelderland (GEO)', SkillType::Geography, 225);
         LibrarySkill.CreateSkill('GR', 'Groningen (GEO)', SkillType::Geography, 230);
         LibrarySkill.CreateSkill('LB', 'Limburg (GEO)', SkillType::Geography, 240);
         LibrarySkill.CreateSkill('NB', 'Noord-Brabant (GEO)', SkillType::Geography, 250);
