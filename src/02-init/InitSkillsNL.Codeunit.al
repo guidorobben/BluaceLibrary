@@ -40,7 +40,8 @@ codeunit 83966 "Init. Skills NL LIB"
         LibrarySkillNL.AddPostCodeRangeToGeographicSkill('FL', '1200AA', '1299ZZ');
         LibrarySkillNL.AddPostCodeRangeToGeographicSkill('FL', '1300AA', '1399ZZ');
         LibrarySkillNL.AddPostCodeRangeToGeographicSkill('FR', '1400AA', '1499ZZ');
-        LibrarySkillNL.AddPostCodeRangeToGeographicSkill('FR', '1500AA', '1599ZZ');
+        LibrarySkillNL.AddPostCodeRangeToGeographicSkill('FR', '1500AA', '1549ZZ');
+        LibrarySkillNL.AddPostCodeRangeToGeographicSkill('GL', '1550AA', '1599ZZ');
         LibrarySkillNL.AddPostCodeRangeToGeographicSkill('GR', '1600AA', '1699ZZ');
         LibrarySkillNL.AddPostCodeRangeToGeographicSkill('GR', '1700AA', '1799ZZ');
         LibrarySkillNL.AddPostCodeRangeToGeographicSkill('LB', '1800AA', '1899ZZ');
