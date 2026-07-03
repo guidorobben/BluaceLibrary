@@ -3,11 +3,11 @@ codeunit 83989 "Library - Random LIB"
     Permissions =
         tabledata "Consumable LIB" = R,
         tabledata Contact = R,
-        tabledata "Contract Setup TPZS" = R,
+        tabledata "Contract Setup CBLC" = R,
         tabledata Item = R,
         tabledata "Item Category" = R,
-        tabledata "Property Mapping RBLC" = R,
-        tabledata "Property Value RBLC" = R,
+        tabledata "Property Mapping BBLC" = R,
+        tabledata "Property Value BBLC" = R,
         tabledata Resource = R,
         tabledata "Skill Code" = R;
 
@@ -134,8 +134,8 @@ codeunit 83989 "Library - Random LIB"
 
     procedure FindObjectPropertyValueRandom(PropertyCode: Code[20]) Result: Text[2048]
     var
-        // ObjectTPZS: Record "Object TPZS";
-        PropertyValueRBLC: Record "Property Value RBLC";
+        // ObjectCBLC: Record "Object CBLC";
+        PropertyValueBBLC: Record "Property Value BBLC";
         Count: Integer;
         NextCount: Integer;
         TableId: Integer;
@@ -143,25 +143,25 @@ codeunit 83989 "Library - Random LIB"
         if PropertyCode = '' then
             exit;
 
-        TableId := GetPropertyMapping(Database::"Object TPZS");
-        PropertyValueRBLC.SetRange("Table ID", TableId);
-        PropertyValueRBLC.SetRange("Property Code", PropertyCode);
-        Count := PropertyValueRBLC.Count();
+        TableId := GetPropertyMapping(Database::"Object CBLC");
+        PropertyValueBBLC.SetRange("Table ID", TableId);
+        PropertyValueBBLC.SetRange("Property Code", PropertyCode);
+        Count := PropertyValueBBLC.Count();
 
         if Count = 0 then
             exit;
 
         NextCount := LibraryRandom.RandIntInRange(1, Count);
-        if PropertyValueRBLC.Next(NextCount) <> 0 then
-            PropertyValueRBLC.PopulateValue(Result);
+        if PropertyValueBBLC.Next(NextCount) <> 0 then
+            PropertyValueBBLC.PopulateValue(Result);
     end;
 
     local procedure GetPropertyMapping(TableId: Integer): Integer
     var
-        PropertyMappingRBLC: Record "Property Mapping RBLC";
+        PropertyMappingBBLC: Record "Property Mapping BBLC";
     begin
-        if PropertyMappingRBLC.Get(TableId) then
-            exit(PropertyMappingRBLC."Property Table ID");
+        if PropertyMappingBBLC.Get(TableId) then
+            exit(PropertyMappingBBLC."Property Table ID");
 
         exit(TableId);
     end;
@@ -194,13 +194,13 @@ codeunit 83989 "Library - Random LIB"
         exit(CopyStr(FoundItemNo, 1, MaxStrLen(ItemNo)));
     end;
 
-    procedure FindSkillCodeRandom(SkillType: Enum "Skill Type TPZS") Result: Code[10]
+    procedure FindSkillCodeRandom(SkillType: Enum "Skill Type CBLC") Result: Code[10]
     var
         SKillCode: Record "Skill Code";
         SourceRecordRef: RecordRef;
         FoundSkillCodeNo: Text;
     begin
-        SKillCode.SetRange("Skill Type TPZS", SkillType);
+        SKillCode.SetRange("Skill Type CBLC", SkillType);
         SourceRecordRef.GetTable(SKillCode);
         FoundSkillCodeNo := GetRandomValueByRecordRef(SourceRecordRef, 1);
         exit(CopyStr(FoundSkillCodeNo, 1, MaxStrLen(Result)));
@@ -208,16 +208,16 @@ codeunit 83989 "Library - Random LIB"
 
     procedure FindItemServiceRandom() ItemOfTypeServiceNo: Code[20]
     var
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
         TempItem: Record Item temporary;
         ItemCategory: Record "Item Category";
         NextCount, RecordCount : Integer;
     begin
-        ContractSetupTPZS.Get();
-        ContractSetupTPZS.TestField("Item Category Service");
+        ContractSetupCBLC.Get();
+        ContractSetupCBLC.TestField("Item Category Service");
 
-        ItemCategory.Get(ContractSetupTPZS."Item Category Service");
-        ItemCategory.CreateItemBufferTPZS(TempItem, '');
+        ItemCategory.Get(ContractSetupCBLC."Item Category Service");
+        ItemCategory.CreateItemBufferCBLC(TempItem, '');
         if TempItem.FindFirst() then; //Easy
 
         RecordCount := TempItem.Count();

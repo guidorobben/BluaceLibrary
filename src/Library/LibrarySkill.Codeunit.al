@@ -1,28 +1,28 @@
 codeunit 83982 "Library - Skill LIB"
 {
     Permissions =
-        tabledata "Contr. Template Header TPZS" = R,
-        tabledata "Contract Header TPZS" = R,
+        tabledata "Contr. Template Header CBLC" = R,
+        tabledata "Contract Header CBLC" = R,
         tabledata Item = R,
         tabledata "Job Planning Line" = R,
-        tabledata "Object Template TPZS" = R,
-        tabledata "Object TPZS" = R,
+        tabledata "Object Template CBLC" = R,
+        tabledata "Object CBLC" = R,
         tabledata Resource = R,
         tabledata "Resource Skill" = RID,
         tabledata "Sales Line" = R,
         tabledata "Skill Code" = RID,
-        tabledata "Skill Item Line TPZS" = RD,
-        tabledata "Skill Line TPZS" = RD;
+        tabledata "Skill Item Line CBLC" = RD,
+        tabledata "Skill Line CBLC" = RD;
 
     var
         Assert: Codeunit Assert;
 
-    procedure CreateSkill(NewCode: Code[10]; Description: Text[100]; SkillTypeTPZS: Enum "Skill Type TPZS")
+    procedure CreateSkill(NewCode: Code[10]; Description: Text[100]; SkillTypeCBLC: Enum "Skill Type CBLC")
     begin
-        CreateSkill(NewCode, Description, SkillTypeTPZS, 0);
+        CreateSkill(NewCode, Description, SkillTypeCBLC, 0);
     end;
 
-    procedure CreateSkill(NewCode: Code[10]; Description: Text[100]; SkillTypeTPZS: Enum "Skill Type TPZS"; Score: Integer)
+    procedure CreateSkill(NewCode: Code[10]; Description: Text[100]; SkillTypeCBLC: Enum "Skill Type CBLC"; Score: Integer)
     var
         SkillCode: Record "Skill Code";
     begin
@@ -32,8 +32,8 @@ codeunit 83982 "Library - Skill LIB"
         SkillCode.Init();
         SkillCode.Validate(Code, NewCode);
         SkillCode.Validate(Description, Description);
-        SkillCode.Validate("Skill Type TPZS", SkillTypeTPZS);
-        SkillCode.Validate("Score TPZS", Score);
+        SkillCode.Validate("Skill Type CBLC", SkillTypeCBLC);
+        SkillCode.Validate("Score CBLC", Score);
         SkillCode.Insert(true);
     end;
 
@@ -81,68 +81,68 @@ codeunit 83982 "Library - Skill LIB"
         AddResourceSkill(Item."No.", ResourceSkill.Type::Item, SkillCode);
     end;
 
-    procedure AddSkillToObject(ObjectTPZS: Record "Object TPZS"; SkillCode: Code[10])
+    procedure AddSkillToObject(ObjectCBLC: Record "Object CBLC"; SkillCode: Code[10])
     begin
-        AddSkillToObject(ObjectTPZS, '', SkillCode);
+        AddSkillToObject(ObjectCBLC, '', SkillCode);
     end;
 
-    procedure AddSkillToObject(ObjectTPZS: Record "Object TPZS"; ItemNo: Code[20]; SkillCode: Code[10])
+    procedure AddSkillToObject(ObjectCBLC: Record "Object CBLC"; ItemNo: Code[20]; SkillCode: Code[10])
     var
-        SkillItemLineTPZS: Record "Skill Item Line TPZS";
+        SkillItemLineCBLC: Record "Skill Item Line CBLC";
     begin
         if SkillCode = '' then
             exit;
 
-        ObjectTPZS.TestField("No.");
-        SkillItemLineTPZS.AddSkillItemLine(Database::"Object TPZS", ObjectTPZS.SystemId, ItemNo, SkillCode, false);
+        ObjectCBLC.TestField("No.");
+        SkillItemLineCBLC.AddSkillItemLine(Database::"Object CBLC", ObjectCBLC.SystemId, ItemNo, SkillCode, false);
     end;
 
-    procedure AddSkillToObjectTemplate(ObjectTemplateTPZS: Record "Object Template TPZS"; SkillCode: Code[10])
+    procedure AddSkillToObjectTemplate(ObjectTemplateCBLC: Record "Object Template CBLC"; SkillCode: Code[10])
     begin
-        AddSkillToObjectTemplate(ObjectTemplateTPZS, '', SkillCode);
+        AddSkillToObjectTemplate(ObjectTemplateCBLC, '', SkillCode);
     end;
 
-    procedure AddSkillToObjectTemplate(ObjectTemplateTPZS: Record "Object Template TPZS"; ItemNo: Code[20]; SkillCode: Code[10])
+    procedure AddSkillToObjectTemplate(ObjectTemplateCBLC: Record "Object Template CBLC"; ItemNo: Code[20]; SkillCode: Code[10])
     var
-        SkillItemLineTPZS: Record "Skill Item Line TPZS";
+        SkillItemLineCBLC: Record "Skill Item Line CBLC";
     begin
         if SkillCode = '' then
             exit;
 
-        ObjectTemplateTPZS.TestField("No.");
-        SkillItemLineTPZS.AddSkillItemLine(Database::"Object Template TPZS", ObjectTemplateTPZS.SystemId, ItemNo, SkillCode, false);
+        ObjectTemplateCBLC.TestField("No.");
+        SkillItemLineCBLC.AddSkillItemLine(Database::"Object Template CBLC", ObjectTemplateCBLC.SystemId, ItemNo, SkillCode, false);
     end;
 
-    procedure AddSkillToContractTemplate(ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; SkillCode: Code[10])
+    procedure AddSkillToContractTemplate(ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; SkillCode: Code[10])
     begin
-        AddSkillToContractTemplate(ContrTemplateHeaderTPZS, '', SkillCode);
+        AddSkillToContractTemplate(ContrTemplateHeaderCBLC, '', SkillCode);
     end;
 
-    procedure AddSkillToContractTemplate(ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; ItemNo: Code[20]; SkillCode: Code[10])
+    procedure AddSkillToContractTemplate(ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; ItemNo: Code[20]; SkillCode: Code[10])
     var
-        SkillItemLineTPZS: Record "Skill Item Line TPZS";
+        SkillItemLineCBLC: Record "Skill Item Line CBLC";
     begin
         if SkillCode = '' then
             exit;
 
-        ContrTemplateHeaderTPZS.TestField("No.");
-        SkillItemLineTPZS.AddSkillItemLine(Database::"Contr. Template Header TPZS", ContrTemplateHeaderTPZS.SystemId, ItemNo, SkillCode, false);
+        ContrTemplateHeaderCBLC.TestField("No.");
+        SkillItemLineCBLC.AddSkillItemLine(Database::"Contr. Template Header CBLC", ContrTemplateHeaderCBLC.SystemId, ItemNo, SkillCode, false);
     end;
 
-    procedure AddSkillToContract(ContractHeaderTPZS: Record "Contract Header TPZS"; ItemNo: Code[20]; SkillCode: Code[10])
+    procedure AddSkillToContract(ContractHeaderCBLC: Record "Contract Header CBLC"; ItemNo: Code[20]; SkillCode: Code[10])
     var
-        SkillItemLineTPZS: Record "Skill Item Line TPZS";
+        SkillItemLineCBLC: Record "Skill Item Line CBLC";
     begin
         if SkillCode = '' then
             exit;
 
-        ContractHeaderTPZS.TestField("No.");
-        SkillItemLineTPZS.AddSkillItemLine(ContractHeaderTPZS.RecordId().TableNo(), ContractHeaderTPZS.SystemId, ItemNo, SkillCode, false);
+        ContractHeaderCBLC.TestField("No.");
+        SkillItemLineCBLC.AddSkillItemLine(ContractHeaderCBLC.RecordId().TableNo(), ContractHeaderCBLC.SystemId, ItemNo, SkillCode, false);
     end;
 
     // procedure AddSkillLine(TableId: Integer; SourceSystemId: Guid; SkillCode: Code[10])
     // var
-    //     SkillLineTPZS: Record "Skill Line TPZS";
+    //     SkillLineCBLC: Record "Skill Line CBLC";
     //     EmptyGuid: Guid;
     // begin
     //     if TableId = 0 then
@@ -151,11 +151,11 @@ codeunit 83982 "Library - Skill LIB"
     //     if SourceSystemId = EmptyGuid then
     //         exit;
 
-    //     SkillLineTPZS.Init();
-    //     SkillLineTPZS.Validate("Table Id", TableId);
-    //     SkillLineTPZS.Validate("Source System Id", SourceSystemId);
-    //     SkillLineTPZS.Validate("Skill Code", SkillCode);
-    //     SkillLineTPZS.Insert(true);
+    //     SkillLineCBLC.Init();
+    //     SkillLineCBLC.Validate("Table Id", TableId);
+    //     SkillLineCBLC.Validate("Source System Id", SourceSystemId);
+    //     SkillLineCBLC.Validate("Skill Code", SkillCode);
+    //     SkillLineCBLC.Insert(true);
     // end;
 
     procedure AddSkillToSalesLine(SalesLine: Record "Sales Line"; SkillCode: Code[10])
@@ -165,13 +165,13 @@ codeunit 83982 "Library - Skill LIB"
 
     procedure AddSkillToSalesLine(SalesLine: Record "Sales Line"; SkillCode: Code[10]; NewScore: Integer)
     var
-        // SkillLineHelperTPZS: Codeunit "Skill Line Helper TPZS";
-        SkillLineTPZS: Record "Skill Line TPZS";
+        // SkillLineHelperCBLC: Codeunit "Skill Line Helper CBLC";
+        SkillLineCBLC: Record "Skill Line CBLC";
     begin
         if SkillCode = '' then
             exit;
 
-        SkillLineTPZS.AddSkillLine(SalesLine.RecordId(), Database::"Sales Line", SalesLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
+        SkillLineCBLC.AddSkillLine(SalesLine.RecordId(), Database::"Sales Line", SalesLine.SystemId, SkillCode, NewScore, false); //FIXME SkillScore
     end;
 
     // procedure AddSkillToJobPlanningLine(JobPlanningLine: Record "Job Planning Line"; SkillCode: Code[10])
@@ -181,22 +181,22 @@ codeunit 83982 "Library - Skill LIB"
 
     procedure AddSkillToJobPlanningLine(JobPlanningLine: Record "Job Planning Line"; SkillCode: Code[10])
     var
-        SkillLineTPZS: Record "Skill Line TPZS";
+        SkillLineCBLC: Record "Skill Line CBLC";
     begin
         if SkillCode = '' then
             exit;
 
-        SkillLineTPZS.AddSkillLine(JobPlanningLine.RecordId(), Database::"Job Planning Line", JobPlanningLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
+        SkillLineCBLC.AddSkillLine(JobPlanningLine.RecordId(), Database::"Job Planning Line", JobPlanningLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
     end;
 
     procedure SkillLineExist(TableId: Integer; SourceSystemId: Guid; SkillCode: Code[10]): Boolean
     var
-        SkillLineHelperTPZS: Codeunit "Skill Line Helper TPZS";
+        SkillLineHelperCBLC: Codeunit "Skill Line Helper CBLC";
     begin
-        exit(SkillLineHelperTPZS.SkillLineExist(TableId, SourceSystemId, SkillCode));
+        exit(SkillLineHelperCBLC.SkillLineExist(TableId, SourceSystemId, SkillCode));
     end;
 
-    procedure GetSkillLine(var SkillLineTPZS: Record "Skill Line TPZS"; TableId: Integer; SourceSystemId: Guid; SkillCode: Code[10]): Boolean
+    procedure GetSkillLine(var SkillLineCBLC: Record "Skill Line CBLC"; TableId: Integer; SourceSystemId: Guid; SkillCode: Code[10]): Boolean
     var
         EmptyGuid: Guid;
     begin
@@ -206,23 +206,23 @@ codeunit 83982 "Library - Skill LIB"
         if SourceSystemId = EmptyGuid then
             exit;
 
-        SkillLineTPZS.SetRange("Table Id", TableId);
-        SkillLineTPZS.SetRange("Source System Id", SourceSystemId);
-        SkillLineTPZS.SetRange("Skill Code", SkillCode);
-        if SkillLineTPZS.FindFirst() then
+        SkillLineCBLC.SetRange("Table Id", TableId);
+        SkillLineCBLC.SetRange("Source System Id", SourceSystemId);
+        SkillLineCBLC.SetRange("Skill Code", SkillCode);
+        if SkillLineCBLC.FindFirst() then
             exit(true);
     end;
 
-    // procedure SkillLineSkillCodeExist(TableId: Integer; SourceSystemId: Guid; SkillType: Enum "Skill Type TPZS") SkillCode: Code[10]
+    // procedure SkillLineSkillCodeExist(TableId: Integer; SourceSystemId: Guid; SkillType: Enum "Skill Type CBLC") SkillCode: Code[10]
     // var
-    //     SkillLineHelper: Codeunit "Skill Line Helper TPZS";
+    //     SkillLineHelper: Codeunit "Skill Line Helper CBLC";
     // begin
     //     exit(SkillLineExist(TableId, SourceSystemId, SkillType));
     // end;
 
-    procedure SkillLineSkillTypeExist(TableId: Integer; SourceSystemId: Guid; SkillType: Enum "Skill Type TPZS") SkillCode: Code[10]
+    procedure SkillLineSkillTypeExist(TableId: Integer; SourceSystemId: Guid; SkillType: Enum "Skill Type CBLC") SkillCode: Code[10]
     var
-        SkillLineTPZS: Record "Skill Line TPZS";
+        SkillLineCBLC: Record "Skill Line CBLC";
         EmptyGuid: Guid;
     begin
         if TableId = 0 then
@@ -231,11 +231,11 @@ codeunit 83982 "Library - Skill LIB"
         if SourceSystemId = EmptyGuid then
             exit;
 
-        SkillLineTPZS.SetRange("Table Id", TableId);
-        SkillLineTPZS.SetRange("Source System Id", SourceSystemId);
-        SkillLineTPZS.SetRange("Skill Type", SkillType);
-        if SkillLineTPZS.FindFirst() then
-            exit(SkillLineTPZS."Skill Code");
+        SkillLineCBLC.SetRange("Table Id", TableId);
+        SkillLineCBLC.SetRange("Source System Id", SourceSystemId);
+        SkillLineCBLC.SetRange("Skill Type", SkillType);
+        if SkillLineCBLC.FindFirst() then
+            exit(SkillLineCBLC."Skill Code");
     end;
 
     procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20])
@@ -250,7 +250,7 @@ codeunit 83982 "Library - Skill LIB"
         ResourceSkill.DeleteAll(true);
     end;
 
-    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillTypeTPZS: Enum "Skill Type TPZS")
+    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillTypeCBLC: Enum "Skill Type CBLC")
     var
         ResourceSkill: Record "Resource Skill";
     begin
@@ -259,7 +259,7 @@ codeunit 83982 "Library - Skill LIB"
 
         ResourceSkill.SetRange(Type, Type);
         ResourceSkill.SetRange("No.", SourceNo);
-        ResourceSkill.SetRange("Skill Type TPZS", SkillTypeTPZS);
+        ResourceSkill.SetRange("Skill Type CBLC", SkillTypeCBLC);
         ResourceSkill.DeleteAll(true);
     end;
 
@@ -297,23 +297,23 @@ codeunit 83982 "Library - Skill LIB"
     //         until ResourceSkill.Next() = 0;
     // end;
 
-    // procedure GetSkillsFromObjectTemplate(var TempResourceSkill: Record "Resource Skill" temporary; ObjectTemplateTPZS: Record "Object Template TPZS")
+    // procedure GetSkillsFromObjectTemplate(var TempResourceSkill: Record "Resource Skill" temporary; ObjectTemplateCBLC: Record "Object Template CBLC")
     // var
-    //     ObjectTemplateTPZS: Record "Object Template TPZS";
+    //     ObjectTemplateCBLC: Record "Object Template CBLC";
 
     // begin
-    //     ObjectTemplateTPZS.get
+    //     ObjectTemplateCBLC.get
     //     if ObjectTemplateNo = '' then
     //         exit;
 
-    //     SkillItemLine.SetRange("Link-to Table Id", Database::"Object Template TPZS");
+    //     SkillItemLine.SetRange("Link-to Table Id", Database::"Object Template CBLC");
     //     SkillItemLine.SetRange("Link-to System Id", ObjectTemplate.SystemId);
     //     if SkillItemLine.FindSet() then
     //         repeat
-    //             if not SkillItemLineExist(Database::"Object TPZS", ObjectTPZS.SystemId, SkillItemLine."Item No. (Service)", SkillItemLine."Skill Code") then begin
+    //             if not SkillItemLineExist(Database::"Object CBLC", ObjectCBLC.SystemId, SkillItemLine."Item No. (Service)", SkillItemLine."Skill Code") then begin
     //                 ObjectSkillItemLine.Init();
-    //                 ObjectSkillItemLine.Validate("Link-to Table Id", Database::"Object TPZS");
-    //                 ObjectSkillItemLine.Validate("Link-to System Id", ObjectTPZS.SystemId);
+    //                 ObjectSkillItemLine.Validate("Link-to Table Id", Database::"Object CBLC");
+    //                 ObjectSkillItemLine.Validate("Link-to System Id", ObjectCBLC.SystemId);
     //                 ObjectSkillItemLine.Validate("Line No.", ObjectSkillItemLine.GetNextLineNo());
     //                 ObjectSkillItemLine.Validate("Skill Code", SkillItemLine."Skill Code");
     //                 ObjectSkillItemLine.Validate("Skill Type", SkillItemLine."Skill Type");
@@ -325,9 +325,9 @@ codeunit 83982 "Library - Skill LIB"
 
     procedure ResourceSkillExist(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillCode: Code[10]): Boolean
     var
-        ResourceSkillHelperTPZS: Codeunit "Resource Skill Helper TPZS";
+        ResourceSkillHelperCBLC: Codeunit "Resource Skill Helper CBLC";
     begin
-        exit(ResourceSkillHelperTPZS.ResourceSkillExist(Type, SourceNo, SkillCode));
+        exit(ResourceSkillHelperCBLC.ResourceSkillExist(Type, SourceNo, SkillCode));
     end;
 
     procedure HasResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20]): Boolean
@@ -344,7 +344,7 @@ codeunit 83982 "Library - Skill LIB"
 
     procedure HasSkillLines(TableId: Integer; SourceSystemId: Guid): Boolean
     var
-        SkillLineTPZS: Record "Skill Line TPZS";
+        SkillLineCBLC: Record "Skill Line CBLC";
         EmptyGuid: Guid;
     begin
         if TableId = 0 then
@@ -353,15 +353,15 @@ codeunit 83982 "Library - Skill LIB"
         if SourceSystemId = EmptyGuid then
             exit;
 
-        SkillLineTPZS.SetRange("Table Id", TableId);
-        SkillLineTPZS.SetRange("Source System Id", SourceSystemId);
-        if not SkillLineTPZS.IsEmpty() then
+        SkillLineCBLC.SetRange("Table Id", TableId);
+        SkillLineCBLC.SetRange("Source System Id", SourceSystemId);
+        if not SkillLineCBLC.IsEmpty() then
             exit(true);
     end;
 
     procedure SkillLineCount(TableId: Integer; SourceSystemId: Guid): Integer
     var
-        SkillLineTPZS: Record "Skill Line TPZS";
+        SkillLineCBLC: Record "Skill Line CBLC";
         EmptyGuid: Guid;
     begin
         if TableId = 0 then
@@ -370,23 +370,23 @@ codeunit 83982 "Library - Skill LIB"
         if SourceSystemId = EmptyGuid then
             exit;
 
-        SkillLineTPZS.SetRange("Table Id", TableId);
-        SkillLineTPZS.SetRange("Source System Id", SourceSystemId);
-        exit(SkillLineTPZS.Count());
+        SkillLineCBLC.SetRange("Table Id", TableId);
+        SkillLineCBLC.SetRange("Source System Id", SourceSystemId);
+        exit(SkillLineCBLC.Count());
     end;
 
     procedure DeleteJobPlanningLineSkills(JobPlanningLine: Record "Job Planning Line")
     var
-        SkillLineTPZS: Record "Skill Line TPZS";
+        SkillLineCBLC: Record "Skill Line CBLC";
         EmptyGuid: Guid;
     begin
 
         if JobPlanningLine.SystemId = EmptyGuid then
             exit;
 
-        SkillLineTPZS.SetRange("Table Id", Database::"Job Planning Line");
-        SkillLineTPZS.SetRange("Source System Id", JobPlanningLine.SystemId);
-        SkillLineTPZS.DeleteAll(true);
+        SkillLineCBLC.SetRange("Table Id", Database::"Job Planning Line");
+        SkillLineCBLC.SetRange("Source System Id", JobPlanningLine.SystemId);
+        SkillLineCBLC.DeleteAll(true);
     end;
 
     procedure DeleteResourceSkills(Resource: Record Resource)
@@ -409,73 +409,73 @@ codeunit 83982 "Library - Skill LIB"
         DeleteResourceSkills(ResourceSkill.Type::Item, Item."No.");
     end;
 
-    procedure GetObjectTemplateSkillItems(var ObjectTemplateTPZS: Record "Object Template TPZS"; var TempSkillItemLineTPZS: Record "Skill Item Line TPZS" temporary)
+    procedure GetObjectTemplateSkillItems(var ObjectTemplateCBLC: Record "Object Template CBLC"; var TempSkillItemLineCBLC: Record "Skill Item Line CBLC" temporary)
     var
-        SkillItemLineTPZS: Record "Skill Item Line TPZS";
+        SkillItemLineCBLC: Record "Skill Item Line CBLC";
     begin
-        SkillItemLineTPZS.GetSkillItems(TempSkillItemLineTPZS, ObjectTemplateTPZS.RecordId().TableNo(), ObjectTemplateTPZS.SystemId, '');
+        SkillItemLineCBLC.GetSkillItems(TempSkillItemLineCBLC, ObjectTemplateCBLC.RecordId().TableNo(), ObjectTemplateCBLC.SystemId, '');
     end;
 
-    procedure GetContractTemplateSkillItems(var ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; var TempSkillItemLineTPZS: Record "Skill Item Line TPZS" temporary)
+    procedure GetContractTemplateSkillItems(var ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; var TempSkillItemLineCBLC: Record "Skill Item Line CBLC" temporary)
     var
-        SkillItemLineTPZS: Record "Skill Item Line TPZS";
+        SkillItemLineCBLC: Record "Skill Item Line CBLC";
     begin
-        SkillItemLineTPZS.GetSkillItems(TempSkillItemLineTPZS, ContrTemplateHeaderTPZS.RecordId().TableNo(), ContrTemplateHeaderTPZS.SystemId, '');
+        SkillItemLineCBLC.GetSkillItems(TempSkillItemLineCBLC, ContrTemplateHeaderCBLC.RecordId().TableNo(), ContrTemplateHeaderCBLC.SystemId, '');
     end;
 
-    procedure DeleteObjectSkills(ObjectTPZS: Record "Object TPZS")
+    procedure DeleteObjectSkills(ObjectCBLC: Record "Object CBLC")
     begin
-        if ObjectTPZS."No." = '' then
+        if ObjectCBLC."No." = '' then
             exit;
 
-        ObjectTPZS.DeleteSkills();
+        ObjectCBLC.DeleteSkills();
     end;
 
-    procedure DeleteObjectTemplateSkillItems(ObjectTemplateTPZS: Record "Object Template TPZS")
+    procedure DeleteObjectTemplateSkillItems(ObjectTemplateCBLC: Record "Object Template CBLC")
     begin
-        if ObjectTemplateTPZS."No." = '' then
+        if ObjectTemplateCBLC."No." = '' then
             exit;
 
-        ObjectTemplateTPZS.DeleteSkills();
+        ObjectTemplateCBLC.DeleteSkills();
     end;
 
-    procedure DeleteContractTemplateSkillItems(ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS")
+    procedure DeleteContractTemplateSkillItems(ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC")
     begin
-        if ContrTemplateHeaderTPZS."No." = '' then
+        if ContrTemplateHeaderCBLC."No." = '' then
             exit;
 
-        ContrTemplateHeaderTPZS.DeleteSkills();
+        ContrTemplateHeaderCBLC.DeleteSkills();
     end;
 
 
     procedure DeleteSalesLineSkills(SalesLine: Record "Sales Line")
     var
-        SkillLineTPZS: Record "Skill Line TPZS";
+        SkillLineCBLC: Record "Skill Line CBLC";
         EmptyGuid: Guid;
     begin
 
         if SalesLine.SystemId = EmptyGuid then
             exit;
 
-        SkillLineTPZS.SetRange("Table Id", Database::"Sales Line");
-        SkillLineTPZS.SetRange("Source System Id", SalesLine.SystemId);
-        SkillLineTPZS.DeleteAll(true);
+        SkillLineCBLC.SetRange("Table Id", Database::"Sales Line");
+        SkillLineCBLC.SetRange("Source System Id", SalesLine.SystemId);
+        SkillLineCBLC.DeleteAll(true);
     end;
 
-    procedure GetSkillsFromSalesLine(var TempSkillLineTPZS: Record "Skill Line TPZS" temporary; SalesLine: Record "Sales Line")
+    procedure GetSkillsFromSalesLine(var TempSkillLineCBLC: Record "Skill Line CBLC" temporary; SalesLine: Record "Sales Line")
     var
-        SkillLineTPZS: Record "Skill Line TPZS";
+        SkillLineCBLC: Record "Skill Line CBLC";
     begin
         SalesLine.TestField(SystemId);
 
-        SkillLineTPZS.SetRange("Table Id", Database::"Sales Line");
-        SkillLineTPZS.SetRange("Source System Id", SalesLine.SystemId);
-        if SkillLineTPZS.FindSet() then
+        SkillLineCBLC.SetRange("Table Id", Database::"Sales Line");
+        SkillLineCBLC.SetRange("Source System Id", SalesLine.SystemId);
+        if SkillLineCBLC.FindSet() then
             repeat
-                TempSkillLineTPZS.Init();
-                TempSkillLineTPZS.Copy(SkillLineTPZS);
-                TempSkillLineTPZS.Insert(false)
-            until SkillLineTPZS.Next() = 0;
+                TempSkillLineCBLC.Init();
+                TempSkillLineCBLC.Copy(SkillLineCBLC);
+                TempSkillLineCBLC.Insert(false)
+            until SkillLineCBLC.Next() = 0;
     end;
 
     procedure ResourceSkillCount(FilterResourceSkillType: Enum "Resource Skill Type"; SourceNo: Code[20]): Integer
@@ -489,7 +489,7 @@ codeunit 83982 "Library - Skill LIB"
 
     procedure DeleteSkillItems(TableId: Integer; SourceSystemId: Guid)
     var
-        SkillItemLineTPZS: Record "Skill Item Line TPZS";
+        SkillItemLineCBLC: Record "Skill Item Line CBLC";
     begin
         if TableId = 0 then
             exit;
@@ -497,14 +497,14 @@ codeunit 83982 "Library - Skill LIB"
         if IsNullGuid(SourceSystemId) then
             exit;
 
-        SkillItemLineTPZS.SetRange("Table Id", TableId);
-        SkillItemLineTPZS.SetRange("Source System Id", SourceSystemId);
-        SkillItemLineTPZS.DeleteAll(false);
+        SkillItemLineCBLC.SetRange("Table Id", TableId);
+        SkillItemLineCBLC.SetRange("Source System Id", SourceSystemId);
+        SkillItemLineCBLC.DeleteAll(false);
     end;
 
     procedure HasSkillItemLines(TableId: Integer; SourceSystemId: Guid): Boolean
     var
-        SkillItemLineTPZS: Record "Skill Item Line TPZS";
+        SkillItemLineCBLC: Record "Skill Item Line CBLC";
     begin
         if TableId = 0 then
             exit;
@@ -512,54 +512,54 @@ codeunit 83982 "Library - Skill LIB"
         if IsNullGuid(SourceSystemId) then
             exit;
 
-        SkillItemLineTPZS.SetRange("Table Id", TableId);
-        SkillItemLineTPZS.SetRange("Source System Id", SourceSystemId);
-        exit(not SkillItemLineTPZS.IsEmpty());
+        SkillItemLineCBLC.SetRange("Table Id", TableId);
+        SkillItemLineCBLC.SetRange("Source System Id", SourceSystemId);
+        exit(not SkillItemLineCBLC.IsEmpty());
     end;
 
-    procedure ContractTemplateSkillCodeExist(var ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; SkillCode: Code[10]): Boolean
+    procedure ContractTemplateSkillCodeExist(var ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; SkillCode: Code[10]): Boolean
     begin
-        exit(ContractTemplateSkillCodeExist(ContrTemplateHeaderTPZS, '', SkillCode));
+        exit(ContractTemplateSkillCodeExist(ContrTemplateHeaderCBLC, '', SkillCode));
     end;
 
-    procedure ContractTemplateSkillCodeExist(var ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
+    procedure ContractTemplateSkillCodeExist(var ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
     begin
-        exit(SkillItemLineExist(ContrTemplateHeaderTPZS.RecordId().TableNo(), ContrTemplateHeaderTPZS.SystemId, ItemNo, SkillCode));
+        exit(SkillItemLineExist(ContrTemplateHeaderCBLC.RecordId().TableNo(), ContrTemplateHeaderCBLC.SystemId, ItemNo, SkillCode));
     end;
 
-    procedure ContractSkillCodeExist(var ContractHeaderTPZS: Record "Contract Header TPZS"; SkillCode: Code[10]): Boolean
+    procedure ContractSkillCodeExist(var ContractHeaderCBLC: Record "Contract Header CBLC"; SkillCode: Code[10]): Boolean
     begin
-        exit(ContractSkillCodeExist(ContractHeaderTPZS, '', SkillCode));
+        exit(ContractSkillCodeExist(ContractHeaderCBLC, '', SkillCode));
     end;
 
-    procedure ContractSkillCodeExist(var ContractHeaderTPZS: Record "Contract Header TPZS"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
+    procedure ContractSkillCodeExist(var ContractHeaderCBLC: Record "Contract Header CBLC"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
     begin
-        exit(SkillItemLineExist(ContractHeaderTPZS.RecordId().TableNo(), ContractHeaderTPZS.SystemId, ItemNo, SkillCode));
+        exit(SkillItemLineExist(ContractHeaderCBLC.RecordId().TableNo(), ContractHeaderCBLC.SystemId, ItemNo, SkillCode));
     end;
 
-    procedure ObjectTemplateSkillCodeExist(var ObjectTemplateTPZS: Record "Object Template TPZS"; SkillCode: Code[10]): Boolean
+    procedure ObjectTemplateSkillCodeExist(var ObjectTemplateCBLC: Record "Object Template CBLC"; SkillCode: Code[10]): Boolean
     begin
-        exit(ObjectTemplateSkillCodeExist(ObjectTemplateTPZS, '', SkillCode));
+        exit(ObjectTemplateSkillCodeExist(ObjectTemplateCBLC, '', SkillCode));
     end;
 
-    procedure ObjectTemplateSkillCodeExist(var ObjectTemplateTPZS: Record "Object Template TPZS"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
+    procedure ObjectTemplateSkillCodeExist(var ObjectTemplateCBLC: Record "Object Template CBLC"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
     begin
-        exit(SkillItemLineExist(ObjectTemplateTPZS.RecordId().TableNo(), ObjectTemplateTPZS.SystemId, ItemNo, SkillCode));
+        exit(SkillItemLineExist(ObjectTemplateCBLC.RecordId().TableNo(), ObjectTemplateCBLC.SystemId, ItemNo, SkillCode));
     end;
 
-    procedure ObjectSkillCodeExist(var ObjectTPZS: Record "Object TPZS"; SkillCode: Code[10]): Boolean
+    procedure ObjectSkillCodeExist(var ObjectCBLC: Record "Object CBLC"; SkillCode: Code[10]): Boolean
     begin
-        exit(ObjectSkillCodeExist(ObjectTPZS, '', SkillCode));
+        exit(ObjectSkillCodeExist(ObjectCBLC, '', SkillCode));
     end;
 
-    procedure ObjectSkillCodeExist(var ObjectTPZS: Record "Object TPZS"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
+    procedure ObjectSkillCodeExist(var ObjectCBLC: Record "Object CBLC"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
     begin
-        exit(SkillItemLineExist(Database::"Object TPZS", ObjectTPZS.SystemId, ItemNo, SkillCode));
+        exit(SkillItemLineExist(Database::"Object CBLC", ObjectCBLC.SystemId, ItemNo, SkillCode));
     end;
 
-    // procedure SkillItemLineSkillCodeExist(SkillItemLineTPZS: Record "Skill Item Line TPZS"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
+    // procedure SkillItemLineSkillCodeExist(SkillItemLineCBLC: Record "Skill Item Line CBLC"; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
     // begin
-    //     exit(SkillItemLineExist(SkillItemLineTPZS."Link-to Table Id", SkillItemLineTPZS."Link-to System Id", ItemNo, SkillCode));
+    //     exit(SkillItemLineExist(SkillItemLineCBLC."Link-to Table Id", SkillItemLineCBLC."Link-to System Id", ItemNo, SkillCode));
     // end;
 
     procedure SkillItemLineExist(TableId: Integer; SourceSystemId: Guid; SkillCode: Code[10]): Boolean
@@ -569,31 +569,31 @@ codeunit 83982 "Library - Skill LIB"
 
     procedure SkillItemLineExist(TableId: Integer; SourceSystemId: Guid; ItemNo: Code[20]; SkillCode: Code[10]): Boolean
     var
-        SkillItemLineHelperTPZS: Codeunit "Skill Item Line Helper TPZS";
+        SkillItemLineHelperCBLC: Codeunit "Skill Item Line Helper CBLC";
     begin
         if TableId in [Database::Object] then
             Assert.Fail('You used the wrong table.');
 
-        exit(SkillItemLineHelperTPZS.SkillItemLineExist(TableId, SourceSystemId, ItemNo, SkillCode));
+        exit(SkillItemLineHelperCBLC.SkillItemLineExist(TableId, SourceSystemId, ItemNo, SkillCode));
     end;
 
-    procedure AlreadyHasSkillType(ObjectTemplateTPZS: Record "Object Template TPZS"; SkillTypeTPZS: Enum "Skill Type TPZS"): Boolean
+    procedure AlreadyHasSkillType(ObjectTemplateCBLC: Record "Object Template CBLC"; SkillTypeCBLC: Enum "Skill Type CBLC"): Boolean
     var
         EmptyGuid: Guid;
     begin
-        exit(AlreadyHasSkillType(Database::"Object Template TPZS", ObjectTemplateTPZS.SystemId, SkillTypeTPZS, false, EmptyGuid));
+        exit(AlreadyHasSkillType(Database::"Object Template CBLC", ObjectTemplateCBLC.SystemId, SkillTypeCBLC, false, EmptyGuid));
     end;
 
-    procedure AlreadyHasSkillType(ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; SkillTypeTPZS: Enum "Skill Type TPZS"): Boolean
+    procedure AlreadyHasSkillType(ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; SkillTypeCBLC: Enum "Skill Type CBLC"): Boolean
     var
         EmptyGuid: Guid;
     begin
-        exit(AlreadyHasSkillType(Database::"Contr. Template Header TPZS", ContrTemplateHeaderTPZS.SystemId, SkillTypeTPZS, false, EmptyGuid));
+        exit(AlreadyHasSkillType(Database::"Contr. Template Header CBLC", ContrTemplateHeaderCBLC.SystemId, SkillTypeCBLC, false, EmptyGuid));
     end;
 
-    local procedure AlreadyHasSkillType(TableId: Integer; SourceSystemId: Guid; SkillType: Enum "Skill Type TPZS"; ShowError: Boolean; CurrentSystemId: Guid) SkillExist: Boolean
+    local procedure AlreadyHasSkillType(TableId: Integer; SourceSystemId: Guid; SkillType: Enum "Skill Type CBLC"; ShowError: Boolean; CurrentSystemId: Guid) SkillExist: Boolean
     var
-        SkillItemLineTPZS: Record "Skill Item Line TPZS";
+        SkillItemLineCBLC: Record "Skill Item Line CBLC";
         SkillTypeAlreadyExistErr: Label 'A skill type of type %1 ''%2'' is already selected. Only one skill of the type %1 is allowed.', Comment = '%1=Skill Type, %2=Skill Code';
     begin
         if SkillType = SkillType::" " then
@@ -602,33 +602,33 @@ codeunit 83982 "Library - Skill LIB"
         if TableId = 0 then
             exit;
 
-        SkillItemLineTPZS.SetFilter(SystemId, '<>%1', CurrentSystemId);
-        SkillItemLineTPZS.SetRange("Table Id", TableId);
-        SkillItemLineTPZS.SetRange("Source System Id", SourceSystemId);
-        SkillItemLineTPZS.SetRange("Skill Type", SkillType);
-        if SkillItemLineTPZS.FindFirst() then begin
+        SkillItemLineCBLC.SetFilter(SystemId, '<>%1', CurrentSystemId);
+        SkillItemLineCBLC.SetRange("Table Id", TableId);
+        SkillItemLineCBLC.SetRange("Source System Id", SourceSystemId);
+        SkillItemLineCBLC.SetRange("Skill Type", SkillType);
+        if SkillItemLineCBLC.FindFirst() then begin
             SkillExist := true;
             if ShowError then
-                Error(SkillTypeAlreadyExistErr, Format(SkillType), SkillItemLineTPZS."Skill Code");
+                Error(SkillTypeAlreadyExistErr, Format(SkillType), SkillItemLineCBLC."Skill Code");
         end;
     end;
 
     procedure SkillItemLineCount(TableId: Integer; SourceSystemId: Guid): Integer
     var
-        SkillItemLineTPZS: Record "Skill Item Line TPZS";
+        SkillItemLineCBLC: Record "Skill Item Line CBLC";
     begin
         if TableId in [0, Database::Object] then
             Assert.Fail('You used the wrong table.');
 
-        SkillItemLineTPZS.SetRange("Table Id", TableId);
-        SkillItemLineTPZS.SetRange("Source System Id", SourceSystemId);
-        exit(SkillItemLineTPZS.Count());
+        SkillItemLineCBLC.SetRange("Table Id", TableId);
+        SkillItemLineCBLC.SetRange("Source System Id", SourceSystemId);
+        exit(SkillItemLineCBLC.Count());
     end;
 
-    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillTypeTPZS: Enum "Skill Type TPZS"; DoNotUpdateSource: Boolean)
+    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillTypeCBLC: Enum "Skill Type CBLC"; DoNotUpdateSource: Boolean)
     var
-        ResourceSkillHelperTPZS: Codeunit "Resource Skill Helper TPZS";
+        ResourceSkillHelperCBLC: Codeunit "Resource Skill Helper CBLC";
     begin
-        ResourceSkillHelperTPZS.DeleteResourceSkills(Type, SourceNo, SkillTypeTPZS, DoNotUpdateSource);
+        ResourceSkillHelperCBLC.DeleteResourceSkills(Type, SourceNo, SkillTypeCBLC, DoNotUpdateSource);
     end;
 }

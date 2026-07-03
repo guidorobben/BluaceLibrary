@@ -4,7 +4,7 @@ codeunit 83952 "Init. Skills LIB"
 
     var
         LibrarySkill: Codeunit "Library - Skill LIB";
-        SkillType: Enum "Skill Type TPZS";
+        SkillType: Enum "Skill Type CBLC";
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Init. All LIB", OnInitialize, '', false, false)]
     local procedure OnInitialize()
@@ -84,14 +84,14 @@ codeunit 83952 "Init. Skills LIB"
     end;
     // procedure AddAllGeographicSkills()
     // var
-    // // GeoSkillCodeNBLC: Record "Geo. Skill Code NBLC";
+    // // GeoSkillCodeYBLC: Record "Geo. Skill Code YBLC";
     // begin
-    //     // GeoSkillCodeNBLC.AddAllGeographicSkills();
+    //     // GeoSkillCodeYBLC.AddAllGeographicSkills();
     // end;
 
     // procedure DeleteSkillPostCodes()
     // var
-    // // GeoSkillPostCode: Record "Geo. Skill Post Code NBLC";
+    // // GeoSkillPostCode: Record "Geo. Skill Post Code YBLC";
     // begin
     //     // GeoSkillPostCode.DeleteAll(false);
     // end;

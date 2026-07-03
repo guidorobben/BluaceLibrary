@@ -9,7 +9,7 @@ codeunit 83955 "Init. Resoure LIB"
         tabledata Resource = RM,
         tabledata "Resources Setup" = RIM,
         tabledata "Resource Unit of Measure" = RI,
-        tabledata "Work Time Work Type TPZS" = R;
+        tabledata "Work Time Work Type CBLC" = R;
 
     var
         LibraryResource: Codeunit "Library - Resource LIB";
@@ -55,12 +55,12 @@ codeunit 83955 "Init. Resoure LIB"
             ResourcesSetup.Modify(false);
         end;
 
-        ResourcesSetup.Validate("Work Type Work TPZS", 'WERK');
-        ResourcesSetup.Validate("Work Type Travel TPZS", 'REIS');
-        ResourcesSetup.Validate("Work Type Travel (km) TPZS", 'KM');
+        ResourcesSetup.Validate("Work Type Work CBLC", 'WERK');
+        ResourcesSetup.Validate("Work Type Travel CBLC", 'REIS');
+        ResourcesSetup.Validate("Work Type Travel (km) CBLC", 'KM');
 
-        ResourcesSetup.Validate("Realization Time Descr. TPZS", '%5 %6 %7 %8 %9');
-        ResourcesSetup.Validate("Realization Dist. Descr. TPZS", '%2: %4 (%11 km)');
+        ResourcesSetup.Validate("Realization Time Descr. CBLC", '%5 %6 %7 %8 %9');
+        ResourcesSetup.Validate("Realization Dist. Descr. CBLC", '%2: %4 (%11 km)');
         ResourcesSetup.Modify(false);
     end;
 
@@ -83,13 +83,13 @@ codeunit 83955 "Init. Resoure LIB"
 
     procedure InitializeWorkTimeWorkTypes()
     var
-        WorkTimeWorkTypeTPZS: Record "Work Time Work Type TPZS";
-        // WorkTimeWorkTypeDaysTPZS: Enum "Work Time Work Type Days TPZS";
+        WorkTimeWorkTypeCBLC: Record "Work Time Work Type CBLC";
+        // WorkTimeWorkTypeDaysCBLC: Enum "Work Time Work Type Days CBLC";
         WorkTypeCode: Code[10];
-        Day: Enum "Work Time Work Type Days TPZS";
+        Day: Enum "Work Time Work Type Days CBLC";
     begin
 
-        if not WorkTimeWorkTypeTPZS.IsEmpty() then
+        if not WorkTimeWorkTypeCBLC.IsEmpty() then
             exit;
 
         //Specific Date
@@ -147,7 +147,7 @@ codeunit 83955 "Init. Resoure LIB"
             Location.Reset();
             Location.SetRange("Use As In-Transit", false);
             SourceRecordRef.GetTable(Location);
-            Resource.Validate("Location Code TPZS", LibraryRandom.GetRandomValueByRecordRefCode10(SourceRecordRef, 1));
+            //UITGEZET Resource.Validate("Location Code CBLC", LibraryRandom.GetRandomValueByRecordRefCode10(SourceRecordRef, 1));
             Resource.Modify(true);
 
             LibraryResource.CreateResourceUnitOfMeasureTravelKm(Resource);
@@ -203,6 +203,7 @@ codeunit 83955 "Init. Resoure LIB"
         UoMCode: Code[10];
     begin
         UoMCode := 'KM';
+        Resource.SetLoadFields("No.");
         if Resource.FindSet() then
             repeat
                 if not ResourceUnitofMeasure.Get(Resource."No.", UoMCode) then begin

@@ -2,13 +2,13 @@ codeunit 83960 "Library - Job LIB"
 {
     Permissions =
         tabledata Job = RM,
-        tabledata "Job Plan. Line TPZS" = R,
+        tabledata "Job Plan. Line CBLC" = R,
         tabledata "Job Planning Line" = RM,
-        tabledata "Job Realization TPZS" = RIM,
-        tabledata "Job Resource PZS" = RI,
-        tabledata "Job Rlz. Work Time TPZS" = R,
+        tabledata "Job Realization CBLC" = RIM,
+        // tabledata "Job Resource PZS" = RI,
+        tabledata "Job Rlz. Work Time CBLC" = R,
         tabledata "Job Task" = RIM,
-        tabledata "Job Type RBLC" = RI,
+        tabledata "Job Type BBLC" = RI,
         tabledata Resource = R,
         tabledata "Resource Group" = R;
 
@@ -87,15 +87,15 @@ codeunit 83960 "Library - Job LIB"
         // Commit();
     end;
 
-    procedure CreateJobResource(ResouceNo: Code[20]; JobNo: Code[20])
-    var
-        JobResourcePZS: Record "Job Resource PZS";
-    begin
-        JobResourcePZS.Init();
-        JobResourcePZS.Validate("Resource No.", ResouceNo);
-        JobResourcePZS.Validate("Job No.", JobNo);
-        JobResourcePZS.Insert(true);
-    end;
+    // procedure CreateJobResource(ResouceNo: Code[20]; JobNo: Code[20])
+    // var
+    // // JobResourcePZS: Record "Job Resource PZS";
+    // begin
+    //     // JobResourcePZS.Init();
+    //     // JobResourcePZS.Validate("Resource No.", ResouceNo);
+    //     // JobResourcePZS.Validate("Job No.", JobNo);
+    //     // JobResourcePZS.Insert(true);
+    // end;
 
     procedure CreateResourceAsJobResource(JobNo: Code[20])
     var
@@ -105,108 +105,109 @@ codeunit 83960 "Library - Job LIB"
     end;
 
     procedure CreateResourceAsJobResource(var Resource: Record Resource; JobNo: Code[20])
+    var
     begin
         LibraryResourceLIB.CreateResource(Resource, '', LibraryRandomLIB.FindCompleteNameRandom());
-        CreateJobResource(Resource."No.", JobNo);
+        // LibExtTimeSheet.CreateJobResource(Resource."No.", JobNo);
     end;
 
     procedure LinkJobPlanningLines(var JobPlanningLine: Record "Job Planning Line"; PlanJobPlanningLineNo: Integer)
     var
-        AsgJobPlLinkHelperTPZS: Codeunit "Asg. Job Pl. Link Helper TPZS";
+        AsgJobPlLinkHelperCBLC: Codeunit "Asg. Job Pl. Link Helper CBLC";
     begin
-        AsgJobPlLinkHelperTPZS.ValidatePlanJobPlanningLineNo(JobPlanningLine, PlanJobPlanningLineNo);
-        AsgJobPlLinkHelperTPZS.UpdatePlanJobPlanningLine(JobPlanningLine, PlanJobPlanningLineNo);
+        AsgJobPlLinkHelperCBLC.ValidatePlanJobPlanningLineNo(JobPlanningLine, PlanJobPlanningLineNo);
+        AsgJobPlLinkHelperCBLC.UpdatePlanJobPlanningLine(JobPlanningLine, PlanJobPlanningLineNo);
     end;
 
-    procedure GetJobPlanLine(var JobPlanLineTPZS: Record "Job Plan. Line TPZS"; JobPlanningLine: Record "Job Planning Line"): Boolean
+    procedure GetJobPlanLine(var JobPlanLineCBLC: Record "Job Plan. Line CBLC"; JobPlanningLine: Record "Job Planning Line"): Boolean
     begin
-        JobPlanLineTPZS.SetRange("Job No.", JobPlanningLine."Job No.");
-        JobPlanLineTPZS.SetRange("Job Task No.", JobPlanningLine."Job Task No.");
-        JobPlanLineTPZS.SetRange("Job Planning Line No.", JobPlanningLine."Line No.");
-        if JobPlanLineTPZS.FindFirst() then
+        JobPlanLineCBLC.SetRange("Job No.", JobPlanningLine."Job No.");
+        JobPlanLineCBLC.SetRange("Job Task No.", JobPlanningLine."Job Task No.");
+        JobPlanLineCBLC.SetRange("Job Planning Line No.", JobPlanningLine."Line No.");
+        if JobPlanLineCBLC.FindFirst() then
             exit(true);
     end;
 
-    procedure ReleaseJobForTimeSheets(var Job: Record Job)
+    // procedure ReleaseJobForTimeSheets(var Job: Record Job)
+    // var
+    // // RelJobforTimeSheetsPZS: Codeunit "Rel. Job for Time Sheets PZS";
+    // begin
+    //     // RelJobforTimeSheetsPZS.ReleaseJobForTimeSheets(Job);        
+    // end;
+
+    // procedure SetTimeSheetApproverToUser(var Job: Record Job; UserName: Code[50])
+    // begin
+    //     // Job.Validate("Time Sheet Appr. User ID PZS", UserName);
+    //     // Job.Modify(true);
+    // end;
+
+    procedure InitJobRealization(JobPlanningLine: Record "Job Planning Line"; var JobRealizationCBLC: Record "Job Realization CBLC"; ResourceGroup: Record "Resource Group")
+    begin
+        JobRealizationCBLC.Init();
+        JobRealizationCBLC.Validate("Job No.", JobPlanningLine."Job No.");
+        JobRealizationCBLC.Validate("Job Task No.", JobPlanningLine."Job Task No.");
+        JobRealizationCBLC.Validate("Job Planning Line No.", JobPlanningLine."Line No.");
+        JobRealizationCBLC.Validate("Resource Group No.", ResourceGroup."No.");
+    end;
+
+    procedure CreateJobRealization(var JobRealizationCBLC: Record "Job Realization CBLC"; JobPlanningLine: Record "Job Planning Line"; WorkStartingDateTime: DateTime; WorkEndingDateTime: DateTime; TravelStartingDateTime: DateTime; TravelEndingDateTime: DateTime; TravelDistance: Decimal)
     var
-    // RelJobforTimeSheetsPZS: Codeunit "Rel. Job for Time Sheets PZS";
-    begin
-        // RelJobforTimeSheetsPZS.ReleaseJobForTimeSheets(Job);        
-    end;
-
-    procedure SetTimeSheetApproverToUser(var Job: Record Job; UserName: Code[50])
-    begin
-        Job.Validate("Time Sheet Appr. User ID PZS", UserName);
-        Job.Modify(true);
-    end;
-
-    procedure InitJobRealization(JobPlanningLine: Record "Job Planning Line"; var JobRealizationTPZS: Record "Job Realization TPZS"; ResourceGroup: Record "Resource Group")
-    begin
-        JobRealizationTPZS.Init();
-        JobRealizationTPZS.Validate("Job No.", JobPlanningLine."Job No.");
-        JobRealizationTPZS.Validate("Job Task No.", JobPlanningLine."Job Task No.");
-        JobRealizationTPZS.Validate("Job Planning Line No.", JobPlanningLine."Line No.");
-        JobRealizationTPZS.Validate("Resource Group No.", ResourceGroup."No.");
-    end;
-
-    procedure CreateJobRealization(var JobRealizationTPZS: Record "Job Realization TPZS"; JobPlanningLine: Record "Job Planning Line"; WorkStartingDateTime: DateTime; WorkEndingDateTime: DateTime; TravelStartingDateTime: DateTime; TravelEndingDateTime: DateTime; TravelDistance: Decimal)
-    var
-        JobPlanLineTPZS: Record "Job Plan. Line TPZS";
+        JobPlanLineCBLC: Record "Job Plan. Line CBLC";
         ResourceGroup: Record "Resource Group";
         LibraryRandom: Codeunit "Library - Random";
         ResourceGroupNo: Code[20];
     begin
-        GetJobPlanLine(JobPlanLineTPZS, JobPlanningLine);
-        ResourceGroupNo := JobPlanLineTPZS."Resource Group No.";
+        GetJobPlanLine(JobPlanLineCBLC, JobPlanningLine);
+        ResourceGroupNo := JobPlanLineCBLC."Resource Group No.";
         ResourceGroup.Get(ResourceGroupNo);
 
-        InitJobRealization(JobPlanningLine, JobRealizationTPZS, ResourceGroup);
-        JobRealizationTPZS.Insert(true);
+        InitJobRealization(JobPlanningLine, JobRealizationCBLC, ResourceGroup);
+        JobRealizationCBLC.Insert(true);
 
         // Work
-        JobRealizationTPZS.Validate("Work Starting Date Time", WorkStartingDateTime);
-        JobRealizationTPZS.Validate("Work Ending Date Time", WorkEndingDateTime);
+        JobRealizationCBLC.Validate("Work Starting Date Time", WorkStartingDateTime);
+        JobRealizationCBLC.Validate("Work Ending Date Time", WorkEndingDateTime);
 
         // Travel
-        JobRealizationTPZS.Validate("Travel Starting Date Time", TravelStartingDateTime);
-        JobRealizationTPZS.Validate("Travel Ending Date Time", TravelEndingDateTime);
+        JobRealizationCBLC.Validate("Travel Starting Date Time", TravelStartingDateTime);
+        JobRealizationCBLC.Validate("Travel Ending Date Time", TravelEndingDateTime);
 
         // Distance
         if TravelDistance = -1 then
-            JobRealizationTPZS.Validate("Travel Distance (km)", LibraryRandom.RandDecInDecimalRange(5, 30, 0))
+            JobRealizationCBLC.Validate("Travel Distance (km)", LibraryRandom.RandDecInDecimalRange(5, 30, 0))
         else
-            JobRealizationTPZS.Validate("Travel Distance (km)", TravelDistance);
+            JobRealizationCBLC.Validate("Travel Distance (km)", TravelDistance);
 
-        JobRealizationTPZS.Modify(true);
+        JobRealizationCBLC.Modify(true);
     end;
 
-    procedure GetJobRlzWorkTime(JobRealizationTPZS: Record "Job Realization TPZS"; var JobRlzWorkTimeTPZS: Record "Job Rlz. Work Time TPZS"): Boolean
+    procedure GetJobRlzWorkTime(JobRealizationCBLC: Record "Job Realization CBLC"; var JobRlzWorkTimeCBLC: Record "Job Rlz. Work Time CBLC"): Boolean
     begin
-        JobRlzWorkTimeTPZS.Reset();
-        JobRlzWorkTimeTPZS.SetRange("Job No.", JobRealizationTPZS."Job No.");
-        JobRlzWorkTimeTPZS.SetRange("Job Task No.", JobRealizationTPZS."Job Task No.");
-        JobRlzWorkTimeTPZS.SetRange("Job Planning Line No.", JobRealizationTPZS."Job Planning Line No.");
-        JobRlzWorkTimeTPZS.SetRange("Resource Group No.", JobRealizationTPZS."Resource Group No.");
-        if JobRlzWorkTimeTPZS.FindFirst() then
+        JobRlzWorkTimeCBLC.Reset();
+        JobRlzWorkTimeCBLC.SetRange("Job No.", JobRealizationCBLC."Job No.");
+        JobRlzWorkTimeCBLC.SetRange("Job Task No.", JobRealizationCBLC."Job Task No.");
+        JobRlzWorkTimeCBLC.SetRange("Job Planning Line No.", JobRealizationCBLC."Job Planning Line No.");
+        JobRlzWorkTimeCBLC.SetRange("Resource Group No.", JobRealizationCBLC."Resource Group No.");
+        if JobRlzWorkTimeCBLC.FindFirst() then
             exit(true);
     end;
 
-    procedure GetJobPlanLine(JobRealizationTPZS: Record "Job Realization TPZS"; var JobPlanLineTPZS: Record "Job Plan. Line TPZS"): Boolean
+    procedure GetJobPlanLine(JobRealizationCBLC: Record "Job Realization CBLC"; var JobPlanLineCBLC: Record "Job Plan. Line CBLC"): Boolean
     begin
-        if JobPlanLineTPZS.Get(JobRealizationTPZS."Job No.", JobRealizationTPZS."Job Task No.", JobRealizationTPZS."Job Planning Line No.", JobRealizationTPZS."Resource Group No.") then
+        if JobPlanLineCBLC.Get(JobRealizationCBLC."Job No.", JobRealizationCBLC."Job Task No.", JobRealizationCBLC."Job Planning Line No.", JobRealizationCBLC."Resource Group No.") then
             exit(true);
     end;
 
     procedure CreateJobType(NewCode: Code[20]; Description: Text[100])
     var
-        JobTypeRBLC: Record "Job Type RBLC";
+        JobTypeBBLC: Record "Job Type BBLC";
     begin
-        if JobTypeRBLC.Get(NewCode) then
+        if JobTypeBBLC.Get(NewCode) then
             exit;
 
-        JobTypeRBLC.Init();
-        JobTypeRBLC.Validate(Code, NewCode);
-        JobTypeRBLC.Validate(Description, Description);
-        JobTypeRBLC.Insert(true);
+        JobTypeBBLC.Init();
+        JobTypeBBLC.Validate(Code, NewCode);
+        JobTypeBBLC.Validate(Description, Description);
+        JobTypeBBLC.Insert(true);
     end;
 }

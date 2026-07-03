@@ -2,10 +2,10 @@ codeunit 83972 "Library - Matching LIB"
 {
     procedure CalculateMatchingScore(SearchValue: Text; FieldValue: Text; qGram: Integer) MatchScore: Decimal
     var
-        MatchingMethTPZS: Codeunit "Matching Meth. TPZS";
+        MatchingMethCBLC: Codeunit "Matching Meth. CBLC";
         Similarity: Decimal;
     begin
-        MatchingMethTPZS.GetSimilarity(SearchValue, FieldValue, qGram, Similarity);
+        MatchingMethCBLC.GetSimilarity(SearchValue, FieldValue, qGram, Similarity);
         MatchScore := Round(Similarity * 100);
     end;
 }

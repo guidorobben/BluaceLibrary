@@ -1,8 +1,8 @@
 codeunit 83961 "Init Object TM-NL LIB"
 {
     Permissions =
-        tabledata "Object Setup TPZS" = RM,
-        tabledata "Post Code Serv. Setup NBLC" = RM;
+        tabledata "Object Setup CBLC" = RM,
+        tabledata "Post Code Serv. Setup YBLC" = RIM;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Init. Object LIB", OnInitialize, '', false, false)]
     local procedure OnInitialize()
@@ -18,43 +18,54 @@ codeunit 83961 "Init Object TM-NL LIB"
 
     procedure InitializeObjectSetupTMNL()
     var
-        ObjectSetupTPZS: Record "Object Setup TPZS";
+        ObjectSetupCBLC: Record "Object Setup CBLC";
     begin
-        ObjectSetupTPZS.Get();
-        if ObjectSetupTPZS."Country Code NL NBLC" = '' then
-            ObjectSetupTPZS.Validate("Country Code NL NBLC", 'NL');
-        ObjectSetupTPZS.Modify(true);
+        ObjectSetupCBLC.Get();
+        if ObjectSetupCBLC."Country Code NL YBLC" = '' then
+            ObjectSetupCBLC.Validate("Country Code NL YBLC", 'NL');
+        ObjectSetupCBLC.Modify(true);
     end;
 
     procedure InitPostCodeServSetupTMNL()
     var
-        PostCodeServSetupNBLC: Record "Post Code Serv. Setup NBLC";
+        PostCodeServSetupYBLC: Record "Post Code Serv. Setup YBLC";
     begin
-        if not PostCodeServSetupNBLC.Get() then
-            PostCodeServSetupNBLC.InsertIfNotExists();
+        if not PostCodeServSetupYBLC.Get() then
+            InsertIfNotExists();
 
-        PostCodeServSetupBluace();
+        // PostCodeServSetupBluace();
     end;
 
-    procedure PostCodeServSetupBluace()
-    var
-        PostCodeServSetupNBLC: Record "Post Code Serv. Setup NBLC";
-    begin
-        PostCodeServSetupNBLC.Get();
-        PostCodeServSetupNBLC.Validate(Type, PostCodeServSetupNBLC.Type::Bluace);
-        PostCodeServSetupNBLC.Validate("API Key", 'M4%f8-oZcoO9/|/i^[NN0XDwRlvLP=');
-        PostCodeServSetupNBLC.Validate(Endpoint, 'https://bluace-addresscheck-dev.azurewebsites.net/AddressCheck');
-        PostCodeServSetupNBLC.Modify(true);
-    end;
+    // procedure PostCodeServSetupBluace()
+    // var
+    //     PostCodeServSetupYBLC: Record "Post Code Serv. Setup YBLC";
+    // begin
+    //     PostCodeServSetupYBLC.Get();
+    //     PostCodeServSetupYBLC.Validate(Type, PostCodeServSetupYBLC.Type::Bluace);
+    //     PostCodeServSetupYBLC.Validate("API Key", 'M4%f8-oZcoO9/|/i^[NN0XDwRlvLP=');
+    //     PostCodeServSetupYBLC.Validate(Endpoint, 'https://bluace-addresscheck-dev.azurewebsites.net/AddressCheck');
+    //     PostCodeServSetupYBLC.Modify(true);
+    // end;
 
     procedure PostCodeServSetupPostNL()
     var
-        PostCodeServSetupNBLC: Record "Post Code Serv. Setup NBLC";
+        PostCodeServSetupYBLC: Record "Post Code Serv. Setup YBLC";
     begin
-        PostCodeServSetupNBLC.Get();
-        PostCodeServSetupNBLC.Validate(Type, PostCodeServSetupNBLC.Type::PostNL);
-        PostCodeServSetupNBLC.Validate("API Key", 'D1JIlqt0fim4oDPoiFYvAs7SrAaVogv7');
-        PostCodeServSetupNBLC.Validate(Endpoint, 'https://api.postnl.nl/v4/address/netherlands');
-        PostCodeServSetupNBLC.Modify(true);
+        PostCodeServSetupYBLC.Get();
+        // PostCodeServSetupYBLC.Validate(Type, PostCodeServSetupYBLC.Type::PostNL);
+        PostCodeServSetupYBLC.Validate("API Key", 'D1JIlqt0fim4oDPoiFYvAs7SrAaVogv7');
+        PostCodeServSetupYBLC.Validate(Endpoint, 'https://api.postnl.nl/v4/address/netherlands');
+        PostCodeServSetupYBLC.Modify(true);
+    end;
+
+    local procedure InsertIfNotExists()
+    var
+        PostCodeServSetupYBLC: Record "Post Code Serv. Setup YBLC";
+    begin
+        PostCodeServSetupYBLC.Reset();
+        if not PostCodeServSetupYBLC.Get() then begin
+            PostCodeServSetupYBLC.Init();
+            PostCodeServSetupYBLC.Insert(true);
+        end;
     end;
 }

@@ -2,23 +2,23 @@ codeunit 83983 "Library - Object LIB"
 {
     Permissions =
         tabledata Contact = R,
-        tabledata "Contr. Template Header TPZS" = R,
-        tabledata "Contract Header TPZS" = R,
-        tabledata "Contract Line TPZS" = R,
-        tabledata "Contract Setup TPZS" = R,
+        tabledata "Contr. Template Header CBLC" = R,
+        tabledata "Contract Header CBLC" = R,
+        tabledata "Contract Line CBLC" = R,
+        tabledata "Contract Setup CBLC" = R,
         tabledata Customer = RM,
-        tabledata "Item Planning Norm TPZS" = RI,
-        tabledata "Item Usage Norm TPZS" = RI,
+        tabledata "Item Planning Norm CBLC" = RI,
+        tabledata "Item Usage Norm CBLC" = RI,
         tabledata "Job Planning Line" = R,
-        tabledata "Job Task Object TPZS" = RI,
-        tabledata "Object BOM TPZS" = RIM,
-        tabledata "Object Contact TPZS" = RI,
-        tabledata "Object Norm TPZS" = RID,
-        tabledata "Object Status TPZS" = RI,
-        tabledata "Object Template TPZS" = RIM,
-        tabledata "Object TPZS" = RIM,
-        tabledata "Property Line RBLC" = RI,
-        tabledata "Role TPZS" = RI;
+        tabledata "Job Task Object CBLC" = RI,
+        tabledata "Object BOM CBLC" = RIM,
+        tabledata "Object Contact CBLC" = RI,
+        tabledata "Object Norm CBLC" = RID,
+        tabledata "Object Status CBLC" = RI,
+        tabledata "Object Template CBLC" = RIM,
+        tabledata "Object CBLC" = RIM,
+        tabledata "Property Line BBLC" = RI,
+        tabledata "Role CBLC" = RI;
 
     var
         LibraryContractLIB: Codeunit "Library - Contract LIB";
@@ -31,156 +31,156 @@ codeunit 83983 "Library - Object LIB"
 
     procedure CreateObjectStatus(StatusCode: Code[20]; Description: Text[100]; IsDefault: Boolean; IsBlocked: Boolean; IsEnd: Boolean)
     var
-        ObjectStatusTPZS: Record "Object Status TPZS";
+        ObjectStatusCBLC: Record "Object Status CBLC";
     begin
         if StatusCode = '' then
             exit;
 
-        ObjectStatusTPZS.Init();
-        ObjectStatusTPZS.Validate(Code, StatusCode);
-        ObjectStatusTPZS.Validate(Description, Description);
+        ObjectStatusCBLC.Init();
+        ObjectStatusCBLC.Validate(Code, StatusCode);
+        ObjectStatusCBLC.Validate(Description, Description);
         if IsDefault then
-            ObjectStatusTPZS.Validate(Default, true);
+            ObjectStatusCBLC.Validate(Default, true);
 
         if IsBlocked then
-            ObjectStatusTPZS.Validate(Blocked, true);
+            ObjectStatusCBLC.Validate(Blocked, true);
 
         if IsEnd then
-            ObjectStatusTPZS.Validate("End Object Contact/Contract", true);
+            ObjectStatusCBLC.Validate("End Object Contact/Contract", true);
 
-        if ObjectStatusTPZS.Insert(true) then; //Easy
+        if ObjectStatusCBLC.Insert(true) then; //Easy
     end;
 
-    procedure CreateObject(var ObjectTPZS: Record "Object TPZS")
+    procedure CreateObject(var ObjectCBLC: Record "Object CBLC")
     var
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
     begin
-        if not ContractSetupTPZS.Get() then
-            Clear(ContractSetupTPZS);
+        if not ContractSetupCBLC.Get() then
+            Clear(ContractSetupCBLC);
 
-        ContractSetupTPZS.TestField("Unit of Measure Code Month");
+        ContractSetupCBLC.TestField("Unit of Measure Code Month");
 
-        ObjectTPZS.Init();
-        ObjectTPZS."No." := '';
-        ObjectTPZS.Insert(true);
+        ObjectCBLC.Init();
+        ObjectCBLC."No." := '';
+        ObjectCBLC.Insert(true);
     end;
 
-    procedure CreateObject(var ObjectTPZS: Record "Object TPZS"; CreatePriceItem: Boolean; InstallationDate: Date)
+    procedure CreateObject(var ObjectCBLC: Record "Object CBLC"; CreatePriceItem: Boolean; InstallationDate: Date)
     var
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
         PriceItemNo: Code[20];
     begin
-        ContractSetupTPZS.Get();
-        CreateObject(ObjectTPZS);
+        ContractSetupCBLC.Get();
+        CreateObject(ObjectCBLC);
 
         if CreatePriceItem then begin
-            ContractSetupTPZS.TestField("Unit of Measure Code Month");
-            PriceItemNo := LibraryItemLIB.CreatePriceItemNo(LibraryRandom.RandDecInRange(10, 40, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupTPZS."Unit of Measure Code Month");
-            if ContractSetupTPZS."Unit of Measure Code Quarter" <> '' then
-                LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupTPZS."Unit of Measure Code Quarter", 3);
-            if ContractSetupTPZS."Unit of Measure Code Year" <> '' then
-                LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupTPZS."Unit of Measure Code Year", 12);
-            ObjectTPZS.Validate("Price Item No.", PriceItemNo);
+            ContractSetupCBLC.TestField("Unit of Measure Code Month");
+            PriceItemNo := LibraryItemLIB.CreatePriceItemNo(LibraryRandom.RandDecInRange(10, 40, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupCBLC."Unit of Measure Code Month");
+            if ContractSetupCBLC."Unit of Measure Code Quarter" <> '' then
+                LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupCBLC."Unit of Measure Code Quarter", 3);
+            if ContractSetupCBLC."Unit of Measure Code Year" <> '' then
+                LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupCBLC."Unit of Measure Code Year", 12);
+            ObjectCBLC.Validate("Price Item No.", PriceItemNo);
         end;
 
-        ObjectTPZS.Validate(Description, ObjectTPZS."No.");
-        ObjectTPZS.Validate("Installation Date", InstallationDate);
-        ObjectTPZS.Validate("Location Description", LibraryRandomLIB.FindLocationRandom());
-        ObjectTPZS.Modify(true);
+        ObjectCBLC.Validate(Description, ObjectCBLC."No.");
+        ObjectCBLC.Validate("Installation Date", InstallationDate);
+        ObjectCBLC.Validate("Location Description", LibraryRandomLIB.FindLocationRandom());
+        ObjectCBLC.Modify(true);
     end;
 
     procedure CreatePriceItemNo() PriceItemNo: Code[20]
     var
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
     begin
-        ContractSetupTPZS.Get();
+        ContractSetupCBLC.Get();
 
-        ContractSetupTPZS.TestField("Unit of Measure Code Month");
-        PriceItemNo := LibraryItemLIB.CreatePriceItemNo(LibraryRandom.RandDecInRange(10, 40, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupTPZS."Unit of Measure Code Month");
-        if ContractSetupTPZS."Unit of Measure Code Quarter" <> '' then
-            LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupTPZS."Unit of Measure Code Quarter", 3);
-        if ContractSetupTPZS."Unit of Measure Code Year" <> '' then
-            LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupTPZS."Unit of Measure Code Year", 12);
+        ContractSetupCBLC.TestField("Unit of Measure Code Month");
+        PriceItemNo := LibraryItemLIB.CreatePriceItemNo(LibraryRandom.RandDecInRange(10, 40, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupCBLC."Unit of Measure Code Month");
+        if ContractSetupCBLC."Unit of Measure Code Quarter" <> '' then
+            LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupCBLC."Unit of Measure Code Quarter", 3);
+        if ContractSetupCBLC."Unit of Measure Code Year" <> '' then
+            LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupCBLC."Unit of Measure Code Year", 12);
     end;
 
-    procedure CreateObjectWithRandomTemplate(var ObjectTPZS: Record "Object TPZS")
+    procedure CreateObjectWithRandomTemplate(var ObjectCBLC: Record "Object CBLC")
     var
-        ObjectTemplateTPZS: Record "Object Template TPZS";
+        ObjectTemplateCBLC: Record "Object Template CBLC";
         ObjectTemplateNo: Code[20];
     begin
         //Get Random Template
-        ObjectTemplateNo := LibraryRandomLIB.GetRandomValueByTableCode20(ObjectTemplateTPZS.RecordId().TableNo());
-        ObjectTemplateTPZS.Get(ObjectTemplateNo);
-        ObjectTemplateTPZS.TestField("No.");
+        ObjectTemplateNo := LibraryRandomLIB.GetRandomValueByTableCode20(ObjectTemplateCBLC.RecordId().TableNo());
+        ObjectTemplateCBLC.Get(ObjectTemplateNo);
+        ObjectTemplateCBLC.TestField("No.");
 
-        ObjectTPZS.ApplyObjectTemplate(ObjectTemplateTPZS);
+        ObjectCBLC.ApplyObjectTemplate(ObjectTemplateCBLC);
     end;
 
-    procedure CreateObjectWithTemplate(var ObjectTPZS: Record "Object TPZS"; ObjectTemplateTPZS: Record "Object Template TPZS")
+    procedure CreateObjectWithTemplate(var ObjectCBLC: Record "Object CBLC"; ObjectTemplateCBLC: Record "Object Template CBLC")
     begin
-        // if ObjectTemplateTPZS."No." = '' then
+        // if ObjectTemplateCBLC."No." = '' then
         // exit;
 
-        // ObjectTPZS.ApplyObjectTemplate(ObjectTemplateTPZS);
-        CreateObjectWithTemplate(ObjectTPZS, ObjectTemplateTPZS, true);
+        // ObjectCBLC.ApplyObjectTemplate(ObjectTemplateCBLC);
+        CreateObjectWithTemplate(ObjectCBLC, ObjectTemplateCBLC, true);
     end;
 
-    procedure CreateObjectWithTemplate(var ObjectTPZS: Record "Object TPZS"; ObjectTemplateTPZS: Record "Object Template TPZS"; CreatePriceItem: Boolean)
+    procedure CreateObjectWithTemplate(var ObjectCBLC: Record "Object CBLC"; ObjectTemplateCBLC: Record "Object Template CBLC"; CreatePriceItem: Boolean)
     var
         PriceItemNo: Code[20];
     begin
-        if ObjectTemplateTPZS."No." = '' then
+        if ObjectTemplateCBLC."No." = '' then
             exit;
 
-        ObjectTPZS.ApplyObjectTemplate(ObjectTemplateTPZS);
+        ObjectCBLC.ApplyObjectTemplate(ObjectTemplateCBLC);
 
         if CreatePriceItem then begin
             PriceItemNo := LibraryItemLIB.CreatePriceItemNo(LibraryRandom.RandDecInRange(10, 100, 0), LibraryRandom.RandDecInRange(50, 100, 0), 'MAAND');
-            ObjectTPZS.Validate("Price Item No.", PriceItemNo);
+            ObjectCBLC.Validate("Price Item No.", PriceItemNo);
         end;
     end;
 
-    procedure CreatePriceItemNoForObject(var ObjectTPZS: Record "Object TPZS")
+    procedure CreatePriceItemNoForObject(var ObjectCBLC: Record "Object CBLC")
     var
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
         PriceItemNo: Code[20];
     begin
-        ContractSetupTPZS.Get();
-        ContractSetupTPZS.TestField("Unit of Measure Code Month");
-        PriceItemNo := LibraryItemLIB.CreatePriceItemNo(LibraryRandom.RandDecInRange(10, 50, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupTPZS."Unit of Measure Code Month");
-        if ContractSetupTPZS."Unit of Measure Code Quarter" <> '' then
-            LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupTPZS."Unit of Measure Code Quarter", 3);
-        if ContractSetupTPZS."Unit of Measure Code Year" <> '' then
-            LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupTPZS."Unit of Measure Code Year", 12);
-        ObjectTPZS.Validate("Price Item No.", PriceItemNo);
-        ObjectTPZS.Modify(true);
+        ContractSetupCBLC.Get();
+        ContractSetupCBLC.TestField("Unit of Measure Code Month");
+        PriceItemNo := LibraryItemLIB.CreatePriceItemNo(LibraryRandom.RandDecInRange(10, 50, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupCBLC."Unit of Measure Code Month");
+        if ContractSetupCBLC."Unit of Measure Code Quarter" <> '' then
+            LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupCBLC."Unit of Measure Code Quarter", 3);
+        if ContractSetupCBLC."Unit of Measure Code Year" <> '' then
+            LibraryItemLIB.CreateItemUnitOfMeasure(PriceItemNo, ContractSetupCBLC."Unit of Measure Code Year", 12);
+        ObjectCBLC.Validate("Price Item No.", PriceItemNo);
+        ObjectCBLC.Modify(true);
     end;
 
-    procedure CreateObjectWithContract(var ObjectTPZS: Record "Object TPZS"; var ObjectTemplateTPZS: Record "Object Template TPZS")
+    procedure CreateObjectWithContract(var ObjectCBLC: Record "Object CBLC"; var ObjectTemplateCBLC: Record "Object Template CBLC")
     var
-        ContractHeaderTPZS: Record "Contract Header TPZS";
+        ContractHeaderCBLC: Record "Contract Header CBLC";
     begin
-        CreateObjectWithContract(ObjectTPZS, ObjectTemplateTPZS, ContractHeaderTPZS);
+        CreateObjectWithContract(ObjectCBLC, ObjectTemplateCBLC, ContractHeaderCBLC);
     end;
 
-    procedure CreateObjectWithContract(var ObjectTPZS: Record "Object TPZS"; var ObjectTemplateTPZS: Record "Object Template TPZS"; var ContractHeaderTPZS: Record "Contract Header TPZS")
+    procedure CreateObjectWithContract(var ObjectCBLC: Record "Object CBLC"; var ObjectTemplateCBLC: Record "Object Template CBLC"; var ContractHeaderCBLC: Record "Contract Header CBLC")
     var
         Contact: Record Contact;
-        ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS";
-        ContractLineTPZS: Record "Contract Line TPZS";
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC";
+        ContractLineCBLC: Record "Contract Line CBLC";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
         Customer: Record Customer;
-        CreateContractObjMethTPZS: Codeunit "Create Contract Obj. Meth TPZS";
+        CreateContractObjMethCBLC: Codeunit "Create Contract Obj. Meth CBLC";
     begin
-        ContractSetupTPZS.Get();
-        ContractSetupTPZS.TestField("Item Category Service");
+        ContractSetupCBLC.Get();
+        ContractSetupCBLC.TestField("Item Category Service");
 
-        if ObjectTemplateTPZS."No." <> '' then
-            CreateObjectWithTemplate(ObjectTPZS, ObjectTemplateTPZS)
+        if ObjectTemplateCBLC."No." <> '' then
+            CreateObjectWithTemplate(ObjectCBLC, ObjectTemplateCBLC)
         else
-            CreateObject(ObjectTPZS, true, (Today() + 4));
+            CreateObject(ObjectCBLC, true, (Today() + 4));
 
-        ObjectTPZS.Modify(true);
+        ObjectCBLC.Modify(true);
 
         LibraryMarketing.CreatePersonContact(Contact);
         Contact.CreateCustomerFromTemplate('');
@@ -190,24 +190,24 @@ codeunit 83983 "Library - Object LIB"
         Customer.Validate("Customer Posting Group", 'BINNENLAND');
         Customer.Modify(true);
 
-        CreateObjectContact(ObjectTPZS, 'KLANT', CalcDate('<-CY>', Today()), 0D, Contact."No.");
+        CreateObjectContact(ObjectCBLC, 'KLANT', CalcDate('<-CY>', Today()), 0D, Contact."No.");
 
         //Create Contract
-        ContrTemplateHeaderTPZS.FindFirst();
-        CreateContractObjMethTPZS.CreateContractFromObject(ObjectTPZS, ContrTemplateHeaderTPZS."No.", CalcDate('<-CY>', Today()), true);
+        ContrTemplateHeaderCBLC.FindFirst();
+        CreateContractObjMethCBLC.CreateContractFromObject(ObjectCBLC, ContrTemplateHeaderCBLC."No.", CalcDate('<-CY>', Today()), true);
 
-        ContractLineTPZS.SetRange("Object No.", ObjectTPZS."No.");
-        if ContractLineTPZS.FindFirst() then
-            ContractHeaderTPZS.Get(ContractLineTPZS."Contract No.");
+        ContractLineCBLC.SetRange("Object No.", ObjectCBLC."No.");
+        if ContractLineCBLC.FindFirst() then
+            ContractHeaderCBLC.Get(ContractLineCBLC."Contract No.");
 
-        LibraryContractLIB.AddContractService(ContractHeaderTPZS, ContractSetupTPZS."Item Category Service");
+        LibraryContractLIB.AddContractService(ContractHeaderCBLC, ContractSetupCBLC."Item Category Service");
     end;
 
-    procedure AddObjectCustomerContact(ObjectTPZS: Record "Object TPZS"; StartingDate: Date)
+    procedure AddObjectCustomerContact(ObjectCBLC: Record "Object CBLC"; StartingDate: Date)
     var
         Contact: Record Contact;
         Customer: Record Customer;
-        RoleTPZS: Record "Role TPZS";
+        RoleCBLC: Record "Role CBLC";
         LibraryObject: Codeunit "Library - Object LIB";
         LibrarySales: Codeunit "Library - Sales LIB";
     begin
@@ -219,298 +219,298 @@ codeunit 83983 "Library - Object LIB"
         Customer.Validate("Customer Posting Group", 'BINNENLAND');
         Customer.Modify(true);
 
-        RoleTPZS.SetRange(Customer, true);
-        RoleTPZS.FindFirst();
+        RoleCBLC.SetRange(Customer, true);
+        RoleCBLC.FindFirst();
 
-        LibraryObject.CreateObjectContact(ObjectTPZS, RoleTPZS.Code, StartingDate, 0D, Contact."No.");
+        LibraryObject.CreateObjectContact(ObjectCBLC, RoleCBLC.Code, StartingDate, 0D, Contact."No.");
     end;
 
-    procedure CreateObjectWithContract(var ObjectTPZS: Record "Object TPZS")
+    procedure CreateObjectWithContract(var ObjectCBLC: Record "Object CBLC")
     var
-        ObjectTemplateTPZS: Record "Object Template TPZS";
+        ObjectTemplateCBLC: Record "Object Template CBLC";
     begin
-        CreateObjectWithContract(ObjectTPZS, ObjectTemplateTPZS);
+        CreateObjectWithContract(ObjectCBLC, ObjectTemplateCBLC);
     end;
 
-    procedure CreateObjectTemplate(var ObjectTemplateTPZS: Record "Object Template TPZS")
+    procedure CreateObjectTemplate(var ObjectTemplateCBLC: Record "Object Template CBLC")
     begin
         //TODO Complete
-        ObjectTemplateTPZS.Init();
-        ObjectTemplateTPZS.Insert(true);
+        ObjectTemplateCBLC.Init();
+        ObjectTemplateCBLC.Insert(true);
     end;
 
-    procedure CreateObjectTemplate(var ObjectTemplateTPZS: Record "Object Template TPZS"; Code: Code[20]; Description: Text[100])
+    procedure CreateObjectTemplate(var ObjectTemplateCBLC: Record "Object Template CBLC"; Code: Code[20]; Description: Text[100])
     begin
         //TODO Complete
-        ObjectTemplateTPZS.Init();
-        ObjectTemplateTPZS.Validate("No.", Code);
-        ObjectTemplateTPZS.Insert(true);
+        ObjectTemplateCBLC.Init();
+        ObjectTemplateCBLC.Validate("No.", Code);
+        ObjectTemplateCBLC.Insert(true);
 
-        ObjectTemplateTPZS.Validate(Description, Description);
-        ObjectTemplateTPZS.Modify(true);
+        ObjectTemplateCBLC.Validate(Description, Description);
+        ObjectTemplateCBLC.Modify(true);
     end;
 
-    procedure AddObjectProperty(ObjectTPZS: Record "Object TPZS"; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyValue: Text[2048])
+    procedure AddObjectProperty(ObjectCBLC: Record "Object CBLC"; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyValue: Text[2048])
     var
-        PropertyLineRBLC: Record "Property Line RBLC";
+        PropertyLineBBLC: Record "Property Line BBLC";
     begin
         if PropertyCode = '' then
             exit;
 
-        PropertyLineRBLC.Init();
-        PropertyLineRBLC.Validate("Table ID", ObjectTPZS.RecordId().TableNo());
-        PropertyLineRBLC.Validate("Source System ID", ObjectTPZS.SystemId);
-        PropertyLineRBLC.Validate("Property Code", PropertyCode);
-        PropertyLineRBLC.Validate("Starting Date", PropertyStartingDate);
-        PropertyLineRBLC.ValidatePropertyValue(PropertyValue);
-        PropertyLineRBLC.Insert(true)
+        PropertyLineBBLC.Init();
+        PropertyLineBBLC.Validate("Table ID", ObjectCBLC.RecordId().TableNo());
+        PropertyLineBBLC.Validate("Source System ID", ObjectCBLC.SystemId);
+        PropertyLineBBLC.Validate("Property Code", PropertyCode);
+        PropertyLineBBLC.Validate("Starting Date", PropertyStartingDate);
+        PropertyLineBBLC.ValidatePropertyValue(PropertyValue);
+        PropertyLineBBLC.Insert(true)
     end;
 
-    procedure CreateObjectContact(ObjectTPZS: Record "Object TPZS"; RolCode: Code[10]; StartingDate: Date; EndingDate: Date; ContactNo: Code[20])
+    procedure CreateObjectContact(ObjectCBLC: Record "Object CBLC"; RolCode: Code[10]; StartingDate: Date; EndingDate: Date; ContactNo: Code[20])
     var
-        ObjectContactTPZS: Record "Object Contact TPZS";
+        ObjectContactCBLC: Record "Object Contact CBLC";
     begin
-        ObjectTPZS.TestField("No.");
+        ObjectCBLC.TestField("No.");
 
-        ObjectContactTPZS.Init();
-        ObjectContactTPZS.Validate("Object No.", ObjectTPZS."No.");
-        ObjectContactTPZS.Validate("Role Code", RolCode);
-        ObjectContactTPZS.Validate("Starting Date", StartingDate);
-        ObjectContactTPZS.TestField("Starting Date");
-        ObjectContactTPZS.Validate("Ending Date", EndingDate);
-        ObjectContactTPZS.Validate("Contact No.", ContactNo);
-        ObjectContactTPZS.Insert(true);
+        ObjectContactCBLC.Init();
+        ObjectContactCBLC.Validate("Object No.", ObjectCBLC."No.");
+        ObjectContactCBLC.Validate("Role Code", RolCode);
+        ObjectContactCBLC.Validate("Starting Date", StartingDate);
+        ObjectContactCBLC.TestField("Starting Date");
+        ObjectContactCBLC.Validate("Ending Date", EndingDate);
+        ObjectContactCBLC.Validate("Contact No.", ContactNo);
+        ObjectContactCBLC.Insert(true);
     end;
 
     procedure CreateObjectContactRole(Code: Code[10]; Description: Text[100]; BillToCustomer: Boolean; Communication: Boolean; Customer: Boolean; Location: Boolean; CopyFromMain: Boolean)
     var
-        RoleTPZS: Record "Role TPZS";
+        RoleCBLC: Record "Role CBLC";
     begin
-        if RoleTPZS.Get(Code) then
+        if RoleCBLC.Get(Code) then
             exit;
 
-        RoleTPZS.Reset();
-        RoleTPZS.Init();
-        RoleTPZS.Validate(Code, Code);
-        RoleTPZS.Validate(Description, Description);
-        RoleTPZS.TestField(Code);
+        RoleCBLC.Reset();
+        RoleCBLC.Init();
+        RoleCBLC.Validate(Code, Code);
+        RoleCBLC.Validate(Description, Description);
+        RoleCBLC.TestField(Code);
 
-        RoleTPZS.Validate("Bill-to Customer", BillToCustomer);
-        RoleTPZS.Validate(Communication, Communication);
-        RoleTPZS.Validate(Customer, Customer);
-        RoleTPZS.Validate(Location, Location);
-        RoleTPZS.Validate("Copy From Main Object", CopyFromMain);
-        RoleTPZS.Insert(true);
+        RoleCBLC.Validate("Bill-to Customer", BillToCustomer);
+        RoleCBLC.Validate(Communication, Communication);
+        RoleCBLC.Validate(Customer, Customer);
+        RoleCBLC.Validate(Location, Location);
+        RoleCBLC.Validate("Copy From Main Object", CopyFromMain);
+        RoleCBLC.Insert(true);
     end;
 
-    procedure AddObjectPropertyValue(ObjectTPZS: Record "Object TPZS"; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyEndingDate: Date; PropertyValue: Text[2048])
+    procedure AddObjectPropertyValue(ObjectCBLC: Record "Object CBLC"; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyEndingDate: Date; PropertyValue: Text[2048])
     var
-        // PropertyLineRBLC: Record "Property Line RBLC";
+        // PropertyLineBBLC: Record "Property Line BBLC";
         LibraryProperty: Codeunit "Library - Property LIB";
     begin
         if PropertyCode = '' then
             exit;
 
-        LibraryProperty.AddPropertyValue(ObjectTPZS.SystemId, ObjectTPZS.RecordId().TableNo(), PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
+        LibraryProperty.AddPropertyValue(ObjectCBLC.SystemId, ObjectCBLC.RecordId().TableNo(), PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
     end;
 
-    procedure AddObjectTemplatePropertyValue(ObjectTemplateTPZS: Record "Object Template TPZS"; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyEndingDate: Date; PropertyValue: Text[2048])
+    procedure AddObjectTemplatePropertyValue(ObjectTemplateCBLC: Record "Object Template CBLC"; PropertyCode: Code[20]; PropertyStartingDate: Date; PropertyEndingDate: Date; PropertyValue: Text[2048])
     var
-        // PropertyLineRBLC: Record "Property Line RBLC";
+        // PropertyLineBBLC: Record "Property Line BBLC";
         LibraryProperty: Codeunit "Library - Property LIB";
     begin
         if PropertyCode = '' then
             exit;
 
-        LibraryProperty.AddPropertyValue(ObjectTemplateTPZS.SystemId, ObjectTemplateTPZS.RecordId().TableNo(), PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
+        LibraryProperty.AddPropertyValue(ObjectTemplateCBLC.SystemId, ObjectTemplateCBLC.RecordId().TableNo(), PropertyCode, PropertyStartingDate, PropertyEndingDate, PropertyValue);
     end;
 
-    // procedure CreateObjectMaintSchedule(var MaintScheduleTPZS: Record "Maint. Schedule TPZS"; ObjectTPZS: Record "Object TPZS")
+    // procedure CreateObjectMaintSchedule(var MaintScheduleCBLC: Record "Maint. Schedule CBLC"; ObjectCBLC: Record "Object CBLC")
     // begin
-    //     MaintScheduleTPZS.Init();
-    //     MaintScheduleTPZS.Validate("Object No.", ObjectTPZS."No.");
-    //     MaintScheduleTPZS.Insert(true);
+    //     MaintScheduleCBLC.Init();
+    //     MaintScheduleCBLC.Validate("Object No.", ObjectCBLC."No.");
+    //     MaintScheduleCBLC.Insert(true);
     // end;
 
     //TODO To NEW STYLE
-    // procedure CreateObjectTemplateMaintScheduleTemplateLine(var MaintSchedTemplTPZS: Record "Maint. Sched. Templ. TPZS"; ObjectTemplateTPZS: Record "Object Template TPZS"; LineNo: Integer; ItemNo: Code[20])
+    // procedure CreateObjectTemplateMaintScheduleTemplateLine(var MaintSchedTemplCBLC: Record "Maint. Sched. Templ. CBLC"; ObjectTemplateCBLC: Record "Object Template CBLC"; LineNo: Integer; ItemNo: Code[20])
     // begin
-    //     MaintSchedTemplTPZS.Init();
-    //     MaintSchedTemplTPZS.Validate("Object Template No.", ObjectTemplateTPZS."No.");
-    //     MaintSchedTemplTPZS.Validate("Line No.", LineNo);
-    //     MaintSchedTemplTPZS.Validate("Item No.", ItemNo);
-    //     Evaluate(MaintSchedTemplTPZS.Periodicity, '<+1Y>');
-    //     Evaluate(MaintSchedTemplTPZS."Deviation Min. Date", '<-1M>');
-    //     Evaluate(MaintSchedTemplTPZS."Deviation Max. Date", '<+1M>');
-    //     MaintSchedTemplTPZS.Insert(true);
+    //     MaintSchedTemplCBLC.Init();
+    //     MaintSchedTemplCBLC.Validate("Object Template No.", ObjectTemplateCBLC."No.");
+    //     MaintSchedTemplCBLC.Validate("Line No.", LineNo);
+    //     MaintSchedTemplCBLC.Validate("Item No.", ItemNo);
+    //     Evaluate(MaintSchedTemplCBLC.Periodicity, '<+1Y>');
+    //     Evaluate(MaintSchedTemplCBLC."Deviation Min. Date", '<-1M>');
+    //     Evaluate(MaintSchedTemplCBLC."Deviation Max. Date", '<+1M>');
+    //     MaintSchedTemplCBLC.Insert(true);
     // end;
 
     procedure CreateObjectNormCode(Code: Code[20]; Description: Text[100])
     var
-        ObjectNormTPZS: Record "Object Norm TPZS";
+        ObjectNormCBLC: Record "Object Norm CBLC";
     begin
-        if ObjectNormTPZS.Get(Code) then
+        if ObjectNormCBLC.Get(Code) then
             exit;
 
-        ObjectNormTPZS.Reset();
-        ObjectNormTPZS.Init();
-        ObjectNormTPZS.Validate(Code, Code);
-        ObjectNormTPZS.Validate(Description, Description);
-        ObjectNormTPZS.Insert(true);
+        ObjectNormCBLC.Reset();
+        ObjectNormCBLC.Init();
+        ObjectNormCBLC.Validate(Code, Code);
+        ObjectNormCBLC.Validate(Description, Description);
+        ObjectNormCBLC.Insert(true);
     end;
 
-    procedure CreateItemPlanningNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormCode: Code[20]; ItemNo: Code[20])
+    procedure CreateItemPlanningNorm(ObjectNormTypeCBLC: Enum "Object Norm Type CBLC"; ObjectNormCode: Code[20]; ItemNo: Code[20])
     var
-        ItemPlanningNormTPZS: Record "Item Planning Norm TPZS";
+        ItemPlanningNormCBLC: Record "Item Planning Norm CBLC";
     begin
-        ItemPlanningNormTPZS.Init();
-        ItemPlanningNormTPZS.Validate("Object Norm Type", ObjectNormTypeTPZS);
-        ItemPlanningNormTPZS.Validate("Object Norm No.", ObjectNormCode);
-        ItemPlanningNormTPZS.Validate("Item No.", ItemNo);
-        ItemPlanningNormTPZS.Insert(true);
+        ItemPlanningNormCBLC.Init();
+        ItemPlanningNormCBLC.Validate("Object Norm Type", ObjectNormTypeCBLC);
+        ItemPlanningNormCBLC.Validate("Object Norm No.", ObjectNormCode);
+        ItemPlanningNormCBLC.Validate("Item No.", ItemNo);
+        ItemPlanningNormCBLC.Insert(true);
     end;
 
-    procedure CreateItemUsageNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormCode: Code[20]; ItemNo: Code[20])
+    procedure CreateItemUsageNorm(ObjectNormTypeCBLC: Enum "Object Norm Type CBLC"; ObjectNormCode: Code[20]; ItemNo: Code[20])
     var
-        ItemUsageNormTPZS: Record "Item Usage Norm TPZS";
+        ItemUsageNormCBLC: Record "Item Usage Norm CBLC";
     begin
-        ItemUsageNormTPZS.Init();
-        ItemUsageNormTPZS.Validate("Object Norm Type", ObjectNormTypeTPZS);
-        ItemUsageNormTPZS.Validate("Object Norm No.", ObjectNormCode);
-        ItemUsageNormTPZS.Validate("Item No.", ItemNo);
-        ItemUsageNormTPZS.Insert(true);
+        ItemUsageNormCBLC.Init();
+        ItemUsageNormCBLC.Validate("Object Norm Type", ObjectNormTypeCBLC);
+        ItemUsageNormCBLC.Validate("Object Norm No.", ObjectNormCode);
+        ItemUsageNormCBLC.Validate("Item No.", ItemNo);
+        ItemUsageNormCBLC.Insert(true);
     end;
 
-    procedure AddJobTaskObject(JobPlanningLine: Record "Job Planning Line"; ObjectTPZS: Record "Object TPZS")
+    procedure AddJobTaskObject(JobPlanningLine: Record "Job Planning Line"; ObjectCBLC: Record "Object CBLC")
     begin
-        AddJobTaskObject(JobPlanningLine."Job No.", JobPlanningLine."Job Task No.", ObjectTPZS);
+        AddJobTaskObject(JobPlanningLine."Job No.", JobPlanningLine."Job Task No.", ObjectCBLC);
     end;
 
-    procedure AddJobTaskObject(JobNo: Code[20]; JobTaskNo: Code[20]; ObjectTPZS: Record "Object TPZS")
+    procedure AddJobTaskObject(JobNo: Code[20]; JobTaskNo: Code[20]; ObjectCBLC: Record "Object CBLC")
     var
-        JobTaskObjectTPZS: Record "Job Task Object TPZS";
+        JobTaskObjectCBLC: Record "Job Task Object CBLC";
     begin
-        ObjectTPZS.TestField("No.");
+        ObjectCBLC.TestField("No.");
 
-        if JobTaskObjectTPZS.Get(JobNo, JobTaskNo, ObjectTPZS."No.") then
+        if JobTaskObjectCBLC.Get(JobNo, JobTaskNo, ObjectCBLC."No.") then
             exit;
 
-        JobTaskObjectTPZS.Init();
-        JobTaskObjectTPZS.Validate("Job No.", JobNo);
-        JobTaskObjectTPZS.Validate("Job Task No.", JobTaskNo);
-        JobTaskObjectTPZS.Validate("Object No.", ObjectTPZS."No.");
-        JobTaskObjectTPZS.Insert(true);
+        JobTaskObjectCBLC.Init();
+        JobTaskObjectCBLC.Validate("Job No.", JobNo);
+        JobTaskObjectCBLC.Validate("Job Task No.", JobTaskNo);
+        JobTaskObjectCBLC.Validate("Object No.", ObjectCBLC."No.");
+        JobTaskObjectCBLC.Insert(true);
     end;
 
-    procedure ApplyObjectTemplate(var ObjectTPZS: Record "Object TPZS"; ObjectTemplateTPZS: Record "Object Template TPZS")
+    procedure ApplyObjectTemplate(var ObjectCBLC: Record "Object CBLC"; ObjectTemplateCBLC: Record "Object Template CBLC")
     var
-        ObjectHelperTPZS: Codeunit "Object Helper TPZS";
+        ObjectHelperCBLC: Codeunit "Object Helper CBLC";
     begin
-        ObjectHelperTPZS.ApplyObjectTemplate(ObjectTPZS, ObjectTemplateTPZS)
+        ObjectHelperCBLC.ApplyObjectTemplate(ObjectCBLC, ObjectTemplateCBLC)
     end;
 
-    procedure CopyObjectTemplate(var ObjectTemplateTPZS: Record "Object Template TPZS"; var NewObjectTemplateTPZS: Record "Object Template TPZS")
+    procedure CopyObjectTemplate(var ObjectTemplateCBLC: Record "Object Template CBLC"; var NewObjectTemplateCBLC: Record "Object Template CBLC")
     var
-        CopyObjectTemplateMethTPZS: Codeunit "Copy Object Template Meth TPZS";
+        CopyObjectTemplateMethCBLC: Codeunit "Copy Object Template Meth CBLC";
     begin
-        CopyObjectTemplateMethTPZS.CopyObjectTemplate(ObjectTemplateTPZS, NewObjectTemplateTPZS, '', true);
+        CopyObjectTemplateMethCBLC.CopyObjectTemplate(ObjectTemplateCBLC, NewObjectTemplateCBLC, '', true);
     end;
 
-    procedure CreateContractFromObject(ObjectTPZS: Record "Object TPZS"; ContractTemplateNo: Code[20]; ProcessingDate: Date; HideDialog: Boolean)
+    procedure CreateContractFromObject(ObjectCBLC: Record "Object CBLC"; ContractTemplateNo: Code[20]; ProcessingDate: Date; HideDialog: Boolean)
     var
-        CreateContractObjMethTPZS: Codeunit "Create Contract Obj. Meth TPZS";
+        CreateContractObjMethCBLC: Codeunit "Create Contract Obj. Meth CBLC";
     begin
-        CreateContractObjMethTPZS.CreateContractFromObject(ObjectTPZS, ContractTemplateNo, ProcessingDate, HideDialog);
+        CreateContractObjMethCBLC.CreateContractFromObject(ObjectCBLC, ContractTemplateNo, ProcessingDate, HideDialog);
     end;
 
-    procedure CreateObjectMaintenanceSchedule(var ObjectTPZS: Record "Object TPZS")
+    procedure CreateObjectMaintenanceSchedule(var ObjectCBLC: Record "Object CBLC")
     var
-        CreateObjectMaintMethTPZS: Codeunit "Create Object Maint. Meth TPZS";
+        CreateObjectMaintMethCBLC: Codeunit "Create Object Maint. Meth CBLC";
         MaintScheduleCreated, MaintScheduleUpdated : Boolean;
         ValidOnDate: Date;
     begin
         ValidOnDate := Today();
-        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, MaintScheduleUpdated, ValidOnDate, not GuiAllowed());
+        CreateObjectMaintMethCBLC.CreateObjectMaintenanceSchedule(ObjectCBLC, MaintScheduleCreated, MaintScheduleUpdated, ValidOnDate, not GuiAllowed());
     end;
 
-    procedure GetLastObject(var ObjectTPZS: Record "Object TPZS")
+    procedure GetLastObject(var ObjectCBLC: Record "Object CBLC")
     begin
-        ObjectTPZS.Reset();
-        ObjectTPZS.FindLast();
-        ObjectTPZS.TestField("No.");
+        ObjectCBLC.Reset();
+        ObjectCBLC.FindLast();
+        ObjectCBLC.TestField("No.");
     end;
 
     procedure GetLastObjectNo(): Code[20]
     var
-        ObjectTPZS: Record "Object TPZS";
+        ObjectCBLC: Record "Object CBLC";
     begin
-        GetLastObject(ObjectTPZS);
-        exit(ObjectTPZS."No.");
+        GetLastObject(ObjectCBLC);
+        exit(ObjectCBLC."No.");
     end;
 
-    procedure AddObjectToBOM(ParentObjectTPZS: Record "Object TPZS"; var ChildObjectTPZS: Record "Object TPZS")
+    procedure AddObjectToBOM(ParentObjectCBLC: Record "Object CBLC"; var ChildObjectCBLC: Record "Object CBLC")
     var
-        ObjectBOMTPZS: Record "Object BOM TPZS";
+        ObjectBOMCBLC: Record "Object BOM CBLC";
     begin
-        ParentObjectTPZS.TestField("No.");
-        ChildObjectTPZS.TestField("No.");
+        ParentObjectCBLC.TestField("No.");
+        ChildObjectCBLC.TestField("No.");
 
-        if ChildObjectTPZS."Main Object No." <> '' then
+        if ChildObjectCBLC."Main Object No." <> '' then
             exit;
 
-        ObjectBOMTPZS.Reset();
-        ObjectBOMTPZS.Init();
-        ObjectBOMTPZS.Validate("Object No.", ParentObjectTPZS."No.");
-        ObjectBOMTPZS.Validate("Line No.", GetNextLineNoObjectBOM(ParentObjectTPZS."No."));
-        ObjectBOMTPZS.Insert(true);
+        ObjectBOMCBLC.Reset();
+        ObjectBOMCBLC.Init();
+        ObjectBOMCBLC.Validate("Object No.", ParentObjectCBLC."No.");
+        ObjectBOMCBLC.Validate("Line No.", GetNextLineNoObjectBOM(ParentObjectCBLC."No."));
+        ObjectBOMCBLC.Insert(true);
 
-        ObjectBOMTPZS.Validate(Type, ObjectBOMTPZS.Type::Object);
-        ObjectBOMTPZS.Validate("No.", ChildObjectTPZS."No.");
-        ObjectBOMTPZS.Modify(true);
+        ObjectBOMCBLC.Validate(Type, ObjectBOMCBLC.Type::Object);
+        ObjectBOMCBLC.Validate("No.", ChildObjectCBLC."No.");
+        ObjectBOMCBLC.Modify(true);
 
-        ChildObjectTPZS.Validate("Main Object No.", ObjectBOMTPZS."Object No.");
-        ChildObjectTPZS.Modify(true);
+        ChildObjectCBLC.Validate("Main Object No.", ObjectBOMCBLC."Object No.");
+        ChildObjectCBLC.Modify(true);
     end;
 
     local procedure GetNextLineNoObjectBOM(ObjectNo: Code[20]) LineNo: Integer
     var
-        ObjectBOMTPZS: Record "Object BOM TPZS";
+        ObjectBOMCBLC: Record "Object BOM CBLC";
     begin
-        ObjectBOMTPZS.Reset();
-        ObjectBOMTPZS.SetLoadFields("Line No.");
-        ObjectBOMTPZS.SetRange("Object No.", ObjectNo);
-        if ObjectBOMTPZS.FindLast() then
-            LineNo := ObjectBOMTPZS."Line No.";
+        ObjectBOMCBLC.Reset();
+        ObjectBOMCBLC.SetLoadFields("Line No.");
+        ObjectBOMCBLC.SetRange("Object No.", ObjectNo);
+        if ObjectBOMCBLC.FindLast() then
+            LineNo := ObjectBOMCBLC."Line No.";
         LineNo += 10000;
     end;
 
-    procedure DeleteProperties(ObjectTPZS: Record "Object TPZS")
+    procedure DeleteProperties(ObjectCBLC: Record "Object CBLC")
     begin
-        ObjectTPZS.DeleteProperties();
+        ObjectCBLC.DeleteProperties();
     end;
 
-    procedure CreateFixedAsset(var ObjectTPZS: Record "Object TPZS"; HideDialog: Boolean)
+    procedure CreateFixedAsset(var ObjectCBLC: Record "Object CBLC"; HideDialog: Boolean)
     begin
-        ObjectTPZS.CreateFixedAsset(HideDialog);
+        ObjectCBLC.CreateFixedAsset(HideDialog);
     end;
 
-    procedure CreateSalesOrderLine(var ObjectTPZS: Record "Object TPZS"; ValidOnDate: Date)
+    procedure CreateSalesOrderLine(var ObjectCBLC: Record "Object CBLC"; ValidOnDate: Date)
     begin
-        ObjectTPZS.CreateSalesOrderLine(ValidOnDate);
+        ObjectCBLC.CreateSalesOrderLine(ValidOnDate);
     end;
 
-    procedure GetNextObjectMaintenanceSchedule(ObjectTPZS: Record "Object TPZS"; var NextObjectMaintScheduleTPZS: Record "Object Maint. Schedule TPZS")
+    procedure GetNextObjectMaintenanceSchedule(ObjectCBLC: Record "Object CBLC"; var NextObjectMaintScheduleCBLC: Record "Object Maint. Schedule CBLC")
     begin
-        ObjectTPZS.GetNextObjectMaintenanceSchedule(NextObjectMaintScheduleTPZS);
+        ObjectCBLC.GetNextObjectMaintenanceSchedule(NextObjectMaintScheduleCBLC);
     end;
 
-    procedure DeleteObjectMaintenanceSchedules(ObjectTPZS: Record "Object TPZS"; StartingDate: Date)
+    procedure DeleteObjectMaintenanceSchedules(ObjectCBLC: Record "Object CBLC"; StartingDate: Date)
     begin
-        ObjectTPZS.DeleteObjectMaintenanceSchedules(StartingDate);
+        ObjectCBLC.DeleteObjectMaintenanceSchedules(StartingDate);
     end;
 
-    procedure GetActiveContractArchiveLine(ObjectTPZS: Record "Object TPZS"; var ContrArchiveLineTPZS: Record "Contr. Archive Line TPZS"; ValidOnDate: Date): Boolean
+    procedure GetActiveContractArchiveLine(ObjectCBLC: Record "Object CBLC"; var ContrArchiveLineCBLC: Record "Contr. Archive Line CBLC"; ValidOnDate: Date): Boolean
     begin
-        exit(ObjectTPZS.GetActiveContractArchiveLine(ContrArchiveLineTPZS, ValidOnDate));
+        exit(ObjectCBLC.GetActiveContractArchiveLine(ContrArchiveLineCBLC, ValidOnDate));
     end;
 }

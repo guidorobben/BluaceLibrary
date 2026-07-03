@@ -1,8 +1,8 @@
 codeunit 83966 "Init. Skills NL LIB"
 {
     Permissions =
-        tabledata "Geo. Skill Code NBLC" = R,
-        tabledata "Geo. Skill Post Code NBLC" = RD;
+        tabledata "Geo. Skill Code YBLC" = R,
+        tabledata "Geo. Skill Post Code YBLC" = RD;
 
     var
         LibrarySkillNL: Codeunit "Library - Skill NL LIB";
@@ -21,16 +21,16 @@ codeunit 83966 "Init. Skills NL LIB"
 
     procedure AddAllGeographicSkills()
     var
-        GeoSkillCodeNBLC: Record "Geo. Skill Code NBLC";
+        GeoSkillCodeYBLC: Record "Geo. Skill Code YBLC";
     begin
-        GeoSkillCodeNBLC.AddAllGeographicSkills();
+        //FIXME GeoSkillCodeYBLC.AddAllGeographicSkills();
     end;
 
     procedure DeleteSkillPostCodes()
     var
-        GeoSkillPostCodeNBLC: Record "Geo. Skill Post Code NBLC";
+        GeoSkillPostCodeYBLC: Record "Geo. Skill Post Code YBLC";
     begin
-        GeoSkillPostCodeNBLC.DeleteAll(false);
+        GeoSkillPostCodeYBLC.DeleteAll(false);
     end;
 
     procedure CreateSkillPostCodes()

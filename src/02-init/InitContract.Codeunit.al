@@ -1,7 +1,7 @@
 codeunit 83950 "Init. Contract LIB"
 {
     Permissions =
-        tabledata "Contract Setup TPZS" = RM,
+        tabledata "Contract Setup CBLC" = RM,
         tabledata "Customer Price Group" = RD,
         tabledata "Item Category" = R,
         tabledata "Unit of Measure" = RI;
@@ -36,104 +36,105 @@ codeunit 83950 "Init. Contract LIB"
 
     procedure InitializeContractSetup()
     var
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
         ItemCategory: Record "Item Category";
         UoMCode: Code[10];
         ItemCategoryCode: Code[20];
         NoSeries: Code[20];
     begin
 
-        if not ContractSetupTPZS.Get() then
-            ContractSetupTPZS.InsertIfNotExists();
+        if not ContractSetupCBLC.Get() then
+            ContractSetupCBLC.InsertIfNotExists();
 
-        ContractSetupTPZS.Validate("Default Invoice Model", ContractSetupTPZS."Default Invoice Model"::"In Advance");
+        ContractSetupCBLC.Validate("Default Invoice Model", ContractSetupCBLC."Default Invoice Model"::"In Advance");
 
-        if ContractSetupTPZS."Unit of Measure Code Month" = '' then begin
+        if ContractSetupCBLC."Unit of Measure Code Month" = '' then begin
             //Create Maand
             UoMCode := 'MAAND';
             CreateUnitOfMeasure(UoMCode, 'Maand');
-            ContractSetupTPZS.Validate("Unit of Measure Code Month", UoMCode);
-            ContractSetupTPZS.Modify(true);
+            ContractSetupCBLC.Validate("Unit of Measure Code Month", UoMCode);
+            ContractSetupCBLC.Modify(true);
         end;
 
-        if ContractSetupTPZS."Unit of Measure Code Quarter" = '' then begin
+        if ContractSetupCBLC."Unit of Measure Code Quarter" = '' then begin
             //Create Quarter
             UoMCode := 'KWARTAAL';
             CreateUnitOfMeasure(UoMCode, 'Kwartaal');
-            ContractSetupTPZS.Validate("Unit of Measure Code Quarter", UoMCode);
-            ContractSetupTPZS.Modify(true);
+            ContractSetupCBLC.Validate("Unit of Measure Code Quarter", UoMCode);
+            ContractSetupCBLC.Modify(true);
         end;
 
-        if ContractSetupTPZS."Unit of Measure Code Year" = '' then begin
+        if ContractSetupCBLC."Unit of Measure Code Year" = '' then begin
             //Create Year
             UoMCode := 'JAAR';
             CreateUnitOfMeasure(UoMCode, 'Jaar');
-            ContractSetupTPZS.Validate("Unit of Measure Code Year", UoMCode);
-            ContractSetupTPZS.Modify(true);
+            ContractSetupCBLC.Validate("Unit of Measure Code Year", UoMCode);
+            ContractSetupCBLC.Modify(true);
         end;
 
-        if ContractSetupTPZS."Contract Nos." = '' then begin
+        if ContractSetupCBLC."Contract Nos." = '' then begin
             NoSeries := 'CONTRACT';
             LibraryUtilityLIB.CreateNoSeries(NoSeries, true, false, false);
             LibraryUtilityLIB.CreateNoSeriesLine(NoSeries, 'C000001', 'C999999');
-            ContractSetupTPZS."Contract Nos." := NoSeries;
-            ContractSetupTPZS.Modify(true);
+            ContractSetupCBLC."Contract Nos." := NoSeries;
+            ContractSetupCBLC.Modify(true);
         end;
 
-        if ContractSetupTPZS."Contract Template Nos." = '' then begin
+        if ContractSetupCBLC."Contract Template Nos." = '' then begin
             NoSeries := 'CONTRACTTEMP';
             LibraryUtilityLIB.CreateNoSeries(NoSeries, true, false, false);
             LibraryUtilityLIB.CreateNoSeriesLine(NoSeries, 'CS000001', 'CS999999');
-            ContractSetupTPZS."Contract Template Nos." := NoSeries;
-            ContractSetupTPZS.Modify(true);
+            ContractSetupCBLC."Contract Template Nos." := NoSeries;
+            ContractSetupCBLC.Modify(true);
         end;
 
 
-        if ContractSetupTPZS."Item Category Price" = '' then begin
+        if ContractSetupCBLC."Item Category Price" = '' then begin
             ItemCategoryCode := 'PRIJZEN';
             LibraryItemLIB.CreateItemCategory(ItemCategoryCode, 'Prijzen', '');
-            ContractSetupTPZS.Validate("Item Category Price", ItemCategoryCode);
+            ContractSetupCBLC.Validate("Item Category Price", ItemCategoryCode);
         end;
 
-        if ContractSetupTPZS."Item Category Service" = '' then begin
+        if ContractSetupCBLC."Item Category Service" = '' then begin
             ItemCategoryCode := 'DIENSTEN';
             LibraryItemLIB.CreateItemCategory(ItemCategoryCode, 'Diensten', '');
             LibraryItemLIB.CreateItemCategory('ONDERHOUD', 'Onderhoud', ItemCategoryCode);
             LibraryItemLIB.CreateItemCategory('STORING', 'Storing', ItemCategoryCode);
-            ContractSetupTPZS.Validate("Item Category Service", ItemCategoryCode);
+            ContractSetupCBLC.Validate("Item Category Service", ItemCategoryCode);
         end;
 
-        if ContractSetupTPZS."Usage Container Item Category" = '' then
-            ContractSetupTPZS.Validate("Usage Container Item Category", 'CONTAINER');
+        if ContractSetupCBLC."Usage Container Item Category" = '' then
+            ContractSetupCBLC.Validate("Usage Container Item Category", 'CONTAINER');
 
-        if ContractSetupTPZS."Container Cont. Item Category" = '' then
-            ContractSetupTPZS.Validate("Container Cont. Item Category", 'CONTENT');
+        if ContractSetupCBLC."Container Cont. Item Category" = '' then
+            ContractSetupCBLC.Validate("Container Cont. Item Category", 'CONTENT');
 
         if not ItemCategory.Get('TERMIJNEN') then
             LibraryItemLIB.CreateItemCategory('TERMIJNEN', 'Termijnen', ItemCategoryCode);
 
-        ContractSetupTPZS."Invoice Line Description" := '%1-%2-%3-%4-%5';
-        ContractSetupTPZS.Modify(true);
+        ContractSetupCBLC."Invoice Line Description" := '%1-%2-%3-%4-%5';
+        ContractSetupCBLC.Modify(true);
     end;
 
     procedure InitializeContractTemplate()
     var
-        ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS";
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
     begin
-        ContractSetupTPZS.Get();
+        ContractSetupCBLC.SetLoadFields("Unit of Measure Code Month", "Unit of Measure Code Quarter", "Unit of Measure Code Year");
+        ContractSetupCBLC.Get();
 
-        Clear(ContrTemplateHeaderTPZS);
-        ContractSetupTPZS.TestField("Unit of Measure Code Month");
-        LibraryContract.CreateContractTemplateWithUOM(ContrTemplateHeaderTPZS, ContractSetupTPZS."Unit of Measure Code Month", 1);
+        Clear(ContrTemplateHeaderCBLC);
+        ContractSetupCBLC.TestField("Unit of Measure Code Month");
+        LibraryContract.CreateContractTemplateWithUOM(ContrTemplateHeaderCBLC, ContractSetupCBLC."Unit of Measure Code Month", 1);
 
-        Clear(ContrTemplateHeaderTPZS);
-        ContractSetupTPZS.TestField("Unit of Measure Code Quarter");
-        LibraryContract.CreateContractTemplateWithUOM(ContrTemplateHeaderTPZS, ContractSetupTPZS."Unit of Measure Code Quarter", 1);
+        Clear(ContrTemplateHeaderCBLC);
+        ContractSetupCBLC.TestField("Unit of Measure Code Quarter");
+        LibraryContract.CreateContractTemplateWithUOM(ContrTemplateHeaderCBLC, ContractSetupCBLC."Unit of Measure Code Quarter", 1);
 
-        Clear(ContrTemplateHeaderTPZS);
-        ContractSetupTPZS.TestField("Unit of Measure Code Quarter");
-        LibraryContract.CreateContractTemplateWithUOM(ContrTemplateHeaderTPZS, ContractSetupTPZS."Unit of Measure Code Year", 1);
+        Clear(ContrTemplateHeaderCBLC);
+        ContractSetupCBLC.TestField("Unit of Measure Code Quarter");
+        LibraryContract.CreateContractTemplateWithUOM(ContrTemplateHeaderCBLC, ContractSetupCBLC."Unit of Measure Code Year", 1);
     end;
 
     procedure CreateUnitOfMeasure(NewCode: Code[10]; Description: Text[50])
@@ -159,8 +160,8 @@ codeunit 83950 "Init. Contract LIB"
 
     procedure InitializeContractIndexes()
     begin
-        LibraryContract.CreateIndexCode('FIXED10', Enum::"Contract Index Type TPZS"::"Fixed Value", 10, true);
-        LibraryContract.CreateIndexCode('PERCENTAGE10', Enum::"Contract Index Type TPZS"::Percentage, 10, true);
+        LibraryContract.CreateIndexCode('FIXED10', Enum::"Contract Index Type CBLC"::"Fixed Value", 10, true);
+        LibraryContract.CreateIndexCode('PERCENTAGE10', Enum::"Contract Index Type CBLC"::Percentage, 10, true);
     end;
 
     procedure InitializePriorities()

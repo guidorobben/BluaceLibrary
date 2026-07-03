@@ -9,7 +9,7 @@ codeunit 83988 "Library - Resource LIB"
         tabledata "Resource Unit of Measure" = RIM,
         tabledata "Unit of Measure" = R,
         tabledata "VAT Posting Setup" = R,
-        tabledata "Work Time Work Type TPZS" = RI,
+        tabledata "Work Time Work Type CBLC" = RI,
         tabledata "Work Type" = RI;
 
     var
@@ -66,9 +66,9 @@ codeunit 83988 "Library - Resource LIB"
         WorkType: Record "Work Type";
     begin
         ResourcesSetup.Get();
-        ResourcesSetup.TestField("Work Type Travel (km) TPZS");
+        ResourcesSetup.TestField("Work Type Travel (km) CBLC");
 
-        WorkType.Get(ResourcesSetup."Work Type Travel (km) TPZS");
+        WorkType.Get(ResourcesSetup."Work Type Travel (km) CBLC");
         WorkType.TestField("Unit of Measure Code");
 
         CreateResourceUnitOfMeasure(ResourceUnitOfMeasure, Resource."No.", WorkType."Unit of Measure Code", 1);
@@ -95,23 +95,23 @@ codeunit 83988 "Library - Resource LIB"
 
     procedure AddWorkTimeWorkTypeSpecific(Date: Date; WorkTypeCode: Code[10])
     begin
-        AddWorkTimeWorkType("Work Time Work Type Days TPZS"::"Specific Day", Date, 000000T, 000000T, WorkTypeCode);
+        AddWorkTimeWorkType("Work Time Work Type Days CBLC"::"Specific Day", Date, 000000T, 000000T, WorkTypeCode);
     end;
 
-    procedure AddWorkTimeWorkType(Day: Enum "Work Time Work Type Days TPZS"; Date: Date; StartingTime: Time; EndingTime: Time; WorkTypeCode: Code[10])
+    procedure AddWorkTimeWorkType(Day: Enum "Work Time Work Type Days CBLC"; Date: Date; StartingTime: Time; EndingTime: Time; WorkTypeCode: Code[10])
     var
-        WorkTimeWorkTypeTPZS: Record "Work Time Work Type TPZS";
+        WorkTimeWorkTypeCBLC: Record "Work Time Work Type CBLC";
     begin
-        WorkTimeWorkTypeTPZS.Init();
-        WorkTimeWorkTypeTPZS.Validate(Day, Day);
-        if WorkTimeWorkTypeTPZS.Day = WorkTimeWorkTypeTPZS.Day::"Specific Day" then
-            WorkTimeWorkTypeTPZS.Validate(Date, Date)
+        WorkTimeWorkTypeCBLC.Init();
+        WorkTimeWorkTypeCBLC.Validate(Day, Day);
+        if WorkTimeWorkTypeCBLC.Day = WorkTimeWorkTypeCBLC.Day::"Specific Day" then
+            WorkTimeWorkTypeCBLC.Validate(Date, Date)
         else begin
-            WorkTimeWorkTypeTPZS.Validate("Starting Time", StartingTime);
-            WorkTimeWorkTypeTPZS.Validate("Ending Time", EndingTime);
+            WorkTimeWorkTypeCBLC.Validate("Starting Time", StartingTime);
+            WorkTimeWorkTypeCBLC.Validate("Ending Time", EndingTime);
         end;
-        WorkTimeWorkTypeTPZS.Validate("Work Type Code", WorkTypeCode);
-        WorkTimeWorkTypeTPZS.Insert(true);
+        WorkTimeWorkTypeCBLC.Validate("Work Type Code", WorkTypeCode);
+        WorkTimeWorkTypeCBLC.Insert(true);
     end;
 
     procedure CreateWorkType(WorkTypeCode: Code[10]; Description: Text[100]; UnitOfMeasureCode: Code[10])
@@ -130,7 +130,7 @@ codeunit 83988 "Library - Resource LIB"
         WorkType.Validate(Code, WorkTypeCode);
         WorkType.Validate(Description, Description);
         WorkType.Validate("Unit of Measure Code", UnitOfMeasureCode);
-        WorkType.Validate("Gen. Prod. Posting Group TPZS", GenProdPostingGroup);
+        WorkType.Validate("Gen. Prod. Posting Group CBLC", GenProdPostingGroup);
         WorkType.Insert(true);
     end;
 
@@ -176,7 +176,7 @@ codeunit 83988 "Library - Resource LIB"
         ResourceGroup.Init();
         ResourceGroup.Validate("No.", No);
         ResourceGroup.Validate(Name, Name);
-        ResourceGroup.Validate("Primary TPZS", true);
+        ResourceGroup.Validate("Primary CBLC", Primary);
         ResourceGroup.Insert(true);
     end;
 }

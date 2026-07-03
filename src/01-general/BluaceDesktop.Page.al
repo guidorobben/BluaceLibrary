@@ -1,3 +1,4 @@
+#pragma warning disable LC0091
 page 83980 "Bluace Desktop LIB"
 {
     ApplicationArea = All;
@@ -276,3 +277,4 @@ page 83980 "Bluace Desktop LIB"
         WorkDate(Today());
     end;
 }
+#pragma warning restore LC0091

@@ -4,24 +4,24 @@ codeunit 83957 "Library - General LIB"
         tabledata "Allowed Language" = RI,
         tabledata "No. Series" = R,
         tabledata "Payment Method" = RI,
-        tabledata "Time Window TPZS" = RI,
+        tabledata "Time Window CBLC" = RI,
         tabledata "Unit of Measure" = RI,
         tabledata "Work Type" = RI;
 
-    procedure CreateTimeWindow(TimeWindowType: Enum "Time Window Type TPZS"; Code: Code[20]; StartingTime: Time; EndingTime: Time; IsDefault: Boolean)
+    procedure CreateTimeWindow(TimeWindowType: Enum "Time Window Type CBLC"; Code: Code[20]; StartingTime: Time; EndingTime: Time; IsDefault: Boolean)
     var
-        TimeWindowTPZS: Record "Time Window TPZS";
+        TimeWindowCBLC: Record "Time Window CBLC";
     begin
-        if TimeWindowTPZS.Get(TimeWindowType, Code) then
+        if TimeWindowCBLC.Get(TimeWindowType, Code) then
             exit;
 
-        TimeWindowTPZS.Init();
-        TimeWindowTPZS.Validate(Type, TimeWindowType);
-        TimeWindowTPZS.Validate(Code, Code);
-        TimeWindowTPZS.Validate("Starting Time", StartingTime);
-        TimeWindowTPZS.Validate("Ending Time", EndingTime);
-        TimeWindowTPZS.Validate(Default, IsDefault);
-        TimeWindowTPZS.Insert(true);
+        TimeWindowCBLC.Init();
+        TimeWindowCBLC.Validate(Type, TimeWindowType);
+        TimeWindowCBLC.Validate(Code, Code);
+        TimeWindowCBLC.Validate("Starting Time", StartingTime);
+        TimeWindowCBLC.Validate("Ending Time", EndingTime);
+        TimeWindowCBLC.Validate(Default, IsDefault);
+        TimeWindowCBLC.Insert(true);
     end;
 
     procedure CreateUnitOfMeasureCode(Code: Code[10]; Description: Text[50]; RoundingPercision: Decimal; SkipWhenExist: Boolean)
@@ -50,7 +50,7 @@ codeunit 83957 "Library - General LIB"
         //   LibraryUtility.GenerateRandomCode(UnitOfMeasure.FieldNo("International Standard Code"), DATABASE::"Unit of Measure"));
         // UnitOfMeasure.Validate(Symbol,
         //   LibraryUtility.GenerateRandomCode(UnitOfMeasure.FieldNo(Symbol), DATABASE::"Unit of Measure"));
-        UnitOfMeasure.Validate("Rounding Precision TPZS", RoundingPercision);
+        UnitOfMeasure.Validate("Rounding Precision CBLC", RoundingPercision);
         UnitOfMeasure.Insert(true);
     end;
 
@@ -67,7 +67,7 @@ codeunit 83957 "Library - General LIB"
         WorkType.Validate(Code, WorkTypeCode);
         WorkType.Validate(Description, Description);
         WorkType.Validate("Unit of Measure Code", UnitOfMeasureCode);
-        WorkType.Validate("Gen. Prod. Posting Group TPZS", GenProdPostingGroup);
+        WorkType.Validate("Gen. Prod. Posting Group CBLC", GenProdPostingGroup);
         WorkType.Insert(true);
     end;
 

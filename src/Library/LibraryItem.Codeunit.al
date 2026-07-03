@@ -1,15 +1,15 @@
 codeunit 83984 "Library - Item LIB"
 {
     Permissions =
-        tabledata "Contract Setup TPZS" = R,
+        tabledata "Contract Setup CBLC" = R,
         tabledata "General Posting Setup" = R,
         tabledata "Inventory Posting Group" = R,
         tabledata Item = RIM,
         tabledata "Item Category" = RI,
         tabledata "Item Discount Group" = RI,
-        tabledata "Item Planning Norm TPZS" = RIMD,
+        tabledata "Item Planning Norm CBLC" = RIMD,
         tabledata "Item Unit of Measure" = RI,
-        tabledata "Item Usage Norm TPZS" = RIMD,
+        tabledata "Item Usage Norm CBLC" = RIMD,
         tabledata Location = R,
         tabledata Purchasing = RI,
         tabledata "Resource Group" = R,
@@ -53,12 +53,15 @@ codeunit 83984 "Library - Item LIB"
 
     procedure CreatePriceItem(var Item: Record Item; ItemNo: Code[20]; UnitCost: Decimal; UnitPrice: Decimal; BaseUnitOM: Code[10])
     var
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
         ItemCategory: Record "Item Category";
     begin
-        ContractSetupTPZS.Get();
-        ContractSetupTPZS.TestField("Item Category Price");
-        ItemCategory.Get(ContractSetupTPZS."Item Category Price");
+        ContractSetupCBLC.SetLoadFields("Item Category Price");
+        ContractSetupCBLC.Get();
+        ContractSetupCBLC.TestField("Item Category Price");
+
+        ItemCategory.SetLoadFields(Code);
+        ItemCategory.Get(ContractSetupCBLC."Item Category Price");
 
         CreateServiceItem(Item, ItemNo);
         Item.TestField("No.");
@@ -73,11 +76,12 @@ codeunit 83984 "Library - Item LIB"
 
     procedure CreatePriceItemNo(): Code[20]
     var
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
     begin
-        ContractSetupTPZS.Get();
-        ContractSetupTPZS.TestField("Unit of Measure Code Month");
-        exit(CreatePriceItemNo(LibraryRandom.RandDecInRange(10, 40, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupTPZS."Unit of Measure Code Month"));
+        ContractSetupCBLC.SetLoadFields("Unit of Measure Code Month");
+        ContractSetupCBLC.Get();
+        ContractSetupCBLC.TestField("Unit of Measure Code Month");
+        exit(CreatePriceItemNo(LibraryRandom.RandDecInRange(10, 40, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupCBLC."Unit of Measure Code Month"));
     end;
 
     procedure CreatePriceItemNo(UnitCost: Decimal; UnitPrice: Decimal; BaseUnitOM: Code[10]): Code[20]
@@ -168,74 +172,74 @@ codeunit 83984 "Library - Item LIB"
         Item.Modify(true);
     end;
 
-    procedure CreateItemPlanningNorm(var Item: Record Item; var ItemPlanningNormTPZS: Record "Item Planning Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20])
+    procedure CreateItemPlanningNorm(var Item: Record Item; var ItemPlanningNormCBLC: Record "Item Planning Norm CBLC"; ObjectNormTypeCBLC: Enum "Object Norm Type CBLC"; ObjectNormNo: Code[20]; RelatedNormTypeCBLC: Enum "Related Norm Type CBLC"; RelatedNormNo: Code[20])
     var
     begin
         Item.TestField("No.");
 
-        ItemPlanningNormTPZS.Init();
-        ItemPlanningNormTPZS."Entry No." := 0;
-        ItemPlanningNormTPZS.Validate("Item No.", Item."No.");
-        ItemPlanningNormTPZS.Validate("Object Norm Type", ObjectNormTypeTPZS);
-        ItemPlanningNormTPZS.Validate("Object Norm No.", ObjectNormNo);
-        ItemPlanningNormTPZS.Validate("Related Norm Type", RelatedNormTypeTPZS);
-        ItemPlanningNormTPZS.Validate("Related Norm No.", RelatedNormNo);
-        ItemPlanningNormTPZS.Insert(true);
+        ItemPlanningNormCBLC.Init();
+        ItemPlanningNormCBLC."Entry No." := 0;
+        ItemPlanningNormCBLC.Validate("Item No.", Item."No.");
+        ItemPlanningNormCBLC.Validate("Object Norm Type", ObjectNormTypeCBLC);
+        ItemPlanningNormCBLC.Validate("Object Norm No.", ObjectNormNo);
+        ItemPlanningNormCBLC.Validate("Related Norm Type", RelatedNormTypeCBLC);
+        ItemPlanningNormCBLC.Validate("Related Norm No.", RelatedNormNo);
+        ItemPlanningNormCBLC.Insert(true);
     end;
 
-    procedure CreateItemPlanningNorm(var Item: Record Item; var ItemPlanningNormTPZS: Record "Item Planning Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20]; ResourceGroupNo: Code[20]; UnitOfMeasureCode: Code[10]; Quantity: Decimal)
+    procedure CreateItemPlanningNorm(var Item: Record Item; var ItemPlanningNormCBLC: Record "Item Planning Norm CBLC"; ObjectNormTypeCBLC: Enum "Object Norm Type CBLC"; ObjectNormNo: Code[20]; RelatedNormTypeCBLC: Enum "Related Norm Type CBLC"; RelatedNormNo: Code[20]; ResourceGroupNo: Code[20]; UnitOfMeasureCode: Code[10]; Quantity: Decimal)
     begin
-        CreateItemPlanningNorm(Item, ItemPlanningNormTPZS, ObjectNormTypeTPZS, ObjectNormNo, RelatedNormTypeTPZS, RelatedNormNo);
-        ItemPlanningNormTPZS.Validate("Unit of Measure Code", UnitOfMeasureCode);
-        ItemPlanningNormTPZS.Modify(true);
+        CreateItemPlanningNorm(Item, ItemPlanningNormCBLC, ObjectNormTypeCBLC, ObjectNormNo, RelatedNormTypeCBLC, RelatedNormNo);
+        ItemPlanningNormCBLC.Validate("Unit of Measure Code", UnitOfMeasureCode);
+        ItemPlanningNormCBLC.Modify(true);
 
-        ItemPlanningNormTPZS.Validate("Resource Group No.", ResourceGroupNo);
-        ItemPlanningNormTPZS.Validate(Quantity, Quantity);
-        ItemPlanningNormTPZS.Modify(true);
+        ItemPlanningNormCBLC.Validate("Resource Group No.", ResourceGroupNo);
+        ItemPlanningNormCBLC.Validate(Quantity, Quantity);
+        ItemPlanningNormCBLC.Modify(true);
     end;
 
-    procedure CreateItemUsageNorm(var Item: Record Item; var ItemUsageNormTPZS: Record "Item Usage Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20])
+    procedure CreateItemUsageNorm(var Item: Record Item; var ItemUsageNormCBLC: Record "Item Usage Norm CBLC"; ObjectNormTypeCBLC: Enum "Object Norm Type CBLC"; ObjectNormNo: Code[20]; RelatedNormTypeCBLC: Enum "Related Norm Type CBLC"; RelatedNormNo: Code[20])
     var
     begin
         Item.TestField("No.");
 
-        ItemUsageNormTPZS.Init();
-        ItemUsageNormTPZS.Validate("Item No.", Item."No.");
-        ItemUsageNormTPZS.Validate("Object Norm Type", ObjectNormTypeTPZS);
-        ItemUsageNormTPZS.Validate("Object Norm No.", ObjectNormNo);
-        ItemUsageNormTPZS.Validate("Related Norm Type", RelatedNormTypeTPZS);
-        ItemUsageNormTPZS.Validate("Related Norm No.", RelatedNormNo);
-        ItemUsageNormTPZS.Insert(true);
+        ItemUsageNormCBLC.Init();
+        ItemUsageNormCBLC.Validate("Item No.", Item."No.");
+        ItemUsageNormCBLC.Validate("Object Norm Type", ObjectNormTypeCBLC);
+        ItemUsageNormCBLC.Validate("Object Norm No.", ObjectNormNo);
+        ItemUsageNormCBLC.Validate("Related Norm Type", RelatedNormTypeCBLC);
+        ItemUsageNormCBLC.Validate("Related Norm No.", RelatedNormNo);
+        ItemUsageNormCBLC.Insert(true);
     end;
 
-    procedure CreateItemUsageNorm(var Item: Record Item; var ItemUsageNormTPZS: Record "Item Usage Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20]; UsageItemNo: Code[20]; Quantity: Decimal)
+    procedure CreateItemUsageNorm(var Item: Record Item; var ItemUsageNormCBLC: Record "Item Usage Norm CBLC"; ObjectNormTypeCBLC: Enum "Object Norm Type CBLC"; ObjectNormNo: Code[20]; RelatedNormTypeCBLC: Enum "Related Norm Type CBLC"; RelatedNormNo: Code[20]; UsageItemNo: Code[20]; Quantity: Decimal)
     begin
-        CreateItemUsageNorm(Item, ItemUsageNormTPZS, ObjectNormTypeTPZS, ObjectNormNo, RelatedNormTypeTPZS, RelatedNormNo);
-        ItemUsageNormTPZS.Validate("Usage Item No.", UsageItemNo);
-        ItemUsageNormTPZS.Validate(Quantity, Quantity);
-        ItemUsageNormTPZS.Modify(true);
+        CreateItemUsageNorm(Item, ItemUsageNormCBLC, ObjectNormTypeCBLC, ObjectNormNo, RelatedNormTypeCBLC, RelatedNormNo);
+        ItemUsageNormCBLC.Validate("Usage Item No.", UsageItemNo);
+        ItemUsageNormCBLC.Validate(Quantity, Quantity);
+        ItemUsageNormCBLC.Modify(true);
     end;
 
     procedure DeleteAllItemPlanningNorms(ItemNo: Code[20]; UseTrigger: Boolean)
     var
-        ItemPlanningNormTPZS: Record "Item Planning Norm TPZS";
+        ItemPlanningNormCBLC: Record "Item Planning Norm CBLC";
     begin
         if ItemNo = '' then
             exit;
 
-        ItemPlanningNormTPZS.SetRange("Item No.", ItemNo);
-        ItemPlanningNormTPZS.DeleteAll(UseTrigger);
+        ItemPlanningNormCBLC.SetRange("Item No.", ItemNo);
+        ItemPlanningNormCBLC.DeleteAll(UseTrigger);
     end;
 
     procedure DeleteAllItemUsageNorms(ItemNo: Code[20]; UseTrigger: Boolean)
     var
-        ItemUsageNormTPZS: Record "Item Usage Norm TPZS";
+        ItemUsageNormCBLC: Record "Item Usage Norm CBLC";
     begin
         if ItemNo = '' then
             exit;
 
-        ItemUsageNormTPZS.SetRange("Item No.", ItemNo);
-        ItemUsageNormTPZS.DeleteAll(UseTrigger);
+        ItemUsageNormCBLC.SetRange("Item No.", ItemNo);
+        ItemUsageNormCBLC.DeleteAll(UseTrigger);
     end;
 
     procedure UpdateItemUnitPriceWithFixedValue(ItemNo: Code[20]; FixedValue: Decimal)
@@ -267,19 +271,19 @@ codeunit 83984 "Library - Item LIB"
 
     procedure CreateTestServiceItems()
     var
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
         Item: Record Item;
-        ItemPlanningNormTPZS: Record "Item Planning Norm TPZS";
+        ItemPlanningNormCBLC: Record "Item Planning Norm CBLC";
         ResourceGroup: Record "Resource Group";
         LibraryItemLIB: Codeunit "Library - Item LIB";
         ItemNo: Code[20];
-        ObjectNormTypeTPZS: Enum "Object Norm Type TPZS";
-        RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
+        ObjectNormTypeCBLC: Enum "Object Norm Type CBLC";
+        RelatedNormTypeCBLC: Enum "Related Norm Type CBLC";
         I: Integer;
     begin
-        ContractSetupTPZS.Get();
-        ContractSetupTPZS.TestField("Item Category Service");
-        ContractSetupTPZS.TestField("Unit of Measure Code Month");
+        ContractSetupCBLC.Get();
+        ContractSetupCBLC.TestField("Item Category Service");
+        ContractSetupCBLC.TestField("Unit of Measure Code Month");
 
         ResourceGroup.Get(LibraryRandomLIB.GetRandomValueByTableCode20(Database::"Resource Group"));
 
@@ -287,30 +291,30 @@ codeunit 83984 "Library - Item LIB"
             ItemNo := 'TSERVICE' + Format(I);
             Clear(Item);
             if not Item.Get(ItemNo) then
-                LibraryItemLIB.CreatePriceItem(Item, ItemNo, LibraryRandom.RandDecInRange(10, 100, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupTPZS."Unit of Measure Code Month", ContractSetupTPZS."Item Category Service");
+                LibraryItemLIB.CreatePriceItem(Item, ItemNo, LibraryRandom.RandDecInRange(10, 100, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupCBLC."Unit of Measure Code Month", ContractSetupCBLC."Item Category Service");
             Item.Validate(Description, 'Service ' + Item."No.");
             Item.Modify(true);
 
             LibraryItemLIB.DeleteAllItemPlanningNorms(ItemNo, false);
-            LibraryItemLIB.CreateItemPlanningNorm(Item, ItemPlanningNormTPZS, ObjectNormTypeTPZS::All, '', RelatedNormTypeTPZS::All, '', ResourceGroup."No.", 'UUR', 1);
+            LibraryItemLIB.CreateItemPlanningNorm(Item, ItemPlanningNormCBLC, ObjectNormTypeCBLC::All, '', RelatedNormTypeCBLC::All, '', ResourceGroup."No.", 'UUR', 1);
         end;
     end;
 
     procedure CreateTestServicePriceItems()
     var
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
         Item: Record Item;
-        // ItemPlanningNormTPZS: Record "Item Planning Norm TPZS";
+        // ItemPlanningNormCBLC: Record "Item Planning Norm CBLC";
         ResourceGroup: Record "Resource Group";
         LibraryItemLIB: Codeunit "Library - Item LIB";
         ItemNo: Code[20];
-        // ObjectNormTypeTPZS: Enum "Object Norm Type TPZS";
-        // RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
+        // ObjectNormTypeCBLC: Enum "Object Norm Type CBLC";
+        // RelatedNormTypeCBLC: Enum "Related Norm Type CBLC";
         I: Integer;
     begin
-        ContractSetupTPZS.Get();
-        ContractSetupTPZS.TestField("Item Category Price");
-        ContractSetupTPZS.TestField("Unit of Measure Code Month");
+        ContractSetupCBLC.Get();
+        ContractSetupCBLC.TestField("Item Category Price");
+        ContractSetupCBLC.TestField("Unit of Measure Code Month");
 
         ResourceGroup.Get(LibraryRandomLIB.GetRandomValueByTableCode20(Database::"Resource Group"));
 
@@ -318,10 +322,10 @@ codeunit 83984 "Library - Item LIB"
             ItemNo := 'TPRICE' + Format(I);
             Clear(Item);
             if not Item.Get(ItemNo) then
-                LibraryItemLIB.CreatePriceItem(Item, ItemNo, LibraryRandom.RandDecInRange(10, 100, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupTPZS."Unit of Measure Code Month", ContractSetupTPZS."Item Category Price");
+                LibraryItemLIB.CreatePriceItem(Item, ItemNo, LibraryRandom.RandDecInRange(10, 100, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupCBLC."Unit of Measure Code Month", ContractSetupCBLC."Item Category Price");
 
             LibraryItemLIB.DeleteAllItemPlanningNorms(ItemNo, false);
-            //LibraryItemLIB.AddPlanningNormToItem(Item, ItemPlanningNormTPZS, ObjectNormTypeTPZS::All, '', RelatedNormTypeTPZS::All, '', ResourceGroup."No.", 'UUR', 1);
+            //LibraryItemLIB.AddPlanningNormToItem(Item, ItemPlanningNormCBLC, ObjectNormTypeCBLC::All, '', RelatedNormTypeCBLC::All, '', ResourceGroup."No.", 'UUR', 1);
         end;
     end;
 

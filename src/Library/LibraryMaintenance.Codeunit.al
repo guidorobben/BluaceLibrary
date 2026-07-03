@@ -1,40 +1,40 @@
 codeunit 83965 "Library - Maintenance LIB"
 {
     Permissions =
-        tabledata "Contr. Template Header TPZS" = R,
-        tabledata "Contract Norm TPZS" = R,
-        tabledata "Maint. Sched. Templ. Hdr. TPZS" = RIM,
-        tabledata "Maint. Sched. Templ. Line TPZS" = RI,
-        tabledata "Maint. Template Norm TPZS" = RIMD,
-        tabledata "Object Maint. Schedule TPZS" = R,
-        tabledata "Object Norm TPZS" = R,
-        tabledata "Object Template TPZS" = R,
-        tabledata "Object TPZS" = RM;
+        tabledata "Contr. Template Header CBLC" = R,
+        tabledata "Contract Norm CBLC" = R,
+        tabledata "Maint. Sched. Templ. Hdr. CBLC" = RIM,
+        tabledata "Maint. Sched. Templ. Line CBLC" = RI,
+        tabledata "Maint. Template Norm CBLC" = RIMD,
+        tabledata "Object Maint. Schedule CBLC" = R,
+        tabledata "Object Norm CBLC" = R,
+        tabledata "Object Template CBLC" = R,
+        tabledata "Object CBLC" = RM;
 
     var
         Assert: Codeunit Assert;
         LibraryRandom: Codeunit "Library - Random";
         LibraryRandomLIB: Codeunit "Library - Random LIB";
 
-    procedure CreateMaintenanceTemplate(var MaintSchedTemplHdrTPZS: Record "Maint. Sched. Templ. Hdr. TPZS"; ScheduleCalcTypeTPZS: Enum "Schedule Calc. Type TPZS")
+    procedure CreateMaintenanceTemplate(var MaintSchedTemplHdrCBLC: Record "Maint. Sched. Templ. Hdr. CBLC"; ScheduleCalcTypeCBLC: Enum "Schedule Calc. Type CBLC")
     begin
-        MaintSchedTemplHdrTPZS.Init();
-        MaintSchedTemplHdrTPZS."No." := '';
-        MaintSchedTemplHdrTPZS.Insert(true);
-        MaintSchedTemplHdrTPZS.TestField("No.");
-        MaintSchedTemplHdrTPZS.Validate("Schedule Calc. Type", ScheduleCalcTypeTPZS);
-        MaintSchedTemplHdrTPZS.Validate(Description, Format(ScheduleCalcTypeTPZS));
-        MaintSchedTemplHdrTPZS.Modify(true);
+        MaintSchedTemplHdrCBLC.Init();
+        MaintSchedTemplHdrCBLC."No." := '';
+        MaintSchedTemplHdrCBLC.Insert(true);
+        MaintSchedTemplHdrCBLC.TestField("No.");
+        MaintSchedTemplHdrCBLC.Validate("Schedule Calc. Type", ScheduleCalcTypeCBLC);
+        MaintSchedTemplHdrCBLC.Validate(Description, Format(ScheduleCalcTypeCBLC));
+        MaintSchedTemplHdrCBLC.Modify(true);
     end;
 
-    procedure CreateMaintenanceTemplateWithLines(var MaintSchedTemplHdrTPZS: Record "Maint. Sched. Templ. Hdr. TPZS"; ScheduleCalcTypeTPZS: Enum "Schedule Calc. Type TPZS")
+    procedure CreateMaintenanceTemplateWithLines(var MaintSchedTemplHdrCBLC: Record "Maint. Sched. Templ. Hdr. CBLC"; ScheduleCalcTypeCBLC: Enum "Schedule Calc. Type CBLC")
     begin
-        CreateMaintenanceTemplateWithLines(MaintSchedTemplHdrTPZS, ScheduleCalcTypeTPZS, '', 0);
+        CreateMaintenanceTemplateWithLines(MaintSchedTemplHdrCBLC, ScheduleCalcTypeCBLC, '', 0);
     end;
 
-    procedure CreateMaintenanceTemplateWithLines(var MaintSchedTemplHdrTPZS: Record "Maint. Sched. Templ. Hdr. TPZS"; ScheduleCalcTypeTPZS: Enum "Schedule Calc. Type TPZS"; ItemNo: Code[20]; LinesToCreate: Integer)
+    procedure CreateMaintenanceTemplateWithLines(var MaintSchedTemplHdrCBLC: Record "Maint. Sched. Templ. Hdr. CBLC"; ScheduleCalcTypeCBLC: Enum "Schedule Calc. Type CBLC"; ItemNo: Code[20]; LinesToCreate: Integer)
     var
-        MaintSchedTemplLineTPZS: Record "Maint. Sched. Templ. Line TPZS";
+        MaintSchedTemplLineCBLC: Record "Maint. Sched. Templ. Line CBLC";
         DevMax: DateFormula;
         DevMin: DateFormula;
         Periodicity: DateFormula;
@@ -43,7 +43,7 @@ codeunit 83965 "Library - Maintenance LIB"
         DevMinTok: Label '<-1M>', Locked = true;
         YearTok: Label '<+%1Y>', Comment = '%1=Year', Locked = true;
     begin
-        CreateMaintenanceTemplate(MaintSchedTemplHdrTPZS, ScheduleCalcTypeTPZS);
+        CreateMaintenanceTemplate(MaintSchedTemplHdrCBLC, ScheduleCalcTypeCBLC);
 
         if LinesToCreate = 0 then
             LinesToCreate := LibraryRandom.RandIntInRange(4, 10);
@@ -52,104 +52,104 @@ codeunit 83965 "Library - Maintenance LIB"
             Evaluate(Periodicity, StrSubstNo(YearTok, I));
             Evaluate(DevMin, DevMinTok);
             Evaluate(DevMax, DevMaxTok);
-            CreateMaintenanceTemplateLine(MaintSchedTemplHdrTPZS, MaintSchedTemplLineTPZS, ItemNo, Periodicity, DevMin, DevMax);
+            CreateMaintenanceTemplateLine(MaintSchedTemplHdrCBLC, MaintSchedTemplLineCBLC, ItemNo, Periodicity, DevMin, DevMax);
         end;
     end;
 
-    procedure CreateMaintenanceTemplateLine(var MaintSchedTemplHdrTPZS: Record "Maint. Sched. Templ. Hdr. TPZS"; var MaintSchedTemplLineTPZS: Record "Maint. Sched. Templ. Line TPZS")
+    procedure CreateMaintenanceTemplateLine(var MaintSchedTemplHdrCBLC: Record "Maint. Sched. Templ. Hdr. CBLC"; var MaintSchedTemplLineCBLC: Record "Maint. Sched. Templ. Line CBLC")
     var
         EmptyDF: DateFormula;
     begin
-        CreateMaintenanceTemplateLine(MaintSchedTemplHdrTPZS, MaintSchedTemplLineTPZS, '', EmptyDF, EmptyDF, EmptyDF);
+        CreateMaintenanceTemplateLine(MaintSchedTemplHdrCBLC, MaintSchedTemplLineCBLC, '', EmptyDF, EmptyDF, EmptyDF);
     end;
 
-    procedure CreateMaintenanceTemplateLine(var MaintSchedTemplHdrTPZS: Record "Maint. Sched. Templ. Hdr. TPZS"; var MaintSchedTemplLineTPZS: Record "Maint. Sched. Templ. Line TPZS"; ItemNo: Code[20]; Periodicity: DateFormula; DevMinDate: DateFormula; DevMaxDate: DateFormula)
+    procedure CreateMaintenanceTemplateLine(var MaintSchedTemplHdrCBLC: Record "Maint. Sched. Templ. Hdr. CBLC"; var MaintSchedTemplLineCBLC: Record "Maint. Sched. Templ. Line CBLC"; ItemNo: Code[20]; Periodicity: DateFormula; DevMinDate: DateFormula; DevMaxDate: DateFormula)
     begin
-        MaintSchedTemplHdrTPZS.TestField("No.");
+        MaintSchedTemplHdrCBLC.TestField("No.");
 
-        MaintSchedTemplLineTPZS.Init();
-        MaintSchedTemplLineTPZS.Validate("Maint. Template No.", MaintSchedTemplHdrTPZS."No.");
-        MaintSchedTemplLineTPZS.Validate("Line No.", CreateNewMaintenanceTemplateLineNo(MaintSchedTemplHdrTPZS));
+        MaintSchedTemplLineCBLC.Init();
+        MaintSchedTemplLineCBLC.Validate("Maint. Template No.", MaintSchedTemplHdrCBLC."No.");
+        MaintSchedTemplLineCBLC.Validate("Line No.", CreateNewMaintenanceTemplateLineNo(MaintSchedTemplHdrCBLC));
 
         if ItemNo = '' then
             ItemNo := LibraryRandomLIB.FindItemServiceRandom();
 
         Assert.IsTrue(ItemNo <> '', 'Item No. cannot be empty.');
 
-        MaintSchedTemplLineTPZS.Validate("Item No. (Service)", ItemNo);
-        MaintSchedTemplLineTPZS.Validate(Periodicity, Periodicity);
-        MaintSchedTemplLineTPZS.Validate("Deviation Min. Date", DevMinDate);
-        MaintSchedTemplLineTPZS.Validate("Deviation Max. Date", DevMaxDate);
-        MaintSchedTemplLineTPZS.Insert(true);
+        MaintSchedTemplLineCBLC.Validate("Item No. (Service)", ItemNo);
+        MaintSchedTemplLineCBLC.Validate(Periodicity, Periodicity);
+        MaintSchedTemplLineCBLC.Validate("Deviation Min. Date", DevMinDate);
+        MaintSchedTemplLineCBLC.Validate("Deviation Max. Date", DevMaxDate);
+        MaintSchedTemplLineCBLC.Insert(true);
     end;
 
-    local procedure CreateNewMaintenanceTemplateLineNo(MaintSchedTemplHdrTPZS: Record "Maint. Sched. Templ. Hdr. TPZS") NewLineNo: Integer
+    local procedure CreateNewMaintenanceTemplateLineNo(MaintSchedTemplHdrCBLC: Record "Maint. Sched. Templ. Hdr. CBLC") NewLineNo: Integer
     var
-        MaintSchedTemplLineTPZS: Record "Maint. Sched. Templ. Line TPZS";
+        MaintSchedTemplLineCBLC: Record "Maint. Sched. Templ. Line CBLC";
     begin
-        MaintSchedTemplLineTPZS.SetRange("Maint. Template No.", MaintSchedTemplHdrTPZS."No.");
-        if MaintSchedTemplLineTPZS.FindLast() then
-            NewLineNo := MaintSchedTemplLineTPZS."Line No.";
+        MaintSchedTemplLineCBLC.SetRange("Maint. Template No.", MaintSchedTemplHdrCBLC."No.");
+        if MaintSchedTemplLineCBLC.FindLast() then
+            NewLineNo := MaintSchedTemplLineCBLC."Line No.";
         NewLineNo += 10000;
     end;
 
     procedure DeleteAllMaintenanceNorms()
     var
-        MaintTemplateNormTPZS: Record "Maint. Template Norm TPZS";
+        MaintTemplateNormCBLC: Record "Maint. Template Norm CBLC";
     begin
-        MaintTemplateNormTPZS.DeleteAll(false);
+        MaintTemplateNormCBLC.DeleteAll(false);
     end;
 
-    procedure CreateMaintenanceNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20]; MaintScheduldeTemplateNo: Code[20])
+    procedure CreateMaintenanceNorm(ObjectNormTypeCBLC: Enum "Object Norm Type CBLC"; ObjectNormNo: Code[20]; RelatedNormTypeCBLC: Enum "Related Norm Type CBLC"; RelatedNormNo: Code[20]; MaintScheduldeTemplateNo: Code[20])
     var
-        MaintTemplateNormTPZS: Record "Maint. Template Norm TPZS";
+        MaintTemplateNormCBLC: Record "Maint. Template Norm CBLC";
     begin
-        MaintTemplateNormTPZS.SetRange("Object Norm Type", ObjectNormTypeTPZS);
-        MaintTemplateNormTPZS.SetRange("Object Norm No.", ObjectNormNo);
-        MaintTemplateNormTPZS.SetRange("Related Norm Type", RelatedNormTypeTPZS);
-        MaintTemplateNormTPZS.SetRange("Related Norm No.", RelatedNormNo);
-        if MaintTemplateNormTPZS.FindFirst() then begin
+        MaintTemplateNormCBLC.SetRange("Object Norm Type", ObjectNormTypeCBLC);
+        MaintTemplateNormCBLC.SetRange("Object Norm No.", ObjectNormNo);
+        MaintTemplateNormCBLC.SetRange("Related Norm Type", RelatedNormTypeCBLC);
+        MaintTemplateNormCBLC.SetRange("Related Norm No.", RelatedNormNo);
+        if MaintTemplateNormCBLC.FindFirst() then begin
             if MaintScheduldeTemplateNo <> '' then begin
-                MaintTemplateNormTPZS.Validate("Maint. Schedule Templ. No.", MaintScheduldeTemplateNo);
-                // MaintTemplateNormTPZS.TestField("Maint. Schedule Templ. No.");
-                MaintTemplateNormTPZS.Modify(true);
+                MaintTemplateNormCBLC.Validate("Maint. Schedule Templ. No.", MaintScheduldeTemplateNo);
+                // MaintTemplateNormCBLC.TestField("Maint. Schedule Templ. No.");
+                MaintTemplateNormCBLC.Modify(true);
             end;
             exit;
         end;
 
-        MaintTemplateNormTPZS.Init();
-        MaintTemplateNormTPZS.Validate("Object Norm Type", ObjectNormTypeTPZS);
-        MaintTemplateNormTPZS.Validate("Object Norm No.", ObjectNormNo);
-        MaintTemplateNormTPZS.Validate("Related Norm Type", RelatedNormTypeTPZS);
-        MaintTemplateNormTPZS.Validate("Related Norm No.", RelatedNormNo);
+        MaintTemplateNormCBLC.Init();
+        MaintTemplateNormCBLC.Validate("Object Norm Type", ObjectNormTypeCBLC);
+        MaintTemplateNormCBLC.Validate("Object Norm No.", ObjectNormNo);
+        MaintTemplateNormCBLC.Validate("Related Norm Type", RelatedNormTypeCBLC);
+        MaintTemplateNormCBLC.Validate("Related Norm No.", RelatedNormNo);
         if MaintScheduldeTemplateNo <> '' then
-            MaintTemplateNormTPZS.Validate("Maint. Schedule Templ. No.", MaintScheduldeTemplateNo);
-        // MaintTemplateNormTPZS.TestField("Maint. Schedule Templ. No.");
-        MaintTemplateNormTPZS.Insert(true);
-        MaintTemplateNormTPZS.TestField("Entry No.");
+            MaintTemplateNormCBLC.Validate("Maint. Schedule Templ. No.", MaintScheduldeTemplateNo);
+        // MaintTemplateNormCBLC.TestField("Maint. Schedule Templ. No.");
+        MaintTemplateNormCBLC.Insert(true);
+        MaintTemplateNormCBLC.TestField("Entry No.");
     end;
 
-    procedure CreateObjectMaintenanceSchedule(var ObjectTPZS: Record "Object TPZS")
+    procedure CreateObjectMaintenanceSchedule(var ObjectCBLC: Record "Object CBLC")
     var
-        CreateObjectMaintMethTPZS: Codeunit "Create Object Maint. Meth TPZS";
+        CreateObjectMaintMethCBLC: Codeunit "Create Object Maint. Meth CBLC";
         MaintScheduleCreated, MaintScheduleUpdated : Boolean;
         ValidOnDate: Date;
     begin
         //Bypass InternalsVisible
         ValidOnDate := Today();
-        CreateObjectMaintMethTPZS.CreateObjectMaintenanceSchedule(ObjectTPZS, MaintScheduleCreated, MaintScheduleUpdated, ValidOnDate, not GuiAllowed());
-        ObjectTPZS.Validate("Maint. Schedule Updated", true);
-        ObjectTPZS.Modify(true);
+        CreateObjectMaintMethCBLC.CreateObjectMaintenanceSchedule(ObjectCBLC, MaintScheduleCreated, MaintScheduleUpdated, ValidOnDate, not GuiAllowed());
+        ObjectCBLC.Validate("Maint. Schedule Updated", true);
+        ObjectCBLC.Modify(true);
     end;
 
     procedure HasMaintTemplateNorms(SourceVariant: Variant): Boolean
     var
-        ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS";
-        ContractNormTPZS: Record "Contract Norm TPZS";
-        MaintSchedTemplHdrTPZS: Record "Maint. Sched. Templ. Hdr. TPZS";
-        MaintTemplateNormTPZS: Record "Maint. Template Norm TPZS";
-        ObjectNormTPZS: Record "Object Norm TPZS";
-        ObjectTemplateTPZS: Record "Object Template TPZS";
+        ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC";
+        ContractNormCBLC: Record "Contract Norm CBLC";
+        MaintSchedTemplHdrCBLC: Record "Maint. Sched. Templ. Hdr. CBLC";
+        MaintTemplateNormCBLC: Record "Maint. Template Norm CBLC";
+        ObjectNormCBLC: Record "Object Norm CBLC";
+        ObjectTemplateCBLC: Record "Object Template CBLC";
         SourceRecordRef: RecordRef;
     begin
         if not SourceVariant.IsRecord() then
@@ -157,61 +157,61 @@ codeunit 83965 "Library - Maintenance LIB"
 
         SourceRecordRef.GetTable(SourceVariant);
         case SourceRecordRef.Number() of
-            Database::"Maint. Sched. Templ. Hdr. TPZS":
+            Database::"Maint. Sched. Templ. Hdr. CBLC":
                 begin
-                    SourceRecordRef.SetTable(MaintSchedTemplHdrTPZS);
-                    MaintSchedTemplHdrTPZS.TestField("No.");
-                    MaintTemplateNormTPZS.SetRange("Maint. Schedule Templ. No.", MaintSchedTemplHdrTPZS."No.");
-                    exit(not MaintTemplateNormTPZS.IsEmpty());
+                    SourceRecordRef.SetTable(MaintSchedTemplHdrCBLC);
+                    MaintSchedTemplHdrCBLC.TestField("No.");
+                    MaintTemplateNormCBLC.SetRange("Maint. Schedule Templ. No.", MaintSchedTemplHdrCBLC."No.");
+                    exit(not MaintTemplateNormCBLC.IsEmpty());
                 end;
-            Database::"Object Template TPZS":
+            Database::"Object Template CBLC":
                 begin
-                    SourceRecordRef.SetTable(ObjectTemplateTPZS);
-                    ObjectTemplateTPZS.TestField("No.");
-                    MaintTemplateNormTPZS.SetRange("Object Norm Type", MaintTemplateNormTPZS."Object Norm Type"::"Object Template");
-                    MaintTemplateNormTPZS.SetRange("Object Norm No.", ObjectTemplateTPZS."No.");
-                    exit(not MaintTemplateNormTPZS.IsEmpty());
+                    SourceRecordRef.SetTable(ObjectTemplateCBLC);
+                    ObjectTemplateCBLC.TestField("No.");
+                    MaintTemplateNormCBLC.SetRange("Object Norm Type", MaintTemplateNormCBLC."Object Norm Type"::"Object Template");
+                    MaintTemplateNormCBLC.SetRange("Object Norm No.", ObjectTemplateCBLC."No.");
+                    exit(not MaintTemplateNormCBLC.IsEmpty());
                 end;
-            Database::"Object Norm TPZS":
+            Database::"Object Norm CBLC":
                 begin
-                    SourceRecordRef.SetTable(ObjectNormTPZS);
-                    ObjectNormTPZS.TestField(Code);
-                    MaintTemplateNormTPZS.SetRange("Object Norm Type", MaintTemplateNormTPZS."Object Norm Type"::"Object Norm");
-                    MaintTemplateNormTPZS.SetRange("Object Norm No.", ObjectNormTPZS.Code);
-                    exit(not MaintTemplateNormTPZS.IsEmpty());
+                    SourceRecordRef.SetTable(ObjectNormCBLC);
+                    ObjectNormCBLC.TestField(Code);
+                    MaintTemplateNormCBLC.SetRange("Object Norm Type", MaintTemplateNormCBLC."Object Norm Type"::"Object Norm");
+                    MaintTemplateNormCBLC.SetRange("Object Norm No.", ObjectNormCBLC.Code);
+                    exit(not MaintTemplateNormCBLC.IsEmpty());
                 end;
-            Database::"Contract Norm TPZS":
+            Database::"Contract Norm CBLC":
                 begin
-                    SourceRecordRef.SetTable(ContractNormTPZS);
-                    ContractNormTPZS.TestField(Code);
-                    MaintTemplateNormTPZS.SetRange("Related Norm Type", MaintTemplateNormTPZS."Related Norm Type"::"Contract Norm");
-                    MaintTemplateNormTPZS.SetRange("Related Norm No.", ContractNormTPZS.Code);
-                    exit(not MaintTemplateNormTPZS.IsEmpty());
+                    SourceRecordRef.SetTable(ContractNormCBLC);
+                    ContractNormCBLC.TestField(Code);
+                    MaintTemplateNormCBLC.SetRange("Related Norm Type", MaintTemplateNormCBLC."Related Norm Type"::"Contract Norm");
+                    MaintTemplateNormCBLC.SetRange("Related Norm No.", ContractNormCBLC.Code);
+                    exit(not MaintTemplateNormCBLC.IsEmpty());
                 end;
-            Database::"Contr. Template Header TPZS":
+            Database::"Contr. Template Header CBLC":
                 begin
-                    SourceRecordRef.SetTable(ContrTemplateHeaderTPZS);
-                    ContrTemplateHeaderTPZS.TestField("No.");
-                    MaintTemplateNormTPZS.SetRange("Related Norm Type", MaintTemplateNormTPZS."Related Norm Type"::"Contract Template");
-                    MaintTemplateNormTPZS.SetRange("Related Norm No.", ContrTemplateHeaderTPZS."No.");
-                    exit(not MaintTemplateNormTPZS.IsEmpty());
+                    SourceRecordRef.SetTable(ContrTemplateHeaderCBLC);
+                    ContrTemplateHeaderCBLC.TestField("No.");
+                    MaintTemplateNormCBLC.SetRange("Related Norm Type", MaintTemplateNormCBLC."Related Norm Type"::"Contract Template");
+                    MaintTemplateNormCBLC.SetRange("Related Norm No.", ContrTemplateHeaderCBLC."No.");
+                    exit(not MaintTemplateNormCBLC.IsEmpty());
                 end;
         end;
     end;
 
-    procedure HasObjectMaintenance(ObjectTPZS: Record "Object TPZS"): Boolean
+    procedure HasObjectMaintenance(ObjectCBLC: Record "Object CBLC"): Boolean
     var
-        ObjectMaintScheduleTPZS: Record "Object Maint. Schedule TPZS";
+        ObjectMaintScheduleCBLC: Record "Object Maint. Schedule CBLC";
     begin
-        ObjectTPZS.TestField("No.");
+        ObjectCBLC.TestField("No.");
 
-        ObjectMaintScheduleTPZS.SetRange("Object No.", ObjectTPZS."No.");
-        exit(not ObjectMaintScheduleTPZS.IsEmpty());
+        ObjectMaintScheduleCBLC.SetRange("Object No.", ObjectCBLC."No.");
+        exit(not ObjectMaintScheduleCBLC.IsEmpty());
     end;
 
-    procedure UpdateObjectMaintSchedules(var ObjectMaintScheduleTPZS: Record "Object Maint. Schedule TPZS")
+    procedure UpdateObjectMaintSchedules(var ObjectMaintScheduleCBLC: Record "Object Maint. Schedule CBLC")
     var
     begin
-        ObjectMaintScheduleTPZS.UpdateObjectMaintSchedules();
+        ObjectMaintScheduleCBLC.UpdateObjectMaintSchedules();
     end;
 }

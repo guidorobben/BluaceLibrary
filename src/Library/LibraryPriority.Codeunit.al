@@ -1,37 +1,42 @@
 codeunit 83967 "Library - Priority LIB"
 {
     Permissions =
-        tabledata "Priority TPZS" = RID;
+        tabledata "Priority CBLC" = RID;
 
     procedure CreatePriority(NewCode: Code[20]; Description: Text[100])
     var
-        PriorityTPZS: Record "Priority TPZS";
+        PriorityCBLC: Record "Priority CBLC";
     begin
-        CreatePriority(PriorityTPZS, NewCode, Description);
+        CreatePriority(PriorityCBLC, NewCode, Description);
     end;
 
     procedure DeleteAllPriorities(UseTrigger: Boolean)
     var
-        PriorityTPZS: Record "Priority TPZS";
+        PriorityCBLC: Record "Priority CBLC";
     begin
-        PriorityTPZS.DeleteAll(UseTrigger);
+        PriorityCBLC.DeleteAll(UseTrigger);
     end;
 
-    procedure CreatePriority(var PriorityTPZS: Record "Priority TPZS"; NewCode: Code[20]; Description: Text[100])
+    procedure CreatePriority(var PriorityCBLC: Record "Priority CBLC"; NewCode: Code[20]; Description: Text[100])
     begin
-        CreatePriority(NewCode, Description, 0, true, false);
+        CreatePriority(PriorityCBLC, NewCode, Description, 0, true, false);
     end;
 
     procedure CreatePriority(NewCode: Code[20]; Description: Text[100]; Duration: Integer; WorkTimeOnly: Boolean; IgnoreObjectAvailability: Boolean)
     var
-        PriorityTPZS: Record "Priority TPZS";
+        PriorityCBLC: Record "Priority CBLC";
     begin
-        PriorityTPZS.Init();
-        PriorityTPZS.Validate(Code, NewCode);
-        PriorityTPZS.Validate(Description, Description);
-        PriorityTPZS.Validate(Duration, Duration);
-        PriorityTPZS.Validate("Work Time Only", WorkTimeOnly);
-        PriorityTPZS.Validate("Ignore Object Availability", IgnoreObjectAvailability);
-        PriorityTPZS.Insert(true);
+        CreatePriority(PriorityCBLC, NewCode, Description, Duration, WorkTimeOnly, IgnoreObjectAvailability);
+    end;
+
+    procedure CreatePriority(var PriorityCBLC: Record "Priority CBLC"; NewCode: Code[20]; Description: Text[100]; Duration: Integer; WorkTimeOnly: Boolean; IgnoreObjectAvailability: Boolean)
+    begin
+        PriorityCBLC.Init();
+        PriorityCBLC.Validate(Code, NewCode);
+        PriorityCBLC.Validate(Description, Description);
+        PriorityCBLC.Validate(Duration, Duration);
+        PriorityCBLC.Validate("Work Time Only", WorkTimeOnly);
+        PriorityCBLC.Validate("Ignore Object Availability", IgnoreObjectAvailability);
+        PriorityCBLC.Insert(true);
     end;
 }

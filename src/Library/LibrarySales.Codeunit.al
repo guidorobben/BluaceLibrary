@@ -6,14 +6,14 @@ codeunit 83990 "Library - Sales LIB"
         tabledata Customer = RM,
         tabledata Item = R,
         tabledata Purchasing = RI,
-        tabledata "Realization Status TPZS" = RI,
+        tabledata "Realization Status CBLC" = RI,
         tabledata "Resource Group" = R,
         tabledata "Return Reason" = RI,
         tabledata "Sales Header" = R,
         tabledata "Sales Line" = R,
-        tabledata "Sales Plan. Line TPZS" = R,
-        tabledata "Sales Realization TPZS" = RIM,
-        tabledata "Sales Rlz. Work Time TPZS" = R,
+        tabledata "Sales Plan. Line CBLC" = R,
+        tabledata "Sales Realization CBLC" = RIM,
+        tabledata "Sales Rlz. Work Time CBLC" = R,
         tabledata "Transaction Type" = RI;
 
     var
@@ -94,7 +94,7 @@ codeunit 83990 "Library - Sales LIB"
 
     procedure CreateSalesLine(var SalesLine: Record "Sales Line"; SalesHeader: Record "Sales Header"; Type: Enum "Sales Line Type"; No: Code[20]; Quantity: Decimal)
     begin
-        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, Type, No, LibraryRandom.RandInt(100));
+        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, Type, No, Quantity);
     end;
 
     procedure CreatesalesLineItem(var SalesLine: Record "Sales Line"; SalesHeader: Record "Sales Header"; ItemNo: Code[20])
@@ -118,18 +118,18 @@ codeunit 83990 "Library - Sales LIB"
 
     procedure LinkSalesLines(var SalesLine: Record "Sales Line"; PlanDocLineNo: Integer)
     var
-        AssignPlanLinkHelperTPZS: Codeunit "Assign Plan. Link Helper TPZS";
+        AssignPlanLinkHelperCBLC: Codeunit "Assign Plan. Link Helper CBLC";
     begin
-        AssignPlanLinkHelperTPZS.ValidatePlanDocumentLineNo(SalesLine, PlanDocLineNo);
-        AssignPlanLinkHelperTPZS.UpdatePlanDocumentLine(SalesLine, PlanDocLineNo);
+        AssignPlanLinkHelperCBLC.ValidatePlanDocumentLineNo(SalesLine, PlanDocLineNo);
+        AssignPlanLinkHelperCBLC.UpdatePlanDocumentLine(SalesLine, PlanDocLineNo);
     end;
 
-    procedure GetSalesPlanLine(var SalesPlanLineTPZS: Record "Sales Plan. Line TPZS"; SalesLine: Record "Sales Line"): Boolean
+    procedure GetSalesPlanLine(var SalesPlanLineCBLC: Record "Sales Plan. Line CBLC"; SalesLine: Record "Sales Line"): Boolean
     begin
-        SalesPlanLineTPZS.SetRange("Document Type", SalesLine."Document Type");
-        SalesPlanLineTPZS.SetRange("Document No.", SalesLine."Document No.");
-        SalesPlanLineTPZS.SetRange("Document Line No.", SalesLine."Line No.");
-        if SalesPlanLineTPZS.FindFirst() then
+        SalesPlanLineCBLC.SetRange("Document Type", SalesLine."Document Type");
+        SalesPlanLineCBLC.SetRange("Document No.", SalesLine."Document No.");
+        SalesPlanLineCBLC.SetRange("Document Line No.", SalesLine."Line No.");
+        if SalesPlanLineCBLC.FindFirst() then
             exit(true);
     end;
 
@@ -170,61 +170,61 @@ codeunit 83990 "Library - Sales LIB"
         LibrarySales.FindFirstSalesLine(SalesLine, SalesHeader);
     end;
 
-    procedure InitSalesRealization(SalesLine: Record "Sales Line"; var SalesRealizationTPZS: Record "Sales Realization TPZS"; ResourceGroup: Record "Resource Group")
+    procedure InitSalesRealization(SalesLine: Record "Sales Line"; var SalesRealizationCBLC: Record "Sales Realization CBLC"; ResourceGroup: Record "Resource Group")
     begin
-        SalesRealizationTPZS.Init();
-        SalesRealizationTPZS.Validate("Document Type", SalesLine."Document Type");
-        SalesRealizationTPZS.Validate("Document No.", SalesLine."Document No.");
-        SalesRealizationTPZS.Validate("Document Line No.", SalesLine."Line No.");
-        SalesRealizationTPZS.Validate("Resource Group No.", ResourceGroup."No.");
+        SalesRealizationCBLC.Init();
+        SalesRealizationCBLC.Validate("Document Type", SalesLine."Document Type");
+        SalesRealizationCBLC.Validate("Document No.", SalesLine."Document No.");
+        SalesRealizationCBLC.Validate("Document Line No.", SalesLine."Line No.");
+        SalesRealizationCBLC.Validate("Resource Group No.", ResourceGroup."No.");
     end;
 
-    procedure SalesRealizationUpdateTravelStartingDateTime(var SalesRealizationTPZS: Record "Sales Realization TPZS"; StartDate: Date; StartTime: Time)
+    procedure SalesRealizationUpdateTravelStartingDateTime(var SalesRealizationCBLC: Record "Sales Realization CBLC"; StartDate: Date; StartTime: Time)
     var
         StartingDateTime: DateTime;
     begin
         StartingDateTime := CreateDateTime(StartDate, StartTime);
-        SalesRealizationUpdateTravelStartingDateTime(SalesRealizationTPZS, StartingDateTime);
+        SalesRealizationUpdateTravelStartingDateTime(SalesRealizationCBLC, StartingDateTime);
     end;
 
-    procedure SalesRealizationUpdateTravelStartingDateTime(var SalesRealizationTPZS: Record "Sales Realization TPZS"; StartingDateTime: DateTime)
+    procedure SalesRealizationUpdateTravelStartingDateTime(var SalesRealizationCBLC: Record "Sales Realization CBLC"; StartingDateTime: DateTime)
     begin
-        SalesRealizationTPZS.Validate("Travel Starting Date Time", StartingDateTime);
+        SalesRealizationCBLC.Validate("Travel Starting Date Time", StartingDateTime);
     end;
 
-    procedure SalesRealizationUpdateTravelEndingDateTime(var SalesRealizationTPZS: Record "Sales Realization TPZS"; EndingDate: Date; EndingTime: Time)
+    procedure SalesRealizationUpdateTravelEndingDateTime(var SalesRealizationCBLC: Record "Sales Realization CBLC"; EndingDate: Date; EndingTime: Time)
     var
         EndingDateTime: DateTime;
     begin
         EndingDateTime := CreateDateTime(EndingDate, EndingTime);
-        SalesRealizationUpdateTravelEndingDateTime(SalesRealizationTPZS, EndingDateTime);
+        SalesRealizationUpdateTravelEndingDateTime(SalesRealizationCBLC, EndingDateTime);
     end;
 
-    procedure SalesRealizationUpdateTravelEndingDateTime(var SalesRealizationTPZS: Record "Sales Realization TPZS"; EndingDateTime: DateTime)
+    procedure SalesRealizationUpdateTravelEndingDateTime(var SalesRealizationCBLC: Record "Sales Realization CBLC"; EndingDateTime: DateTime)
     begin
-        SalesRealizationTPZS.Validate("Travel Ending Date Time", EndingDateTime);
+        SalesRealizationCBLC.Validate("Travel Ending Date Time", EndingDateTime);
     end;
 
-    procedure SalesRealizationUpdateWorkStartingDateTime(var SalesRealizationTPZS: Record "Sales Realization TPZS"; StartDate: Date; StartTime: Time)
+    procedure SalesRealizationUpdateWorkStartingDateTime(var SalesRealizationCBLC: Record "Sales Realization CBLC"; StartDate: Date; StartTime: Time)
     var
         StartingDateTime: DateTime;
     begin
         StartingDateTime := CreateDateTime(StartDate, StartTime);
-        SalesRealizationTPZS.Validate("Work Starting Date Time", StartingDateTime);
+        SalesRealizationCBLC.Validate("Work Starting Date Time", StartingDateTime);
     end;
 
-    procedure SalesRealizationUpdateWorkEndingDateTime(var SalesRealizationTPZS: Record "Sales Realization TPZS"; EndingDate: Date; EndingTime: Time)
+    procedure SalesRealizationUpdateWorkEndingDateTime(var SalesRealizationCBLC: Record "Sales Realization CBLC"; EndingDate: Date; EndingTime: Time)
     var
         EndingDateTime: DateTime;
     begin
         EndingDateTime := CreateDateTime(EndingDate, EndingTime);
-        SalesRealizationTPZS.Validate("Work Ending Date Time", EndingDateTime);
+        SalesRealizationCBLC.Validate("Work Ending Date Time", EndingDateTime);
     end;
 
-    procedure SetSalesRealizationToProcessed(var SalesRealizationTPZS: Record "Sales Realization TPZS")
+    procedure SetSalesRealizationToProcessed(var SalesRealizationCBLC: Record "Sales Realization CBLC")
     begin
-        SalesRealizationTPZS.Validate("Realization Status Code", 'UITGEVOERD'); //TODO is nu hardcoded
-        SalesRealizationTPZS.Modify(true);
+        SalesRealizationCBLC.Validate("Realization Status Code", 'UITGEVOERD'); //TODO is nu hardcoded
+        SalesRealizationCBLC.Modify(true);
     end;
 
     procedure CreateRealizationStatus(Code: Code[10]; Description: Text[100])
@@ -234,18 +234,18 @@ codeunit 83990 "Library - Sales LIB"
 
     procedure CreateRealizationStatus(Code: Code[10]; Description: Text[100]; CreateFollowUpDocumentLine: Boolean; FollowUpDocumentType: Option " ",Quote,Order; NewFollowUpDocumentHeader: Boolean)
     var
-        RealizationStatusTPZS: Record "Realization Status TPZS";
+        RealizationStatusCBLC: Record "Realization Status CBLC";
     begin
-        if RealizationStatusTPZS.Get(Code) then
+        if RealizationStatusCBLC.Get(Code) then
             exit;
 
-        RealizationStatusTPZS.Init();
-        RealizationStatusTPZS.Validate(Code, Code);
-        RealizationStatusTPZS.Validate(Description, Description);
-        RealizationStatusTPZS.Validate("Create Follow-up Document Line", CreateFollowUpDocumentLine);
-        RealizationStatusTPZS.Validate("Follow-Up Document Type", FollowUpDocumentType);
-        RealizationStatusTPZS.Validate("New Follow-up Document Header", NewFollowUpDocumentHeader);
-        RealizationStatusTPZS.Insert(true);
+        RealizationStatusCBLC.Init();
+        RealizationStatusCBLC.Validate(Code, Code);
+        RealizationStatusCBLC.Validate(Description, Description);
+        RealizationStatusCBLC.Validate("Create Follow-up Document Line", CreateFollowUpDocumentLine);
+        RealizationStatusCBLC.Validate("Follow-Up Document Type", FollowUpDocumentType);
+        RealizationStatusCBLC.Validate("New Follow-up Document Header", NewFollowUpDocumentHeader);
+        RealizationStatusCBLC.Insert(true);
     end;
 
     procedure CreateReturnReason(NewCode: Code[10]; Description: Text[100])
@@ -268,34 +268,34 @@ codeunit 83990 "Library - Sales LIB"
         LibraryItem.CreatePurchasingCode(NewCode, Description, DropShipment, SpecialOrder);
     end;
 
-    procedure CreateSalesRealization(var SalesRealizationTPZS: Record "Sales Realization TPZS"; SalesLine: Record "Sales Line"; WorkStartingDateTime: DateTime; WorkEndingDateTime: DateTime; TravelStartingDateTime: DateTime; TravelEndingDateTime: DateTime; TravelDistance: Decimal)
+    procedure CreateSalesRealization(var SalesRealizationCBLC: Record "Sales Realization CBLC"; SalesLine: Record "Sales Line"; WorkStartingDateTime: DateTime; WorkEndingDateTime: DateTime; TravelStartingDateTime: DateTime; TravelEndingDateTime: DateTime; TravelDistance: Decimal)
     var
         ResourceGroup: Record "Resource Group";
-        SalesPlanLineTPZS: Record "Sales Plan. Line TPZS";
+        SalesPlanLineCBLC: Record "Sales Plan. Line CBLC";
         ResourceGroupNo: Code[20];
     begin
-        GetSalesPlanLine(SalesPlanLineTPZS, SalesLine);
-        ResourceGroupNo := SalesPlanLineTPZS."Resource Group No.";
+        GetSalesPlanLine(SalesPlanLineCBLC, SalesLine);
+        ResourceGroupNo := SalesPlanLineCBLC."Resource Group No.";
         ResourceGroup.Get(ResourceGroupNo);
 
-        InitSalesRealization(SalesLine, SalesRealizationTPZS, ResourceGroup);
-        SalesRealizationTPZS.Insert(true);
+        InitSalesRealization(SalesLine, SalesRealizationCBLC, ResourceGroup);
+        SalesRealizationCBLC.Insert(true);
 
         // Work
-        SalesRealizationTPZS.Validate("Work Starting Date Time", WorkStartingDateTime);
-        SalesRealizationTPZS.Validate("Work Ending Date Time", WorkEndingDateTime);
+        SalesRealizationCBLC.Validate("Work Starting Date Time", WorkStartingDateTime);
+        SalesRealizationCBLC.Validate("Work Ending Date Time", WorkEndingDateTime);
 
         // Travel
-        SalesRealizationTPZS.Validate("Travel Starting Date Time", TravelStartingDateTime);
-        SalesRealizationTPZS.Validate("Travel Ending Date Time", TravelEndingDateTime);
+        SalesRealizationCBLC.Validate("Travel Starting Date Time", TravelStartingDateTime);
+        SalesRealizationCBLC.Validate("Travel Ending Date Time", TravelEndingDateTime);
 
         //Distance
         if TravelDistance = -1 then
-            SalesRealizationTPZS.Validate("Travel Distance (km)", LibraryRandom.RandDecInDecimalRange(5, 30, 0))
+            SalesRealizationCBLC.Validate("Travel Distance (km)", LibraryRandom.RandDecInDecimalRange(5, 30, 0))
         else
-            SalesRealizationTPZS.Validate("Travel Distance (km)", TravelDistance);
+            SalesRealizationCBLC.Validate("Travel Distance (km)", TravelDistance);
 
-        SalesRealizationTPZS.Modify(true);
+        SalesRealizationCBLC.Modify(true);
     end;
 
     procedure OpenLastSalesOrder()
@@ -336,20 +336,20 @@ codeunit 83990 "Library - Sales LIB"
         PageManagement.PageRun(SalesHeader);
     end;
 
-    procedure GetSalesRlzWorkTime(SalesRealizationTPZS: Record "Sales Realization TPZS"; var SalesRlzWorkTimeTPZS: Record "Sales Rlz. Work Time TPZS"): Boolean
+    procedure GetSalesRlzWorkTime(SalesRealizationCBLC: Record "Sales Realization CBLC"; var SalesRlzWorkTimeCBLC: Record "Sales Rlz. Work Time CBLC"): Boolean
     begin
-        SalesRlzWorkTimeTPZS.Reset();
-        SalesRlzWorkTimeTPZS.SetRange("Document Type", SalesRealizationTPZS."Document Type");
-        SalesRlzWorkTimeTPZS.SetRange("Document No.", SalesRealizationTPZS."Document No.");
-        SalesRlzWorkTimeTPZS.SetRange("Document Line No.", SalesRealizationTPZS."Document Line No.");
-        SalesRlzWorkTimeTPZS.SetRange("Resource Group No.", SalesRealizationTPZS."Resource Group No.");
-        if SalesRlzWorkTimeTPZS.FindFirst() then
+        SalesRlzWorkTimeCBLC.Reset();
+        SalesRlzWorkTimeCBLC.SetRange("Document Type", SalesRealizationCBLC."Document Type");
+        SalesRlzWorkTimeCBLC.SetRange("Document No.", SalesRealizationCBLC."Document No.");
+        SalesRlzWorkTimeCBLC.SetRange("Document Line No.", SalesRealizationCBLC."Document Line No.");
+        SalesRlzWorkTimeCBLC.SetRange("Resource Group No.", SalesRealizationCBLC."Resource Group No.");
+        if SalesRlzWorkTimeCBLC.FindFirst() then
             exit(true);
     end;
 
-    procedure GetSalesPlanLine(SalesRealizationTPZS: Record "Sales Realization TPZS"; var SalesPlanLineTPZS: Record "Sales Plan. Line TPZS"): Boolean
+    procedure GetSalesPlanLine(SalesRealizationCBLC: Record "Sales Realization CBLC"; var SalesPlanLineCBLC: Record "Sales Plan. Line CBLC"): Boolean
     begin
-        if SalesPlanLineTPZS.Get(SalesRealizationTPZS."Document Type", SalesRealizationTPZS."Document No.", SalesRealizationTPZS."Document Line No.", SalesRealizationTPZS."Resource Group No.") then
+        if SalesPlanLineCBLC.Get(SalesRealizationCBLC."Document Type", SalesRealizationCBLC."Document No.", SalesRealizationCBLC."Document Line No.", SalesRealizationCBLC."Resource Group No.") then
             exit(true);
     end;
 

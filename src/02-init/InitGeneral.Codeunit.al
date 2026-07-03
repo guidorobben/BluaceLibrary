@@ -37,32 +37,33 @@ codeunit 83953 "Init. General LIB"
 
     procedure InitializeTechnicaManagement()
     var
-        ApplicationAreaSetup: Record "Application Area Setup";
-        ApplAreaHelperTPZS: Codeunit "Appl. Area Helper TPZS";
+    // ApplicationAreaSetup: Record "Application Area Setup";
+    // ApplAreaHelperCBLC: Codeunit "Appl. Area Helper CBLC";
     begin
-        ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Area TPZS"), true);
-        ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Refrigerant TPZS"), true);
-        ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Service TPZS"), true);
-        ApplAreaHelperTPZS.RefreshExperienceTier();
+        //FIXME enable TM
+        // ApplAreaHelperCBLC.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Area CBLC"), true);
+        // ApplAreaHelperCBLC.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Refrigerant CBLC"), true);
+        // ApplAreaHelperCBLC.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Service CBLC"), true);
+        // ApplAreaHelperCBLC.RefreshExperienceTier();
     end;
 
     procedure InitializeTimeWindows()
     var
-        TimeWindowTypeTPZS: Enum "Time Window Type TPZS";
+        TimeWindowTypeCBLC: Enum "Time Window Type CBLC";
     begin
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Planning, 'HELE DAG', 080000T, 170000T, true);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Planning, 'MIDDAG', 120000T, 170000T, false);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Planning, 'OCHTEND', 080000T, 120000T, false);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Planning, 'AVOND', 170000T, 210000T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Planning, 'HELE DAG', 080000T, 170000T, true);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Planning, 'MIDDAG', 120000T, 170000T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Planning, 'OCHTEND', 080000T, 120000T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Planning, 'AVOND', 170000T, 210000T, false);
 
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'GESLOTEN', 0T, 0T, false);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'HELE DAG', 080000T, 170000T, true);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'NEGENTOTVIJF', 090000T, 170000T, false);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'RETAIL-AVOND', 180000T, 210000T, false);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'RETAIL-MAANDAG', 130000T, 180000T, false);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'RETAIL-STANDAARD', 093000T, 180000T, false);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'SUPER-STANDAARD', 070000T, 220000T, false);
-        LibraryGeneral.CreateTimeWindow(TimeWindowTypeTPZS::Object, 'SUPER-ZONDAG', 120000T, 170000T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Object, 'GESLOTEN', 0T, 0T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Object, 'HELE DAG', 080000T, 170000T, true);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Object, 'NEGENTOTVIJF', 090000T, 170000T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Object, 'RETAIL-AVOND', 180000T, 210000T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Object, 'RETAIL-MAANDAG', 130000T, 180000T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Object, 'RETAIL-STANDAARD', 093000T, 180000T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Object, 'SUPER-STANDAARD', 070000T, 220000T, false);
+        LibraryGeneral.CreateTimeWindow(TimeWindowTypeCBLC::Object, 'SUPER-ZONDAG', 120000T, 170000T, false);
     end;
 
     procedure InitializeUnitOfMeasures()
@@ -75,7 +76,7 @@ codeunit 83953 "Init. General LIB"
     begin
         LibrarySales.CreateRealizationStatus('NT', 'Niet thuis');
         LibrarySales.CreateRealizationStatus('UITGEVOERD', 'Uitgevoerd');
-        LibrarySales.CreateRealizationStatus('OFFERTE', 'Offerte');
+        LibrarySales.CreateRealizationStatus('OFFERTE', 'Offerte', true, 1, true);
         LibrarySales.CreateRealizationStatus('VERVOLG', 'Vervolg', true, 2, true);
         CommitToDatabase();
     end;
@@ -106,7 +107,7 @@ codeunit 83953 "Init. General LIB"
         InsertRepSelection(ReportUsage::"S.Invoice", '1', 70573, true);
         InsertRepSelection(ReportUsage::"S.Cr.Memo", '1', 70574, true);
         InsertRepSelection(ReportUsage::"S.Work Order", '1', 80100, true);
-        InsertRepSelection(ReportUsage::"Posted Work Order TPZS", '1', 80105, true);
+        InsertRepSelection(ReportUsage::"Posted Work Order CBLC", '1', 80105, true);
     end;
 
     procedure InitializeReportSelectionsReminder()
@@ -169,25 +170,25 @@ codeunit 83953 "Init. General LIB"
             UserSetup.Insert(true);
         end;
 
-        if not UserSetup.Get('ESSENTIAL') then begin
-            UserSetup.Init();
-            UserSetup.Validate("User ID", 'ESSENTIAL');
-            UserSetup.Validate("Salespers./Purch. Code", 'DV');
-            UserSetup.Validate("Unlimited Purchase Approval", true);
-            UserSetup.Validate("Unlimited Sales Approval", true);
-            UserSetup.Validate("Approver ID", 'ADMIN');
-            UserSetup.Insert(true);
-        end;
+        // if not UserSetup.Get('ESSENTIAL') then begin
+        //     UserSetup.Init();
+        //     UserSetup.Validate("User ID", 'ESSENTIAL');
+        //     UserSetup.Validate("Salespers./Purch. Code", 'DV');
+        //     UserSetup.Validate("Unlimited Purchase Approval", true);
+        //     UserSetup.Validate("Unlimited Sales Approval", true);
+        //     UserSetup.Validate("Approver ID", 'ADMIN');
+        //     UserSetup.Insert(true);
+        // end;
 
-        if not UserSetup.Get('TEAMMEMBER') then begin
-            UserSetup.Init();
-            UserSetup.Validate("User ID", 'TEAMMEMBER');
-            UserSetup.Validate("Salespers./Purch. Code", 'FK');
-            UserSetup.Validate("Unlimited Purchase Approval", true);
-            UserSetup.Validate("Unlimited Sales Approval", true);
-            UserSetup.Validate("Approver ID", 'ADMIN');
-            UserSetup.Insert(true);
-        end;
+        // if not UserSetup.Get('TEAMMEMBER') then begin
+        //     UserSetup.Init();
+        //     UserSetup.Validate("User ID", 'TEAMMEMBER');
+        //     UserSetup.Validate("Salespers./Purch. Code", 'FK');
+        //     UserSetup.Validate("Unlimited Purchase Approval", true);
+        //     UserSetup.Validate("Unlimited Sales Approval", true);
+        //     UserSetup.Validate("Approver ID", 'ADMIN');
+        //     UserSetup.Insert(true);
+        // end;
     end;
 
     procedure InitializePaymentMethods()

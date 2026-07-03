@@ -1,7 +1,7 @@
 codeunit 83971 "Library - Sales Segments LIB"
 {
-    procedure OpenSalesSegmentRecords(SalesSegmentTPZS: Record "Sales Segment TPZS")
+    procedure OpenSalesSegmentRecords(SalesSegmentCBLC: Record "Sales Segment CBLC")
     begin
-        SalesSegmentTPZS.OpenSalesSegmentRecords()
+        SalesSegmentCBLC.OpenSalesSegmentRecords()
     end;
 }

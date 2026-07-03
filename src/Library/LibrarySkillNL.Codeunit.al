@@ -1,45 +1,45 @@
 codeunit 83964 "Library - Skill NL LIB"
 {
     Permissions =
-        tabledata "Geo. Skill Org. Skill NBLC" = RID,
-        tabledata "Geo. Skill Post Code NBLC" = RID;
+        tabledata "Geo. Skill Org. Skill YBLC" = RID,
+        tabledata "Geo. Skill Post Code YBLC" = RID;
 
     procedure AddPostCodeRangeToGeographicSkill(SkillCode: Code[10]; PostCodeFrom: Text[6]; PostCodeTo: Text[6])
     var
-        GeoSkillPostCodeNBLC: Record "Geo. Skill Post Code NBLC";
+        GeoSkillPostCodeYBLC: Record "Geo. Skill Post Code YBLC";
     begin
-        GeoSkillPostCodeNBLC.Init();
-        GeoSkillPostCodeNBLC.Validate("Geographic Skill Code", SkillCode);
-        GeoSkillPostCodeNBLC.Validate("Post Code From", PostCodeFrom);
-        GeoSkillPostCodeNBLC.Validate("Post Code To", PostCodeTo);
-        GeoSkillPostCodeNBLC.Insert(true);
+        GeoSkillPostCodeYBLC.Init();
+        GeoSkillPostCodeYBLC.Validate("Geographic Skill Code", SkillCode);
+        GeoSkillPostCodeYBLC.Validate("Post Code From", PostCodeFrom);
+        GeoSkillPostCodeYBLC.Validate("Post Code To", PostCodeTo);
+        GeoSkillPostCodeYBLC.Insert(true);
     end;
 
     procedure DeletePostCodeRangesGeographicSkill(SkillCode: Code[10]; UseTrigger: Boolean)
     var
-        GeoSkillPostCodeNBLC: Record "Geo. Skill Post Code NBLC";
+        GeoSkillPostCodeYBLC: Record "Geo. Skill Post Code YBLC";
     begin
-        GeoSkillPostCodeNBLC.Reset();
-        GeoSkillPostCodeNBLC.SetRange("Geographic Skill Code", SkillCode);
-        GeoSkillPostCodeNBLC.DeleteAll(UseTrigger);
+        GeoSkillPostCodeYBLC.Reset();
+        GeoSkillPostCodeYBLC.SetRange("Geographic Skill Code", SkillCode);
+        GeoSkillPostCodeYBLC.DeleteAll(UseTrigger);
     end;
 
     procedure DeleteAllPostCodeRangesGeographicSkill(UseTrigger: Boolean)
     var
-        GeoSkillPostCodeNBLC: Record "Geo. Skill Post Code NBLC";
+        GeoSkillPostCodeYBLC: Record "Geo. Skill Post Code YBLC";
     begin
-        GeoSkillPostCodeNBLC.Reset();
-        GeoSkillPostCodeNBLC.DeleteAll(UseTrigger);
+        GeoSkillPostCodeYBLC.Reset();
+        GeoSkillPostCodeYBLC.DeleteAll(UseTrigger);
     end;
 
     procedure AddOrganizationSkillToGeographicSkill(GeoSkillCode: Code[10]; OrgSkillCode: Code[10]; UseTrigger: Boolean)
     var
-        GeoSkillOrgSkillNBLC: Record "Geo. Skill Org. Skill NBLC";
+        GeoSkillOrgSkillYBLC: Record "Geo. Skill Org. Skill YBLC";
     begin
-        GeoSkillOrgSkillNBLC.Init();
-        GeoSkillOrgSkillNBLC.Validate("Geographic Skill Code", GeoSkillCode);
-        GeoSkillOrgSkillNBLC.Validate("Organization Skill Code", OrgSkillCode);
-        GeoSkillOrgSkillNBLC.Insert(UseTrigger);
+        GeoSkillOrgSkillYBLC.Init();
+        GeoSkillOrgSkillYBLC.Validate("Geographic Skill Code", GeoSkillCode);
+        GeoSkillOrgSkillYBLC.Validate("Organization Skill Code", OrgSkillCode);
+        GeoSkillOrgSkillYBLC.Insert(UseTrigger);
     end;
 
     procedure AddOrganizationSkillToGeographicSkill(GeoSkillCode: Code[10]; OrgSkillCode: Code[10])
@@ -49,29 +49,29 @@ codeunit 83964 "Library - Skill NL LIB"
 
     procedure DeleteOrganizationSkillsFromGeographicSkill(SkillCode: Code[10]; UseTrigger: Boolean)
     var
-        GeoSkillOrgSkillNBLC: Record "Geo. Skill Org. Skill NBLC";
+        GeoSkillOrgSkillYBLC: Record "Geo. Skill Org. Skill YBLC";
     begin
-        GeoSkillOrgSkillNBLC.Reset();
-        GeoSkillOrgSkillNBLC.SetRange("Geographic Skill Code", SkillCode);
-        GeoSkillOrgSkillNBLC.DeleteAll(UseTrigger);
+        GeoSkillOrgSkillYBLC.Reset();
+        GeoSkillOrgSkillYBLC.SetRange("Geographic Skill Code", SkillCode);
+        GeoSkillOrgSkillYBLC.DeleteAll(UseTrigger);
     end;
 
     procedure DeleteOrganizationSkillFromGeographicSkill(SkillCode: Code[10]; OrgSkillCode: Code[10]; UseTrigger: Boolean)
     var
-        GeoSkillOrgSkillNBLC: Record "Geo. Skill Org. Skill NBLC";
+        GeoSkillOrgSkillYBLC: Record "Geo. Skill Org. Skill YBLC";
     begin
-        GeoSkillOrgSkillNBLC.Reset();
-        GeoSkillOrgSkillNBLC.SetRange("Geographic Skill Code", SkillCode);
-        GeoSkillOrgSkillNBLC.SetRange("Organization Skill Code", OrgSkillCode);
-        if GeoSkillOrgSkillNBLC.FindFirst() then
-            GeoSkillOrgSkillNBLC.Delete(UseTrigger);
+        GeoSkillOrgSkillYBLC.Reset();
+        GeoSkillOrgSkillYBLC.SetRange("Geographic Skill Code", SkillCode);
+        GeoSkillOrgSkillYBLC.SetRange("Organization Skill Code", OrgSkillCode);
+        if GeoSkillOrgSkillYBLC.FindFirst() then
+            GeoSkillOrgSkillYBLC.Delete(UseTrigger);
     end;
 
     procedure DeleteAllGeographicSkillOrganizationSkillS(UseTrigger: Boolean)
     var
-        GeoSkillOrgSkillNBLC: Record "Geo. Skill Org. Skill NBLC";
+        GeoSkillOrgSkillYBLC: Record "Geo. Skill Org. Skill YBLC";
     begin
-        GeoSkillOrgSkillNBLC.Reset();
-        GeoSkillOrgSkillNBLC.DeleteAll(UseTrigger);
+        GeoSkillOrgSkillYBLC.Reset();
+        GeoSkillOrgSkillYBLC.DeleteAll(UseTrigger);
     end;
 }

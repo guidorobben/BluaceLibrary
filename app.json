@@ -1,8 +1,8 @@
 {
-  "id": "6395af54-1fc2-4c58-a706-d25f8dcc01ae",
+  "id": "1bf2cd3e-b474-420e-a868-6f39f18c96e3",
   "name": "Bluace Library",
-  "publisher": "Bluace",
-  "version": "1.0.0.9",
+  "publisher": "Bluace BV",
+  "version": "1.0.0.0",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -18,29 +18,29 @@
       "version": "19.4.35398.36804"
     },
     {
-      "id": "ac7b1986-9d5f-4bfd-a48f-ada7ff4322e5",
+      "id": "a1283dcf-2151-4bb9-b67c-9c0d0034820e",
       "name": "Base Functionality",
-      "publisher": "Bluace",
+      "publisher": "Bluace BV",
       "version": "1.0.0.0"
     },
     {
-      "id": "e08a9ae1-3aa3-47d2-b3af-1d85a470acbb",
+      "id": "12ef662b-30d6-496c-90c8-6a1c7eec25b4",
       "name": "Technical Management",
-      "publisher": "Bluace",
+      "publisher": "Bluace BV",
       "version": "1.0.0.0"
     },
     {
-      "id": "61376b9c-9165-4a8e-a882-b9bcb0482632",
+      "id": "4c37398f-12cb-4bb4-85d0-9c48309ef98a",
       "name": "Technical Management NL",
-      "publisher": "Bluace",
-      "version": "1.0.0.0"
-    },
-    {
-      "id": "38df5671-7cfe-4343-bf3f-f5295b50b8d8",
-      "name": "Extended Time Sheets",
-      "publisher": "Bluace",
+      "publisher": "Bluace BV",
       "version": "1.0.0.0"
     }
+    // {
+    //   "id": "38df5671-7cfe-4343-bf3f-f5295b50b8d8",
+    //   "name": "Extended Time Sheets",
+    //   "publisher": "Bluace",
+    //   "version": "1.0.0.0"
+    // }
     // ,
     // {
     //   "id": "a09d0a27-6103-4c90-bcd3-0843f4ff4e78",
@@ -51,8 +51,8 @@
   ],
   "propagateDependencies": true,
   "screenshots": [],
-  "platform": "26.0.0.0",
-  "application": "26.0.0.0",
+  "platform": "28.0.0.0",
+  "application": "28.0.0.0",
   "idRanges": [
     {
       "from": 83950,
@@ -64,7 +64,7 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "15.1",
+  "runtime": "17.0",
   "features": [
     "TranslationFile"
   ],

@@ -1,141 +1,141 @@
 codeunit 83980 "Library - Contract LIB"
 {
     Permissions =
-        tabledata "Contr. Archive Header TPZS" = R,
-        tabledata "Contr. Template Header TPZS" = RIM,
-        tabledata "Contr. Template Service TPZS" = RI,
-        tabledata "Contr. Template UOM TPZS" = RI,
-        tabledata "Contract Header TPZS" = RIM,
-        tabledata "Contract Index TPZS" = RIMD,
-        tabledata "Contract Line TPZS" = RI,
-        tabledata "Contract Norm TPZS" = RI,
-        tabledata "Contract Service TPZS" = RI,
-        tabledata "Contract Setup TPZS" = R,
-        tabledata "Contract Templ. Coverage TPZS" = RI,
-        tabledata "Contract UOM TPZS" = RI,
+        tabledata "Contr. Archive Header CBLC" = R,
+        tabledata "Contr. Template Header CBLC" = RIM,
+        tabledata "Contr. Template Service CBLC" = RI,
+        tabledata "Contr. Template UOM CBLC" = RI,
+        tabledata "Contract Header CBLC" = RIM,
+        tabledata "Contract Index CBLC" = RIMD,
+        tabledata "Contract Line CBLC" = RI,
+        tabledata "Contract Norm CBLC" = RI,
+        tabledata "Contract Service CBLC" = RI,
+        tabledata "Contract Setup CBLC" = R,
+        tabledata "Contract Templ. Coverage CBLC" = RI,
+        tabledata "Contract UOM CBLC" = RI,
         tabledata "Customer Price Group" = RI,
         tabledata "Sales & Receivables Setup" = R;
 
-    procedure CreateContractTemplate(var ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; UnitOfMeasure: Code[10])
+    procedure CreateContractTemplate(var ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; UnitOfMeasure: Code[10])
     begin
-        CreateContractTemplateWithUOM(ContrTemplateHeaderTPZS, UnitOfMeasure, 0);
+        CreateContractTemplateWithUOM(ContrTemplateHeaderCBLC, UnitOfMeasure, 0);
     end;
 
-    procedure CreateContractTemplate(var ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; UnitOfMeasure: Code[10]; QtyPerUoM: Decimal)
+    procedure CreateContractTemplate(var ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; UnitOfMeasure: Code[10]; QtyPerUoM: Decimal)
     begin
-        CreateContractTemplateWithUOM(ContrTemplateHeaderTPZS, UnitOfMeasure, QtyPerUoM);
+        CreateContractTemplateWithUOM(ContrTemplateHeaderCBLC, UnitOfMeasure, QtyPerUoM);
     end;
 
-    procedure CreateContractTemplateWithUOM(var ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; UnitOfMeasure: Code[10]; QtyPerUoM: Decimal)
+    procedure CreateContractTemplateWithUOM(var ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; UnitOfMeasure: Code[10]; QtyPerUoM: Decimal)
     begin
-        ContrTemplateHeaderTPZS.Init();
-        ContrTemplateHeaderTPZS.Insert(true);
-        ContrTemplateHeaderTPZS.TestField("No.");
+        ContrTemplateHeaderCBLC.Init();
+        ContrTemplateHeaderCBLC.Insert(true);
+        ContrTemplateHeaderCBLC.TestField("No.");
 
-        ContrTemplateHeaderTPZS.Description := ContrTemplateHeaderTPZS."No.";
-        CreateContractTemplateUnitofMeasure(ContrTemplateHeaderTPZS, UnitOfMeasure, QtyPerUoM);
-        ContrTemplateHeaderTPZS.Validate("Contract Unit of Measure", UnitOfMeasure);
-        ContrTemplateHeaderTPZS.Modify(true);
+        ContrTemplateHeaderCBLC.Description := ContrTemplateHeaderCBLC."No.";
+        CreateContractTemplateUnitofMeasure(ContrTemplateHeaderCBLC, UnitOfMeasure, QtyPerUoM);
+        ContrTemplateHeaderCBLC.Validate("Contract Unit of Measure", UnitOfMeasure);
+        ContrTemplateHeaderCBLC.Modify(true);
     end;
 
-    procedure CreateContractTemplateUnitofMeasure(ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; UnitOfMeasure: Code[10]; QtyPerUoM: Decimal)
+    procedure CreateContractTemplateUnitofMeasure(ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; UnitOfMeasure: Code[10]; QtyPerUoM: Decimal)
     var
-        ContrTemplateUOMTPZS: Record "Contr. Template UOM TPZS";
+        ContrTemplateUOMCBLC: Record "Contr. Template UOM CBLC";
     begin
-        ContrTemplateUOMTPZS.Init();
-        ContrTemplateUOMTPZS.Validate("Contract Template No.", ContrTemplateHeaderTPZS."No.");
-        ContrTemplateUOMTPZS.Validate(Code, UnitOfMeasure);
+        ContrTemplateUOMCBLC.Init();
+        ContrTemplateUOMCBLC.Validate("Contract Template No.", ContrTemplateHeaderCBLC."No.");
+        ContrTemplateUOMCBLC.Validate(Code, UnitOfMeasure);
         if QtyPerUoM = 0 then
             QtyPerUoM := 1;
-        ContrTemplateUOMTPZS.Validate("Qty. per Unit of Measure", QtyPerUoM);
-        ContrTemplateUOMTPZS.Insert(true);
+        ContrTemplateUOMCBLC.Validate("Qty. per Unit of Measure", QtyPerUoM);
+        ContrTemplateUOMCBLC.Insert(true);
     end;
 
-    procedure CreateContract(var ContractHeaderTPZS: Record "Contract Header TPZS"; SellToCustomerNo: Code[20]; UoMCode: Code[10])
+    procedure CreateContract(var ContractHeaderCBLC: Record "Contract Header CBLC"; SellToCustomerNo: Code[20]; UoMCode: Code[10])
     begin
-        ContractHeaderTPZS.Init();
-        ContractHeaderTPZS.Insert(true);
-        ContractHeaderTPZS.TestField("No.");
+        ContractHeaderCBLC.Init();
+        ContractHeaderCBLC.Insert(true);
+        ContractHeaderCBLC.TestField("No.");
 
-        CreateContractUnitOfMeasure(ContractHeaderTPZS, UoMCode);
-        ContractHeaderTPZS.Validate("Contract Unit of Measure", UoMCode);
-        ContractHeaderTPZS.Validate("Sell-to Customer No.", SellToCustomerNo);
-        ContractHeaderTPZS.Modify(true);
+        CreateContractUnitOfMeasure(ContractHeaderCBLC, UoMCode);
+        ContractHeaderCBLC.Validate("Contract Unit of Measure", UoMCode);
+        ContractHeaderCBLC.Validate("Sell-to Customer No.", SellToCustomerNo);
+        ContractHeaderCBLC.Modify(true);
     end;
 
-    procedure CreateIndexCode(IndexCode: Code[20]; Type: Enum "Contract Index Type TPZS"; Value: Decimal; SkipWhenExist: Boolean)
+    procedure CreateIndexCode(IndexCode: Code[20]; Type: Enum "Contract Index Type CBLC"; Value: Decimal; SkipWhenExist: Boolean)
     var
-        ContractIndexTPZS: Record "Contract Index TPZS";
+        ContractIndexCBLC: Record "Contract Index CBLC";
     begin
         if SkipWhenExist then
-            if ContractIndexTPZS.Get(IndexCode) then
+            if ContractIndexCBLC.Get(IndexCode) then
                 exit;
 
         CreateIndexCode(IndexCode, Type, Value);
     end;
 
-    procedure CreateIndexCode(IndexCode: Code[20]; Type: Enum "Contract Index Type TPZS"; Value: Decimal)
+    procedure CreateIndexCode(IndexCode: Code[20]; Type: Enum "Contract Index Type CBLC"; Value: Decimal)
     var
-        ContractIndexTPZS: Record "Contract Index TPZS";
+        ContractIndexCBLC: Record "Contract Index CBLC";
     begin
-        ContractIndexTPZS.Init();
-        ContractIndexTPZS.Validate(Code, IndexCode);
-        ContractIndexTPZS.Validate("Manual Indexing Type", Type);
-        ContractIndexTPZS.Validate(Value, Value);
-        ContractIndexTPZS.Insert(true);
+        ContractIndexCBLC.Init();
+        ContractIndexCBLC.Validate(Code, IndexCode);
+        ContractIndexCBLC.Validate("Manual Indexing Type", Type);
+        ContractIndexCBLC.Validate(Value, Value);
+        ContractIndexCBLC.Insert(true);
     end;
 
-    procedure UpdateIndexCode(Code: Code[20]; NewType: Enum "Contract Index Type TPZS"; NewValue: Decimal)
+    procedure UpdateIndexCode(Code: Code[20]; NewType: Enum "Contract Index Type CBLC"; NewValue: Decimal)
     var
-        ContractIndexTPZS: Record "Contract Index TPZS";
+        ContractIndexCBLC: Record "Contract Index CBLC";
     begin
-        if not ContractIndexTPZS.Get(Code) then
+        if not ContractIndexCBLC.Get(Code) then
             exit;
 
-        ContractIndexTPZS.Validate("Manual Indexing Type", NewType);
-        ContractIndexTPZS.Validate(Value, NewValue);
-        ContractIndexTPZS.Modify(true);
+        ContractIndexCBLC.Validate("Manual Indexing Type", NewType);
+        ContractIndexCBLC.Validate(Value, NewValue);
+        ContractIndexCBLC.Modify(true);
     end;
 
     procedure DeleteIndexCode(Code: Code[20]; UseTrigger: Boolean)
     var
-        ContractIndexTPZS: Record "Contract Index TPZS";
+        ContractIndexCBLC: Record "Contract Index CBLC";
     begin
-        ContractIndexTPZS.SetRange(Code, Code);
+        ContractIndexCBLC.SetRange(Code, Code);
         if UseTrigger then
-            ContractIndexTPZS.DeleteAll(true)
+            ContractIndexCBLC.DeleteAll(true)
         else
-            ContractIndexTPZS.DeleteAll(false)
+            ContractIndexCBLC.DeleteAll(false)
     end;
 
-    procedure AddContractService(ContractHeaderTPZS: Record "Contract Header TPZS"; ItemCategoryCode: Code[20])
+    procedure AddContractService(ContractHeaderCBLC: Record "Contract Header CBLC"; ItemCategoryCode: Code[20])
     var
-        ContractServiceTPZS: Record "Contract Service TPZS";
+        ContractServiceCBLC: Record "Contract Service CBLC";
     begin
-        if ContractHeaderTPZS."No." = '' then
+        if ContractHeaderCBLC."No." = '' then
             exit;
 
         if ItemCategoryCode = '' then
             exit;
 
-        ContractServiceTPZS.Init();
-        ContractServiceTPZS.Validate("Contract No.", ContractHeaderTPZS."No.");
-        ContractServiceTPZS.Validate("Item Category Code", ItemCategoryCode);
-        ContractServiceTPZS.Insert(true);
+        ContractServiceCBLC.Init();
+        ContractServiceCBLC.Validate("Contract No.", ContractHeaderCBLC."No.");
+        ContractServiceCBLC.Validate("Item Category Code", ItemCategoryCode);
+        ContractServiceCBLC.Insert(true);
     end;
 
     procedure CreateContractNorm(Code: Code[20]; Description: Text[100])
     var
-        ContractNormTPZS: Record "Contract Norm TPZS";
+        ContractNormCBLC: Record "Contract Norm CBLC";
     begin
-        if ContractNormTPZS.Get(Code) then
+        if ContractNormCBLC.Get(Code) then
             exit;
 
-        ContractNormTPZS.Reset();
-        ContractNormTPZS.Init();
-        ContractNormTPZS.Validate(Code, Code);
-        ContractNormTPZS.Validate(Description, Description);
-        ContractNormTPZS.Insert(true);
+        ContractNormCBLC.Reset();
+        ContractNormCBLC.Init();
+        ContractNormCBLC.Validate(Code, Code);
+        ContractNormCBLC.Validate(Description, Description);
+        ContractNormCBLC.Insert(true);
     end;
 
     procedure CreateCustomerPriceGroup(Code: Code[10]; Description: Text[100]; AllowInvoiceDiscount: Boolean; AllowLineDiscount: Boolean)
@@ -150,180 +150,180 @@ codeunit 83980 "Library - Contract LIB"
         CustomerPriceGroup.Insert(true);
     end;
 
-    procedure CreateContractUnitOfMeasure(ContractHeaderTPZS: Record "Contract Header TPZS"; UOMCode: Code[10])
+    procedure CreateContractUnitOfMeasure(ContractHeaderCBLC: Record "Contract Header CBLC"; UOMCode: Code[10])
     var
-        ContractUOMTPZS: Record "Contract UOM TPZS";
+        ContractUOMCBLC: Record "Contract UOM CBLC";
     begin
-        ContractUOMTPZS.Init();
-        ContractUOMTPZS.Validate("Contract No.", ContractHeaderTPZS."No.");
-        ContractUOMTPZS.Validate(Code, UOMCode);
-        ContractUOMTPZS.Validate("Qty. per Unit of Measure", 1);
-        ContractUOMTPZS.Insert(true);
+        ContractUOMCBLC.Init();
+        ContractUOMCBLC.Validate("Contract No.", ContractHeaderCBLC."No.");
+        ContractUOMCBLC.Validate(Code, UOMCode);
+        ContractUOMCBLC.Validate("Qty. per Unit of Measure", 1);
+        ContractUOMCBLC.Insert(true);
     end;
 
-    procedure CreateContractLine(ContractHeaderTPZS: Record "Contract Header TPZS"; var ContractLineTPZS: Record "Contract Line TPZS"; ObjectNo: Code[20]; ItemNo: Code[20]; Quantity: Integer; ManuallyChanged: Boolean; UnitPrice: Decimal; StartingDate: Date; EndingDate: Date)
+    procedure CreateContractLine(ContractHeaderCBLC: Record "Contract Header CBLC"; var ContractLineCBLC: Record "Contract Line CBLC"; ObjectNo: Code[20]; ItemNo: Code[20]; Quantity: Integer; ManuallyChanged: Boolean; UnitPrice: Decimal; StartingDate: Date; EndingDate: Date)
     var
-        LineNoContractLineTPZS: Record "Contract Line TPZS";
+        LineNoContractLineCBLC: Record "Contract Line CBLC";
         LineNo: Integer;
     begin
-        LineNoContractLineTPZS.SetRange("Contract No.", ContractHeaderTPZS."No.");
-        if LineNoContractLineTPZS.FindLast() then
-            LineNo := LineNoContractLineTPZS."Line No.";
+        LineNoContractLineCBLC.SetRange("Contract No.", ContractHeaderCBLC."No.");
+        if LineNoContractLineCBLC.FindLast() then
+            LineNo := LineNoContractLineCBLC."Line No.";
         LineNo += 10000;
 
-        ContractLineTPZS.Init();
-        ContractLineTPZS.Validate("Contract No.", ContractHeaderTPZS."No.");
-        ContractLineTPZS.Validate("Line No.", LineNo);
-        //ContractLineTPZS.Validate(Description, 'Contract Line: ' + Format(LineNo));
+        ContractLineCBLC.Init();
+        ContractLineCBLC.Validate("Contract No.", ContractHeaderCBLC."No.");
+        ContractLineCBLC.Validate("Line No.", LineNo);
+        //ContractLineCBLC.Validate(Description, 'Contract Line: ' + Format(LineNo));
 
         if ObjectNo <> '' then begin
-            ContractLineTPZS.Validate("Object No.", ObjectNo);
-            ContractLineTPZS.TestField("Price Item No.");
+            ContractLineCBLC.Validate("Object No.", ObjectNo);
+            ContractLineCBLC.TestField("Price Item No.");
         end else
-            ContractLineTPZS.Validate("Price Item No.", ItemNo);
+            ContractLineCBLC.Validate("Price Item No.", ItemNo);
 
-        if ContractLineTPZS."Object No." = '' then
-            ContractLineTPZS.Validate(Quantity, Quantity);
+        if ContractLineCBLC."Object No." = '' then
+            ContractLineCBLC.Validate(Quantity, Quantity);
 
         if ManuallyChanged then begin
-            ContractLineTPZS.Validate("Unit Price", UnitPrice);
-            ContractLineTPZS.Validate("Price Manually Changed", true);
+            ContractLineCBLC.Validate("Unit Price", UnitPrice);
+            ContractLineCBLC.Validate("Price Manually Changed", true);
         end;
 
-        ContractLineTPZS.Validate("Starting Date", StartingDate);
-        ContractLineTPZS.Validate("Ending Date", EndingDate);
-        ContractLineTPZS.Insert(true);
+        ContractLineCBLC.Validate("Starting Date", StartingDate);
+        ContractLineCBLC.Validate("Ending Date", EndingDate);
+        ContractLineCBLC.Insert(true);
     end;
 
-    // procedure Send(var ContractHeaderTPZS: Record "Contract Header TPZS")
+    // procedure Send(var ContractHeaderCBLC: Record "Contract Header CBLC")
     // var
-    //     ContrArchiveHeaderTPZS: Record "Contr. Archive Header TPZS";
+    //     ContrArchiveHeaderCBLC: Record "Contr. Archive Header CBLC";
     //     TempSalesHeader: Record "Sales Header" temporary;
-    //     ShipContractsHelperTPZS: Codeunit "Ship Contracts Helper TPZS";
+    //     ShipContractsHelperCBLC: Codeunit "Ship Contracts Helper CBLC";
     //     PostingDate: Date;
     // begin
     //     PostingDate := 20220401D;
 
-    //     //ShipContractsHelperTPZS.InitProgressWindow();
+    //     //ShipContractsHelperCBLC.InitProgressWindow();
 
-    //     ContrArchiveHeaderTPZS.Get(ContractHeaderTPZS."No.", ContractHeaderTPZS.GetLastVersionNo());
-    //     ShipContractsHelperTPZS.CreateContractSalesLines(ContrArchiveHeaderTPZS, PostingDate, TempSalesHeader);
-    //     ShipContractsHelperTPZS.ShipSalesOrders(TempSalesHeader);
+    //     ContrArchiveHeaderCBLC.Get(ContractHeaderCBLC."No.", ContractHeaderCBLC.GetLastVersionNo());
+    //     ShipContractsHelperCBLC.CreateContractSalesLines(ContrArchiveHeaderCBLC, PostingDate, TempSalesHeader);
+    //     ShipContractsHelperCBLC.ShipSalesOrders(TempSalesHeader);
 
-    //     //ShipContractsHelperTPZS.CloseProgressWindow();
+    //     //ShipContractsHelperCBLC.CloseProgressWindow();
     // end;
 
-    procedure ReindexContract(ContractHeaderTPZS: Record "Contract Header TPZS"; IndexDate: Date)
+    procedure ReindexContract(ContractHeaderCBLC: Record "Contract Header CBLC"; IndexDate: Date)
     var
-        ContractIndexingMethTPZS: Codeunit "Contract Indexing Meth TPZS";
+        ContractIndexingMethCBLC: Codeunit "Contract Indexing Meth CBLC";
     begin
-        ContractIndexingMethTPZS.IndexContract(ContractHeaderTPZS, IndexDate);
-        ContractHeaderTPZS."Last Index Date" := IndexDate;
-        ContractHeaderTPZS.Modify(false);
+        ContractIndexingMethCBLC.IndexContract(ContractHeaderCBLC, IndexDate);
+        ContractHeaderCBLC."Last Index Date" := IndexDate;
+        ContractHeaderCBLC.Modify(false);
     end;
 
-    procedure AddContractTemplateService(ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; ItemCategoryCode: Code[20])
+    procedure AddContractTemplateService(ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; ItemCategoryCode: Code[20])
     var
-        ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS";
+        ContrTemplateServiceCBLC: Record "Contr. Template Service CBLC";
     begin
-        AddContractTemplateService(ContrTemplateServiceTPZS, ContrTemplateHeaderTPZS, ItemCategoryCode);
+        AddContractTemplateService(ContrTemplateServiceCBLC, ContrTemplateHeaderCBLC, ItemCategoryCode);
     end;
 
-    procedure AddContractTemplateService(var ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS"; ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; ItemCategoryCode: Code[20])
+    procedure AddContractTemplateService(var ContrTemplateServiceCBLC: Record "Contr. Template Service CBLC"; ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; ItemCategoryCode: Code[20])
     begin
-        ContrTemplateServiceTPZS.Init();
-        ContrTemplateServiceTPZS.Validate("Contract Template No.", ContrTemplateHeaderTPZS."No.");
-        ContrTemplateServiceTPZS.Validate("Item Category Code", ItemCategoryCode);
-        ContrTemplateServiceTPZS.Insert(true);
+        ContrTemplateServiceCBLC.Init();
+        ContrTemplateServiceCBLC.Validate("Contract Template No.", ContrTemplateHeaderCBLC."No.");
+        ContrTemplateServiceCBLC.Validate("Item Category Code", ItemCategoryCode);
+        ContrTemplateServiceCBLC.Insert(true);
     end;
 
-    procedure AddContractTemplateServiceWithCoverageRandom(ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; ItemCategoryCode: Code[20])
+    procedure AddContractTemplateServiceWithCoverageRandom(ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; ItemCategoryCode: Code[20])
     var
-        ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS";
+        ContrTemplateServiceCBLC: Record "Contr. Template Service CBLC";
     begin
-        AddContractTemplateService(ContrTemplateServiceTPZS, ContrTemplateHeaderTPZS, ItemCategoryCode);
-        AddContractTemplateCoverage(ContrTemplateServiceTPZS, Enum::"Contract Coverage Type TPZS"::AllItems, '', 10);
+        AddContractTemplateService(ContrTemplateServiceCBLC, ContrTemplateHeaderCBLC, ItemCategoryCode);
+        AddContractTemplateCoverage(ContrTemplateServiceCBLC, Enum::"Contract Coverage Type CBLC"::AllItems, '', 10);
     end;
 
-    procedure CreateContractTemplateServiceWithCoverageItem(ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS"; ItemCategoryCode: Code[20]; ItemNo: Code[20]; Discount: Decimal)
+    procedure CreateContractTemplateServiceWithCoverageItem(ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC"; ItemCategoryCode: Code[20]; ItemNo: Code[20]; Discount: Decimal)
     var
-        ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS";
+        ContrTemplateServiceCBLC: Record "Contr. Template Service CBLC";
     begin
-        AddContractTemplateService(ContrTemplateServiceTPZS, ContrTemplateHeaderTPZS, ItemCategoryCode);
-        AddContractTemplateCoverage(ContrTemplateServiceTPZS, Enum::"Contract Coverage Type TPZS"::Item, ItemNo, Discount);
+        AddContractTemplateService(ContrTemplateServiceCBLC, ContrTemplateHeaderCBLC, ItemCategoryCode);
+        AddContractTemplateCoverage(ContrTemplateServiceCBLC, Enum::"Contract Coverage Type CBLC"::Item, ItemNo, Discount);
     end;
 
-    procedure AddContractTemplateCoverageItem(ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS"; ItemNo: Code[20]; Discount: Decimal)
+    procedure AddContractTemplateCoverageItem(ContrTemplateServiceCBLC: Record "Contr. Template Service CBLC"; ItemNo: Code[20]; Discount: Decimal)
     begin
-        AddContractTemplateCoverage(ContrTemplateServiceTPZS, Enum::"Contract Coverage Type TPZS"::Item, ItemNo, Discount);
+        AddContractTemplateCoverage(ContrTemplateServiceCBLC, Enum::"Contract Coverage Type CBLC"::Item, ItemNo, Discount);
     end;
 
-    procedure CreateContractTemplateCoverageAllItems(ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS"; Discount: Decimal)
+    procedure CreateContractTemplateCoverageAllItems(ContrTemplateServiceCBLC: Record "Contr. Template Service CBLC"; Discount: Decimal)
     begin
-        AddContractTemplateCoverage(ContrTemplateServiceTPZS, Enum::"Contract Coverage Type TPZS"::AllItems, '', Discount);
+        AddContractTemplateCoverage(ContrTemplateServiceCBLC, Enum::"Contract Coverage Type CBLC"::AllItems, '', Discount);
     end;
 
-    procedure CreateContractTemplateCoverageResource(ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS"; ResourceNo: Code[20]; Discount: Decimal)
+    procedure CreateContractTemplateCoverageResource(ContrTemplateServiceCBLC: Record "Contr. Template Service CBLC"; ResourceNo: Code[20]; Discount: Decimal)
     begin
-        AddContractTemplateCoverage(ContrTemplateServiceTPZS, Enum::"Contract Coverage Type TPZS"::Resource, ResourceNo, Discount);
+        AddContractTemplateCoverage(ContrTemplateServiceCBLC, Enum::"Contract Coverage Type CBLC"::Resource, ResourceNo, Discount);
     end;
 
-    procedure AddContractTemplateCoverage(ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS"; CoverageType: Enum "Contract Coverage Type TPZS"; CoverageNo: Code[20]; Discount: Decimal)
+    procedure AddContractTemplateCoverage(ContrTemplateServiceCBLC: Record "Contr. Template Service CBLC"; CoverageType: Enum "Contract Coverage Type CBLC"; CoverageNo: Code[20]; Discount: Decimal)
     var
-        ContractTemplCoverageTPZS: Record "Contract Templ. Coverage TPZS";
+        ContractTemplCoverageCBLC: Record "Contract Templ. Coverage CBLC";
     begin
-        ContractTemplCoverageTPZS.Init();
-        ContractTemplCoverageTPZS.Validate("Contract Template No.", ContrTemplateServiceTPZS."Contract Template No.");
-        ContractTemplCoverageTPZS.Validate("Item Category Code", ContrTemplateServiceTPZS."Item Category Code");
-        ContractTemplCoverageTPZS.Validate(Type, CoverageType);
-        ContractTemplCoverageTPZS.Validate("No.", CoverageNo);
-        ContractTemplCoverageTPZS.Validate("Discount %", Discount);
-        ContractTemplCoverageTPZS.Insert(true);
+        ContractTemplCoverageCBLC.Init();
+        ContractTemplCoverageCBLC.Validate("Contract Template No.", ContrTemplateServiceCBLC."Contract Template No.");
+        ContractTemplCoverageCBLC.Validate("Item Category Code", ContrTemplateServiceCBLC."Item Category Code");
+        ContractTemplCoverageCBLC.Validate(Type, CoverageType);
+        ContractTemplCoverageCBLC.Validate("No.", CoverageNo);
+        ContractTemplCoverageCBLC.Validate("Discount %", Discount);
+        ContractTemplCoverageCBLC.Insert(true);
     end;
 
-    procedure ApplyContractTemplateOnExistingContract(var ContractHeaderTPZS: Record "Contract Header TPZS"; ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS")
+    procedure ApplyContractTemplateOnExistingContract(var ContractHeaderCBLC: Record "Contract Header CBLC"; ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC")
     var
-        ContractHeaderHelperTPZS: Codeunit "Contract Header Helper TPZS";
+        ContractHeaderHelperCBLC: Codeunit "Contract Header Helper CBLC";
     begin
-        ContractHeaderHelperTPZS.ApplyContractTemplate(ContractHeaderTPZS, ContrTemplateHeaderTPZS);
+        ContractHeaderHelperCBLC.ApplyContractTemplate(ContractHeaderCBLC, ContrTemplateHeaderCBLC);
     end;
 
-    procedure CreateContractFromTemplate(var ContractHeaderTPZS: Record "Contract Header TPZS"; ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS")
+    procedure CreateContractFromTemplate(var ContractHeaderCBLC: Record "Contract Header CBLC"; ContrTemplateHeaderCBLC: Record "Contr. Template Header CBLC")
     begin
-        ContrTemplateHeaderTPZS.TestField("No.");
-        ContractHeaderTPZS.CreateContractFromTemplate(ContrTemplateHeaderTPZS."No.");
+        ContrTemplateHeaderCBLC.TestField("No.");
+        ContractHeaderCBLC.CreateContractFromTemplate(ContrTemplateHeaderCBLC."No.");
     end;
 
-    procedure SendContract(var ContractHeaderTPZS: Record "Contract Header TPZS"; PostingDate: Date; SkipCheckShipmentOnPostingDate: Boolean)
+    procedure SendContract(var ContractHeaderCBLC: Record "Contract Header CBLC"; PostingDate: Date; SkipCheckShipmentOnPostingDate: Boolean)
     var
-        ContrArchiveHeaderTPZS: Record "Contr. Archive Header TPZS";
-        LastContrArchiveHeaderTPZS: Record "Contr. Archive Header TPZS";
-        ContractSetupTPZS: Record "Contract Setup TPZS";
+        ContrArchiveHeaderCBLC: Record "Contr. Archive Header CBLC";
+        LastContrArchiveHeaderCBLC: Record "Contr. Archive Header CBLC";
+        ContractSetupCBLC: Record "Contract Setup CBLC";
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
         TempSalesHeader: Record "Sales Header" temporary;
-        ShipContractsHelperTPZS: Codeunit "Ship Contracts Helper TPZS";
+        ShipContractsHelperCBLC: Codeunit "Ship Contracts Helper CBLC";
     begin
         SalesReceivablesSetup.Get();
-        ContractSetupTPZS.Get();
+        ContractSetupCBLC.Get();
 
-        ShipContractsHelperTPZS.InitProgressWindow();
-        ContrArchiveHeaderTPZS.Get(ContractHeaderTPZS."No.", ContractHeaderTPZS.GetLastVersionNo());
-        ShipContractsHelperTPZS.CreateContractSalesLines(ContrArchiveHeaderTPZS, LastContrArchiveHeaderTPZS, PostingDate, PostingDate, SkipCheckShipmentOnPostingDate, SalesReceivablesSetup, ContractSetupTPZS, TempSalesHeader, not GuiAllowed());
-        ShipContractsHelperTPZS.ShipSalesOrders(TempSalesHeader, not GuiAllowed());
-        ShipContractsHelperTPZS.CloseProgressWindow();
+        ShipContractsHelperCBLC.InitProgressWindow();
+        ContrArchiveHeaderCBLC.Get(ContractHeaderCBLC."No.", ContractHeaderCBLC.GetLastVersionNo());
+        ShipContractsHelperCBLC.CreateContractSalesLines(ContrArchiveHeaderCBLC, LastContrArchiveHeaderCBLC, PostingDate, PostingDate, SkipCheckShipmentOnPostingDate, SalesReceivablesSetup, ContractSetupCBLC, TempSalesHeader, not GuiAllowed());
+        ShipContractsHelperCBLC.ShipSalesOrders(TempSalesHeader, not GuiAllowed());
+        ShipContractsHelperCBLC.CloseProgressWindow();
     end;
 
     procedure RemoveContractLines(ContractNo: Code[20])
     var
-        ContractLineTPZS: Record "Contract Line TPZS";
-        RemoveContrLinesMethTPZS: Codeunit "Remove Contr. Lines Meth TPZS";
+        ContractLineCBLC: Record "Contract Line CBLC";
+        RemoveContrLinesMethCBLC: Codeunit "Remove Contr. Lines Meth CBLC";
     begin
-        ContractLineTPZS.Reset();
-        ContractLineTPZS.SetRange("Contract No.", ContractNo);
-        if ContractLineTPZS.FindSet() then
+        ContractLineCBLC.Reset();
+        ContractLineCBLC.SetRange("Contract No.", ContractNo);
+        if ContractLineCBLC.FindSet() then
             repeat
-                RemoveContrLinesMethTPZS.RemoveContractLines(ContractLineTPZS);
-            until ContractLineTPZS.Next() = 0;
-        RemoveContrLinesMethTPZS.ReleaseContracts();
+                RemoveContrLinesMethCBLC.RemoveContractLines(ContractLineCBLC);
+            until ContractLineCBLC.Next() = 0;
+        RemoveContrLinesMethCBLC.ReleaseContracts();
     end;
 }

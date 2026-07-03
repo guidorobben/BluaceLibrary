@@ -1,8 +1,8 @@
 codeunit 83951 "Init. Object LIB"
 {
     Permissions =
-        tabledata "Object Setup TPZS" = RIM,
-        tabledata "Object Status TPZS" = R;
+        tabledata "Object Setup CBLC" = RIM,
+        tabledata "Object Status CBLC" = R;
 
     var
         LibraryGeneral: Codeunit "Library - General LIB";
@@ -33,70 +33,72 @@ codeunit 83951 "Init. Object LIB"
 
     procedure InitializeObjectSetup()
     var
-        ObjectSetupTPZS: Record "Object Setup TPZS";
-        ObjectStatusTPZS: Record "Object Status TPZS";
+        ObjectSetupCBLC: Record "Object Setup CBLC";
+        ObjectStatusCBLC: Record "Object Status CBLC";
         NoSeriesCode: Code[20];
     begin
-        if not ObjectSetupTPZS.Get() then begin
-            ObjectSetupTPZS.Init();
-            ObjectSetupTPZS.Insert(true);
+        if not ObjectSetupCBLC.Get() then begin
+            ObjectSetupCBLC.Init();
+            ObjectSetupCBLC.Insert(true);
         end;
 
-        if ObjectSetupTPZS."Object Nos." = '' then begin
+        if ObjectSetupCBLC."Object Nos." = '' then begin
             LibraryUtility.CreateNoSeries('OBJECTS', true, false, false);
             LibraryUtility.CreateNoSeriesLine('OBJECTS', 'OBJ00001', 'OBJ99999');
-            ObjectSetupTPZS."Object Nos." := 'OBJECTS';
-            ObjectSetupTPZS.Modify(true);
+            ObjectSetupCBLC."Object Nos." := 'OBJECTS';
+            ObjectSetupCBLC.Modify(true);
         end;
 
-        if ObjectSetupTPZS."Object Template Nos." = '' then begin
+        if ObjectSetupCBLC."Object Template Nos." = '' then begin
             LibraryUtility.CreateNoSeries('OBJTEMPLATE', true, true, false);
             LibraryUtility.CreateNoSeriesLine('OBJTEMPLATE', 'OBJS00001', 'OBJS99999');
-            ObjectSetupTPZS."Object Template Nos." := 'OBJTEMPLATE';
-            ObjectSetupTPZS.Modify(true);
+            ObjectSetupCBLC."Object Template Nos." := 'OBJTEMPLATE';
+            ObjectSetupCBLC.Modify(true);
         end;
 
-        if ObjectSetupTPZS."Sales Quote Nos. (Service)" = '' then begin
+        if ObjectSetupCBLC."Sales Quote Nos. (Service)" = '' then begin
             NoSeriesCode := 'V-OFF-SERVICE';
             if not LibraryGeneral.NoSeriesExists(NoSeriesCode) then begin
                 LibraryUtility.CreateNoSeries(NoSeriesCode, true, false, false);
                 LibraryUtility.CreateNoSeriesLine(NoSeriesCode, 'VOFS000001', 'VOFS999999');
-                ObjectSetupTPZS."Sales Quote Nos. (Service)" := NoSeriesCode;
-                ObjectSetupTPZS.Modify(true);
+                ObjectSetupCBLC."Sales Quote Nos. (Service)" := NoSeriesCode;
+                ObjectSetupCBLC.Modify(true);
             end;
         end;
 
-        if ObjectSetupTPZS."Sales Order Nos. (Service)" = '' then begin
+        if ObjectSetupCBLC."Sales Order Nos. (Service)" = '' then begin
             NoSeriesCode := 'V-ORD-SERVICE';
             if not LibraryGeneral.NoSeriesExists(NoSeriesCode) then begin
                 LibraryUtility.CreateNoSeries(NoSeriesCode, true, false, false);
                 LibraryUtility.CreateNoSeriesLine(NoSeriesCode, 'VORS000001', 'VORSS999999');
-                ObjectSetupTPZS."Sales Order Nos. (Service)" := NoSeriesCode;
-                ObjectSetupTPZS.Modify(true);
+                ObjectSetupCBLC."Sales Order Nos. (Service)" := NoSeriesCode;
+                ObjectSetupCBLC.Modify(true);
             end;
         end;
 
-        if ObjectSetupTPZS."Maint. Sched. Template Nos." = '' then begin
+        if ObjectSetupCBLC."Maint. Sched. Template Nos." = '' then begin
             NoSeriesCode := 'MAINT';
             if not LibraryGeneral.NoSeriesExists(NoSeriesCode) then begin
                 LibraryUtility.CreateNoSeries(NoSeriesCode, true, false, false);
                 LibraryUtility.CreateNoSeriesLine(NoSeriesCode, 'M0000001', 'M999999');
-                ObjectSetupTPZS."Maint. Sched. Template Nos." := NoSeriesCode;
-                ObjectSetupTPZS.Modify(true);
+                ObjectSetupCBLC."Maint. Sched. Template Nos." := NoSeriesCode;
+                ObjectSetupCBLC.Modify(true);
             end;
         end;
 
-        if ObjectSetupTPZS."Replacement Object Status" = '' then begin
-            ObjectSetupTPZS.Validate("Replacement Object Status", 'BEEINDIGD');
-            ObjectSetupTPZS.Modify(true);
+        if ObjectSetupCBLC."Replacement Object Status" = '' then begin
+            ObjectSetupCBLC.Validate("Replacement Object Status", 'BEEINDIGD');
+            ObjectSetupCBLC.Modify(true);
         end;
 
-        if ObjectSetupTPZS."Replacement Object Status" = '' then begin
-            ObjectStatusTPZS.SetRange(Blocked, true);
-            ObjectStatusTPZS.SetRange("End Object Contact/Contract", true);
-            if ObjectStatusTPZS.FindFirst() then; //Its there
-            ObjectSetupTPZS.Validate("Replacement Object Status", ObjectStatusTPZS.Code);
-            ObjectSetupTPZS.Modify(true);
+        if ObjectSetupCBLC."Replacement Object Status" = '' then begin
+            ObjectStatusCBLC.SetRange(Blocked, true);
+            ObjectStatusCBLC.SetRange("End Object Contact/Contract", true);
+            ObjectStatusCBLC.SetLoadFields(Code);
+            if ObjectStatusCBLC.FindFirst() then; //Its there
+
+            ObjectSetupCBLC.Validate("Replacement Object Status", ObjectStatusCBLC.Code);
+            ObjectSetupCBLC.Modify(true);
         end;
 
         InitUTCDateTimes();
@@ -122,37 +124,37 @@ codeunit 83951 "Init. Object LIB"
 
     procedure InitializeMaintTemplateNorm()
     var
-    // ObjectNormTypeTPZS: Enum "Object Norm Type TPZS";
-    // RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
+    // ObjectNormTypeCBLC: Enum "Object Norm Type CBLC";
+    // RelatedNormTypeCBLC: Enum "Related Norm Type CBLC";
     begin
         //TODO Fix
         exit;
-        // LibraryMaintenance.CreateMaintenanceNorm(ObjectNormTypeTPZS::All, '', RelatedNormTypeTPZS::All, '', '');
-        // LibraryMaintenance.CreateMaintenanceNorm(ObjectNormTypeTPZS::All, '', RelatedNormTypeTPZS::"All Contracts", '', '');
+        // LibraryMaintenance.CreateMaintenanceNorm(ObjectNormTypeCBLC::All, '', RelatedNormTypeCBLC::All, '', '');
+        // LibraryMaintenance.CreateMaintenanceNorm(ObjectNormTypeCBLC::All, '', RelatedNormTypeCBLC::"All Contracts", '', '');
     end;
 
     procedure InitUTCDateTimes()
     var
-        ObjectSetupTPZS: Record "Object Setup TPZS";
+        ObjectSetupCBLC: Record "Object Setup CBLC";
         NewDateFormula: DateFormula;
     begin
-        if not ObjectSetupTPZS.Get() then begin
-            ObjectSetupTPZS.Init();
-            ObjectSetupTPZS.Insert(true);
+        if not ObjectSetupCBLC.Get() then begin
+            ObjectSetupCBLC.Init();
+            ObjectSetupCBLC.Insert(true);
         end;
 
-        if ObjectSetupTPZS."UTC to Std. Time (ms)" <> 0 then
+        if ObjectSetupCBLC."UTC to Std. Time (ms)" <> 0 then
             exit;
 
         Evaluate(NewDateFormula, '<+3M-WD7>');
-        ObjectSetupTPZS.Validate("Starting Date Formula DST", NewDateFormula);
-        ObjectSetupTPZS.Validate("Starting Time DST (UTC)", 010000T);
+        ObjectSetupCBLC.Validate("Starting Date Formula DST", NewDateFormula);
+        ObjectSetupCBLC.Validate("Starting Time DST (UTC)", 010000T);
         Evaluate(NewDateFormula, '<+10M-WD7>');
-        ObjectSetupTPZS.Validate("Ending Date Formula DST", NewDateFormula);
-        ObjectSetupTPZS.Validate("Ending Time DST (UTC)", 010000T);
-        ObjectSetupTPZS.Validate("UTC to Std. Time (ms)", 3600000);
-        ObjectSetupTPZS.Validate("UTC to DST (ms)", 7200000);
-        ObjectSetupTPZS.Modify(true);
+        ObjectSetupCBLC.Validate("Ending Date Formula DST", NewDateFormula);
+        ObjectSetupCBLC.Validate("Ending Time DST (UTC)", 010000T);
+        ObjectSetupCBLC.Validate("UTC to Std. Time (ms)", 3600000);
+        ObjectSetupCBLC.Validate("UTC to DST (ms)", 7200000);
+        ObjectSetupCBLC.Modify(true);
     end;
 
     [InternalEvent(false)]
