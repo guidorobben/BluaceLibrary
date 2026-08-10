@@ -20,8 +20,8 @@ codeunit 83962 "Session Manager LIB"
         Session: SessionSettings;
     begin
         Session.Init();
-        Session.LanguageId := LanguageId;
-        Session.LocaleId := LocaleId;
+        Session.LanguageId(LanguageId);
+        Session.LocaleId(LocaleId);
         Session.RequestSessionUpdate(true);
     end;
 
