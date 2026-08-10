@@ -98,7 +98,10 @@ codeunit 83988 "Library - Resource LIB"
         AddWorkTimeWorkType("Work Time Work Type Days TPZS"::"Specific Day", Date, 000000T, 000000T, WorkTypeCode);
     end;
 
-    procedure AddWorkTimeWorkType(Day: Enum "Work Time Work Type Days TPZS"; Date: Date; StartingTime: Time; EndingTime: Time; WorkTypeCode: Code[10])
+    procedure AddWorkTimeWorkType(Day: Enum "Work Time Work Type Days TPZS"; Date: Date;
+                                           StartingTime: Time;
+                                           EndingTime: Time;
+                                           WorkTypeCode: Code[10])
     var
         WorkTimeWorkTypeTPZS: Record "Work Time Work Type TPZS";
     begin

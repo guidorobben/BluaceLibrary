@@ -172,7 +172,9 @@ codeunit 83984 "Library - Item LIB"
         Item.Modify(true);
     end;
 
-    procedure CreateItemPlanningNorm(var Item: Record Item; var ItemPlanningNormTPZS: Record "Item Planning Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20])
+    procedure CreateItemPlanningNorm(var Item: Record Item; var ItemPlanningNormTPZS: Record "Item Planning Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20];
+                                                                                                                                                RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
+                                                                                                                                                RelatedNormNo: Code[20])
     var
     begin
         Item.TestField("No.");
@@ -187,18 +189,25 @@ codeunit 83984 "Library - Item LIB"
         ItemPlanningNormTPZS.Insert(true);
     end;
 
-    procedure CreateItemPlanningNorm(var Item: Record Item; var ItemPlanningNormTPZS: Record "Item Planning Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20]; ResourceGroupNo: Code[20]; UnitOfMeasureCode: Code[10]; Quantity: Decimal)
+    procedure CreateItemPlanningNorm(var Item: Record Item; var ItemPlanningNormTPZS: Record "Item Planning Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20];
+                                                                                                                                                RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
+                                                                                                                                                RelatedNormNo: Code[20];
+                                                                                                                                                ResourceGroupNo: Code[20];
+                                                                                                                                                UnitOfMeasureCode: Code[10];
+                                                                                                                                                Quantity: Decimal)
     begin
         CreateItemPlanningNorm(Item, ItemPlanningNormTPZS, ObjectNormTypeTPZS, ObjectNormNo, RelatedNormTypeTPZS, RelatedNormNo);
-        ItemPlanningNormTPZS.Validate("Unit of Measure Code", UnitOfMeasureCode);
-        ItemPlanningNormTPZS.Modify(true);
+                                                                                                                                                ItemPlanningNormTPZS.Validate("Unit of Measure Code", UnitOfMeasureCode);
+                                                                                                                                                ItemPlanningNormTPZS.Modify(true);
 
-        ItemPlanningNormTPZS.Validate("Resource Group No.", ResourceGroupNo);
-        ItemPlanningNormTPZS.Validate(Quantity, Quantity);
-        ItemPlanningNormTPZS.Modify(true);
+                                                                                                                                                ItemPlanningNormTPZS.Validate("Resource Group No.", ResourceGroupNo);
+                                                                                                                                                ItemPlanningNormTPZS.Validate(Quantity, Quantity);
+                                                                                                                                                ItemPlanningNormTPZS.Modify(true);
     end;
 
-    procedure CreateItemUsageNorm(var Item: Record Item; var ItemUsageNormTPZS: Record "Item Usage Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20])
+    procedure CreateItemUsageNorm(var Item: Record Item; var ItemUsageNormTPZS: Record "Item Usage Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20];
+                                                                                                                                       RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
+                                                                                                                                       RelatedNormNo: Code[20])
     var
     begin
         Item.TestField("No.");
@@ -212,12 +221,16 @@ codeunit 83984 "Library - Item LIB"
         ItemUsageNormTPZS.Insert(true);
     end;
 
-    procedure CreateItemUsageNorm(var Item: Record Item; var ItemUsageNormTPZS: Record "Item Usage Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20]; UsageItemNo: Code[20]; Quantity: Decimal)
+    procedure CreateItemUsageNorm(var Item: Record Item; var ItemUsageNormTPZS: Record "Item Usage Norm TPZS"; ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20];
+                                                                                                                                       RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
+                                                                                                                                       RelatedNormNo: Code[20];
+                                                                                                                                       UsageItemNo: Code[20];
+                                                                                                                                       Quantity: Decimal)
     begin
         CreateItemUsageNorm(Item, ItemUsageNormTPZS, ObjectNormTypeTPZS, ObjectNormNo, RelatedNormTypeTPZS, RelatedNormNo);
-        ItemUsageNormTPZS.Validate("Usage Item No.", UsageItemNo);
-        ItemUsageNormTPZS.Validate(Quantity, Quantity);
-        ItemUsageNormTPZS.Modify(true);
+                                                                                                                                       ItemUsageNormTPZS.Validate("Usage Item No.", UsageItemNo);
+                                                                                                                                       ItemUsageNormTPZS.Validate(Quantity, Quantity);
+                                                                                                                                       ItemUsageNormTPZS.Modify(true);
     end;
 
     procedure DeleteAllItemPlanningNorms(ItemNo: Code[20]; UseTrigger: Boolean)
@@ -278,8 +291,8 @@ codeunit 83984 "Library - Item LIB"
         LibraryItemLIB: Codeunit "Library - Item LIB";
         ItemNo: Code[20];
         ObjectNormTypeTPZS: Enum "Object Norm Type TPZS";
-        RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
-        I: Integer;
+                                RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
+                                I: Integer;
     begin
         ContractSetupTPZS.Get();
         ContractSetupTPZS.TestField("Item Category Service");

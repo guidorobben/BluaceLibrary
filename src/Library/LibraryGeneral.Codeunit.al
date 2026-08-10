@@ -8,7 +8,10 @@ codeunit 83957 "Library - General LIB"
         tabledata "Unit of Measure" = ri,
         tabledata "Work Type" = ri;
 
-    procedure CreateTimeWindow(TimeWindowType: Enum "Time Window Type TPZS"; Code: Code[20]; StartingTime: Time; EndingTime: Time; IsDefault: Boolean)
+    procedure CreateTimeWindow(TimeWindowType: Enum "Time Window Type TPZS"; Code: Code[20];
+                                                   StartingTime: Time;
+                                                   EndingTime: Time;
+                                                   IsDefault: Boolean)
     var
         TimeWindowTPZS: Record "Time Window TPZS";
     begin
@@ -81,7 +84,9 @@ codeunit 83957 "Library - General LIB"
         exit(NoSeries.Get(NoSeriesCode));
     end;
 
-    procedure CreatePaymentMethod(Code: Code[10]; Description: Text[100]; BalAccountType: Enum "Payment Balance Account Type"; BalAccountNo: Code[20]; DirectDebit: Boolean; DirectDebitPmtTermsCode: Code[10])
+    procedure CreatePaymentMethod(Code: Code[10]; Description: Text[100]; BalAccountType: Enum "Payment Balance Account Type"; BalAccountNo: Code[20];
+                                                                                              DirectDebit: Boolean;
+                                                                                              DirectDebitPmtTermsCode: Code[10])
     var
         PaymentMethod: Record "Payment Method";
     begin

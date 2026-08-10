@@ -1,6 +1,6 @@
 codeunit 83961 "Init Object TM-NL LIB"
 {
-    Permissions = 
+    Permissions =
         tabledata "Object Setup TPZS" = rm,
         tabledata "Post Code Serv. Setup NBLC" = rim;
 
@@ -33,26 +33,26 @@ codeunit 83961 "Init Object TM-NL LIB"
         if not PostCodeServSetupNBLC.Get() then
             InsertIfNotExists();
 
-        PostCodeServSetupBluace();
+        // PostCodeServSetupBluace();
     end;
 
-    procedure PostCodeServSetupBluace()
-    var
-        PostCodeServSetupNBLC: Record "Post Code Serv. Setup NBLC";
-    begin
-        PostCodeServSetupNBLC.Get();
-        PostCodeServSetupNBLC.Validate(Type, PostCodeServSetupNBLC.Type::Bluace);
-        PostCodeServSetupNBLC.Validate("API Key", 'M4%f8-oZcoO9/|/i^[NN0XDwRlvLP=');
-        PostCodeServSetupNBLC.Validate(Endpoint, 'https://bluace-addresscheck-dev.azurewebsites.net/AddressCheck');
-        PostCodeServSetupNBLC.Modify(true);
-    end;
+    // procedure PostCodeServSetupBluace()
+    // var
+    //     PostCodeServSetupNBLC: Record "Post Code Serv. Setup NBLC";
+    // begin
+    //     PostCodeServSetupNBLC.Get();
+    //     PostCodeServSetupNBLC.Validate(Type, PostCodeServSetupNBLC.Type::Bluace);
+    //     PostCodeServSetupNBLC.Validate("API Key", 'M4%f8-oZcoO9/|/i^[NN0XDwRlvLP=');
+    //     PostCodeServSetupNBLC.Validate(Endpoint, 'https://bluace-addresscheck-dev.azurewebsites.net/AddressCheck');
+    //     PostCodeServSetupNBLC.Modify(true);
+    // end;
 
     procedure PostCodeServSetupPostNL()
     var
         PostCodeServSetupNBLC: Record "Post Code Serv. Setup NBLC";
     begin
         PostCodeServSetupNBLC.Get();
-        PostCodeServSetupNBLC.Validate(Type, PostCodeServSetupNBLC.Type::PostNL);
+        // PostCodeServSetupNBLC.Validate(Type, PostCodeServSetupNBLC.Type::PostNL);
         PostCodeServSetupNBLC.Validate("API Key", 'D1JIlqt0fim4oDPoiFYvAs7SrAaVogv7');
         PostCodeServSetupNBLC.Validate(Endpoint, 'https://api.postnl.nl/v4/address/netherlands');
         PostCodeServSetupNBLC.Modify(true);

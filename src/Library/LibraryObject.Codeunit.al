@@ -359,7 +359,8 @@ codeunit 83983 "Library - Object LIB"
         ObjectNormTPZS.Insert(true);
     end;
 
-    procedure CreateItemPlanningNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormCode: Code[20]; ItemNo: Code[20])
+    procedure CreateItemPlanningNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormCode: Code[20];
+                                                             ItemNo: Code[20])
     var
         ItemPlanningNormTPZS: Record "Item Planning Norm TPZS";
     begin
@@ -370,7 +371,8 @@ codeunit 83983 "Library - Object LIB"
         ItemPlanningNormTPZS.Insert(true);
     end;
 
-    procedure CreateItemUsageNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormCode: Code[20]; ItemNo: Code[20])
+    procedure CreateItemUsageNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormCode: Code[20];
+                                                          ItemNo: Code[20])
     var
         ItemUsageNormTPZS: Record "Item Usage Norm TPZS";
     begin

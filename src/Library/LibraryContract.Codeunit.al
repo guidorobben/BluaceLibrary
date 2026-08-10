@@ -268,7 +268,8 @@ codeunit 83980 "Library - Contract LIB"
         AddContractTemplateCoverage(ContrTemplateServiceTPZS, Enum::"Contract Coverage Type TPZS"::Resource, ResourceNo, Discount);
     end;
 
-    procedure AddContractTemplateCoverage(ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS"; CoverageType: Enum "Contract Coverage Type TPZS"; CoverageNo: Code[20]; Discount: Decimal)
+    procedure AddContractTemplateCoverage(ContrTemplateServiceTPZS: Record "Contr. Template Service TPZS"; CoverageType: Enum "Contract Coverage Type TPZS"; CoverageNo: Code[20];
+                                                                                                                             Discount: Decimal)
     var
         ContractTemplCoverageTPZS: Record "Contract Templ. Coverage TPZS";
     begin

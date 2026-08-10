@@ -32,7 +32,8 @@ codeunit 83965 "Library - Maintenance LIB"
         CreateMaintenanceTemplateWithLines(MaintSchedTemplHdrTPZS, ScheduleCalcTypeTPZS, '', 0);
     end;
 
-    procedure CreateMaintenanceTemplateWithLines(var MaintSchedTemplHdrTPZS: Record "Maint. Sched. Templ. Hdr. TPZS"; ScheduleCalcTypeTPZS: Enum "Schedule Calc. Type TPZS"; ItemNo: Code[20]; LinesToCreate: Integer)
+    procedure CreateMaintenanceTemplateWithLines(var MaintSchedTemplHdrTPZS: Record "Maint. Sched. Templ. Hdr. TPZS"; ScheduleCalcTypeTPZS: Enum "Schedule Calc. Type TPZS"; ItemNo: Code[20];
+                                                                                                                                                LinesToCreate: Integer)
     var
         MaintSchedTemplLineTPZS: Record "Maint. Sched. Templ. Line TPZS";
         DevMax: DateFormula;
@@ -100,7 +101,10 @@ codeunit 83965 "Library - Maintenance LIB"
         MaintTemplateNormTPZS.DeleteAll(false);
     end;
 
-    procedure CreateMaintenanceNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20]; RelatedNormTypeTPZS: Enum "Related Norm Type TPZS"; RelatedNormNo: Code[20]; MaintScheduldeTemplateNo: Code[20])
+    procedure CreateMaintenanceNorm(ObjectNormTypeTPZS: Enum "Object Norm Type TPZS"; ObjectNormNo: Code[20];
+                                                            RelatedNormTypeTPZS: Enum "Related Norm Type TPZS";
+                                                            RelatedNormNo: Code[20];
+                                                            MaintScheduldeTemplateNo: Code[20])
     var
         MaintTemplateNormTPZS: Record "Maint. Template Norm TPZS";
     begin

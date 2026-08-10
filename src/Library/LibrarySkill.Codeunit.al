@@ -250,7 +250,8 @@ codeunit 83982 "Library - Skill LIB"
         ResourceSkill.DeleteAll(true);
     end;
 
-    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillTypeTPZS: Enum "Skill Type TPZS")
+    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20];
+                                             SkillTypeTPZS: Enum "Skill Type TPZS")
     var
         ResourceSkill: Record "Resource Skill";
     begin
@@ -323,7 +324,8 @@ codeunit 83982 "Library - Skill LIB"
 
     // end;
 
-    procedure ResourceSkillExist(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillCode: Code[10]): Boolean
+    procedure ResourceSkillExist(Type: Enum "Resource Skill Type"; SourceNo: Code[20];
+                                           SkillCode: Code[10]): Boolean
     var
         ResourceSkillHelperTPZS: Codeunit "Resource Skill Helper TPZS";
     begin
@@ -591,7 +593,8 @@ codeunit 83982 "Library - Skill LIB"
         exit(AlreadyHasSkillType(Database::"Contr. Template Header TPZS", ContrTemplateHeaderTPZS.SystemId, SkillTypeTPZS, false, EmptyGuid));
     end;
 
-    local procedure AlreadyHasSkillType(TableId: Integer; SourceSystemId: Guid; SkillType: Enum "Skill Type TPZS"; ShowError: Boolean; CurrentSystemId: Guid) SkillExist: Boolean
+    local procedure AlreadyHasSkillType(TableId: Integer; SourceSystemId: Guid; SkillType: Enum "Skill Type TPZS"; ShowError: Boolean;
+                                                                                               CurrentSystemId: Guid) SkillExist: Boolean
     var
         SkillItemLineTPZS: Record "Skill Item Line TPZS";
         SkillTypeAlreadyExistErr: Label 'A skill type of type %1 ''%2'' is already selected. Only one skill of the type %1 is allowed.', Comment = '%1=Skill Type, %2=Skill Code';
@@ -625,7 +628,9 @@ codeunit 83982 "Library - Skill LIB"
         exit(SkillItemLineTPZS.Count());
     end;
 
-    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillTypeTPZS: Enum "Skill Type TPZS"; DoNotUpdateSource: Boolean)
+    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20];
+                                             SkillTypeTPZS: Enum "Skill Type TPZS";
+                                             DoNotUpdateSource: Boolean)
     var
         ResourceSkillHelperTPZS: Codeunit "Resource Skill Helper TPZS";
     begin
