@@ -2,7 +2,7 @@
   "id": "6395af54-1fc2-4c58-a706-d25f8dcc01ae",
   "name": "Bluace Library",
   "publisher": "Bluace",
-  "version": "1.0.0.9",
+  "version": "1.0.0.11",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -34,13 +34,13 @@
       "name": "Technical Management NL",
       "publisher": "Bluace",
       "version": "1.0.0.0"
-    },
-    {
-      "id": "38df5671-7cfe-4343-bf3f-f5295b50b8d8",
-      "name": "Extended Time Sheets",
-      "publisher": "Bluace",
-      "version": "1.0.0.0"
     }
+    // {
+    //   "id": "38df5671-7cfe-4343-bf3f-f5295b50b8d8",
+    //   "name": "Extended Time Sheets",
+    //   "publisher": "Bluace",
+    //   "version": "1.0.0.0"
+    // }
     // ,
     // {
     //   "id": "a09d0a27-6103-4c90-bcd3-0843f4ff4e78",
