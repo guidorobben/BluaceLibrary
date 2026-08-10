@@ -3,9 +3,13 @@
     "al.enableCodeAnalysis": true,
     "al.codeAnalyzers": [
         "${CodeCop}",
-        "${UICop}",
         "${PerTenantExtensionCop}",
-        "${analyzerFolder}BusinessCentral.LinterCop.dll"
+        "${analyzerFolder}ALCops.ApplicationCop.dll",
+        "${analyzerFolder}ALCops.DocumentationCop.dll",
+        "${analyzerFolder}ALCops.FormattingCop.dll",
+        "${analyzerFolder}ALCops.LinterCop.dll",
+        "${analyzerFolder}ALCops.PlatformCop.dll",
+        "${analyzerFolder}ALCops.Common.dll"
     ],
     "al.ruleSetPath": "rulesets/ruleset.json",
     "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
