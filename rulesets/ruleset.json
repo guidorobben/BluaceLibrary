@@ -1,109 +1,149 @@
 {
     "name": "Debug Ruleset",
     "rules": [
-        {                    
-            "id": "AA0005",                    
+        {
+            "id": "AA0005",
             "action": "warning"
         },
-        {                    
-            "id": "AA0072",                    
-            "action": "Warning"            
-        },
-        {                    
-            "id": "AA0074",                    
+        {
+            "id": "AA0072",
             "action": "Warning"
         },
-        {                    
-            "id": "AA0139",                    
+        {
+            "id": "AA0074",
             "action": "Warning"
         },
-        {                    
-            "id": "AA0181",                    
-            "action": "warning"
-        },
-        {                    
-            "id": "AA0204",                    
+        {
+            "id": "AA0139",
             "action": "Warning"
         },
-        {                    
-            "id": "AA0210",                    
+        {
+            "id": "AA0181",
+            "action": "warning"
+        },
+        {
+            "id": "AA0204",
             "action": "Warning"
         },
-        {                    
-            "id": "AA0214",                    
+        {
+            "id": "AA0210",
+            "action": "Warning"
+        },
+        {
+            "id": "AA0214",
             "action": "warning"
         },
-        {                    
-            "id": "AA0215",                    
+        {
+            "id": "AA0215",
             "action": "warning"
         },
-        {                    
-            "id": "AA0217",                    
+        {
+            "id": "AA0217",
             "action": "warning"
         },
-        {                    
-            "id": "AA0218",                    
-            "action": "None"
-        },
-        {                    
-            "id": "AA0232",                    
-            "action": "warning"
-        },
-        {                    
-            "id": "AA0244",                    
-            "action": "warning"
-        },
-        {                    
-            "id": "AA0470",                    
-            "action": "warning"
-        },
-        {                    
-            "id": "AW0005",                    
-            "action": "warning"
-        },
-        {                    
-            "id": "AW0008",                    
-            "action": "warning"
-        },
-        {                    
-            "id": "PTE0012",                    
+        {
+            "id": "AA0218",
             "action": "None"
         },
         {
-            "id": "LC0002",                    
-            "action": "Warning"            
+            "id": "AA0232",
+            "action": "warning"
         },
         {
-            "id": "LC0010",                    
-            "action": "None"            
+            "id": "AA0244",
+            "action": "warning"
         },
         {
-            "id": "LC0023",                    
-            "action": "None"            
-        },
-        {
-            "id": "LC0045",                    
-            "action": "None"            
-        },
-        {
-            "id": "LC0047",                    
-            "action": "Warning"            
-        },
-        {
-            "id": "LC0084",                    
-            "action": "None"            
-        },
-        { 
-            "id": "LC0088",                    
+            "id": "AA0247",
             "action": "None"
-        },        
-        {
-            "id": "LC0090",                    
-            "action": "None"            
         },
         {
-            "id": "LC0091",                    
-            "action": "Warning"            
+            "id": "AA0470",
+            "action": "warning"
+        },
+        {
+            "id": "AC0019",
+            "action": "None"
+        },
+        {
+            "id": "AC0030",
+            "action": "None"
+        },
+        {
+            "id": "AW0005",
+            "action": "warning"
+        },
+        {
+            "id": "AW0008",
+            "action": "warning"
+        },
+        {
+            "id": "DC0004",
+            "action": "None"
+        },
+        {
+            "id": "DC0007",
+            "action": "None"
+        },
+        {
+            "id": "PTE0012",
+            "action": "None"
+        },
+        {
+            "id": "LC0002",
+            "action": "Warning"
+        },
+        {
+            "id": "LC0010",
+            "action": "None"
+        },
+        {
+            "id": "LC0023",
+            "action": "None"
+        },
+        {
+            "id": "LC0045",
+            "action": "None"
+        },
+        {
+            "id": "LC0047",
+            "action": "Warning"
+        },
+        {
+            "id": "LC0084",
+            "action": "None"
+        },
+        {
+            "id": "LC0088",
+            "action": "None"
+        },
+        {
+            "id": "LC0090",
+            "action": "None"
+        },
+        {
+            "id": "LC0091",
+            "action": "None"
+        },
+        {
+            "id": "LC0092",
+            "action": "None"
+        },
+        {
+            "id": "AC0032",
+            "action": "None"
+        },
+        {
+            "id": "PC0030",
+            "action": "None"
+        },
+        {
+            "id": "PC0037",
+            "action": "None"
+        },
+                {
+            "id": "PC0038",
+            "action": "None"
         }
     ]
 }
