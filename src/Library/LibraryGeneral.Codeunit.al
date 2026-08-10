@@ -1,12 +1,12 @@
 codeunit 83957 "Library - General LIB"
 {
     Permissions =
-        tabledata "Allowed Language" = RI,
-        tabledata "No. Series" = R,
-        tabledata "Payment Method" = RI,
-        tabledata "Time Window TPZS" = RI,
-        tabledata "Unit of Measure" = RI,
-        tabledata "Work Type" = RI;
+        tabledata "Allowed Language" = ri,
+        tabledata "No. Series" = r,
+        tabledata "Payment Method" = ri,
+        tabledata "Time Window TPZS" = ri,
+        tabledata "Unit of Measure" = ri,
+        tabledata "Work Type" = ri;
 
     procedure CreateTimeWindow(TimeWindowType: Enum "Time Window Type TPZS"; Code: Code[20]; StartingTime: Time; EndingTime: Time; IsDefault: Boolean)
     var

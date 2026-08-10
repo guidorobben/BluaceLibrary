@@ -1,10 +1,10 @@
 codeunit 83950 "Init. Contract LIB"
 {
     Permissions =
-        tabledata "Contract Setup TPZS" = RM,
-        tabledata "Customer Price Group" = RD,
-        tabledata "Item Category" = R,
-        tabledata "Unit of Measure" = RI;
+        tabledata "Contract Setup TPZS" = rm,
+        tabledata "Customer Price Group" = rd,
+        tabledata "Item Category" = r,
+        tabledata "Unit of Measure" = ri;
 
     var
         LibraryContract: Codeunit "Library - Contract LIB";
@@ -121,6 +121,7 @@ codeunit 83950 "Init. Contract LIB"
         ContrTemplateHeaderTPZS: Record "Contr. Template Header TPZS";
         ContractSetupTPZS: Record "Contract Setup TPZS";
     begin
+        ContractSetupTPZS.SetLoadFields("Unit of Measure Code Month", "Unit of Measure Code Quarter", "Unit of Measure Code Year");
         ContractSetupTPZS.Get();
 
         Clear(ContrTemplateHeaderTPZS);

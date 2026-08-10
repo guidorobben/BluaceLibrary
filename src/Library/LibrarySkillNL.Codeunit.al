@@ -1,8 +1,8 @@
 codeunit 83964 "Library - Skill NL LIB"
 {
     Permissions =
-        tabledata "Geo. Skill Org. Skill NBLC" = RID,
-        tabledata "Geo. Skill Post Code NBLC" = RID;
+        tabledata "Geo. Skill Org. Skill NBLC" = rid,
+        tabledata "Geo. Skill Post Code NBLC" = rid;
 
     procedure AddPostCodeRangeToGeographicSkill(SkillCode: Code[10]; PostCodeFrom: Text[6]; PostCodeTo: Text[6])
     var

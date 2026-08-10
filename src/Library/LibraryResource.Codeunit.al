@@ -1,16 +1,16 @@
 codeunit 83988 "Library - Resource LIB"
 {
     Permissions =
-        tabledata "General Posting Setup" = R,
-        tabledata "Human Resource Unit of Measure" = RI,
-        tabledata Resource = RIM,
-        tabledata "Resource Group" = RI,
-        tabledata "Resources Setup" = R,
-        tabledata "Resource Unit of Measure" = RIM,
-        tabledata "Unit of Measure" = R,
-        tabledata "VAT Posting Setup" = R,
-        tabledata "Work Time Work Type TPZS" = RI,
-        tabledata "Work Type" = RI;
+        tabledata "General Posting Setup" = r,
+        tabledata "Human Resource Unit of Measure" = ri,
+        tabledata Resource = rim,
+        tabledata "Resource Group" = ri,
+        tabledata "Resources Setup" = r,
+        tabledata "Resource Unit of Measure" = rim,
+        tabledata "Unit of Measure" = r,
+        tabledata "VAT Posting Setup" = r,
+        tabledata "Work Time Work Type TPZS" = ri,
+        tabledata "Work Type" = ri;
 
     var
         LibraryERM: Codeunit "Library - ERM";
@@ -176,7 +176,7 @@ codeunit 83988 "Library - Resource LIB"
         ResourceGroup.Init();
         ResourceGroup.Validate("No.", No);
         ResourceGroup.Validate(Name, Name);
-        ResourceGroup.Validate("Primary TPZS", true);
+        ResourceGroup.Validate("Primary TPZS", Primary);
         ResourceGroup.Insert(true);
     end;
 }

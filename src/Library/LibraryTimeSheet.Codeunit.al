@@ -1,10 +1,10 @@
 codeunit 83986 "Library - Time Sheet LIB"
 {
     Permissions =
-        tabledata Resource = RM,
-        tabledata "Resources Setup" = R,
-        tabledata "Resource Unit of Measure" = RI,
-        tabledata "Time Sheet Header" = R;
+        tabledata Resource = rm,
+        tabledata "Resources Setup" = r,
+        tabledata "Resource Unit of Measure" = ri,
+        tabledata "Time Sheet Header" = r;
 
     var
         LibraryTimeSheet: Codeunit "Library - Time Sheet";

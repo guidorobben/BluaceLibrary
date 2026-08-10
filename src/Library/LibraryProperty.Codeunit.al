@@ -1,12 +1,12 @@
 codeunit 83987 "Library - Property LIB"
 {
     Permissions =
-        tabledata "Object Template TPZS" = R,
-        tabledata "Object TPZS" = R,
-        tabledata "Property Line RBLC" = RID,
-        tabledata "Property Mapping RBLC" = RI,
-        tabledata "Property RBLC" = RI,
-        tabledata "Property Value RBLC" = RI;
+        tabledata "Object Template TPZS" = r,
+        tabledata "Object TPZS" = r,
+        tabledata "Property Line RBLC" = rid,
+        tabledata "Property Mapping RBLC" = ri,
+        tabledata "Property RBLC" = ri,
+        tabledata "Property Value RBLC" = ri;
 
     procedure PropertyExist(TableId: Integer; PropertyCode: Code[20]): Boolean
     var
@@ -37,7 +37,6 @@ codeunit 83987 "Library - Property LIB"
         PropertyValueRBLC: Record "Property Value RBLC";
         NewLineNo: Integer;
     begin
-        PropertyValueRBLC.SetLoadFields("Line No.");
         PropertyValueRBLC.SetRange("Table ID", TableId);
         PropertyValueRBLC.SetRange("Property Code", PropertyCode);
         if PropertyValueRBLC.FindLast() then

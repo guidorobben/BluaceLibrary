@@ -1,9 +1,9 @@
 codeunit 83953 "Init. General LIB"
 {
     Permissions =
-        tabledata "Feature Setup LIB" = RI,
-        tabledata "Report Selections" = RID,
-        tabledata "User Setup" = RI;
+        tabledata "Feature Setup LIB" = ri,
+        tabledata "Report Selections" = rid,
+        tabledata "User Setup" = ri;
 
     var
         LibraryGeneral: Codeunit "Library - General LIB";
@@ -37,13 +37,14 @@ codeunit 83953 "Init. General LIB"
 
     procedure InitializeTechnicaManagement()
     var
-        ApplicationAreaSetup: Record "Application Area Setup";
-        ApplAreaHelperTPZS: Codeunit "Appl. Area Helper TPZS";
+    // ApplicationAreaSetup: Record "Application Area Setup";
+    // ApplAreaHelperTPZS: Codeunit "Appl. Area Helper TPZS";
     begin
-        ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Area TPZS"), true);
-        ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Refrigerant TPZS"), true);
-        ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Service TPZS"), true);
-        ApplAreaHelperTPZS.RefreshExperienceTier();
+        //FIXME enable TM
+        // ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Area TPZS"), true);
+        // ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Refrigerant TPZS"), true);
+        // ApplAreaHelperTPZS.SetAreaEnabled(ApplicationAreaSetup.FieldCaption("Service TPZS"), true);
+        // ApplAreaHelperTPZS.RefreshExperienceTier();
     end;
 
     procedure InitializeTimeWindows()
@@ -75,7 +76,7 @@ codeunit 83953 "Init. General LIB"
     begin
         LibrarySales.CreateRealizationStatus('NT', 'Niet thuis');
         LibrarySales.CreateRealizationStatus('UITGEVOERD', 'Uitgevoerd');
-        LibrarySales.CreateRealizationStatus('OFFERTE', 'Offerte');
+        LibrarySales.CreateRealizationStatus('OFFERTE', 'Offerte', true, 1, true);
         LibrarySales.CreateRealizationStatus('VERVOLG', 'Vervolg', true, 2, true);
         CommitToDatabase();
     end;
@@ -169,25 +170,25 @@ codeunit 83953 "Init. General LIB"
             UserSetup.Insert(true);
         end;
 
-        if not UserSetup.Get('ESSENTIAL') then begin
-            UserSetup.Init();
-            UserSetup.Validate("User ID", 'ESSENTIAL');
-            UserSetup.Validate("Salespers./Purch. Code", 'DV');
-            UserSetup.Validate("Unlimited Purchase Approval", true);
-            UserSetup.Validate("Unlimited Sales Approval", true);
-            UserSetup.Validate("Approver ID", 'ADMIN');
-            UserSetup.Insert(true);
-        end;
+        // if not UserSetup.Get('ESSENTIAL') then begin
+        //     UserSetup.Init();
+        //     UserSetup.Validate("User ID", 'ESSENTIAL');
+        //     UserSetup.Validate("Salespers./Purch. Code", 'DV');
+        //     UserSetup.Validate("Unlimited Purchase Approval", true);
+        //     UserSetup.Validate("Unlimited Sales Approval", true);
+        //     UserSetup.Validate("Approver ID", 'ADMIN');
+        //     UserSetup.Insert(true);
+        // end;
 
-        if not UserSetup.Get('TEAMMEMBER') then begin
-            UserSetup.Init();
-            UserSetup.Validate("User ID", 'TEAMMEMBER');
-            UserSetup.Validate("Salespers./Purch. Code", 'FK');
-            UserSetup.Validate("Unlimited Purchase Approval", true);
-            UserSetup.Validate("Unlimited Sales Approval", true);
-            UserSetup.Validate("Approver ID", 'ADMIN');
-            UserSetup.Insert(true);
-        end;
+        // if not UserSetup.Get('TEAMMEMBER') then begin
+        //     UserSetup.Init();
+        //     UserSetup.Validate("User ID", 'TEAMMEMBER');
+        //     UserSetup.Validate("Salespers./Purch. Code", 'FK');
+        //     UserSetup.Validate("Unlimited Purchase Approval", true);
+        //     UserSetup.Validate("Unlimited Sales Approval", true);
+        //     UserSetup.Validate("Approver ID", 'ADMIN');
+        //     UserSetup.Insert(true);
+        // end;
     end;
 
     procedure InitializePaymentMethods()

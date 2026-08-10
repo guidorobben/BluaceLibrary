@@ -1,20 +1,20 @@
 codeunit 83990 "Library - Sales LIB"
 {
     Permissions =
-        tabledata Contact = R,
-        tabledata "Contact Business Relation" = R,
-        tabledata Customer = RM,
-        tabledata Item = R,
-        tabledata Purchasing = RI,
-        tabledata "Realization Status TPZS" = RI,
-        tabledata "Resource Group" = R,
-        tabledata "Return Reason" = RI,
-        tabledata "Sales Header" = R,
-        tabledata "Sales Line" = R,
-        tabledata "Sales Plan. Line TPZS" = R,
-        tabledata "Sales Realization TPZS" = RIM,
-        tabledata "Sales Rlz. Work Time TPZS" = R,
-        tabledata "Transaction Type" = RI;
+        tabledata Contact = r,
+        tabledata "Contact Business Relation" = r,
+        tabledata Customer = rm,
+        tabledata Item = r,
+        tabledata Purchasing = ri,
+        tabledata "Realization Status TPZS" = ri,
+        tabledata "Resource Group" = r,
+        tabledata "Return Reason" = ri,
+        tabledata "Sales Header" = r,
+        tabledata "Sales Line" = r,
+        tabledata "Sales Plan. Line TPZS" = r,
+        tabledata "Sales Realization TPZS" = rim,
+        tabledata "Sales Rlz. Work Time TPZS" = r,
+        tabledata "Transaction Type" = ri;
 
     var
         LibraryInventory: Codeunit "Library - Inventory";
@@ -94,7 +94,7 @@ codeunit 83990 "Library - Sales LIB"
 
     procedure CreateSalesLine(var SalesLine: Record "Sales Line"; SalesHeader: Record "Sales Header"; Type: Enum "Sales Line Type"; No: Code[20]; Quantity: Decimal)
     begin
-        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, Type, No, LibraryRandom.RandInt(100));
+        LibrarySales.CreateSalesLine(SalesLine, SalesHeader, Type, No, Quantity);
     end;
 
     procedure CreatesalesLineItem(var SalesLine: Record "Sales Line"; SalesHeader: Record "Sales Header"; ItemNo: Code[20])

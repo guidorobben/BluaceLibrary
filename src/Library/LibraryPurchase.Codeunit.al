@@ -1,9 +1,9 @@
 codeunit 83958 "Library - Purchase LIB"
 {
     Permissions =
-        tabledata Item = R,
-        tabledata "Purchase Header" = R,
-        tabledata "Purchase Line" = RM;
+        tabledata Item = r,
+        tabledata "Purchase Header" = r,
+        tabledata "Purchase Line" = rm;
 
     var
         LibraryInventory: Codeunit "Library - Inventory";

@@ -1,15 +1,15 @@
 codeunit 83965 "Library - Maintenance LIB"
 {
     Permissions =
-        tabledata "Contr. Template Header TPZS" = R,
-        tabledata "Contract Norm TPZS" = R,
-        tabledata "Maint. Sched. Templ. Hdr. TPZS" = RIM,
-        tabledata "Maint. Sched. Templ. Line TPZS" = RI,
-        tabledata "Maint. Template Norm TPZS" = RIMD,
-        tabledata "Object Maint. Schedule TPZS" = R,
-        tabledata "Object Norm TPZS" = R,
-        tabledata "Object Template TPZS" = R,
-        tabledata "Object TPZS" = RM;
+        tabledata "Contr. Template Header TPZS" = r,
+        tabledata "Contract Norm TPZS" = r,
+        tabledata "Maint. Sched. Templ. Hdr. TPZS" = rim,
+        tabledata "Maint. Sched. Templ. Line TPZS" = ri,
+        tabledata "Maint. Template Norm TPZS" = rimd,
+        tabledata "Object Maint. Schedule TPZS" = r,
+        tabledata "Object Norm TPZS" = r,
+        tabledata "Object Template TPZS" = r,
+        tabledata "Object TPZS" = rm;
 
     var
         Assert: Codeunit Assert;

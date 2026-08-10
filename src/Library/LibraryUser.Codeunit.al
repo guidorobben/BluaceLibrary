@@ -1,7 +1,7 @@
 codeunit 83963 "Library - User LIB"
 {
     Permissions =
-        tabledata "User Setup" = RIM;
+        tabledata "User Setup" = rim;
 
     procedure AddUserSetup(UserName: Code[50])
     var

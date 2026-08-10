@@ -1,7 +1,7 @@
 codeunit 83967 "Library - Priority LIB"
 {
     Permissions =
-        tabledata "Priority TPZS" = RID;
+        tabledata "Priority TPZS" = rid;
 
     procedure CreatePriority(NewCode: Code[20]; Description: Text[100])
     var
@@ -19,12 +19,17 @@ codeunit 83967 "Library - Priority LIB"
 
     procedure CreatePriority(var PriorityTPZS: Record "Priority TPZS"; NewCode: Code[20]; Description: Text[100])
     begin
-        CreatePriority(NewCode, Description, 0, true, false);
+        CreatePriority(PriorityTPZS, NewCode, Description, 0, true, false);
     end;
 
     procedure CreatePriority(NewCode: Code[20]; Description: Text[100]; Duration: Integer; WorkTimeOnly: Boolean; IgnoreObjectAvailability: Boolean)
     var
         PriorityTPZS: Record "Priority TPZS";
+    begin
+        CreatePriority(PriorityTPZS, NewCode, Description, Duration, WorkTimeOnly, IgnoreObjectAvailability);
+    end;
+
+    procedure CreatePriority(var PriorityTPZS: Record "Priority TPZS"; NewCode: Code[20]; Description: Text[100]; Duration: Integer; WorkTimeOnly: Boolean; IgnoreObjectAvailability: Boolean)
     begin
         PriorityTPZS.Init();
         PriorityTPZS.Validate(Code, NewCode);

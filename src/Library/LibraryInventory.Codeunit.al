@@ -1,9 +1,9 @@
 codeunit 83959 "Library - Inventory LIB"
 {
     Permissions =
-        tabledata "Base Calendar" = R,
-        tabledata "Base Calendar Change" = R,
-        tabledata Location = RM;
+        tabledata "Base Calendar" = r,
+        tabledata "Base Calendar Change" = r,
+        tabledata Location = rm;
 
     var
         LibraryInventory: Codeunit "Library - Inventory";

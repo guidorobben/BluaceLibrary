@@ -1,8 +1,8 @@
 codeunit 83981 "Library - Utility LIB"
 {
     Permissions =
-        tabledata "No. Series" = RI,
-        tabledata "No. Series Line" = RI;
+        tabledata "No. Series" = ri,
+        tabledata "No. Series Line" = ri;
 
     var
         // LibraryUtility: Codeunit "Library - Utility";

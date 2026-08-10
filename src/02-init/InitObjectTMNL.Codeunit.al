@@ -1,8 +1,8 @@
 codeunit 83961 "Init Object TM-NL LIB"
 {
-    Permissions =
-        tabledata "Object Setup TPZS" = RM,
-        tabledata "Post Code Serv. Setup NBLC" = RM;
+    Permissions = 
+        tabledata "Object Setup TPZS" = rm,
+        tabledata "Post Code Serv. Setup NBLC" = rim;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Init. Object LIB", OnInitialize, '', false, false)]
     local procedure OnInitialize()
@@ -31,7 +31,7 @@ codeunit 83961 "Init Object TM-NL LIB"
         PostCodeServSetupNBLC: Record "Post Code Serv. Setup NBLC";
     begin
         if not PostCodeServSetupNBLC.Get() then
-            PostCodeServSetupNBLC.InsertIfNotExists();
+            InsertIfNotExists();
 
         PostCodeServSetupBluace();
     end;
@@ -56,5 +56,16 @@ codeunit 83961 "Init Object TM-NL LIB"
         PostCodeServSetupNBLC.Validate("API Key", 'D1JIlqt0fim4oDPoiFYvAs7SrAaVogv7');
         PostCodeServSetupNBLC.Validate(Endpoint, 'https://api.postnl.nl/v4/address/netherlands');
         PostCodeServSetupNBLC.Modify(true);
+    end;
+
+    local procedure InsertIfNotExists()
+    var
+        PostCodeServSetupNBLC: Record "Post Code Serv. Setup NBLC";
+    begin
+        PostCodeServSetupNBLC.Reset();
+        if not PostCodeServSetupNBLC.Get() then begin
+            PostCodeServSetupNBLC.Init();
+            PostCodeServSetupNBLC.Insert(true);
+        end;
     end;
 }

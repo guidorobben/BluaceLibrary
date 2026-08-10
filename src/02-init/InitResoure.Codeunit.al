@@ -1,15 +1,15 @@
 codeunit 83955 "Init. Resoure LIB"
 {
     Permissions =
-        tabledata "Employee Absence" = RD,
-        tabledata "Human Resources Setup" = RM,
-        tabledata "Human Resource Unit of Measure" = RIM,
-        tabledata Location = R,
-        tabledata "No. Series Line" = RM,
-        tabledata Resource = RM,
-        tabledata "Resources Setup" = RIM,
-        tabledata "Resource Unit of Measure" = RI,
-        tabledata "Work Time Work Type TPZS" = R;
+        tabledata "Employee Absence" = rd,
+        tabledata "Human Resources Setup" = rm,
+        tabledata "Human Resource Unit of Measure" = rim,
+        tabledata Location = r,
+        tabledata "No. Series Line" = rm,
+        tabledata Resource = rm,
+        tabledata "Resources Setup" = rim,
+        tabledata "Resource Unit of Measure" = ri,
+        tabledata "Work Time Work Type TPZS" = r;
 
     var
         LibraryResource: Codeunit "Library - Resource LIB";
@@ -147,7 +147,7 @@ codeunit 83955 "Init. Resoure LIB"
             Location.Reset();
             Location.SetRange("Use As In-Transit", false);
             SourceRecordRef.GetTable(Location);
-            Resource.Validate("Location Code TPZS", LibraryRandom.GetRandomValueByRecordRefCode10(SourceRecordRef, 1));
+            //UITGEZET Resource.Validate("Location Code TPZS", LibraryRandom.GetRandomValueByRecordRefCode10(SourceRecordRef, 1));
             Resource.Modify(true);
 
             LibraryResource.CreateResourceUnitOfMeasureTravelKm(Resource);
@@ -203,6 +203,7 @@ codeunit 83955 "Init. Resoure LIB"
         UoMCode: Code[10];
     begin
         UoMCode := 'KM';
+        Resource.SetLoadFields("No.");
         if Resource.FindSet() then
             repeat
                 if not ResourceUnitofMeasure.Get(Resource."No.", UoMCode) then begin

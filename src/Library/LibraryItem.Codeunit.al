@@ -1,21 +1,21 @@
 codeunit 83984 "Library - Item LIB"
 {
     Permissions =
-        tabledata "Contract Setup TPZS" = R,
-        tabledata "General Posting Setup" = R,
-        tabledata "Inventory Posting Group" = R,
-        tabledata Item = RIM,
-        tabledata "Item Category" = RI,
-        tabledata "Item Discount Group" = RI,
-        tabledata "Item Planning Norm TPZS" = RIMD,
-        tabledata "Item Unit of Measure" = RI,
-        tabledata "Item Usage Norm TPZS" = RIMD,
-        tabledata Location = R,
-        tabledata Purchasing = RI,
-        tabledata "Resource Group" = R,
-        tabledata "Stockkeeping Unit" = RI,
-        tabledata "Tax Group" = R,
-        tabledata "VAT Posting Setup" = R;
+        tabledata "Contract Setup TPZS" = r,
+        tabledata "General Posting Setup" = r,
+        tabledata "Inventory Posting Group" = r,
+        tabledata Item = rim,
+        tabledata "Item Category" = ri,
+        tabledata "Item Discount Group" = ri,
+        tabledata "Item Planning Norm TPZS" = rimd,
+        tabledata "Item Unit of Measure" = ri,
+        tabledata "Item Usage Norm TPZS" = rimd,
+        tabledata Location = r,
+        tabledata Purchasing = ri,
+        tabledata "Resource Group" = r,
+        tabledata "Stockkeeping Unit" = ri,
+        tabledata "Tax Group" = r,
+        tabledata "VAT Posting Setup" = r;
 
     var
         LibraryERM: Codeunit "Library - ERM";
@@ -56,8 +56,11 @@ codeunit 83984 "Library - Item LIB"
         ContractSetupTPZS: Record "Contract Setup TPZS";
         ItemCategory: Record "Item Category";
     begin
+        ContractSetupTPZS.SetLoadFields("Item Category Price");
         ContractSetupTPZS.Get();
         ContractSetupTPZS.TestField("Item Category Price");
+
+        ItemCategory.SetLoadFields(Code);
         ItemCategory.Get(ContractSetupTPZS."Item Category Price");
 
         CreateServiceItem(Item, ItemNo);
@@ -75,6 +78,7 @@ codeunit 83984 "Library - Item LIB"
     var
         ContractSetupTPZS: Record "Contract Setup TPZS";
     begin
+        ContractSetupTPZS.SetLoadFields("Unit of Measure Code Month");
         ContractSetupTPZS.Get();
         ContractSetupTPZS.TestField("Unit of Measure Code Month");
         exit(CreatePriceItemNo(LibraryRandom.RandDecInRange(10, 40, 0), LibraryRandom.RandDecInRange(50, 100, 0), ContractSetupTPZS."Unit of Measure Code Month"));

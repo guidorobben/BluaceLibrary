@@ -1,16 +1,16 @@
 codeunit 83960 "Library - Job LIB"
 {
     Permissions =
-        tabledata Job = RM,
-        tabledata "Job Plan. Line TPZS" = R,
-        tabledata "Job Planning Line" = RM,
-        tabledata "Job Realization TPZS" = RIM,
-        tabledata "Job Resource PZS" = RI,
-        tabledata "Job Rlz. Work Time TPZS" = R,
-        tabledata "Job Task" = RIM,
-        tabledata "Job Type RBLC" = RI,
-        tabledata Resource = R,
-        tabledata "Resource Group" = R;
+        tabledata Job = rm,
+        tabledata "Job Plan. Line TPZS" = r,
+        tabledata "Job Planning Line" = rm,
+        tabledata "Job Realization TPZS" = rim,
+        // tabledata "Job Resource PZS" = ri,
+        tabledata "Job Rlz. Work Time TPZS" = r,
+        tabledata "Job Task" = rim,
+        tabledata "Job Type RBLC" = ri,
+        tabledata Resource = r,
+        tabledata "Resource Group" = r;
 
     var
         LibraryJob: Codeunit "Library - Job";
@@ -87,15 +87,15 @@ codeunit 83960 "Library - Job LIB"
         // Commit();
     end;
 
-    procedure CreateJobResource(ResouceNo: Code[20]; JobNo: Code[20])
-    var
-        JobResourcePZS: Record "Job Resource PZS";
-    begin
-        JobResourcePZS.Init();
-        JobResourcePZS.Validate("Resource No.", ResouceNo);
-        JobResourcePZS.Validate("Job No.", JobNo);
-        JobResourcePZS.Insert(true);
-    end;
+    // procedure CreateJobResource(ResouceNo: Code[20]; JobNo: Code[20])
+    // var
+    // // JobResourcePZS: Record "Job Resource PZS";
+    // begin
+    //     // JobResourcePZS.Init();
+    //     // JobResourcePZS.Validate("Resource No.", ResouceNo);
+    //     // JobResourcePZS.Validate("Job No.", JobNo);
+    //     // JobResourcePZS.Insert(true);
+    // end;
 
     procedure CreateResourceAsJobResource(JobNo: Code[20])
     var
@@ -105,9 +105,10 @@ codeunit 83960 "Library - Job LIB"
     end;
 
     procedure CreateResourceAsJobResource(var Resource: Record Resource; JobNo: Code[20])
+    var
     begin
         LibraryResourceLIB.CreateResource(Resource, '', LibraryRandomLIB.FindCompleteNameRandom());
-        CreateJobResource(Resource."No.", JobNo);
+        // LibExtTimeSheet.CreateJobResource(Resource."No.", JobNo);
     end;
 
     procedure LinkJobPlanningLines(var JobPlanningLine: Record "Job Planning Line"; PlanJobPlanningLineNo: Integer)
@@ -127,18 +128,18 @@ codeunit 83960 "Library - Job LIB"
             exit(true);
     end;
 
-    procedure ReleaseJobForTimeSheets(var Job: Record Job)
-    var
-    // RelJobforTimeSheetsPZS: Codeunit "Rel. Job for Time Sheets PZS";
-    begin
-        // RelJobforTimeSheetsPZS.ReleaseJobForTimeSheets(Job);        
-    end;
+    // procedure ReleaseJobForTimeSheets(var Job: Record Job)
+    // var
+    // // RelJobforTimeSheetsPZS: Codeunit "Rel. Job for Time Sheets PZS";
+    // begin
+    //     // RelJobforTimeSheetsPZS.ReleaseJobForTimeSheets(Job);        
+    // end;
 
-    procedure SetTimeSheetApproverToUser(var Job: Record Job; UserName: Code[50])
-    begin
-        Job.Validate("Time Sheet Appr. User ID PZS", UserName);
-        Job.Modify(true);
-    end;
+    // procedure SetTimeSheetApproverToUser(var Job: Record Job; UserName: Code[50])
+    // begin
+    //     // Job.Validate("Time Sheet Appr. User ID PZS", UserName);
+    //     // Job.Modify(true);
+    // end;
 
     procedure InitJobRealization(JobPlanningLine: Record "Job Planning Line"; var JobRealizationTPZS: Record "Job Realization TPZS"; ResourceGroup: Record "Resource Group")
     begin

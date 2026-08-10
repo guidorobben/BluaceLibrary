@@ -1,18 +1,18 @@
 codeunit 83982 "Library - Skill LIB"
 {
     Permissions =
-        tabledata "Contr. Template Header TPZS" = R,
-        tabledata "Contract Header TPZS" = R,
-        tabledata Item = R,
-        tabledata "Job Planning Line" = R,
-        tabledata "Object Template TPZS" = R,
-        tabledata "Object TPZS" = R,
-        tabledata Resource = R,
-        tabledata "Resource Skill" = RID,
-        tabledata "Sales Line" = R,
-        tabledata "Skill Code" = RID,
-        tabledata "Skill Item Line TPZS" = RD,
-        tabledata "Skill Line TPZS" = RD;
+        tabledata "Contr. Template Header TPZS" = r,
+        tabledata "Contract Header TPZS" = r,
+        tabledata Item = r,
+        tabledata "Job Planning Line" = r,
+        tabledata "Object Template TPZS" = r,
+        tabledata "Object TPZS" = r,
+        tabledata Resource = r,
+        tabledata "Resource Skill" = rid,
+        tabledata "Sales Line" = r,
+        tabledata "Skill Code" = rid,
+        tabledata "Skill Item Line TPZS" = rd,
+        tabledata "Skill Line TPZS" = rd;
 
     var
         Assert: Codeunit Assert;
@@ -171,7 +171,7 @@ codeunit 83982 "Library - Skill LIB"
         if SkillCode = '' then
             exit;
 
-        SkillLineTPZS.AddSkillLine(SalesLine.RecordId(), Database::"Sales Line", SalesLine.SystemId, SkillCode, 0, false); //FIXME SkillScore
+        SkillLineTPZS.AddSkillLine(SalesLine.RecordId(), Database::"Sales Line", SalesLine.SystemId, SkillCode, NewScore, false); //FIXME SkillScore
     end;
 
     // procedure AddSkillToJobPlanningLine(JobPlanningLine: Record "Job Planning Line"; SkillCode: Code[10])
