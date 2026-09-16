@@ -573,7 +573,7 @@ codeunit 83982 "Library - Skill LIB"
     var
         SkillItemLineHelperTPZS: Codeunit "Skill Item Line Helper TPZS";
     begin
-        if TableId in [Database::Object] then
+        if TableId in [Database::"Object TPZS"] then
             Assert.Fail('You used the wrong table.');
 
         exit(SkillItemLineHelperTPZS.SkillItemLineExist(TableId, SourceSystemId, ItemNo, SkillCode));
@@ -620,7 +620,7 @@ codeunit 83982 "Library - Skill LIB"
     var
         SkillItemLineTPZS: Record "Skill Item Line TPZS";
     begin
-        if TableId in [0, Database::Object] then
+        if TableId in [0, Database::"Object TPZS"] then
             Assert.Fail('You used the wrong table.');
 
         SkillItemLineTPZS.SetRange("Table Id", TableId);
@@ -628,9 +628,7 @@ codeunit 83982 "Library - Skill LIB"
         exit(SkillItemLineTPZS.Count());
     end;
 
-    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20];
-                                             SkillTypeTPZS: Enum "Skill Type TPZS";
-                                             DoNotUpdateSource: Boolean)
+    procedure DeleteResourceSkills(Type: Enum "Resource Skill Type"; SourceNo: Code[20]; SkillTypeTPZS: Enum "Skill Type TPZS"; DoNotUpdateSource: Boolean)
     var
         ResourceSkillHelperTPZS: Codeunit "Resource Skill Helper TPZS";
     begin

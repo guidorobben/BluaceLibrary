@@ -68,9 +68,7 @@ codeunit 83960 "Library - Job LIB"
         LibraryJob.CreateJobPlanningLine(LineType, Type, JobTask, JobPlanningLine);
     end;
 
-    procedure CreateJobPlanningLine(var JobPlanningLine: Record "Job Planning Line"; JobTask: Record "Job Task"; LineType: Enum "Job Planning Line Line Type"; Type: Enum "Job Planning Line Type"; Number: Code[20];
-                                                                                                                               PlanningDate: Date;
-                                                                                                                               Quantity: Decimal)
+    procedure CreateJobPlanningLine(var JobPlanningLine: Record "Job Planning Line"; JobTask: Record "Job Task"; LineType: Enum "Job Planning Line Line Type"; Type: Enum "Job Planning Line Type"; Number: Code[20]; PlanningDate: Date; Quantity: Decimal)
     begin
         LibraryJob.CreateJobPlanningLine(LineType, Type, JobTask, JobPlanningLine);
         JobPlanningLine.Validate("Planning Date", PlanningDate);
@@ -79,9 +77,7 @@ codeunit 83960 "Library - Job LIB"
         JobPlanningLine.Modify(true);
     end;
 
-    procedure CreateJobPlanningLine(var JobPlanningLine: Record "Job Planning Line"; JobTask: Record "Job Task"; LineType: Enum "Job Planning Line Line Type"; Type: Enum "Job Planning Line Type"; Number: Code[20];
-                                                                                                                               LocationCode: Code[10];
-                                                                                                                               Quantity: Decimal)
+    procedure CreateJobPlanningLine(var JobPlanningLine: Record "Job Planning Line"; JobTask: Record "Job Task"; LineType: Enum "Job Planning Line Line Type"; Type: Enum "Job Planning Line Type"; Number: Code[20]; LocationCode: Code[10]; Quantity: Decimal)
     begin
         LibraryJob.CreateJobPlanningLine(LineType, Type, JobTask, JobPlanningLine);
         JobPlanningLine.Validate("No.", Number);

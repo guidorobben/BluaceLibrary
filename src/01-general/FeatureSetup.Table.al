@@ -2,6 +2,8 @@ table 83951 "Feature Setup LIB"
 {
     Caption = 'Feature Setup';
     DataClassification = CustomerContent;
+    Permissions =
+        tabledata "Feature Setup LIB" = ri;
 
     fields
     {
@@ -30,9 +32,9 @@ table 83951 "Feature Setup LIB"
     var
     begin
         Reset();
-        if not Get() then begin
-            Init();
-            Insert(true);
+        if not Rec.Get() then begin
+            Rec.Init();
+            Rec.Insert(true);
         end;
     end;
 }
